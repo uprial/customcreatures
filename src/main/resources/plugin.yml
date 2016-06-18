@@ -1,0 +1,13 @@
+name: CustomCreatures
+main: com.gmail.uprial.customcreatures.CustomCreatures
+version: 0.1.4
+commands:
+   customcreatures:
+      description: Reload CustomCreatures config
+      usage: /customcreatures help
+      permission:
+      permission-message:
+permissions:
+    customcreatures.reload:
+        description: Gives access to CustomCreatures 'reload' command
+        default: op

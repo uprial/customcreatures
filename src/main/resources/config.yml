@@ -1,0 +1,92 @@
+#
+# ==== General info ====
+# 
+# * You can add your own handlers in this file but don't forget to
+# add they into 'handlers' list
+#
+# * After editing of this file you need to check server logs to be
+# sure that no errors was appeared
+#
+
+#
+# Show debug info. Possible values: true | false (default = false)
+#
+# This option can affect the performance
+#
+debug: false
+
+#
+# List of handlers
+# - <handler1>
+#   ...
+# - <handlerN>
+#
+# All handlers will handle a CreatureSpawnEvent in sequence in which
+# they are described in this option
+#
+
+handlers:
+  - rapid-creeper
+  - iron-creep
+    
+#
+# ==== Handlers definition ====
+# Example:
+#
+rapid-creeper:
+  filter:
+    reasons:
+      - NATURAL
+    types:
+      - CREEPER
+    probability: 10
+  max-speed:
+    type: random
+    min: 2
+    max: 4
+    distribution: exp
+      
+iron-creep:
+  filters:
+    reasons:
+      - NATURAL
+    types:
+      - ZOMBIE
+      - SKELETON
+    probability: 5
+  equipment:
+    helm:
+      probability: 100
+	  variants:
+	    - material: IRON
+	      enchantments:
+	       - type: strength
+	         level:
+	           type: int 
+	           value: 3
+	      drop-chance: 50
+    boots:
+      probability: 100
+	  variants:
+	    - material: IRON
+	      enchantments:
+	       - type: strength
+	         level:
+	           type: int 
+	           value: 3
+	      drop-chance: 50
+    chest:
+    pens:
+    in-hand:
+      item: IRON
+      count: 8
+  drops:
+    probability: 100
+    item: IRON
+    count:
+      type: random
+      min: 2
+	  max: 16
+	distribution: exp
+  max-health:
+    float: 100
