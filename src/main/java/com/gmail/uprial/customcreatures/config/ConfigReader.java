@@ -47,6 +47,8 @@ public class ConfigReader {
 
         if(null == config.getString(key)) {
             customLogger.debug(String.format("Empty %s '%s'. Use default value %d", title, name, defaultValue));
+        } else if (! config.isInt(key)) {
+            throw new InvalidConfigException(String.format("A %s '%s' is not an integer", title, name));
         } else {
             int intValue = config.getInt(key);
             if(min > intValue)
@@ -60,6 +62,16 @@ public class ConfigReader {
         return value;
     }
 
+    public static int getInt(FileConfiguration config, String key, String title, String name) throws InvalidConfigException {
+        if(null == config.getString(key)) {
+            throw new InvalidConfigException(String.format("Empty %s '%s'", title, name));
+        } else if (! config.isInt(key)) {
+            throw new InvalidConfigException(String.format("A %s '%s' is not an integer", title, name));
+        } else {
+            return config.getInt(key);
+        }
+    }
+
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title, String name) throws InvalidConfigException {
         List<String> strings = ConfigReader.getStringList(config, customLogger, key, title, name);
         if (null == strings)
@@ -68,13 +80,7 @@ public class ConfigReader {
         Set<T> entityTypes = new HashSet<>();
         for(int i = 0; i < strings.size(); i++) {
             String string = strings.get(i);
-            T enumItem;
-            try {
-                //noinspection unchecked
-                enumItem = (T)Enum.valueOf(enumType, string);
-            } catch (java.lang.IllegalArgumentException e) {
-                throw new InvalidConfigException(String.format("Invalid %s '%s' in %s '%s' at pos %d", enumType.getName(), string, title, name, i));
-            }
+            T enumItem = getEnumFromString(enumType, string, title, name, String.format(" at pos %d", i));
             if (entityTypes.contains(enumItem)) {
                 throw new InvalidConfigException(String.format("%s '%s' in %s '%s' is not unique", enumType.getName(), enumItem.toString(), title, name));
             }
@@ -83,14 +89,27 @@ public class ConfigReader {
         return entityTypes.size() > 0 ? entityTypes : null;
     }
 
-	/*public static String getString(FileConfiguration config, CustomLogger customLogger, String key, String title, String name) {
+    public static <T extends Enum> T getEnum(Class<T> enumType, FileConfiguration config, String key, String title, String name) throws InvalidConfigException {
+        String string = getString(config, key, title, name);
+        return getEnumFromString(enumType, string, title, name, "");
+    }
+
+    public static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String name, String desc) throws InvalidConfigException {
+        try {
+            //noinspection unchecked
+            return (T)Enum.valueOf(enumType, string.toUpperCase());
+        } catch (java.lang.IllegalArgumentException e) {
+            throw new InvalidConfigException(String.format("Invalid %s '%s' in %s '%s'%s", enumType.getName(), string, title, name, desc));
+        }
+    }
+
+    public static String getString(FileConfiguration config, String key, String title, String name) throws InvalidConfigException {
 		String string = config.getString(key);
 		
 		if(null == string) {
-			customLogger.debug(String.format("Null/Empty %s '%s'", title, name));
-			return null;
+            throw new InvalidConfigException(String.format("Null or empty %s '%s'", title, name));
 		}
 		
 		return string;
-	}*/
+	}
 }

@@ -48,10 +48,7 @@ public class CreaturesConfig {
             keys.put(key.toLowerCase(), 1);
 
             try {
-                HItem handler = HItem.getFromConfig(config, customLogger, key);
-                if (null != handler) {
-                    handlers.add(handler);
-                }
+                handlers.add(HItem.getFromConfig(config, customLogger, key));
             } catch (InvalidConfigException e) {
                 customLogger.error(e.getMessage());
             }

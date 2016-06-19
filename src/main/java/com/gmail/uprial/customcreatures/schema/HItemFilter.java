@@ -43,12 +43,12 @@ public class HItemFilter {
         return true;
     }
 
-    public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String handlerName) throws InvalidConfigException {
+    public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
-                key + ".types", "types of handler", handlerName);
+                key + ".types", "types of " + title, handlerName);
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
-                key + ".reasons", "reasons of handler", handlerName);
-        int probability = getInt(config, customLogger, key + ".probability", "probability of handler", handlerName, 0, MAX_PERCENT, MAX_PERCENT);
+                key + ".reasons", "reasons of " + title, handlerName);
+        int probability = getInt(config, customLogger, key + ".probability", "probability of " + title, handlerName, 0, MAX_PERCENT, MAX_PERCENT);
 
         return new HItemFilter(entityTypes, spawnReasons, probability);
     }

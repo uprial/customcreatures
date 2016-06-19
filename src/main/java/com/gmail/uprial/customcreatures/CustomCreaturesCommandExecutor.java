@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 
 class CustomCreaturesCommandExecutor implements CommandExecutor {
+	public static final String COMMAND_NS = "customcreatures";
+
 	private final CustomCreatures plugin;
 	private final CustomLogger customLogger;
 
@@ -17,9 +19,9 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
 	
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    	if (command.getName().equalsIgnoreCase("customcreatures")) {
+    	if (command.getName().equalsIgnoreCase(COMMAND_NS)) {
 			if((args.length >= 1) && (args[0].equalsIgnoreCase("reload"))) {
-	    		if (sender.hasPermission("customcreatures.reload")) {
+	    		if (sender.hasPermission(COMMAND_NS + ".reload")) {
 	    			plugin.reloadCreaturesConfig();
 	    			customLogger.userInfo(sender, "CustomCreatures config reloaded.");
 	    			return true;
@@ -28,8 +30,8 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
 			else if((args.length == 0) || (args[0].equalsIgnoreCase("help"))) {
 				String Help = "==== CustomCreatures help ====\n";
 
-				if (sender.hasPermission("customcreatures.reload"))
-					Help += "/customcreatures reload - reload config from disk\n";
+				if (sender.hasPermission(COMMAND_NS + ".reload"))
+					Help += "/" + COMMAND_NS + " reload - reload config from disk\n";
 
 				customLogger.userInfo(sender, Help);
     			return true;
