@@ -6,8 +6,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Random;
 
+import static com.gmail.uprial.customcreatures.config.ConfigReader.getDouble;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getEnum;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
@@ -16,24 +16,24 @@ public class ValueRandom extends Value {
     private static final RandomDistributionType defaultDistributionType = NORMAL;
 
     protected final RandomDistributionType distributionType;
-    protected final int min;
-    protected final int max;
+    protected final double min;
+    protected final double max;
     private final Random random = new Random();
 
-    ValueRandom(RandomDistributionType distributionType, int min, int max) {
+    ValueRandom(RandomDistributionType distributionType, double min, double max) {
         this.distributionType = distributionType;
         this.min = min;
         this.max = max;
     }
 
     @Override
-    public int getValue() {
-        if (distributionType == EXP_UP) {
-            return getExpRandom((max - min) / 2) + min;
-        } else if (distributionType == EXP_DOWN) {
-            return max - getExpRandom((max - min) / 2);
+    public double getValue() {
+        if (distributionType == EXP_DOWN) {
+            return getExpRandom(max - min) + min;
+        } else if (distributionType == EXP_UP) {
+            return max - getExpRandom(max - min);
         } else
-            return random.nextInt(max - min + 1) + min;
+            return random.nextDouble() * (max - min) + min;
     }
 
     public static boolean is(FileConfiguration config, String key) {
@@ -50,17 +50,18 @@ public class ValueRandom extends Value {
         } else
             distributionType = getEnum(RandomDistributionType.class, config, key + ".distribution", "distribution type of", key);
 
-        int min = getInt(config, key + ".min", String.format("minimum of %s", title), handlerName);
-        int max = getInt(config, key + ".max", String.format("maximum of %s", title), handlerName);
+        double min = getDouble(config, key + ".min", String.format("minimum of %s", title), handlerName);
+        double max = getDouble(config, key + ".max", String.format("maximum of %s", title), handlerName);
 
         return new ValueRandom(distributionType, min, max);
     }
 
-    private int getExpRandom(float average) {
-        int random = (int)Math.round(Math.floor(-average * Math.log(Math.random())));
-        if (random > average * 2)
-            random = 0;
+    private double getExpRandom(double max) {
+        double average = max / 2.0;
+        double value = -average * Math.log(random.nextDouble());
+        if (value > max)
+            value = 0.0;
 
-        return random;
+        return value;
     }
 }

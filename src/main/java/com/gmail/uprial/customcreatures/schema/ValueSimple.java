@@ -1,26 +1,25 @@
 package com.gmail.uprial.customcreatures.schema;
 
-import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ValueSimple extends Value {
 
-    private final Integer value;
+    private final double value;
 
-    ValueSimple(Integer value) {
+    private ValueSimple(double value) {
         this.value = value;
     }
 
     @Override
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 
     public static boolean is(FileConfiguration config, String key) {
-        return config.isInt(key);
+        return config.isInt(key) || config.isDouble(key);
     }
 
-    public static ValueSimple getFromConfig(FileConfiguration config, String key) throws InvalidConfigException {
-        return new ValueSimple(config.getInt(key));
+    public static ValueSimple getFromConfig(FileConfiguration config, String key) {
+        return new ValueSimple(config.getDouble(key));
     }
 }

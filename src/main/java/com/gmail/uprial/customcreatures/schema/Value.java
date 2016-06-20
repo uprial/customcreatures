@@ -6,9 +6,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 abstract public class Value {
 
-    abstract public int getValue();
+    abstract public double getValue();
 
     public static Value getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+        if (null == config.get(key)) {
+            customLogger.debug(String.format("Empty %s '%s'. Use default value NULL", title, handlerName));
+            return null;
+        }
+
         if (ValueSimple.is(config, key)) {
             return ValueSimple.getFromConfig(config, key);
         } else if (ValueRandom.is(config, key)) {

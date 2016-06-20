@@ -89,6 +89,7 @@ public class CreaturesConfigTest extends TestConfigBase {
         e.expectMessage("There are no valid handlers definitions");
         loadConfig("handlers:",
                 " - x",
-                "x: y");
+                "x:",
+                " filter: dd");
     }
 }

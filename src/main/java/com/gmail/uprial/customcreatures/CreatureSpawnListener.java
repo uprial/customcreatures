@@ -1,11 +1,10 @@
 package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 class CreatureSpawnListener implements Listener {
 	private final CustomCreatures plugin;
@@ -17,6 +16,9 @@ class CreatureSpawnListener implements Listener {
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void CreatureSpawnEvent(LivingEntity spawnee, SpawnReason spawnReason) {
+	public void onCreatureSpawn(CreatureSpawnEvent event) {
+        if (! event.isCancelled()) {
+            plugin.getCreaturesConfig().handle(customLogger, event.getEntity(), event.getSpawnReason());
+        }
 	}
 }

@@ -29,6 +29,15 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyFilter() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty filter of handler 'x'. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                "?:"),
+                getDebugFearingCustomLogger(), "f", "filter of handler", "x");
+    }
+
+    @Test
     public void testEmptyTypesFilter() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty types of filter of handler 'x'. Use default value NULL");

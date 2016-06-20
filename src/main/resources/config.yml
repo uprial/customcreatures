@@ -33,6 +33,53 @@ handlers:
 # ==== Handlers definition ====
 # Example:
 #
+# <handler>:
+#   filter:    ### Filter that will be applied before modifications.
+#              ### By default, no filters will be applied.
+#
+#     reasons: ### Possible spawn reasons, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
+#              ### By default, spawns with all reason will be processed.
+#       - <spawn-reason1>
+#         ...
+#       - <spawn-reasonN>
+#
+#     types:   ### Possible entity types, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+#              ### By default, entities of all types will be processed.
+#              ###
+#              ### An entity should be a subinterface of LivingEntity, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+#       - <entity-type1>
+#         ...
+#       - <entity-typeN>
+#
+#     probability: <0..100> ### Probability in percents that this handler will
+#                           ### be applied after all the filters.
+#                           ### (default = 100)
+#
+#   speed-multiplier: <value> ### A multiplier for velocity of an entity.
+#                             ### (* see description of <value> below)
+#
+# #### ####
+#
+# <value>: <float>               ### Normal floating point value
+# ||
+# <value>:
+#   type: random                 ### Random floating point value
+#   min: <float>                 ### Minumum value
+#   max: <float>                 ### Maximum value
+#   distribution: <distribution> ### Type of random distribution
+#                                ### (* see description of <distribution> below)
+#
+# #### ####
+#
+# <distribution>: normal | exp_up | exp_down
+# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
+# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
+# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
+#
+
 rapid-creeper:
   filter:
     reasons:
@@ -40,11 +87,11 @@ rapid-creeper:
     types:
       - CREEPER
     probability: 10
-  max-speed:
+  speed-multiplier:
     type: random
-    min: 2
-    max: 4
-    distribution: exp
+    min: 2.0
+    max: 3.5
+    distribution: exp_down
       
 iron-creep:
   filters:
@@ -57,24 +104,24 @@ iron-creep:
   equipment:
     helm:
       probability: 100
-	  variants:
-	    - material: IRON
-	      enchantments:
-	       - type: strength
-	         level:
-	           type: int 
-	           value: 3
-	      drop-chance: 50
+      variants:
+        - material: IRON
+          enchantments:
+           - type: strength
+             level:
+               type: int
+               value: 3
+          drop-chance: 50
     boots:
       probability: 100
-	  variants:
-	    - material: IRON
-	      enchantments:
-	       - type: strength
-	         level:
-	           type: int 
-	           value: 3
-	      drop-chance: 50
+      variants:
+        - material: IRON
+          enchantments:
+           - type: strength
+             level:
+               type: int
+               value: 3
+          drop-chance: 50
     chest:
     pens:
     in-hand:
@@ -86,7 +133,7 @@ iron-creep:
     count:
       type: random
       min: 2
-	  max: 16
-	distribution: exp
+      max: 16
+    distribution: exp
   max-health:
     float: 100

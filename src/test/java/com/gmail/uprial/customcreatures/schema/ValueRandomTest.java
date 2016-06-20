@@ -75,8 +75,8 @@ public class ValueRandomTest extends TestConfigBase {
                 "i: ",
                 " min: 0",
                 " max: 1"), getParanoiacCustomLogger(), "i", "i of handler", "x");
-        assertEquals(0, valueRandom.min);
-        assertEquals(1, valueRandom.max);
+        assertEquals(0.0, valueRandom.min);
+        assertEquals(1.0, valueRandom.max);
         assertEquals(NORMAL, valueRandom.distributionType);
     }
 
@@ -84,8 +84,8 @@ public class ValueRandomTest extends TestConfigBase {
     public void testNormalDistribution() throws Exception {
         ValueRandom valueRandom = new ValueRandom(NORMAL, 10, 20);
 
-        Map<Integer,Integer> distribution = getDistribution(1000, valueRandom);
-        for (Integer i = 10; i <= 20; i++) {
+        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        for (Integer i = 10; i < 20; i++) {
             assertTrue(distribution.get(i) > 50);
         }
         assertFalse(distribution.containsKey(9));
@@ -93,41 +93,44 @@ public class ValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpUpDistribution() throws Exception {
-        ValueRandom valueRandom = new ValueRandom(EXP_UP, 10, 12);
+    public void testExpDownDistribution() throws Exception {
+        ValueRandom valueRandom = new ValueRandom(EXP_DOWN, 10, 13);
 
-        Map<Integer,Integer> distribution = getDistribution(1000, valueRandom);
-        assertTrue(distribution.get(10) > 500);
-        assertTrue(distribution.get(10) < 900);
-        assertTrue(distribution.get(11) > 150);
-        assertTrue(distribution.get(11) < 300);
-        assertTrue(distribution.get(12) > 50);
-        assertTrue(distribution.get(12) < 150);
+        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        assertTrue(distribution.get(10) > 400);
+        assertTrue(distribution.get(10) < 1000);
+        assertTrue(distribution.get(11) > 200);
+        assertTrue(distribution.get(11) < 500);
+        assertTrue(distribution.get(12) > 100);
+        assertTrue(distribution.get(12) < 250);
         assertFalse(distribution.containsKey(9));
         assertFalse(distribution.containsKey(13));
     }
 
     @Test
-    public void testExpDownDistribution() throws Exception {
-        ValueRandom valueRandom = new ValueRandom(EXP_DOWN, 10, 12);
+    public void testExpUpDistribution() throws Exception {
+        ValueRandom valueRandom = new ValueRandom(EXP_UP, 10, 13);
 
-        Map<Integer,Integer> distribution = getDistribution(1000, valueRandom);
-        assertTrue(distribution.get(10) > 50);
-        assertTrue(distribution.get(10) < 150);
-        assertTrue(distribution.get(11) > 150);
-        assertTrue(distribution.get(11) < 300);
-        assertTrue(distribution.get(12) > 500);
-        assertTrue(distribution.get(12) < 900);
+        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        System.out.println(distribution);
+        assertTrue(distribution.get(10) > 100);
+        assertTrue(distribution.get(10) < 200);
+        assertTrue(distribution.get(11) > 200);
+        assertTrue(distribution.get(11) < 400);
+        assertTrue(distribution.get(12) > 400);
+        assertTrue(distribution.get(12) < 600);
+        assertTrue(distribution.get(13) > 100);
+        assertTrue(distribution.get(13) < 200);
         assertFalse(distribution.containsKey(9));
-        assertFalse(distribution.containsKey(13));
+        assertFalse(distribution.containsKey(14));
     }
 
-    private static Map<Integer,Integer> getDistribution(int tries, ValueRandom valueRandom) {
-        Map<Integer,Integer> distribution = new HashMap<Integer,Integer>();
+    private static Map<Integer,Long> getDistribution(int tries, ValueRandom valueRandom) {
+        Map<Integer,Long> distribution = new HashMap<>();
         for (Integer i = 0; i < tries; i++) {
-            Integer value = valueRandom.getValue();
-            Integer prev = distribution.containsKey(value) ? distribution.get(value) : 0;
-            distribution.put(value, prev+1);
+            Integer value = (int)Math.round(Math.floor(valueRandom.getValue()));
+            Long prev = distribution.containsKey(value) ? distribution.get(value) : 0;
+            distribution.put(value, prev + 1);
         }
 
         return distribution;

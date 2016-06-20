@@ -44,6 +44,11 @@ public class HItemFilter {
     }
 
     public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+        if (null == config.get(key)) {
+            customLogger.debug(String.format("Empty %s '%s'. Use default value NULL", title, handlerName));
+            return null;
+        }
+
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
                 key + ".types", "types of " + title, handlerName);
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,

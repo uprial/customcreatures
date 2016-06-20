@@ -5,6 +5,8 @@ import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import com.gmail.uprial.customcreatures.config.ConfigReader;
 import com.gmail.uprial.customcreatures.schema.HItem;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +19,13 @@ public class CreaturesConfig {
     public CreaturesConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
     	readConfig(config, customLogger);
     }
-    
+
+    public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
+        for (HItem handler : handlers) {
+            handler.handle(customLogger, entity, spawnReason);
+        }
+    }
+
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
 		boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "value flag", "debug", false);
 		customLogger.setDebugMode(debug);

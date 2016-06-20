@@ -4,38 +4,28 @@ Tested on Spigot-1.8.8
 
 == Introduction ==
 
-This is fully customizable plugin that allows You to control a damage taken by entity.
+This is fully customizable plugin that allows you to control entities' spawn.
 
 ==== You can configure: ====
-* Filter of damage sources, targets and causes
-* Formula how to calculate a damage
-* Dependencies from a player statistics
+* Filter of types, spawn reasons and probabilities
+* Entities' velocity
 
 ==== You can solve the following problems: ====
-* Increase a damage taken by a specific entity, thus make some enemies more
+* Increase a velocity of specific entities, thus make some enemies more
 dangerous naturally.
-* Change a damage depending on a players' kills or deaths, thus make a game more
-difficult for experienced players and easy for newbies without mechanics changes.
- 
 
 == Commands ==
 
-* customdamage reload        - reload config from disk
-* customdamage info          - show damage modifiers
-* customdamage info <player> - show damage modifiers of <player>
+* customcreatures reload        - reload config from disk
 
 == Permissions ==
 
 * Access to 'reload' command:
 
-customdamage.reload (default: op)
-
-* Access to 'info <player>' command:
-
-customdamage.info (default: op)
+customcreatures.reload (default: op)
 
 == Author ==
 I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 
 === GitHub ===
-https://github.com/uprial/customdamage
+https://github.com/uprial/customcreatures

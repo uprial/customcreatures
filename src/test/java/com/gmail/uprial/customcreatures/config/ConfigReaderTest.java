@@ -127,6 +127,30 @@ public class ConfigReaderTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyStrictDouble() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty value number 'n'");
+        getDouble(getPreparedConfig(""), "n", "value number", "n");
+    }
+
+    @Test
+    public void testWrongStrictDouble() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A value number 'n' is not a double");
+        getDouble(getPreparedConfig("n: 1z.0"), "n", "value number", "n");
+    }
+
+    @Test
+    public void testNormalStrictDouble() throws Exception {
+        assertEquals(50, Math.round(getDouble(getPreparedConfig("n: 50.0"), "n", "value number", "n")));
+    }
+
+    @Test
+    public void testIntStrictDouble() throws Exception {
+        assertEquals(50, Math.round(getDouble(getPreparedConfig("n: 50"), "n", "value number", "n")));
+    }
+
+    @Test
     public void testEmptyString() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Null or empty string of handler 'x'");
@@ -168,11 +192,18 @@ public class ConfigReaderTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptySet() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty set of handler 'x'. Use default value NULL");
+        getSet(TestEnum.class, getPreparedConfig(""), getDebugFearingCustomLogger(), "s", "set of handler", "x");
+    }
+
+    @Test
     public void testWrongSetType() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Invalid com.gmail.uprial.customcreatures.helpers.TestEnum 'Z' in handler 'x' at pos 0");
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.helpers.TestEnum 'Z' in set of handler 'x' at pos 0");
         getSet(TestEnum.class, getPreparedConfig("x:", "  entities:", "   - Z"), getCustomLogger(),
-                "x.entities", "handler", "x");
+                "x.entities", "set of handler", "x");
     }
 
     @Test

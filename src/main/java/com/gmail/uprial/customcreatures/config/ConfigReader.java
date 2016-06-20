@@ -72,6 +72,16 @@ public class ConfigReader {
         }
     }
 
+    public static double getDouble(FileConfiguration config, String key, String title, String name) throws InvalidConfigException {
+        if(null == config.getString(key)) {
+            throw new InvalidConfigException(String.format("Empty %s '%s'", title, name));
+        } else if ((! config.isDouble(key)) && (! config.isInt(key))) {
+            throw new InvalidConfigException(String.format("A %s '%s' is not a double", title, name));
+        } else {
+            return config.getDouble(key);
+        }
+    }
+
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title, String name) throws InvalidConfigException {
         List<String> strings = ConfigReader.getStringList(config, customLogger, key, title, name);
         if (null == strings)
