@@ -12,8 +12,8 @@ public class HValue {
             return null;
         }
 
-        if (DoubleValueSimple.is(config, key)) {
-            return DoubleValueSimple.getFromConfig(config, key);
+        if (ValueSimple.is(config, key)) {
+            return ValueSimple.getDoubleFromConfig(config, key);
         } else if (DoubleValueRandom.is(config, key)) {
             return DoubleValueRandom.getFromConfig(config, customLogger, key, title, handlerName);
         } else
@@ -26,8 +26,8 @@ public class HValue {
             return null;
         }
 
-        if (IntValueSimple.is(config, key)) {
-            return IntValueSimple.getFromConfig(config, key);
+        if (ValueSimple.is(config, key)) {
+            return ValueSimple.getIntFromConfig(config, key);
         } else if (IntValueRandom.is(config, key)) {
             return IntValueRandom.getFromConfig(config, customLogger, key, title, handlerName);
         } else
