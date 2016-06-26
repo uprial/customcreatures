@@ -9,9 +9,9 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 public class HItem {
     private final String name;
     private final HItemFilter filter;
-    private final IDoubleValue maxHealth;
+    private final IValue<Double> maxHealth;
 
-    private HItem(String name, HItemFilter filter, IDoubleValue maxHealth) {
+    private HItem(String name, HItemFilter filter, IValue<Double> maxHealth) {
         this.name = name;
         this.filter = filter;
         this.maxHealth = maxHealth;
@@ -36,7 +36,7 @@ public class HItem {
 
     public static HItem getFromConfig(FileConfiguration config, CustomLogger customLogger, String key) throws InvalidConfigException {
         HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, key + ".filter", "filter of handler", key);
-        IDoubleValue maxHealth = HValue.getDoubleFromConfig(config, customLogger, key + ".max-health", "max. health multiplier of handler", key);
+        IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, key + ".max-health", "max. health multiplier of handler", key);
         if (null == maxHealth) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }

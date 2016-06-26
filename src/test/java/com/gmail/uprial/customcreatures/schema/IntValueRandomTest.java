@@ -45,8 +45,8 @@ public class IntValueRandomTest extends TestConfigBase {
                 "i: ",
                 " min: 0",
                 " max: 1"), getParanoiacCustomLogger(), "i", "i of handler", "x");
-        assertEquals(0, valueRandom.min);
-        assertEquals(1, valueRandom.max);
+        assertEquals(0, (int)valueRandom.min);
+        assertEquals(1, (int)valueRandom.max);
         assertEquals(NORMAL, valueRandom.distributionType);
     }
 

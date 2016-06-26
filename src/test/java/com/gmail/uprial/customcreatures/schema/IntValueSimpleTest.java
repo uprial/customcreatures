@@ -8,7 +8,7 @@ import static junit.framework.Assert.assertEquals;
 public class IntValueSimpleTest extends TestConfigBase {
     @Test
     public void testIntValue() throws Exception {
-        assertEquals(1, IntValueSimple.getFromConfig(getPreparedConfig("v: 1.6"), "v").getValue());
+        assertEquals(1, (int)IntValueSimple.getFromConfig(getPreparedConfig("v: 1.6"), "v").getValue());
     }
 
 }

@@ -2,17 +2,10 @@ package com.gmail.uprial.customcreatures.schema;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class DoubleValueSimple extends AbstractValueSimple implements IDoubleValue {
+public class DoubleValueSimple extends AbstractValueSimple<Double> {
 
-    private final double value;
-
-    private DoubleValueSimple(double value) {
-        this.value = value;
-    }
-
-    @Override
-    public double getValue() {
-        return value;
+    private DoubleValueSimple(Double value) {
+        super(value);
     }
 
     public static DoubleValueSimple getFromConfig(FileConfiguration config, String key) {

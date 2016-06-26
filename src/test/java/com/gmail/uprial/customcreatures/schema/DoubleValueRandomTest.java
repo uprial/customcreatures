@@ -50,7 +50,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
     @Test
     public void testNormalDistribution() throws Exception {
-        DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, 10, 20);
+        DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, 10.0, 20.0);
 
         Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
         for (Integer i = 10; i < 20; i++) {
@@ -62,7 +62,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
     @Test
     public void testExpDownDistribution() throws Exception {
-        DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_DOWN, 10, 13);
+        DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_DOWN, 10.0, 13.0);
 
         Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
         assertTrue(distribution.get(10) > 400);
@@ -77,7 +77,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
     @Test
     public void testExpUpDistribution() throws Exception {
-        DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_UP, 10, 13);
+        DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_UP, 10.0, 13.0);
 
         Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
         assertTrue(distribution.get(10) > 100);
