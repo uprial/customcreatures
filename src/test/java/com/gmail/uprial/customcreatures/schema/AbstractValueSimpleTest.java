@@ -6,24 +6,25 @@ import org.junit.Test;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
-public class ValueSimpleTest extends TestConfigBase {
+public class AbstractValueSimpleTest extends TestConfigBase {
     @Test
     public void testIntIsValue() throws Exception {
-        assertTrue(ValueSimple.is(getPreparedConfig("v: 1"), "v"));
+        assertTrue(AbstractValueSimple.is(getPreparedConfig("v: 1"), "v"));
     }
 
     @Test
     public void testFloatIsValue() throws Exception {
-        assertTrue(ValueSimple.is(getPreparedConfig("v: 1.0"), "v"));
+        assertTrue(AbstractValueSimple.is(getPreparedConfig("v: 1.0"), "v"));
     }
 
     @Test
     public void testIsNotValue() throws Exception {
-        assertFalse(ValueSimple.is(getPreparedConfig("v: 1z.0"), "v"));
+        assertFalse(AbstractValueSimple.is(getPreparedConfig("v: 1z.0"), "v"));
     }
 
     @Test
     public void testEmptyValue() throws Exception {
-        assertFalse(ValueSimple.is(getPreparedConfig(""), "v"));
+        assertFalse(AbstractValueSimple.is(getPreparedConfig(""), "v"));
     }
+
 }

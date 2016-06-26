@@ -26,7 +26,7 @@ debug: false
 #
 
 handlers:
-  - test-rabbit
+  - fat-rabbit
   - rapid-creeper
   - iron-creep
     
@@ -81,15 +81,15 @@ handlers:
 # ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
 #
 
-test-rabbit:
+fat-rabbit:
   filter:
     types:
       - RABBIT
     probability: 100
   max-health:
     type: random
-    min: 10.0
-    max: 20.0
+    min: 1.0
+    max: 2.0
     distribution: exp_down
 
 rapid-creeper:

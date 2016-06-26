@@ -6,16 +6,30 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class HValue {
 
-    public static IValue getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+    public static IDoubleValue getDoubleFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
         if (null == config.get(key)) {
             customLogger.debug(String.format("Empty %s '%s'. Use default value NULL", title, handlerName));
             return null;
         }
 
-        if (ValueSimple.is(config, key)) {
-            return ValueSimple.getFromConfig(config, key);
-        } else if (ValueRandom.is(config, key)) {
-            return ValueRandom.getFromConfig(config, customLogger, key, title, handlerName);
+        if (DoubleValueSimple.is(config, key)) {
+            return DoubleValueSimple.getFromConfig(config, key);
+        } else if (DoubleValueRandom.is(config, key)) {
+            return DoubleValueRandom.getFromConfig(config, customLogger, key, title, handlerName);
+        } else
+            throw new InvalidConfigException(String.format("Wrong type of %s '%s'", title, handlerName));
+    }
+
+    public static IIntValue getIntFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+        if (null == config.get(key)) {
+            customLogger.debug(String.format("Empty %s '%s'. Use default value NULL", title, handlerName));
+            return null;
+        }
+
+        if (IntValueSimple.is(config, key)) {
+            return IntValueSimple.getFromConfig(config, key);
+        } else if (IntValueRandom.is(config, key)) {
+            return IntValueRandom.getFromConfig(config, customLogger, key, title, handlerName);
         } else
             throw new InvalidConfigException(String.format("Wrong type of %s '%s'", title, handlerName));
     }
