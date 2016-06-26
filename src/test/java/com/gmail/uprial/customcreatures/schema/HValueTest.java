@@ -6,10 +6,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static com.gmail.uprial.customcreatures.schema.Value.getFromConfig;
+import static com.gmail.uprial.customcreatures.schema.HValue.getFromConfig;
 import static org.junit.Assert.assertEquals;
 
-public class ValueTest extends TestConfigBase {
+public class HValueTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();
 
@@ -23,12 +23,14 @@ public class ValueTest extends TestConfigBase {
 
     @Test
     public void testSimpleValue() throws Exception {
+        //noinspection ConstantConditions
         assertEquals(42, Math.round(getFromConfig(getPreparedConfig("i: 42"),
                          getParanoiacCustomLogger(), "i", "i of handler", "x").getValue()));
     }
 
     @Test
     public void testRandomValue() throws Exception {
+        //noinspection ConstantConditions
         assertEquals(2, Math.round(getFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",

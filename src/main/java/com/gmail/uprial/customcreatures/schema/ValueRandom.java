@@ -12,7 +12,7 @@ import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
 
-public class ValueRandom extends Value {
+public class ValueRandom implements IValue {
     private static final RandomDistributionType defaultDistributionType = NORMAL;
 
     protected final RandomDistributionType distributionType;

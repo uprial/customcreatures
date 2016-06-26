@@ -21,9 +21,9 @@ public class HItemTest extends TestConfigBase {
     }
 
     @Test
-    public void testConfigureMaxSpeed() throws Exception {
+    public void testConfigureMaxHealth() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty speed multiplier of handler 'h'. Use default value NULL");
+        e.expectMessage("Empty max. health multiplier of handler 'h'. Use default value NULL");
 
         getFromConfig(getPreparedConfig(
                 "h: ",

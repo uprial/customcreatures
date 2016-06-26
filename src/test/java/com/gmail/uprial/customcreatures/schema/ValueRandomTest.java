@@ -112,7 +112,6 @@ public class ValueRandomTest extends TestConfigBase {
         ValueRandom valueRandom = new ValueRandom(EXP_UP, 10, 13);
 
         Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
-        System.out.println(distribution);
         assertTrue(distribution.get(10) > 100);
         assertTrue(distribution.get(10) < 200);
         assertTrue(distribution.get(11) > 200);

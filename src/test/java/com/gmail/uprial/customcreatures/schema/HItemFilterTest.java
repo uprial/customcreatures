@@ -25,6 +25,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - NATURAL",
                 "  probability: 50"),
                 getParanoiacCustomLogger(), "f", "filter of handler", "x");
+        //noinspection ConstantConditions
         assertEquals("[types: [ZOMBIE], reasons: [NATURAL], probability: 50]", itemFilter.toString());
     }
 

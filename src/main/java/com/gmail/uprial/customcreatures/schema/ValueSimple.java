@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class ValueSimple extends Value {
+public class ValueSimple implements IValue {
 
     private final double value;
 

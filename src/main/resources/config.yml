@@ -26,6 +26,7 @@ debug: false
 #
 
 handlers:
+  - test-rabbit
   - rapid-creeper
   - iron-creep
     
@@ -58,14 +59,14 @@ handlers:
 #                           ### be applied after all the filters.
 #                           ### (default = 100)
 #
-#   speed-multiplier: <value> ### A multiplier for velocity of an entity.
+#   max-health: <value-float> ### A multiplier for max. health of an entity.
 #                             ### (* see description of <value> below)
 #
 # #### ####
 #
-# <value>: <float>               ### Normal floating point value
+# <value-float>: <float>         ### Normal floating point value
 # ||
-# <value>:
+# <value-float>:
 #   type: random                 ### Random floating point value
 #   min: <float>                 ### Minumum value
 #   max: <float>                 ### Maximum value
@@ -80,27 +81,44 @@ handlers:
 # ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
 #
 
+test-rabbit:
+  filter:
+    types:
+      - RABBIT
+    probability: 100
+  max-health:
+    type: random
+    min: 10.0
+    max: 20.0
+    distribution: exp_down
+
 rapid-creeper:
   filter:
     reasons:
       - NATURAL
     types:
       - CREEPER
-    probability: 10
-  speed-multiplier:
-    type: random
-    min: 2.0
-    max: 3.5
-    distribution: exp_down
-      
+    probability: 0
+  effects:
+    - acceleration
+  acceleration:
+    effects:
+      - SPEED
+    strength:
+      type: random
+      min: 2
+      max: 10
+      distribution: exp_down
+    duration: 99999
+
 iron-creep:
-  filters:
+  filter:
     reasons:
       - NATURAL
     types:
       - ZOMBIE
       - SKELETON
-    probability: 5
+    probability: 0
   equipment:
     helm:
       probability: 100
@@ -124,16 +142,9 @@ iron-creep:
           drop-chance: 50
     chest:
     pens:
-    in-hand:
+    main-hand:
+    off-hand:
       item: IRON
       count: 8
-  drops:
-    probability: 100
-    item: IRON
-    count:
-      type: random
-      min: 2
-      max: 16
-    distribution: exp
-  max-health:
-    float: 100
+      drop-chance: 100
+  max-health: 1.0
