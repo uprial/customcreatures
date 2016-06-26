@@ -1,5 +1,6 @@
 package com.gmail.uprial.customcreatures.schema;
 
+import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
@@ -31,11 +32,21 @@ public class HItemFilterTest extends TestConfigBase {
 
     @Test
     public void testEmptyFilter() throws Exception {
-        e.expect(RuntimeException.class);
-        e.expectMessage("Empty filter of handler 'x'. Use default value NULL");
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty filter of handler 'x'");
         getFromConfig(getPreparedConfig(
                 "?:"),
-                getDebugFearingCustomLogger(), "f", "filter of handler", "x");
+                getParanoiacCustomLogger(), "f", "filter of handler", "x");
+    }
+
+    @Test
+    public void testNoRestrictionsFilter() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("No restrictions found in filter of handler 'x'");
+        getFromConfig(getPreparedConfig(
+                "f:",
+                " k: v"),
+                getCustomLogger(), "f", "filter of handler", "x");
     }
 
     @Test

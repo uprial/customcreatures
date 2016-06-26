@@ -14,10 +14,10 @@ public class HItemTest extends TestConfigBase {
 
     @Test
     public void testEmptyFilter() throws Exception {
-        e.expect(RuntimeException.class);
-        e.expectMessage("Empty filter of handler 'h'. Use default value NULL");
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty filter of handler 'h'");
 
-        getFromConfig(getPreparedConfig("h: "), getDebugFearingCustomLogger(), "h");
+        getFromConfig(getPreparedConfig("h: "), getParanoiacCustomLogger(), "h");
     }
 
     @Test
@@ -40,7 +40,10 @@ public class HItemTest extends TestConfigBase {
         e.expect(InvalidConfigException.class);
         e.expectMessage("No modifications found for handler 'h'");
 
-        getFromConfig(getPreparedConfig("h:"), getCustomLogger(), "h");
+        getFromConfig(getPreparedConfig(
+                "h:",
+                " filter:",
+                "   probability: 99"), getCustomLogger(), "h");
     }
 
 }

@@ -16,9 +16,9 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
     @Override
     public Integer getValue() {
         if (distributionType == EXP_DOWN) {
-            return getIntRandom(max - min) + min;
+            return getExpRandom(max - min) + min;
         } else if (distributionType == EXP_UP) {
-            return max - getIntRandom(max - min);
+            return max - getExpRandom(max - min);
         } else
             return random.nextInt(max - min + 1) + min;
     }
@@ -31,7 +31,7 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
         return new IntValueRandom(distributionType, min, max);
     }
 
-    private Integer getIntRandom(Integer max) {
+    private Integer getExpRandom(Integer max) {
         Double average = ((double)max + 1.0)/ 2.0;
         Double doubleValue = -average * Math.log(random.nextDouble());
         Integer value = (int)Math.round(Math.floor(doubleValue));

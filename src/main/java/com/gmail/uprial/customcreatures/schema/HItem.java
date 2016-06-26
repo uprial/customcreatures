@@ -18,12 +18,12 @@ public class HItem {
     }
 
     public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
-        if (null == filter || filter.pass(entity.getType(), spawnReason)) {
-            applySpeedMultiplier(customLogger, entity);
+        if (filter.pass(entity.getType(), spawnReason)) {
+            applyMaxHealth(customLogger, entity);
         }
     }
 
-    private void applySpeedMultiplier(CustomLogger customLogger, LivingEntity entity) {
+    private void applyMaxHealth(CustomLogger customLogger, LivingEntity entity) {
         if (null != maxHealth) {
             double value = entity.getMaxHealth() * maxHealth.getValue();
             entity.setMaxHealth(value);

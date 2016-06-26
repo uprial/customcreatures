@@ -75,6 +75,17 @@ handlers:
 #
 # #### ####
 #
+# <value-int>: <int>             ### Normal integer value
+# ||
+# <value-int>:
+#   type: random                 ### Random integer value
+#   min: <int>                   ### Minumum value
+#   max: <int>                   ### Maximum value
+#   distribution: <distribution> ### Type of random distribution
+#                                ### (* see description of <distribution> below)
+#
+# #### ####
+#
 # <distribution>: normal | exp_up | exp_down
 # ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
 # ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
@@ -102,7 +113,7 @@ rapid-creeper:
   effects:
     - acceleration
   acceleration:
-    effects:
+    types:
       - SPEED
     strength:
       type: random
