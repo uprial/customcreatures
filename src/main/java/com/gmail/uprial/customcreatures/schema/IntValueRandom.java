@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
@@ -25,8 +26,8 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
 
     public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
         RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title, handlerName);
-        Integer min = getInt(config, key + ".min", String.format("minimum of %s", title), handlerName);
-        Integer max = getInt(config, key + ".max", String.format("maximum of %s", title), handlerName);
+        Integer min = getInt(config, joinPaths(key, "min"), String.format("minimum of %s", title), handlerName);
+        Integer max = getInt(config, joinPaths(key, "max"), String.format("maximum of %s", title), handlerName);
 
         return new IntValueRandom(distributionType, min, max);
     }

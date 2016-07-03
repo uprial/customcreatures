@@ -6,20 +6,25 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
+import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
+
 public class HItem {
     private final String name;
     private final HItemFilter filter;
+    private final HItemEffectsList effectsList;
     private final IValue<Double> maxHealth;
 
-    private HItem(String name, HItemFilter filter, IValue<Double> maxHealth) {
+    private HItem(String name, HItemFilter filter, HItemEffectsList effectsList, IValue<Double> maxHealth) {
         this.name = name;
         this.filter = filter;
+        this.effectsList = effectsList;
         this.maxHealth = maxHealth;
     }
 
     public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
         if (filter.pass(entity.getType(), spawnReason)) {
             applyMaxHealth(customLogger, entity);
+            applyEffectsList(customLogger, entity);
         }
     }
 
@@ -34,13 +39,20 @@ public class HItem {
         }
     }
 
+    private void applyEffectsList(CustomLogger customLogger, LivingEntity entity) {
+        if (null != effectsList) {
+            effectsList.apply(customLogger, entity);
+        }
+    }
+
     public static HItem getFromConfig(FileConfiguration config, CustomLogger customLogger, String key) throws InvalidConfigException {
-        HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, key + ".filter", "filter of handler", key);
-        IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, key + ".max-health", "max. health multiplier of handler", key);
-        if (null == maxHealth) {
+        HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, joinPaths(key, "filter"), "filter of handler", key);
+        HItemEffectsList effectsList = HItemEffectsList.getFromConfig(config, customLogger, joinPaths(key, "effects"), "effects of handler", key);
+        IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health"), "max. health multiplier of handler", key);
+        if ((null == maxHealth) && (null == effectsList)) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }
 
-        return new HItem(key, filter, maxHealth);
+        return new HItem(key, filter, effectsList, maxHealth);
     }
 }

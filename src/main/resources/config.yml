@@ -41,6 +41,8 @@ handlers:
 #     reasons: ### Possible spawn reasons, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
 #              ### By default, spawns with all reason will be processed.
+#              ### Hint: a spawn via "summon" command will be detected
+#              ### as "DEFAULT"
 #       - <spawn-reason1>
 #         ...
 #       - <spawn-reasonN>
@@ -94,22 +96,22 @@ handlers:
 
 fat-rabbit:
   filter:
+    reasons:
+      - NATURAL
     types:
       - RABBIT
-    probability: 100
+    probability: 5
   max-health:
     type: random
-    min: 1.0
-    max: 2.0
+    min: 2.0
+    max: 4.0
     distribution: exp_down
 
 rapid-creeper:
   filter:
-    reasons:
-      - NATURAL
     types:
       - CREEPER
-    probability: 0
+    probability: 100
   effects:
     - acceleration
   acceleration:

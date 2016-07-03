@@ -24,4 +24,8 @@ public class ValueSimple<T> implements IValue<T> {
     public static ValueSimple<Double> getDoubleFromConfig(FileConfiguration config, String key) {
         return new ValueSimple<>(config.getDouble(key));
     }
+
+    public String toString() {
+        return getValue().toString();
+    }
 }

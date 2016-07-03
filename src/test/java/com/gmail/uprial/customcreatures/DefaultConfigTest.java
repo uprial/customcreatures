@@ -16,6 +16,6 @@ public class DefaultConfigTest extends TestConfigBase {
     @Test
     public void testDefaultConfig() throws Exception {
         String contents = Files.toString(new File(CONFIG_FILE), Charsets.UTF_8);
-        loadConfig(contents);
+        loadConfig(getParanoiacCustomLogger(), contents);
     }
 }

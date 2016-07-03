@@ -3,9 +3,9 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ValueSimpleTest extends TestConfigBase {
     @Test

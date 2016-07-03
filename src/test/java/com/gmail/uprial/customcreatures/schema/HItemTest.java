@@ -21,7 +21,22 @@ public class HItemTest extends TestConfigBase {
     }
 
     @Test
-    public void testConfigureMaxHealth() throws Exception {
+    public void testEmptyEffects() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty effects of handler 'h'. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "h: ",
+                " filter:",
+                "   types:",
+                "     - ZOMBIE",
+                "   reasons:",
+                "     - NATURAL",
+                "   probability: 100"), getDebugFearingCustomLogger(), "h");
+    }
+
+    @Test
+    public void testEmptyMaxHealth() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty max. health multiplier of handler 'h'. Use default value NULL");
 
@@ -32,7 +47,14 @@ public class HItemTest extends TestConfigBase {
                 "     - ZOMBIE",
                 "   reasons:",
                 "     - NATURAL",
-                "   probability: 100"), getDebugFearingCustomLogger(), "h");
+                "   probability: 100",
+                " effects:",
+                "  - e",
+                " e:",
+                "  types:",
+                "   - SPEED",
+                "  strength: 1",
+                "  duration: 1"), getDebugFearingCustomLogger(), "h");
     }
 
     @Test

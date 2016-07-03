@@ -13,9 +13,9 @@ import static com.gmail.uprial.customcreatures.schema.IntValueRandom.getFromConf
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class IntValueRandomTest extends TestConfigBase {
     @Rule

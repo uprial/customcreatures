@@ -56,6 +56,13 @@ public class CreaturesConfigTest extends TestConfigBase {
     }
 
     @Test
+    public void testNotStringKeyInHandlers() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Key '{x=null}' in 'handlers' at pos 0 is not a string");
+        loadConfig("handlers:",
+                " - x:");
+    }
+    @Test
     public void testNoDefinitionOfHandlers() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Null definition of handler 'x' at pos 0");

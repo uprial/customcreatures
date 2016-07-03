@@ -9,6 +9,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import java.util.Random;
 import java.util.Set;
 
+import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
@@ -49,10 +50,10 @@ public class HItemFilter {
         }
 
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
-                key + ".types", "types of " + title, handlerName);
+                joinPaths(key, "types"), "types of " + title, handlerName);
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
-                key + ".reasons", "reasons of " + title, handlerName);
-        int probability = getInt(config, customLogger, key + ".probability", "probability of " + title, handlerName, 0, MAX_PERCENT, MAX_PERCENT);
+                joinPaths(key, ".reasons"), "reasons of " + title, handlerName);
+        int probability = getInt(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title), handlerName, 0, MAX_PERCENT, MAX_PERCENT);
         if ((null == entityTypes) && (null == spawnReasons) && (MAX_PERCENT <= probability)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s '%s'", title, handlerName));
         }

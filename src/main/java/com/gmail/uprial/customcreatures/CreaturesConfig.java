@@ -29,19 +29,22 @@ public class CreaturesConfig {
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
 		boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "value flag", "debug", false);
 		customLogger.setDebugMode(debug);
-		
-		handlers = new ArrayList<>();
-		Map<String,Integer> keys = new HashMap<>();
-		
+
 		List<?> handlersConfig = config.getList("handlers");
 		if((null == handlersConfig) || (handlersConfig.size() <= 0)) {
 			throw new InvalidConfigException("Empty 'handlers' list");
 		}
-		
-		for(int i = 0; i < handlersConfig.size(); i++) {
+
+        handlers = new ArrayList<>();
+        Map<String,Integer> keys = new HashMap<>();
+
+        for(int i = 0; i < handlersConfig.size(); i++) {
             Object item = handlersConfig.get(i);
             if (null == item) {
                 throw new InvalidConfigException(String.format("Null key in 'handlers' at pos %d", i));
+            }
+            if (! (item instanceof String)) {
+                throw new InvalidConfigException(String.format("Key '%s' in 'handlers' at pos %d is not a string", item.toString(), i));
             }
             String key = item.toString();
             if (key.length() < 1) {

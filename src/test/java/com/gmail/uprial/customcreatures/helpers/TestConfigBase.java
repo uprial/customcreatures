@@ -2,8 +2,11 @@ package com.gmail.uprial.customcreatures.helpers;
 
 import com.gmail.uprial.customcreatures.CreaturesConfig;
 import com.gmail.uprial.customcreatures.common.InvalidConfigException;
+import com.google.common.collect.Lists;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 
 public abstract class TestConfigBase {
     protected void loadConfig(String content) throws InvalidConfigurationException, InvalidConfigException {
@@ -20,7 +23,7 @@ public abstract class TestConfigBase {
 
     protected YamlConfiguration getPreparedConfig(String ... contents) throws InvalidConfigurationException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
-        yamlConfiguration.loadFromString(joinStrings("\n", contents));
+        yamlConfiguration.loadFromString(joinStrings("\n", Lists.newArrayList(contents)));
 
         return yamlConfiguration;
     }
@@ -41,14 +44,5 @@ public abstract class TestConfigBase {
         testCustomLogger.doFailOnAny();
 
         return testCustomLogger;
-    }
-
-    private String joinStrings(String delimiter, String[] contents) {
-        String content = contents[0];
-        for (int i = 1; i < contents.length; i++) {
-            content += delimiter + contents[i];
-        }
-
-        return content;
     }
 }

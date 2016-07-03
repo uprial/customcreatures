@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getDouble;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
@@ -25,8 +26,8 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
 
     public static DoubleValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
         RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title, handlerName);
-        Double min = getDouble(config, key + ".min", String.format("minimum of %s", title), handlerName);
-        Double max = getDouble(config, key + ".max", String.format("maximum of %s", title), handlerName);
+        Double min = getDouble(config, joinPaths(key, "min"), String.format("minimum of %s", title), handlerName);
+        Double max = getDouble(config, joinPaths(key, "max"), String.format("maximum of %s", title), handlerName);
 
         return new DoubleValueRandom(distributionType, min, max);
     }

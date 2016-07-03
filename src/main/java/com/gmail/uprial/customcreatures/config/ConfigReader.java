@@ -83,20 +83,20 @@ public class ConfigReader {
     }
 
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title, String name) throws InvalidConfigException {
-        List<String> strings = ConfigReader.getStringList(config, customLogger, key, title, name);
+        List<String> strings = getStringList(config, customLogger, key, title, name);
         if (null == strings)
             return null;
 
-        Set<T> entityTypes = new HashSet<>();
+        Set<T> set = new HashSet<>();
         for(int i = 0; i < strings.size(); i++) {
             String string = strings.get(i);
             T enumItem = getEnumFromString(enumType, string, title, name, String.format(" at pos %d", i));
-            if (entityTypes.contains(enumItem)) {
-                throw new InvalidConfigException(String.format("%s '%s' in %s '%s' is not unique", enumType.getName(), enumItem.toString(), title, name));
+            if (set.contains(enumItem)) {
+                throw new InvalidConfigException(String.format("%s '%s' in %s '%s' is not unique", enumType.getName(), string, title, name));
             }
-            entityTypes.add(enumItem);
+            set.add(enumItem);
         }
-        return entityTypes.size() > 0 ? entityTypes : null;
+        return set.size() > 0 ? set : null;
     }
 
     public static <T extends Enum> T getEnum(Class<T> enumType, FileConfiguration config, String key, String title, String name) throws InvalidConfigException {

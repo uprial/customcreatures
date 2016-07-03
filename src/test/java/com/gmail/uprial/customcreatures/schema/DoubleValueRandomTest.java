@@ -13,7 +13,9 @@ import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
 import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
 import static com.gmail.uprial.customcreatures.schema.DoubleValueRandom.getFromConfig;
-import static junit.framework.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class DoubleValueRandomTest extends TestConfigBase {
     @Rule
@@ -43,8 +45,8 @@ public class DoubleValueRandomTest extends TestConfigBase {
                 "i: ",
                 " min: 0",
                 " max: 1"), getParanoiacCustomLogger(), "i", "i of handler", "x");
-        assertEquals(0.0, valueRandom.min);
-        assertEquals(1.0, valueRandom.max);
+        assertEquals(0, valueRandom.min.intValue());
+        assertEquals(1, valueRandom.max.intValue());
         assertEquals(NORMAL, valueRandom.distributionType);
     }
 
