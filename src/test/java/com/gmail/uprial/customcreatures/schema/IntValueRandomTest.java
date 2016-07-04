@@ -48,6 +48,7 @@ public class IntValueRandomTest extends TestConfigBase {
         assertEquals(0, (int)valueRandom.min);
         assertEquals(1, (int)valueRandom.max);
         assertEquals(NORMAL, valueRandom.distributionType);
+        assertEquals("IntValueRandom[distribution: NORMAL, min: 0, max: 1]", valueRandom.toString());
     }
 
     @Test

@@ -68,8 +68,9 @@ public class HItemEffect {
         }
         if(!hasPowered) {
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handler %s: add %s to %s",
-                        title, toString(),customLogger.entity2string(entity)));
+                customLogger.debug(String.format("Hadnle %s: add %s[strength: %d, duration: %d] to %s",
+                        title, effect.getType().getName(), effect.getAmplifier(), effect.getDuration(),
+                        customLogger.entity2string(entity)));
             }
             entity.addPotionEffect(effect);
         }

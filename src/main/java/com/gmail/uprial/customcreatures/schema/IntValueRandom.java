@@ -41,4 +41,8 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
 
         return value;
     }
+
+    public String toString() {
+        return String.format("IntValueRandom[distribution: %s, min: %d, max: %d]", distributionType, min, max);
+    }
 }

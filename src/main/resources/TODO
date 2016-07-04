@@ -1,4 +1,5 @@
 - Fix toString for random values (with test, maybe raise)
 - Fix old PotionEffectTypesEnum
 - Effects hint in config.yml
+- Remove (int), (float)
 - Inspect code

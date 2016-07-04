@@ -40,4 +40,8 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
 
         return value;
     }
+
+    public String toString() {
+        return String.format("DoubleValueRandom[distribution: %s, min: %.2f, max: %.2f]", distributionType, min, max);
+    }
 }

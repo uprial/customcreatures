@@ -68,4 +68,25 @@ public class HItemTest extends TestConfigBase {
                 "   probability: 99"), getCustomLogger(), "h");
     }
 
+    @Test
+    public void testLongErrorMessage() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.RandomDistributionType" +
+                " 'exp_dow' in distribution type of strength of effect 'h.acceleration' in effects of handler 'h'");
+        getFromConfig(getPreparedConfig(
+                "h:",
+                " filter:",
+                "  probability: 99",
+                " effects:",
+                "  - acceleration",
+                " acceleration:",
+                "  types:",
+                "   - SPEED",
+                "  strength:",
+                "    type: random",
+                "    min: 2",
+                "    max: 10",
+                "    distribution: exp_dow",
+                "  duration: 99999"), getCustomLogger(), "h");
+    }
 }
