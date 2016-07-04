@@ -25,7 +25,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "  reasons:",
                 "    - NATURAL",
                 "  probability: 50"),
-                getParanoiacCustomLogger(), "f", "filter of handler", "x");
+                getParanoiacCustomLogger(), "f", "filter");
         //noinspection ConstantConditions
         assertEquals("[types: [ZOMBIE], reasons: [NATURAL], probability: 50]", itemFilter.toString());
     }
@@ -33,57 +33,57 @@ public class HItemFilterTest extends TestConfigBase {
     @Test
     public void testEmptyFilter() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty filter of handler 'x'");
+        e.expectMessage("Empty filter");
         getFromConfig(getPreparedConfig(
                 "?:"),
-                getParanoiacCustomLogger(), "f", "filter of handler", "x");
+                getParanoiacCustomLogger(), "f", "filter");
     }
 
     @Test
     public void testNoRestrictionsFilter() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("No restrictions found in filter of handler 'x'");
+        e.expectMessage("No restrictions found in filter");
         getFromConfig(getPreparedConfig(
                 "f:",
                 " k: v"),
-                getCustomLogger(), "f", "filter of handler", "x");
+                getCustomLogger(), "f", "filter");
     }
 
     @Test
     public void testEmptyTypesFilter() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty types of filter of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty types of filter. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "f:",
                 "  reasons:",
                 "    - NATURAL",
                 "  probability: 50"),
-                getDebugFearingCustomLogger(), "f", "filter of handler", "x");
+                getDebugFearingCustomLogger(), "f", "filter");
     }
 
     @Test
     public void testEmptyReasonsFilter() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty reasons of filter of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty reasons of filter. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 50"),
-                getDebugFearingCustomLogger(), "f", "filter of handler", "x");
+                getDebugFearingCustomLogger(), "f", "filter");
     }
 
     @Test
     public void testEmptyProbabilityFilter() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty probability of filter of handler 'x'. Use default value 100");
+        e.expectMessage("Empty probability of filter. Use default value 100");
         getFromConfig(getPreparedConfig(
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
                 "  reasons:",
                 "    - NATURAL"),
-                getDebugFearingCustomLogger(), "f", "filter of handler", "x");
+                getDebugFearingCustomLogger(), "f", "filter");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  reasons:",
-                "    - NATURAL"), getParanoiacCustomLogger(), "f", "filter of handler", "x");
+                "    - NATURAL"), getParanoiacCustomLogger(), "f", "filter");
         assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.INFECTION));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
@@ -121,7 +121,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
-                "  probability: 50"), getParanoiacCustomLogger(), "f", "filter of handler", "x");
+                "  probability: 50"), getParanoiacCustomLogger(), "f", "filter");
         assertTrue(30 < getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertTrue(70 > getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
@@ -133,7 +133,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
-                "  probability: 0"), getParanoiacCustomLogger(), "f", "filter of handler", "x");
+                "  probability: 0"), getParanoiacCustomLogger(), "f", "filter");
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
     }
 

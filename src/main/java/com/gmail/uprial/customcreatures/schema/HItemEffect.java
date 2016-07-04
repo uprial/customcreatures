@@ -14,13 +14,13 @@ import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
 public class HItemEffect {
 
-    private final String handlerName;
+    private final String title;
     private final Set<PotionEffectTypesEnum> effectTypes;
     private final IValue<Integer> strength;
     private final IValue<Integer> duration;
 
-    private HItemEffect(String handlerName, Set<PotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
-        this.handlerName = handlerName;
+    private HItemEffect(String title, Set<PotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
+        this.title = title;
         this.effectTypes = effectTypes;
         this.strength = strength;
         this.duration = duration;
@@ -32,23 +32,23 @@ public class HItemEffect {
         }
     }
 
-    public static HItemEffect getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+    public static HItemEffect getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         if (null == config.get(key)) {
-            throw new InvalidConfigException(String.format("Empty %s '%s'", title, handlerName));
+            throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
         Set<PotionEffectTypesEnum> effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, ".types"), "effect types of " + title, handlerName))) {
-            throw new InvalidConfigException(String.format("Empty effect types of %s '%s'", title, handlerName));
-        } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), "strength of handler", key))) {
-            throw new InvalidConfigException(String.format("Empty strength of %s '%s'", title, handlerName));
-        } else if (null == (duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"), "duration of handler", key))) {
-            throw new InvalidConfigException(String.format("Empty duration of %s '%s'", title, handlerName));
+        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, ".types"), "effect types of " + title))) {
+            throw new InvalidConfigException(String.format("Empty effect types of %s", title));
+        } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), "strength of " + title))) {
+            throw new InvalidConfigException(String.format("Empty strength of %s", title));
+        } else if (null == (duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"), "duration of " + title))) {
+            throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 
-        return new HItemEffect(handlerName, effectTypes, strength, duration);
+        return new HItemEffect(title, effectTypes, strength, duration);
     }
 
     public String toString() {
@@ -68,8 +68,8 @@ public class HItemEffect {
         }
         if(!hasPowered) {
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handler %s: add effect %s to %s",
-                        handlerName, toString(),customLogger.entity2string(entity)));
+                customLogger.debug(String.format("Handler %s: add %s to %s",
+                        title, toString(),customLogger.entity2string(entity)));
             }
             entity.addPotionEffect(effect);
         }

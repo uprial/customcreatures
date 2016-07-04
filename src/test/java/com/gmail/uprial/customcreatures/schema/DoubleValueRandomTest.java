@@ -24,19 +24,19 @@ public class DoubleValueRandomTest extends TestConfigBase {
     @Test
     public void testNoMin() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty minimum of i of handler 'x'");
+        e.expectMessage("Empty minimum of i");
 
-        getFromConfig(getPreparedConfig("i: "), getParanoiacCustomLogger(), "i", "i of handler", "x");
+        getFromConfig(getPreparedConfig("i: "), getParanoiacCustomLogger(), "i", "i");
     }
 
     @Test
     public void testNoMax() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty maximum of i of handler 'x'");
+        e.expectMessage("Empty maximum of i");
 
         getFromConfig(getPreparedConfig(
                 "i: ",
-                " min: 0"), getParanoiacCustomLogger(), "i", "i of handler", "x");
+                " min: 0"), getParanoiacCustomLogger(), "i", "i");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
         DoubleValueRandom valueRandom = getFromConfig(getPreparedConfig(
                 "i: ",
                 " min: 0",
-                " max: 1"), getParanoiacCustomLogger(), "i", "i of handler", "x");
+                " max: 1"), getParanoiacCustomLogger(), "i", "i");
         assertEquals(0, valueRandom.min.intValue());
         assertEquals(1, valueRandom.max.intValue());
         assertEquals(NORMAL, valueRandom.distributionType);

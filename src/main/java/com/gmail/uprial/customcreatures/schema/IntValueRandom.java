@@ -24,10 +24,10 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
             return random.nextInt(max - min + 1) + min;
     }
 
-    public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
-        RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title, handlerName);
-        Integer min = getInt(config, joinPaths(key, "min"), String.format("minimum of %s", title), handlerName);
-        Integer max = getInt(config, joinPaths(key, "max"), String.format("maximum of %s", title), handlerName);
+    public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+        RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title);
+        Integer min = getInt(config, joinPaths(key, "min"), String.format("minimum of %s", title));
+        Integer max = getInt(config, joinPaths(key, "max"), String.format("maximum of %s", title));
 
         return new IntValueRandom(distributionType, min, max);
     }

@@ -42,14 +42,14 @@ public class AbstractValueRandomTest extends TestConfigBase {
     @Test
     public void testNoDistribution() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty distribution of i of handler 'x'. Use default value NORMAL");
+        e.expectMessage("Empty distribution of i. Use default value NORMAL");
 
-        getDistributionTypeFromConfig(getPreparedConfig("i: "), getDebugFearingCustomLogger(), "i", "i of handler", "x");
+        getDistributionTypeFromConfig(getPreparedConfig("i: "), getDebugFearingCustomLogger(), "i", "i");
     }
 
     @Test
     public void testDistribution() throws Exception {
         assertEquals(EXP_UP,  getDistributionTypeFromConfig(getPreparedConfig("i: ", "  distribution: EXP_UP"),
-                getDebugFearingCustomLogger(), "i", "i of handler", "x"));
+                getDebugFearingCustomLogger(), "i", "i"));
     }
 }

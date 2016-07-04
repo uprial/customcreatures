@@ -21,7 +21,7 @@ public class HItemEffectTest extends TestConfigBase {
                 "    - SPEED",
                 "  strength: 1",
                 "  duration: 1"),
-                getParanoiacCustomLogger(), "e", "effect of handler", "x");
+                getParanoiacCustomLogger(), "e", "effect");
         //noinspection ConstantConditions
         assertEquals("[types: [SPEED], strength: 1, duration: 1]", itemEffect.toString());
     }
@@ -29,43 +29,43 @@ public class HItemEffectTest extends TestConfigBase {
     @Test
     public void testEmptyEffect() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty effect of handler 'x'");
+        e.expectMessage("Empty effect");
         HItemEffect.getFromConfig(getPreparedConfig(
                 "?:"),
-                getParanoiacCustomLogger(), "e", "effect of handler", "x");
+                getParanoiacCustomLogger(), "e", "effect");
     }
 
     @Test
     public void testEmptyTypes() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty effect types of effect of handler 'x'");
+        e.expectMessage("Empty effect types of effect");
         HItemEffect.getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:"),
-                getParanoiacCustomLogger(), "e", "effect of handler", "x");
+                getParanoiacCustomLogger(), "e", "effect");
     }
 
     @Test
     public void testEmptyStrength() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty strength of effect of handler 'x'");
+        e.expectMessage("Empty strength of effect");
         HItemEffect.getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:",
                 "    - SPEED"),
-                getParanoiacCustomLogger(), "e", "effect of handler", "x");
+                getParanoiacCustomLogger(), "e", "effect");
     }
 
     @Test
     public void testEmptyDuration() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty duration of effect of handler 'x'");
+        e.expectMessage("Empty duration of effect");
         HItemEffect.getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:",
                 "    - SPEED",
                 "  strength: 1"),
-                getParanoiacCustomLogger(), "e", "effect of handler", "x");
+                getParanoiacCustomLogger(), "e", "effect");
     }
 
 }

@@ -23,7 +23,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "    - SPEED",
                 "  strength: 1",
                 "  duration: 1"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
         //noinspection ConstantConditions
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
@@ -31,84 +31,84 @@ public class HItemEffectsListTest extends TestConfigBase {
     @Test
     public void testNoEffects() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty effects list of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty effects list. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "?:"),
-                getDebugFearingCustomLogger(), "ee", "effects list of handler", "x");
+                getDebugFearingCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testEmptyEffectsList() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty effects list of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty effects list. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "ee:"),
-                getDebugFearingCustomLogger(), "ee", "effects list of handler", "x");
+                getDebugFearingCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testEmptyEffectsValue() throws Exception {
         HItemEffectsList itemEffectsList = getFromConfig(getPreparedConfig(
                 "ee:"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
         assertEquals(null, itemEffectsList);
     }
 
     @Test
     public void testNullKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null key in effects list of handler 'x' at pos 0");
+        e.expectMessage("Null key in effects list at pos 0");
         getFromConfig(getPreparedConfig(
                 "ee:",
                 " -"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testNotStringKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Key '{e=null}' in effects list of handler 'x' at pos 0 is not a string");
+        e.expectMessage("Key '{e=null}' in effects list at pos 0 is not a string");
         getFromConfig(getPreparedConfig(
                 "ee:",
                 " - e:"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testEmptyKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty key in effects list of handler 'x' at pos 0");
+        e.expectMessage("Empty key in effects list at pos 0");
         getFromConfig(getPreparedConfig(
                 "ee:",
                 " - ''"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testNoDefinitionOfKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null definition of key 'e' in effects list of handler 'x'");
+        e.expectMessage("Null definition of key 'e' in effects list");
         getFromConfig(getPreparedConfig(
                 "ee:",
                 " - e"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
     }
 
     @Test
     public void testNoDefinitionOfKeyWithParetnsInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null definition of keys 'x.e' and 'e' in effects list of handler 'x'");
+        e.expectMessage("Null definition of keys 'x.e' and 'e' in effects list");
         getFromConfig(getPreparedConfig(
                 "x:",
                 " ee:",
                 "  - e"),
-                getParanoiacCustomLogger(), "x.ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "x.ee", "effects list");
     }
 
     @Test
     public void testNotUniqueKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Key 'e' in effects list of handler 'x' is not unique");
+        e.expectMessage("Key 'e' in effects list is not unique");
         getFromConfig(getPreparedConfig(
                 "ee:",
                 " - e",
@@ -118,7 +118,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  - SPEED",
                 " strength: 1",
                 " duration: 1"),
-                getParanoiacCustomLogger(), "ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "ee", "effects list");
     }
 
     @Test
@@ -132,7 +132,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "   - SPEED",
                 "  strength: 1",
                 "  duration: 1"),
-                getParanoiacCustomLogger(), "x.ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "x.ee", "effects list");
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 
@@ -147,7 +147,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "   - SPEED",
                 "  strength: 1",
                 "  duration: 1"),
-                getParanoiacCustomLogger(), "x.ee", "effects list of handler", "x");
+                getParanoiacCustomLogger(), "x.ee", "effects list");
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 

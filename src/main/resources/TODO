@@ -1,4 +1,4 @@
-- Remove excessive "%s handler" from the messages
-- Fix toString for random values
+- Fix toString for random values (with test, maybe raise)
 - Fix old PotionEffectTypesEnum
 - Effects hint in config.yml
+- Inspect code

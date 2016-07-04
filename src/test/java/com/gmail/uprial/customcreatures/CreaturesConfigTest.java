@@ -21,7 +21,7 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testEmptyDebug() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty value flag 'debug'. Use default value false");
+        e.expectMessage("Empty 'debug' flag. Use default value false");
         loadConfig(getDebugFearingCustomLogger(), "");
     }
 

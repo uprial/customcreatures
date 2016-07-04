@@ -17,31 +17,31 @@ public class HValueTest extends TestConfigBase {
     @Test
     public void testWrongDoubleType() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Wrong type of i of handler 'x'");
+        e.expectMessage("Wrong type of i");
 
-        getDoubleFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i of handler", "x");
+        getDoubleFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i");
     }
 
     @Test
     public void testWrongIntType() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Wrong type of i of handler 'x'");
+        e.expectMessage("Wrong type of i");
 
-        getIntFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i of handler", "x");
+        getIntFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i");
     }
 
     @Test
     public void testSimpleDoubleValue() throws Exception {
         //noinspection ConstantConditions
         assertEquals(42, Math.round(getDoubleFromConfig(getPreparedConfig("i: 42"),
-                         getParanoiacCustomLogger(), "i", "i of handler", "x").getValue()));
+                         getParanoiacCustomLogger(), "i", "i").getValue()));
     }
 
     @Test
     public void testSimpleIntValue() throws Exception {
         //noinspection ConstantConditions
         assertEquals(42, (int)getIntFromConfig(getPreparedConfig("i: 42"),
-                getParanoiacCustomLogger(), "i", "i of handler", "x").getValue());
+                getParanoiacCustomLogger(), "i", "i").getValue());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class HValueTest extends TestConfigBase {
                 " min: 2.0",
                 " max: 2.0",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i of handler", "x").getValue()));
+                getParanoiacCustomLogger(), "i", "i").getValue()));
     }
 
     @Test
@@ -65,36 +65,36 @@ public class HValueTest extends TestConfigBase {
                 " min: 2",
                 " max: 2",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i of handler", "x").getValue());
+                getParanoiacCustomLogger(), "i", "i").getValue());
     }
 
     @Test
     public void testEmptyDoubleValue() throws Exception {
         assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
-                getCustomLogger(), "i", "i of handler", "x"));
+                getCustomLogger(), "i", "i"));
     }
 
     @Test
     public void testEmptyIntValue() throws Exception {
         assertEquals(null, getIntFromConfig(getPreparedConfig(""),
-                getCustomLogger(), "i", "i of handler", "x"));
+                getCustomLogger(), "i", "i"));
     }
 
     @Test
     public void testEmptyDoubleValueMessage() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty i of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty i. Use default value NULL");
 
         assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
-                getDebugFearingCustomLogger(), "i", "i of handler", "x"));
+                getDebugFearingCustomLogger(), "i", "i"));
     }
 
     @Test
     public void testEmptyIntValueMessage() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty i of handler 'x'. Use default value NULL");
+        e.expectMessage("Empty i. Use default value NULL");
 
         assertEquals(null, getIntFromConfig(getPreparedConfig(""),
-                getDebugFearingCustomLogger(), "i", "i of handler", "x"));
+                getDebugFearingCustomLogger(), "i", "i"));
     }
 }

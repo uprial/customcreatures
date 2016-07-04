@@ -44,18 +44,18 @@ public class HItemFilter {
         return true;
     }
 
-    public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+    public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         if (null == config.get(key)) {
-            throw new InvalidConfigException(String.format("Empty %s '%s'", title, handlerName));
+            throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
-                joinPaths(key, "types"), "types of " + title, handlerName);
+                joinPaths(key, "types"), "types of " + title);
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
-                joinPaths(key, ".reasons"), "reasons of " + title, handlerName);
-        int probability = getInt(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title), handlerName, 0, MAX_PERCENT, MAX_PERCENT);
+                joinPaths(key, ".reasons"), "reasons of " + title);
+        int probability = getInt(config, customLogger, joinPaths(key, "probability"), "probability of " + title, 0, MAX_PERCENT, MAX_PERCENT);
         if ((null == entityTypes) && (null == spawnReasons) && (MAX_PERCENT <= probability)) {
-            throw new InvalidConfigException(String.format("No restrictions found in %s '%s'", title, handlerName));
+            throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }
 
         return new HItemFilter(entityTypes, spawnReasons, probability);

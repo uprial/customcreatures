@@ -27,7 +27,7 @@ public class CreaturesConfig {
     }
 
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-		boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "value flag", "debug", false);
+		boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "'debug' flag", false);
 		customLogger.setDebugMode(debug);
 
 		List<?> handlersConfig = config.getList("handlers");

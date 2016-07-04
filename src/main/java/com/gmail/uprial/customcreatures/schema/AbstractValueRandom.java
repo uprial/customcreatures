@@ -24,13 +24,13 @@ abstract public class AbstractValueRandom<T> implements IValue<T> {
         this.max = max;
     }
 
-    public static RandomDistributionType getDistributionTypeFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title, String handlerName) throws InvalidConfigException {
+    public static RandomDistributionType getDistributionTypeFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         RandomDistributionType distributionType;
         if (null == config.get(joinPaths(key, "distribution"))) {
-            customLogger.debug(String.format("Empty distribution of %s '%s'. Use default value %s", title, handlerName, defaultDistributionType));
+            customLogger.debug(String.format("Empty distribution of %s. Use default value %s", title, defaultDistributionType));
             distributionType = NORMAL;
         } else
-            distributionType = getEnum(RandomDistributionType.class, config, joinPaths(key, "distribution"), "distribution type of", key);
+            distributionType = getEnum(RandomDistributionType.class, config, joinPaths(key, "distribution"), "distribution type of" + title);
 
         return distributionType;
     }

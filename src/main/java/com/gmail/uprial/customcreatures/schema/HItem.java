@@ -46,9 +46,12 @@ public class HItem {
     }
 
     public static HItem getFromConfig(FileConfiguration config, CustomLogger customLogger, String key) throws InvalidConfigException {
-        HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, joinPaths(key, "filter"), "filter of handler", key);
-        HItemEffectsList effectsList = HItemEffectsList.getFromConfig(config, customLogger, joinPaths(key, "effects"), "effects of handler", key);
-        IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health"), "max. health multiplier of handler", key);
+        HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, joinPaths(key, "filter"),
+                String.format("filter of handler '%s'", key));
+        HItemEffectsList effectsList = HItemEffectsList.getFromConfig(config, customLogger, joinPaths(key, "effects"),
+                String.format("effects of handler '%s'", key));
+        IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health"),
+                String.format("max. health multiplier of handler '%s'", key));
         if ((null == maxHealth) && (null == effectsList)) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }
