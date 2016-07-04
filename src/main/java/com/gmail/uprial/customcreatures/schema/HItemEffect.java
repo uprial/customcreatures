@@ -40,7 +40,7 @@ public class HItemEffect {
         Set<PotionEffectTypesEnum> effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, ".types"), "effect types of " + title))) {
+        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, "types"), "effect types of " + title))) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
         } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), "strength of " + title))) {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));

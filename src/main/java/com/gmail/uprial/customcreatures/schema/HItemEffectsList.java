@@ -72,7 +72,7 @@ public class HItemEffectsList {
             }
             keys.put(subKeyFull.toLowerCase(), 1);
 
-            itemEffects.add(HItemEffect.getFromConfig(config, customLogger, subKeyFull, title));
+            itemEffects.add(HItemEffect.getFromConfig(config, customLogger, subKeyFull, String.format("effect '%s' in %s", subKeyFull, title)));
         }
 
         return new HItemEffectsList(itemEffects);
