@@ -64,6 +64,19 @@ handlers:
 #   max-health: <value-float> ### A multiplier for max. health of an entity.
 #                             ### (* see description of <value> below)
 #
+#   effects:  ### List of effects which will be applied to an entity.
+#             ### Path of each effect can be absolute from the root of the config
+#             ### or relative to the current handler definition.
+#             ###
+#     - <effect-path-rel>  ### Relative path
+#     - <effect-path-abs>  ### Absolute path
+#       ...
+#     - <effect-pathN>
+#
+#   effect-path-rel: <effect> ### (* see description of <effect> below)
+# effect-path-abs: <effect>
+#
+#
 # #### ####
 #
 # <value-float>: <float>         ### Normal floating point value
@@ -92,6 +105,19 @@ handlers:
 # ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
 # ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
 # ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
+#
+# #### ####
+#
+# <effect>:
+#   types:   ### Effect types, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
+#            ### Effects of all these types will be applied to an entity
+#     - <effect-type1>
+#       ...
+#     - <effect-typeN>
+#
+#   strength:  <value-int>   ### Strength of the effect
+#   duration:  <value-int>   ### Duration of the effect, in seconds
 #
 
 fat-rabbit:
