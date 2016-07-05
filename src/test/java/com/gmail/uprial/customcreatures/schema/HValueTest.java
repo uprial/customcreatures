@@ -40,8 +40,8 @@ public class HValueTest extends TestConfigBase {
     @Test
     public void testSimpleIntValue() throws Exception {
         //noinspection ConstantConditions
-        assertEquals(42, (int)getIntFromConfig(getPreparedConfig("i: 42"),
-                getParanoiacCustomLogger(), "i", "i").getValue());
+        assertEquals(42, getIntFromConfig(getPreparedConfig("i: 42"),
+                getParanoiacCustomLogger(), "i", "i").getValue().intValue());
     }
 
     @Test
@@ -59,13 +59,13 @@ public class HValueTest extends TestConfigBase {
     @Test
     public void testRandomIntValue() throws Exception {
         //noinspection ConstantConditions
-        assertEquals(2, (int)getIntFromConfig(getPreparedConfig(
+        assertEquals(2, getIntFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",
                 " min: 2",
                 " max: 2",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i").getValue());
+                getParanoiacCustomLogger(), "i", "i").getValue().intValue());
     }
 
     @Test

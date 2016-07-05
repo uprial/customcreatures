@@ -33,7 +33,7 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
     }
 
     private Integer getExpRandom(Integer max) {
-        Double average = ((double)max + 1.0)/ 2.0;
+        Double average = (max.doubleValue() + 1.0)/ 2.0;
         Double doubleValue = -average * Math.log(random.nextDouble());
         Integer value = (int)Math.round(Math.floor(doubleValue));
         if (value > max)

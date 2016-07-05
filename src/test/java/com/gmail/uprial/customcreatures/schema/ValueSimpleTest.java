@@ -30,7 +30,7 @@ public class ValueSimpleTest extends TestConfigBase {
 
     @Test
     public void testIntValue() throws Exception {
-        assertEquals(1, (int) ValueSimple.getIntFromConfig(getPreparedConfig("v: 1.6"), "v").getValue());
+        assertEquals(1, ValueSimple.getIntFromConfig(getPreparedConfig("v: 1.6"), "v").getValue().intValue());
     }
 
     @Test
