@@ -1,5 +1,7 @@
-- Fix toString for random values (with test, maybe raise)
-- Fix old PotionEffectTypesEnum
-- Effects hint in config.yml
+- Use strings concatenations in case of format(''... %s')
+- Move debug() formatters to a separate class
 - Remove (int), (float)
+- Effects hint in config.yml
+- Fix old PotionEffectTypesEnum
+- Remove all TABs
 - Inspect code
