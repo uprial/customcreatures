@@ -40,11 +40,11 @@ public class HItemEffect {
         Set<PotionEffectTypesEnum> effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, "types"), "effect types of " + title))) {
+        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
-        } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), "strength of " + title))) {
+        } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), String.format("strength of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));
-        } else if (null == (duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"), "duration of " + title))) {
+        } else if (null == (duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"), String.format("duration of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 

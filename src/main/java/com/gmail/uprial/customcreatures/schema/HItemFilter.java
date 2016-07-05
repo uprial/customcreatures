@@ -50,10 +50,10 @@ public class HItemFilter {
         }
 
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
-                joinPaths(key, "types"), "types of " + title);
+                joinPaths(key, "types"), String.format("types of %s", title));
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
-                joinPaths(key, "reasons"), "reasons of " + title);
-        int probability = getInt(config, customLogger, joinPaths(key, "probability"), "probability of " + title, 0, MAX_PERCENT, MAX_PERCENT);
+                joinPaths(key, "reasons"), String.format("reasons of %s", title));
+        int probability = getInt(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title), 0, MAX_PERCENT, MAX_PERCENT);
         if ((null == entityTypes) && (null == spawnReasons) && (MAX_PERCENT <= probability)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }

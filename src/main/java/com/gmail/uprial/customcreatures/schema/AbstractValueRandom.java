@@ -30,7 +30,7 @@ abstract public class AbstractValueRandom<T> implements IValue<T> {
             customLogger.debug(String.format("Empty distribution of %s. Use default value %s", title, defaultDistributionType));
             distributionType = NORMAL;
         } else
-            distributionType = getEnum(RandomDistributionType.class, config, joinPaths(key, "distribution"), "distribution type of " + title);
+            distributionType = getEnum(RandomDistributionType.class, config, joinPaths(key, "distribution"), String.format("distribution type of %s", title));
 
         return distributionType;
     }
