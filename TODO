@@ -1,4 +1,3 @@
-- Use strings concatenations in case of format(''... %s')
 - Move debug() formatters to a separate class
 - Remove (int), (float)
 - Effects hint in config.yml

@@ -1,9 +1,7 @@
 package com.gmail.uprial.customcreatures.common;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,14 +45,6 @@ public class CustomLogger {
     	sender.sendMessage(ChatColor.RED + String.format("ERROR: %s", message));
     	log(Level.INFO, String.format("[user-error] <%s>: %s", sender.getName(), message));
     }
-
-	public String entity2string(Entity entity) {
-        Location location = entity.getLocation();
-        return String.format("%s[world: %s, x: %.0f, y: %.0f, z: %.0f]",
-                entity.getType().toString(),
-                null != location.getWorld() ? location.getWorld().getName() : "empty",
-                location.getX(), location.getY(), location.getZ());
-	}
 
 	public void userInfo(CommandSender sender, String message) {
     	sender.sendMessage(message);

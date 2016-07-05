@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
+import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
 public class HItem {
@@ -34,7 +35,7 @@ public class HItem {
             entity.setMaxHealth(value);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle '%s' modification: set max. health of %s to %.2f",
-                        name, customLogger.entity2string(entity), value));
+                        name, format(entity), value));
             }
         }
     }

@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffect;
 
 import java.util.Set;
 
+import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
@@ -68,9 +69,8 @@ public class HItemEffect {
         }
         if(!hasPowered) {
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Hadnle %s: add %s[strength: %d, duration: %d] to %s",
-                        title, effect.getType().getName(), effect.getAmplifier(), effect.getDuration(),
-                        customLogger.entity2string(entity)));
+                customLogger.debug(String.format("Hadnle %s: add %s to %s",
+                        title, format(effect), format(entity)));
             }
             entity.addPotionEffect(effect);
         }
