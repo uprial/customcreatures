@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Map;
 
 public class CreaturesConfig {
-	private List<HItem> handlers;
-	
+    private List<HItem> handlers;
+
     public CreaturesConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-    	readConfig(config, customLogger);
+        readConfig(config, customLogger);
     }
 
     public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
@@ -27,13 +27,13 @@ public class CreaturesConfig {
     }
 
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-		boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "'debug' flag", false);
-		customLogger.setDebugMode(debug);
+        boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "'debug' flag", false);
+        customLogger.setDebugMode(debug);
 
-		List<?> handlersConfig = config.getList("handlers");
-		if((null == handlersConfig) || (handlersConfig.size() <= 0)) {
-			throw new InvalidConfigException("Empty 'handlers' list");
-		}
+        List<?> handlersConfig = config.getList("handlers");
+        if((null == handlersConfig) || (handlersConfig.size() <= 0)) {
+            throw new InvalidConfigException("Empty 'handlers' list");
+        }
 
         handlers = new ArrayList<>();
         Map<String,Integer> keys = new HashMap<>();
@@ -64,9 +64,9 @@ public class CreaturesConfig {
                 customLogger.error(e.getMessage());
             }
         }
-		
-		if(handlers.size() < 1) {
+
+        if(handlers.size() < 1) {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
-	}
+    }
 }

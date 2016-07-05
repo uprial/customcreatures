@@ -29,18 +29,18 @@ public class ConfigReader {
     }
 
     public static List<String> getStringList(FileConfiguration config, CustomLogger customLogger, String key, String title) {
-		List<?> lines = config.getList(key);
-		if(null != lines) {
-			List<String> strings = new ArrayList<>();
-			for(int i = 0; i < lines.size(); i++)
+        List<?> lines = config.getList(key);
+        if(null != lines) {
+            List<String> strings = new ArrayList<>();
+            for(int i = 0; i < lines.size(); i++)
                 strings.add(lines.get(i).toString());
 
-			return strings;
-		} else {
-			customLogger.debug(String.format("Empty %s. Use default value NULL", title));
-			return null;
-		}
-	}
+            return strings;
+        } else {
+            customLogger.debug(String.format("Empty %s. Use default value NULL", title));
+            return null;
+        }
+    }
 
     public static int getInt(FileConfiguration config, CustomLogger customLogger, String key, String title, int min, int max, int defaultValue) throws InvalidConfigException {
         int value = defaultValue;
@@ -114,12 +114,12 @@ public class ConfigReader {
     }
 
     public static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
-		String string = config.getString(key);
-		
-		if(null == string) {
+        String string = config.getString(key);
+
+        if(null == string) {
             throw new InvalidConfigException(String.format("Null or empty %s", title));
-		}
-		
-		return string;
-	}
+        }
+
+        return string;
+    }
 }
