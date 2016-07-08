@@ -5,7 +5,6 @@ import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 import java.util.Set;
 
@@ -39,18 +38,11 @@ public class HItemEffect {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
-        Class<? extends Enum> T;
-        try {
-            PotionEffectType.class.getField("GLOWING");
-            T = PotionEffectTypesEnum.class;
-        } catch (NoSuchFieldException e) {
-            T = PotionEffectTypesEnumOld.class;
-        }
-
         Set effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(T, config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
+        if (null == (effectTypes = getSet(PotionEffectTypesEnum.getSafeClass(),
+                config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
         } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), String.format("strength of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));
