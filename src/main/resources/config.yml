@@ -137,7 +137,7 @@ rapid-creeper:
   filter:
     types:
       - CREEPER
-    probability: 100
+    probability: 5
   effects:
     - acceleration
   acceleration:
