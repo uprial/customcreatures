@@ -145,7 +145,7 @@ rapid-creeper:
       - SPEED
     strength:
       type: random
-      min: 2
+      min: 1
       max: 10
       distribution: exp_down
     duration: 99999

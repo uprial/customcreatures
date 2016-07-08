@@ -30,7 +30,7 @@ public class HItemEffect {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         for (IPotionEffectTypesEnum effectType : effectTypes) {
-            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), strength.getValue() - 1));
+            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), strength.getValue()));
         }
     }
 
