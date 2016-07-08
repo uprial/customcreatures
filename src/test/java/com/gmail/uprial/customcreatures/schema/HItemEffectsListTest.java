@@ -55,36 +55,6 @@ public class HItemEffectsListTest extends TestConfigBase {
     }
 
     @Test
-    public void testNullKeyInEffects() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Null key in effects list at pos 0");
-        getFromConfig(getPreparedConfig(
-                "ee:",
-                " -"),
-                getParanoiacCustomLogger(), "ee", "effects list");
-    }
-
-    @Test
-    public void testNotStringKeyInEffects() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Key '{e=null}' in effects list at pos 0 is not a string");
-        getFromConfig(getPreparedConfig(
-                "ee:",
-                " - e:"),
-                getParanoiacCustomLogger(), "ee", "effects list");
-    }
-
-    @Test
-    public void testEmptyKeyInEffects() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty key in effects list at pos 0");
-        getFromConfig(getPreparedConfig(
-                "ee:",
-                " - ''"),
-                getParanoiacCustomLogger(), "ee", "effects list");
-    }
-
-    @Test
     public void testNoDefinitionOfKeyInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Null definition of key 'e' in effects list");

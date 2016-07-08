@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.gmail.uprial.customcreatures.config.ConfigReader.getKey;
+
 public class CreaturesConfig {
     private List<HItem> handlers;
 
@@ -39,17 +41,7 @@ public class CreaturesConfig {
         Map<String,Integer> keys = new HashMap<>();
 
         for(int i = 0; i < handlersConfig.size(); i++) {
-            Object item = handlersConfig.get(i);
-            if (null == item) {
-                throw new InvalidConfigException(String.format("Null key in 'handlers' at pos %d", i));
-            }
-            if (! (item instanceof String)) {
-                throw new InvalidConfigException(String.format("Key '%s' in 'handlers' at pos %d is not a string", item.toString(), i));
-            }
-            String key = item.toString();
-            if (key.length() < 1) {
-                throw new InvalidConfigException(String.format("Empty key in 'handlers' at pos %d", i));
-            }
+            String key = getKey(handlersConfig.get(i), "'handlers'", i);
             if (keys.containsKey(key.toLowerCase())) {
                 throw new InvalidConfigException(String.format("Key '%s' in 'handlers' is not unique", key));
             }

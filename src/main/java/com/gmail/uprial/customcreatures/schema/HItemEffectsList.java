@@ -13,6 +13,7 @@ import java.util.Map;
 import static com.gmail.uprial.customcreatures.common.Utils.getParentPath;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
+import static com.gmail.uprial.customcreatures.config.ConfigReader.getKey;
 
 public class HItemEffectsList {
 
@@ -39,17 +40,7 @@ public class HItemEffectsList {
         List<HItemEffect> itemEffects = new ArrayList<>();
 
         for(int i = 0; i < itemEffectsConfig.size(); i++) {
-            Object item = itemEffectsConfig.get(i);
-            if (null == item) {
-                throw new InvalidConfigException(String.format("Null key in %s at pos %d", title, i));
-            }
-            if (! (item instanceof String)) {
-                throw new InvalidConfigException(String.format("Key '%s' in %s at pos %d is not a string", item.toString(), title, i));
-            }
-            String subKey = item.toString();
-            if (subKey.length() < 1) {
-                throw new InvalidConfigException(String.format("Empty key in %s at pos %d", title, i));
-            }
+            String subKey = getKey(itemEffectsConfig.get(i), title, i);
             String subKeyFull;
             if (null != config.get(subKey)) {
                 subKeyFull = subKey;

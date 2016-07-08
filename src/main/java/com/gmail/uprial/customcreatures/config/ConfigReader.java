@@ -122,4 +122,18 @@ public class ConfigReader {
 
         return string;
     }
+
+    public static String getKey(Object item, String title, int i) throws InvalidConfigException {
+        if (null == item) {
+            throw new InvalidConfigException(String.format("Null key in %s at pos %d", title, i));
+        }
+        if (!(item instanceof String)) {
+            throw new InvalidConfigException(String.format("Key '%s' in %s at pos %d is not a string", item.toString(), title, i));
+        }
+        String key = item.toString();
+        if (key.length() < 1) {
+            throw new InvalidConfigException(String.format("Empty key in %s at pos %d", title, i));
+        }
+        return key;
+    }
 }

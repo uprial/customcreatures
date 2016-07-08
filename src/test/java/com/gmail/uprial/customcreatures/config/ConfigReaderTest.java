@@ -224,4 +224,32 @@ public class ConfigReaderTest extends TestConfigBase {
         assertTrue(entities.contains(TestEnum.A));
         assertTrue(entities.contains(TestEnum.B));
     }
+
+    @Test
+    public void testNullKey() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Null key in keys at pos 0");
+        getKey(null, "keys", 0);
+    }
+
+    @Test
+    public void testEmptyKey() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty key in keys at pos 0");
+        getKey("", "keys", 0);
+    }
+
+    @Test
+    public void testNotStringKey() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Key '1' in keys at pos 0 is not a string");
+
+        getKey(1, "keys", 0);
+    }
+
+    @Test
+    public void testNormalKey() throws Exception {
+        assertEquals("k", getKey("k", "keys", 0));
+    }
+
 }
