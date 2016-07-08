@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import org.bukkit.potion.PotionEffectType;
 
-public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
+public enum PotionEffectTypesEnumOld implements IPotionEffectTypesEnum {
     SPEED(PotionEffectType.SPEED),
     SLOW(PotionEffectType.SLOW),
     FAST_DIGGING(PotionEffectType.FAST_DIGGING),
@@ -25,15 +25,11 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     WITHER(PotionEffectType.WITHER),
     HEALTH_BOOST(PotionEffectType.HEALTH_BOOST),
     ABSORPTION(PotionEffectType.ABSORPTION),
-    SATURATION(PotionEffectType.SATURATION),
-    GLOWING(PotionEffectType.GLOWING),
-    LEVITATION(PotionEffectType.LEVITATION),
-    LUCK(PotionEffectType.LUCK),
-    UNLUCK(PotionEffectType.UNLUCK);
+    SATURATION(PotionEffectType.SATURATION);
 
     private final PotionEffectType type;
 
-    PotionEffectTypesEnum(PotionEffectType type) {
+    PotionEffectTypesEnumOld(PotionEffectType type) {
         this.type = type;
     }
 

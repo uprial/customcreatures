@@ -5,6 +5,7 @@ import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Set;
 
@@ -13,14 +14,14 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
-public class HItemEffect {
+public class HItemEffect <T extends IPotionEffectTypesEnum> {
 
     private final String title;
-    private final Set<PotionEffectTypesEnum> effectTypes;
+    private final Set<T> effectTypes;
     private final IValue<Integer> strength;
     private final IValue<Integer> duration;
 
-    private HItemEffect(String title, Set<PotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
+    private HItemEffect(String title, Set<T> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
         this.title = title;
         this.effectTypes = effectTypes;
         this.strength = strength;
@@ -28,7 +29,7 @@ public class HItemEffect {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        for (PotionEffectTypesEnum effectType : effectTypes) {
+        for (T effectType : effectTypes) {
             addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), strength.getValue() - 1));
         }
     }
@@ -38,10 +39,18 @@ public class HItemEffect {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
-        Set<PotionEffectTypesEnum> effectTypes;
+        Class<? extends Enum> T;
+        try {
+            PotionEffectType.class.getField("GLOWING");
+            T = PotionEffectTypesEnum.class;
+        } catch (NoSuchFieldException e) {
+            T = PotionEffectTypesEnumOld.class;
+        }
+
+        Set effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesEnum.class, config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
+        if (null == (effectTypes = getSet(T, config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
         } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), String.format("strength of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));

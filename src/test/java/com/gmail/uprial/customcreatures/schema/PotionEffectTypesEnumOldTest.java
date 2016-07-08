@@ -5,18 +5,18 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PotionEffectTypesEnumTest {
+public class PotionEffectTypesEnumOldTest {
     @Test
     public void testSequence() throws Exception {
         int i = 1;
-        for(PotionEffectTypesEnum potionEffectTypesEnum : PotionEffectTypesEnum.values()) {
-            assertEquals(i, potionEffectTypesEnum.getType().getId());
+        for(PotionEffectTypesEnumOld potionEffectTypesEnumOld : PotionEffectTypesEnumOld.values()) {
+            assertEquals(i, potionEffectTypesEnumOld.getType().getId());
             i += 1;
         }
     }
 
     @Test
     public void testConsistency() throws Exception {
-        assertEquals(PotionEffectTypesEnum.values().length, PotionEffectType.class.getFields().length);
+        assertEquals(PotionEffectTypesEnumOld.values().length + 4, PotionEffectType.class.getFields().length);
     }
 }
