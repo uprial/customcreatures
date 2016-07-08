@@ -7,7 +7,7 @@ public class Utils {
         return seconds * 20;
     }
 
-    public static <T extends Object> String joinStrings(String delimiter, List<T> contents) {
+    public static <T> String joinStrings(String delimiter, List<T> contents) {
         if (contents.size() < 1)
             return "";
 

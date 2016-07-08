@@ -95,7 +95,7 @@ public class HItemEffectsListTest extends TestConfigBase {
     }
 
     @Test
-    public void testNoDefinitionOfKeyWithParetnsInEffects() throws Exception {
+    public void testNoDefinitionOfKeyWithParentsInEffects() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Null definition of keys 'x.e' and 'e' in effects list");
         getFromConfig(getPreparedConfig(
@@ -133,6 +133,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  strength: 1",
                 "  duration: 1"),
                 getParanoiacCustomLogger(), "x.ee", "effects list");
+        //noinspection ConstantConditions
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 
@@ -148,6 +149,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  strength: 1",
                 "  duration: 1"),
                 getParanoiacCustomLogger(), "x.ee", "effects list");
+        //noinspection ConstantConditions
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 

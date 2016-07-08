@@ -24,12 +24,12 @@ public class UtilsTest {
 
     @Test
     public void testJoinOneString() throws Exception {
-        assertEquals("a", joinStrings(",", Lists.newArrayList(new String[]{"a"})));
+        assertEquals("a", joinStrings(",", Lists.newArrayList("a")));
     }
 
     @Test
     public void testJoinSeveralStrings() throws Exception {
-        assertEquals("a,b", joinStrings(",", Lists.newArrayList(new String[]{"a", "b"})));
+        assertEquals("a,b", joinStrings(",", Lists.newArrayList("a", "b")));
     }
 
     @Test

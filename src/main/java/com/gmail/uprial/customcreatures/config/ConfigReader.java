@@ -106,7 +106,7 @@ public class ConfigReader {
 
     public static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
         try {
-            //noinspection unchecked
+            //noinspection RedundantCast
             return (T)Enum.valueOf(enumType, string.toUpperCase());
         } catch (java.lang.IllegalArgumentException e) {
             throw new InvalidConfigException(String.format("Invalid %s '%s' in %s%s", enumType.getName(), string, title, desc));

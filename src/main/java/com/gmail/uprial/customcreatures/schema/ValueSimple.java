@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class ValueSimple<T> implements IValue<T> {
     private final T value;
 
-    protected ValueSimple(T value) {
+    private ValueSimple(T value) {
         this.value = value;
     }
 

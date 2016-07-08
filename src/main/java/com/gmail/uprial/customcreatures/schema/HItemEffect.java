@@ -14,14 +14,14 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
-public class HItemEffect <T extends IPotionEffectTypesEnum> {
+public class HItemEffect {
 
     private final String title;
-    private final Set<T> effectTypes;
+    private final Set<? extends IPotionEffectTypesEnum> effectTypes;
     private final IValue<Integer> strength;
     private final IValue<Integer> duration;
 
-    private HItemEffect(String title, Set<T> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
+    private HItemEffect(String title, Set<? extends IPotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
         this.title = title;
         this.effectTypes = effectTypes;
         this.strength = strength;
@@ -29,7 +29,7 @@ public class HItemEffect <T extends IPotionEffectTypesEnum> {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        for (T effectType : effectTypes) {
+        for (IPotionEffectTypesEnum effectType : effectTypes) {
             addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), strength.getValue() - 1));
         }
     }
@@ -58,6 +58,7 @@ public class HItemEffect <T extends IPotionEffectTypesEnum> {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 
+        //noinspection unchecked
         return new HItemEffect(title, effectTypes, strength, duration);
     }
 
@@ -78,7 +79,7 @@ public class HItemEffect <T extends IPotionEffectTypesEnum> {
         }
         if(!hasPowered) {
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Hadnle %s: add %s to %s",
+                customLogger.debug(String.format("Handle %s: add %s to %s",
                         title, format(effect), format(entity)));
             }
             entity.addPotionEffect(effect);
