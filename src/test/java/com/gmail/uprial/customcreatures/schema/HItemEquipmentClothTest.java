@@ -27,7 +27,8 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         //noinspection ConstantConditions
-        assertEquals("[probability: null, material: IRON, enchantments: {[type: THORNS, level: 1]}, drop-chance: 0]",
+        assertEquals("[probability: null, material: IRON, enchantments: {[type: THORNS, level: 1]}," +
+                " drop-chance: 0, durability: null]",
                 itemEquipmentCloth.toString());
     }
 
@@ -37,15 +38,17 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "eq:",
                 "  probability: 77",
                 "  drop-chance: 50",
+                "  durability: 50",
                 "  material: IRON",
                 "  enchantments:",
                 "   - e",
                 "  e:",
                 "    type: THORNS",
                 "    level: 1"),
-                getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
+                getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         //noinspection ConstantConditions
-        assertEquals("[probability: 77, material: IRON, enchantments: {[type: THORNS, level: 1]}, drop-chance: 50]",
+        assertEquals("[probability: 77, material: IRON, enchantments: {[type: THORNS, level: 1]}," +
+                " drop-chance: 50, durability: 50]",
                 itemEquipmentCloth.toString());
     }
 
@@ -90,6 +93,18 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyDurability() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty durability of equipment cloth");
+        getFromConfig(getPreparedConfig(
+                "eq:",
+                " probability: 77",
+                " drop-chance: 77",
+                " material: IRON"),
+                getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
+    }
+
+    @Test
     public void testEmptyEnchantments() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty enchantments of equipment cloth");
@@ -97,6 +112,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "eq:",
                 " probability: 77",
                 " drop-chance: 77",
+                " durability: 77",
                 " material: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }

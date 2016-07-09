@@ -23,9 +23,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  material: GOLD"),
                 getParanoiacCustomLogger(), "e", "equipment");
         //noinspection ConstantConditions
-        assertEquals("[helmet: [probability: null, material: IRON, enchantments: null, drop-chance: 0]," +
+        assertEquals("[helmet: [probability: null, material: IRON, enchantments: null, drop-chance: 0, durability: null]," +
                 " boots: null, chest: null," +
-                " leggings: [probability: null, material: GOLD, enchantments: null, drop-chance: 0]]",
+                " leggings: [probability: null, material: GOLD, enchantments: null, drop-chance: 0, durability: null]]",
                 itemEquipment.toString());
     }
 

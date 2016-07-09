@@ -1,5 +1,4 @@
 # High priority
-- Investigate durability
 - Review limits of all the values
 - Implement two hands
 - Implement specific properties of LivingEntity children

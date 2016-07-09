@@ -2,6 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -22,14 +23,17 @@ public class HItemEquipmentCloth {
     private final BodyType bodyType;
     private final HItemEnchantmentsList enchantments;
     private final int dropChance;
+    private final IValue<Integer> durability;
 
-    private HItemEquipmentCloth(String title, Probability probability, MaterialType material, BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance) {
+    private HItemEquipmentCloth(String title, Probability probability, MaterialType material,
+                                BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance, IValue<Integer> durability) {
         this.title = title;
         this.probability = probability;
         this.material = material;
         this.bodyType = bodyType;
         this.enchantments = enchantments;
         this.dropChance = dropChance;
+        this.durability = durability;
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
@@ -49,6 +53,15 @@ public class HItemEquipmentCloth {
             if (null != enchantments) {
                 enchantments.apply(customLogger, entity, itemStack);
             }
+            if (null != durability) {
+                int itemDurability = durability.getValue();
+                if (customLogger.isDebugMode()) {
+                    customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
+                            title, itemMaterial, format(entity), itemDurability));
+                }
+                itemStack.setDurability((short)Math.round(itemMaterial.getMaxDurability() * itemDurability / 100));
+            }
+
             EntityEquipment entityEquipment = entity.getEquipment();
 
             setBodyItem(entityEquipment, itemStack);
@@ -101,10 +114,12 @@ public class HItemEquipmentCloth {
 
         int dropChance = getInt(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, MAX_PERCENT, 0);
+        IValue<Integer> durability = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "durability"),
+                String.format("durability of %s", title));
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
-        return new HItemEquipmentCloth(title, probability, material, bodyType, enchantments, dropChance);
+        return new HItemEquipmentCloth(title, probability, material, bodyType, enchantments, dropChance, durability);
     }
 
     private static Material getItemMaterial(MaterialType material, BodyType bodyType, String title) throws InvalidConfigException {
@@ -117,8 +132,8 @@ public class HItemEquipmentCloth {
     }
 
     public String toString() {
-        return String.format("[probability: %s, material: %s, enchantments: %s, drop-chance: %d]",
-                probability, material, enchantments, dropChance);
+        return String.format("[probability: %s, material: %s, enchantments: %s, drop-chance: %d, durability: %s]",
+                probability, material, enchantments, dropChance, durability);
     }
 
 }

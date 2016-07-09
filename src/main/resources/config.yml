@@ -133,6 +133,9 @@ handlers:
 #                  ### an award for the killer.
 #                  ### By default the probability is 0%.
 #
+#   durability: <int-value>  ### Durability in percents of this cloth.
+#                            ### By default the durability is 100%.
+#
 #   enchantments:  ### List of enchantments will be applied to this cloth.
 #                  ### By default, no enchantments will be applied.
 #                  ###
@@ -234,21 +237,25 @@ iron-creep:
     helmet:
       drop-chance: 100
       material: IRON
+      durability: 50
       enchantments:
         - enchantments.high_protection
     boots:
       drop-chance: 100
       material: IRON
+      durability: 50
       enchantments:
         - enchantments.high_protection
     chest:
       drop-chance: 100
       material: IRON
+      durability: 50
       enchantments:
         - enchantments.high_protection
     leggings:
       drop-chance: 100
       material: IRON
+      durability: 50
       enchantments:
         - enchantments.high_protection
     main-hand:
@@ -258,6 +265,7 @@ iron-creep:
       drop-chance: 100
       item: IRON
       count: 8
+  max-health: 0.01
 
 enchantments:
   high_protection:
