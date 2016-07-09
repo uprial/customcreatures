@@ -235,8 +235,8 @@ iron-creep:
       drop-chance: 100
       material: IRON
       enchantments:
-        - strong_helm
-      strong_helm:
+        - protection_general
+      protection_general:
         type: PROTECTION_ENVIRONMENTAL
         level: 4
     boots:

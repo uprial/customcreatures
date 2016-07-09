@@ -3,6 +3,7 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,6 +23,15 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
+        for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
+            if (enchantment.getType().conflictsWith(existsEnchantment)) {
+                customLogger.error(String.format("Can't handle %s of %s because %s conflicts with %s",
+                        title, format(entity), enchantment.getType().getName(),
+                        existsEnchantment.getName()));
+                return ;
+            }
+        }
+
         int enchantmentLevel = this.level.getValue();
 
         if(customLogger.isDebugMode()) {
