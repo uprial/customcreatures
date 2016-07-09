@@ -34,6 +34,10 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
                 return ;
             }
         }
+        if (! enchantment.getType().canEnchantItem(itemStack)) {
+            customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
+            return ;
+        }
 
         int enchantmentLevel = this.level.getValue();
 
