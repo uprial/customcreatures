@@ -1,5 +1,3 @@
-- Config help
-- Notify about PROTECTION_ENVIRONMENTAL
 - Check conflicting enchantments
 - Implement all the cloths
 - Implement two hands

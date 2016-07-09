@@ -40,9 +40,12 @@ handlers:
 #                      ### (* see description of <filter> below)
 #
 #   max-health: <float-value> ### A multiplier for max. health of an entity.
+#                             ### By default, max. health won't be modified
 #                             ### (* see description of <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
+#             ### By default, no effects will be applied.
+#             ###
 #             ### Path of each effect can be absolute from the root of the config
 #             ### or relative to the current handler definition.
 #
@@ -53,16 +56,24 @@ handlers:
 #
 #   effect-path-rel: <effect> ### Effect described in handler's namespace
 #                             ### (* see description of <effect> below)
+#
+#   equipment: <equipment>    ### Modifications of entity's equipment
+#                             ### (* see description of <equipment> below)
+#
 # effect-path-abs: <effect>   ### Effect described anywhere else
 #
 # #### Filter ####
 #
-# <filter>:
+# <filter>:  ### This section has descriptions of several filtering rules.
+#            ### The filter will be passed only if all rules are passed.
+#            ### But you should define at least one rule and avoid
+#            ### passing all possible entities.
+#
 #   reasons: ### Possible spawn reasons, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
 #            ### By default, spawns with all reason will be processed.
-#            ### Hint: a spawn via "summon" command will be detected
-#            ### as "DEFAULT"
+#            ###
+#            ### Hint: a spawn via "summon" command will be detected as "DEFAULT"
 #     - <spawn-reason1>
 #       ...
 #     - <spawn-reasonN>
@@ -79,7 +90,7 @@ handlers:
 #
 #   probability: <0..100> ### Probability in percents that this handler will
 #                         ### be applied after all the filters.
-#                         ### (default = 100)
+#                         ### By default the probability is 100%.
 #
 # #### Effect ####
 #
@@ -94,6 +105,60 @@ handlers:
 #   strength:  <int-value>   ### Strength of the effect
 #                            ### (* see description of <int-value> below)
 #   duration:  <int-value>   ### Duration of the effect, in seconds
+#
+# #### Equipment ####
+#
+# <equipment>:
+#   helmet: <equipment-cloth> ### Description of entity's helmet
+#                             ### (* see description of <equipment-cloth> below)
+#   boots: <equipment-cloth>  ### Description of entity's boots
+#   chest: <equipment-cloth>  ### Description of entity's chest
+#   pens: <equipment-cloth>   ### Description of entity's pens
+#
+# #### Equipment cloth ####
+#
+# <equipment-cloth>:
+#   probability: <0..100>   ### Probability in percents that this cloth will
+#                           ### be dressed on the entity.
+#                           ### By default the probability is 100%.
+#
+#   material:      ### Material of the cloth. Possible values:
+#                  ###  - LEATHER
+#                  ###  - CHAINMAIL
+#                  ###  - IRON
+#                  ###  - DIAMOND
+#                  ###  - GOLD
+#
+#   drop-chance:   ### Chance that this cloth will be dropped as
+#                  ### an award for the killer.
+#                  ### By default the probability is 0%.
+#
+#   enchantments:  ### List of enchantments will be applied to this cloth.
+#                  ### By default, no enchantments will be applied.
+#                  ###
+#                  ### Path of each enchantment can be absolute from the root of the config
+#                  ### or relative to the current cloth definition.
+#
+#     - <enchantment-path-rel>  ### Relative path
+#     - <enchantment-path-abs>  ### Absolute path
+#       ...
+#     - <enchantment-pathN>
+#
+#   enchantment-path-rel: <enchantment> ### Enchantment described in cloth's namespace
+#                                       ### (* see description of <enchantment> below)
+#
+# enchantment-path-abs: <enchantment>   ### Enchantment described anywhere else
+#
+# #### Enchantment ####
+#
+# <enchantment>:
+#   type: <enchantment-type>  ### Enchantment type, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
+#                             ###
+#                             ### Hint: common protection's enchantment
+#                             ### is "PROTECTION_ENVIRONMENTAL"
+#
+#   level: <int-value>        ### Level of enchantment
 #
 # #### Floating point value ####
 #
@@ -189,6 +254,7 @@ iron-creep:
     saddle:
     armor:
     off-hand:
+      drop-chance: 100
       item: IRON
       count: 8
       drop-chance: 100
