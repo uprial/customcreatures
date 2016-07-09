@@ -235,21 +235,22 @@ iron-creep:
       drop-chance: 100
       material: IRON
       enchantments:
-        - protection_general
-      protection_general:
-        type: PROTECTION_ENVIRONMENTAL
-        level: 4
+        - enchantments.high_protection
     boots:
       drop-chance: 100
       material: IRON
-      probability: 100
       enchantments:
-        - strong_boots
-      strong_boots:
-        type: PROTECTION_ENVIRONMENTAL
-        level: 4
+        - enchantments.high_protection
     chest:
-    pens:
+      drop-chance: 100
+      material: IRON
+      enchantments:
+        - enchantments.high_protection
+    leggings:
+      drop-chance: 100
+      material: IRON
+      enchantments:
+        - enchantments.high_protection
     main-hand:
     saddle:
     armor:
@@ -257,4 +258,8 @@ iron-creep:
       drop-chance: 100
       item: IRON
       count: 8
-      drop-chance: 100
+
+enchantments:
+  high_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    level: 4

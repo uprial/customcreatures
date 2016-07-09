@@ -36,7 +36,7 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
         if(customLogger.isDebugMode()) {
             customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
-                    title, format(entity), enchantment.getType().toString(), enchantmentLevel));
+                    title, format(entity), enchantment.getType().getName(), enchantmentLevel));
         }
         itemStack.addEnchantment(enchantment.getType(), enchantmentLevel);
     }

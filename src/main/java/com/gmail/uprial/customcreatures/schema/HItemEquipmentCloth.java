@@ -5,12 +5,14 @@ import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getEnum;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
+import static com.gmail.uprial.customcreatures.schema.BodyType.*;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 
 public class HItemEquipmentCloth {
@@ -47,12 +49,40 @@ public class HItemEquipmentCloth {
             if (null != enchantments) {
                 enchantments.apply(customLogger, entity, itemStack);
             }
-            entity.getEquipment().setHelmet(itemStack);
+            EntityEquipment entityEquipment = entity.getEquipment();
+
+            setBodyItem(entityEquipment, itemStack);
             if (dropChance > 0) {
-                customLogger.debug(String.format("Handle %s: set drop chance of %s of %s to %d",
-                        title, itemMaterial, format(entity), dropChance));
-                entity.getEquipment().setHelmetDropChance(dropChance);
+                if (customLogger.isDebugMode()) {
+                    customLogger.debug(String.format("Handle %s: set drop chance of %s of %s to %d",
+                            title, itemMaterial, format(entity), dropChance));
+                }
+                setBodyItemDropChance(entityEquipment, dropChance);
             }
+        }
+    }
+
+    private void setBodyItem(EntityEquipment entityEquipment, ItemStack itemStack) {
+        if (bodyType == HELMET) {
+            entityEquipment.setHelmet(itemStack);
+        } else if (bodyType == BOOTS) {
+            entityEquipment.setBoots(itemStack);
+        } else if (bodyType == CHESTPLATE) {
+            entityEquipment.setChestplate(itemStack);
+        } else if (bodyType == LEGGINGS) {
+            entityEquipment.setLeggings(itemStack);
+        }
+    }
+
+    private void setBodyItemDropChance(EntityEquipment entityEquipment, int dropChance) {
+        if (bodyType == HELMET) {
+            entityEquipment.setHelmetDropChance(dropChance);
+        } else if (bodyType == BOOTS) {
+            entityEquipment.setBootsDropChance(dropChance);
+        } else if (bodyType == CHESTPLATE) {
+            entityEquipment.setChestplateDropChance(dropChance);
+        } else if (bodyType == LEGGINGS) {
+            entityEquipment.setLeggingsDropChance(dropChance);
         }
     }
 
