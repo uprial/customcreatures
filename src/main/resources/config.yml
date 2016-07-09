@@ -39,9 +39,9 @@ handlers:
 #                      ### By default, no filters will be applied.
 #                      ### (* see description of <filter> below)
 #
-#   max-health: <float-value> ### A multiplier for max. health of an entity.
-#                             ### By default, max. health won't be modified
-#                             ### (* see description of <float-value> below)
+#   max-health: <float-value:>0> ### A multiplier for max. health of an entity.
+#                                ### By default, max. health won't be modified
+#                                ### (* see description of <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.
@@ -102,9 +102,9 @@ handlers:
 #       ...
 #     - <effect-typeN>
 #
-#   strength:  <int-value>   ### Strength of the effect
-#                            ### (* see description of <int-value> below)
-#   duration:  <int-value>   ### Duration of the effect, in seconds
+#   strength:  <int-value:>0>   ### Strength of the effect
+#                               ### (* see description of <int-value> below)
+#   duration:  <int-value:>0>   ### Duration of the effect, in seconds
 #
 # #### Equipment ####
 #
@@ -133,8 +133,8 @@ handlers:
 #                  ### an award for the killer.
 #                  ### By default the probability is 0%.
 #
-#   durability: <int-value>  ### Durability in percents of this cloth.
-#                            ### By default the durability is 100%.
+#   durability: <int-value:0..100>  ### Durability in percents of this cloth.
+#                                   ### By default the durability is 100%.
 #
 #   enchantments:  ### List of enchantments will be applied to this cloth.
 #                  ### By default, no enchantments will be applied.
@@ -161,7 +161,7 @@ handlers:
 #                             ### Hint: common protection's enchantment
 #                             ### is "PROTECTION_ENVIRONMENTAL"
 #
-#   level: <int-value>        ### Level of enchantment
+#   level: <int-value:1..5>   ### Level of enchantment
 #
 # #### Floating point value ####
 #

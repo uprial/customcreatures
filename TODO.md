@@ -1,5 +1,4 @@
 # High priority
-- Review limits of all the values
 - Implement two hands
 - Implement specific properties of LivingEntity children
 - Test on 1.10.2 in Runtime
