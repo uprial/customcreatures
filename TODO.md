@@ -1,4 +1,3 @@
-- Implement all the cloths
 - Implement two hands
 - Unique flag: don't apply two handlers with the same value of this flag
 - Create subdirectories in "schema"
