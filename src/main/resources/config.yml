@@ -16,7 +16,8 @@
 debug: false
 
 #
-# List of handlers
+# handlers:     ### List of handlers' paths
+#               ### (* see description of <handler> below)
 # - <handler1>
 #   ...
 # - <handlerN>
@@ -31,82 +32,56 @@ handlers:
   - iron-creep
     
 #
-# ==== Handlers definition ====
-# Example:
+# ==== Handler ====
 #
 # <handler>:
-#   filter:    ### Filter that will be applied before modifications.
-#              ### By default, no filters will be applied.
+#   filter: <filter>   ### Filter that will be applied before modifications.
+#                      ### By default, no filters will be applied.
+#                      ### (* see description of <filter> below)
 #
-#     reasons: ### Possible spawn reasons, see
-#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
-#              ### By default, spawns with all reason will be processed.
-#              ### Hint: a spawn via "summon" command will be detected
-#              ### as "DEFAULT"
-#       - <spawn-reason1>
-#         ...
-#       - <spawn-reasonN>
-#
-#     types:   ### Possible entity types, see
-#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
-#              ### By default, entities of all types will be processed.
-#              ###
-#              ### An entity should be a subinterface of LivingEntity, see
-#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
-#       - <entity-type1>
-#         ...
-#       - <entity-typeN>
-#
-#     probability: <0..100> ### Probability in percents that this handler will
-#                           ### be applied after all the filters.
-#                           ### (default = 100)
-#
-#   max-health: <value-float> ### A multiplier for max. health of an entity.
-#                             ### (* see description of <value> below)
+#   max-health: <float-value> ### A multiplier for max. health of an entity.
+#                             ### (* see description of <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### Path of each effect can be absolute from the root of the config
 #             ### or relative to the current handler definition.
-#             ###
+#
 #     - <effect-path-rel>  ### Relative path
 #     - <effect-path-abs>  ### Absolute path
 #       ...
 #     - <effect-pathN>
 #
-#   effect-path-rel: <effect> ### (* see description of <effect> below)
-# effect-path-abs: <effect>
+#   effect-path-rel: <effect> ### Effect described in handler's namespace
+#                             ### (* see description of <effect> below)
+# effect-path-abs: <effect>   ### Effect described anywhere else
 #
+# #### Filter ####
 #
-# #### ####
+# <filter>:
+#   reasons: ### Possible spawn reasons, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
+#            ### By default, spawns with all reason will be processed.
+#            ### Hint: a spawn via "summon" command will be detected
+#            ### as "DEFAULT"
+#     - <spawn-reason1>
+#       ...
+#     - <spawn-reasonN>
 #
-# <value-float>: <float>         ### Normal floating point value
-# ||
-# <value-float>:
-#   type: random                 ### Random floating point value
-#   min: <float>                 ### Minumum value
-#   max: <float>                 ### Maximum value
-#   distribution: <distribution> ### Type of random distribution
-#                                ### (* see description of <distribution> below)
+#   types:   ### Possible entity types, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+#            ### By default, entities of all types will be processed.
+#            ###
+#            ### An entity should be a subinterface of LivingEntity, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+#     - <entity-type1>
+#       ...
+#     - <entity-typeN>
 #
-# #### ####
+#   probability: <0..100> ### Probability in percents that this handler will
+#                         ### be applied after all the filters.
+#                         ### (default = 100)
 #
-# <value-int>: <int>             ### Normal integer value
-# ||
-# <value-int>:
-#   type: random                 ### Random integer value
-#   min: <int>                   ### Minumum value
-#   max: <int>                   ### Maximum value
-#   distribution: <distribution> ### Type of random distribution
-#                                ### (* see description of <distribution> below)
-#
-# #### ####
-#
-# <distribution>: normal | exp_up | exp_down
-# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
-# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
-# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
-#
-# #### ####
+# #### Effect ####
 #
 # <effect>:
 #   types:   ### Effect types, see
@@ -116,8 +91,40 @@ handlers:
 #       ...
 #     - <effect-typeN>
 #
-#   strength:  <value-int>   ### Strength of the effect
-#   duration:  <value-int>   ### Duration of the effect, in seconds
+#   strength:  <int-value>   ### Strength of the effect
+#                            ### (* see description of <int-value> below)
+#   duration:  <int-value>   ### Duration of the effect, in seconds
+#
+# #### Floating point value ####
+#
+# <float-value>: <float>      ### Normal floating point value
+# ||
+# <float-value>:
+#   type: random              ### Type of floating point value. Currently
+#                             ### only 'random' type is supported.
+#   min: <float>              ### Minumum value
+#   max: <float>              ### Maximum value
+#   distribution: <rnd-distr> ### Type of random distribution
+#                             ### (* see description of <rnd-distr> below)
+#
+# #### Integer value ####
+#
+# <int-value>: <int>          ### Normal integer value
+# ||
+# <int-value>:
+#   type: random              ### Random integer value. Currently
+#                             ### only 'random' type is supported.
+#   min: <int>                ### Minumum value
+#   max: <int>                ### Maximum value
+#   distribution: <rnd-distr> ### Type of random distribution
+#                             ### (* see description of <rnd-distr> below)
+#
+# #### Random distribution ####
+#
+# <rnd-distr>: normal | exp_up | exp_down
+# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
+# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
+# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
 #
 
 fat-rabbit:
