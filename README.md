@@ -8,11 +8,15 @@ This is fully customizable plugin that allows you to control entities' spawn.
 
 #### You can configure:
 * Filter of types, spawn reasons and probabilities
-* Entities' velocity
+* Entities' max health, effects and equipment
+* Templates of effects and enchantments
+* Random distributions for majority of numeric values
 
 #### You can solve the following problems:
 * Increase a velocity of specific entities, thus make some enemies more
-dangerous naturally.
+dangerous naturally
+* Equip entities to protect them from environmental influence
+* Make items droppable to award a killer
 
 ## Commands
 
