@@ -40,13 +40,4 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     public PotionEffectType getType() {
         return this.type;
     }
-
-    public static Class<? extends Enum> getSafeClass() {
-        try {
-            PotionEffectType.class.getField("GLOWING");
-            return PotionEffectTypesEnum.class;
-        } catch (NoSuchFieldException e) {
-            return PotionEffectTypesEnumOld.class;
-        }
-    }
 }

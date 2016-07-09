@@ -69,7 +69,30 @@ public class HItemTest extends TestConfigBase {
     }
 
     @Test
-    public void testLongErrorMessage() throws Exception {
+    public void testEmptyEquipment() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty equipment of handler 'h'. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "h: ",
+                " filter:",
+                "   types:",
+                "     - ZOMBIE",
+                "   reasons:",
+                "     - NATURAL",
+                "   probability: 100",
+                " effects:",
+                "  - e",
+                " e:",
+                "  types:",
+                "   - SPEED",
+                "  strength: 1",
+                "  duration: 1",
+                " max-health: 1.5"), getDebugFearingCustomLogger(), "h");
+    }
+
+    @Test
+    public void testLongErrorMessageWithEffects() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.RandomDistributionType" +
                 " 'exp_dow' in distribution type of strength of effect 'h.acceleration' in effects of handler 'h'");
@@ -89,4 +112,29 @@ public class HItemTest extends TestConfigBase {
                 "    distribution: exp_dow",
                 "  duration: 99999"), getCustomLogger(), "h");
     }
+
+    @Test
+    public void testLongErrorMessageWithEquipment() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.RandomDistributionType" +
+                " 'exp_dow' in distribution type of level of enchantment 'h.equipment.helmet.e' in enchantments of helmet" +
+                " of equipment of handler 'h'");
+        getFromConfig(getPreparedConfig(
+                "h:",
+                " filter:",
+                "  probability: 99",
+                " equipment:",
+                "  helmet:",
+                "   material: IRON",
+                "   enchantments:",
+                "    - e",
+                "   e:",
+                "    type: THORNS",
+                "    level:",
+                "     type: random",
+                "     min: 1",
+                "     max: 4",
+                "     distribution: exp_dow"), getCustomLogger(), "h");
+    }
+
 }

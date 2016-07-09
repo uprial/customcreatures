@@ -6,22 +6,17 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import java.util.Random;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
 public class HItemFilter {
-    private static final int MAX_PERCENT = 100;
-
     private final Set<EntityType> entityTypes;
     private final Set<CreatureSpawnEvent.SpawnReason> spawnReasons;
-    private final int probability;
-    private final Random random = new Random();
+    private final Probability probability;
 
-    private HItemFilter(Set<EntityType> entityTypes, Set<CreatureSpawnEvent.SpawnReason> spawnReasons, int probability) {
+    private HItemFilter(Set<EntityType> entityTypes, Set<CreatureSpawnEvent.SpawnReason> spawnReasons, Probability probability) {
         this.entityTypes = entityTypes;
         this.spawnReasons = spawnReasons;
         this.probability = probability;
@@ -36,8 +31,8 @@ public class HItemFilter {
             if (! spawnReasons.contains(spawnReason))
                 return false;
         }
-        if (MAX_PERCENT > probability) {
-            if (random.nextInt(MAX_PERCENT) >= probability)
+        if (null != probability) {
+            if (! probability.pass())
                 return false;
         }
 
@@ -53,8 +48,8 @@ public class HItemFilter {
                 joinPaths(key, "types"), String.format("types of %s", title));
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
                 joinPaths(key, "reasons"), String.format("reasons of %s", title));
-        int probability = getInt(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title), 0, MAX_PERCENT, MAX_PERCENT);
-        if ((null == entityTypes) && (null == spawnReasons) && (MAX_PERCENT <= probability)) {
+        Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title));
+        if ((null == entityTypes) && (null == spawnReasons) && (null == probability)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }
 
@@ -62,7 +57,7 @@ public class HItemFilter {
     }
 
     public String toString() {
-        return String.format("[types: %s, reasons: %s, probability: %d]",
+        return String.format("[types: %s, reasons: %s, probability: %s]",
                 entityTypes, spawnReasons, probability);
     }
 }

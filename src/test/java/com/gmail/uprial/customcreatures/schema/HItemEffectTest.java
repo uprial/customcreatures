@@ -30,7 +30,7 @@ public class HItemEffectTest extends TestConfigBase {
     public void testEmptyEffect() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty effect");
-        HItemEffect.getFromConfig(getPreparedConfig(
+        getFromConfig(getPreparedConfig(
                 "?:"),
                 getParanoiacCustomLogger(), "e", "effect");
     }
@@ -39,7 +39,7 @@ public class HItemEffectTest extends TestConfigBase {
     public void testEmptyTypes() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty effect types of effect");
-        HItemEffect.getFromConfig(getPreparedConfig(
+        getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:"),
                 getParanoiacCustomLogger(), "e", "effect");
@@ -49,7 +49,7 @@ public class HItemEffectTest extends TestConfigBase {
     public void testEmptyStrength() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty strength of effect");
-        HItemEffect.getFromConfig(getPreparedConfig(
+        getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:",
                 "    - SPEED"),
@@ -60,7 +60,7 @@ public class HItemEffectTest extends TestConfigBase {
     public void testEmptyDuration() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty duration of effect");
-        HItemEffect.getFromConfig(getPreparedConfig(
+        getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:",
                 "    - SPEED",

@@ -122,8 +122,8 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 50"), getParanoiacCustomLogger(), "f", "filter");
-        assertTrue(30 < getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
-        assertTrue(70 > getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
+        assertTrue(20 < getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
+        assertTrue(80 > getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
     }
 

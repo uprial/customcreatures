@@ -1,4 +1,9 @@
 package com.gmail.uprial.customcreatures.schema;
 
-public class MaterialType {
+public enum MaterialType {
+    LEATHER,
+    CHAINMAIL,
+    IRON,
+    DIAMOND,
+    GOLD
 }

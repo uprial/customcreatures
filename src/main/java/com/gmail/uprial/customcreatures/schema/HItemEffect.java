@@ -13,14 +13,14 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
 
-public class HItemEffect {
+public class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
 
     private final String title;
-    private final Set<? extends IPotionEffectTypesEnum> effectTypes;
+    private final Set<T> effectTypes;
     private final IValue<Integer> strength;
     private final IValue<Integer> duration;
 
-    private HItemEffect(String title, Set<? extends IPotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
+    private HItemEffect(String title, Set<T> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
         this.title = title;
         this.effectTypes = effectTypes;
         this.strength = strength;
@@ -38,10 +38,10 @@ public class HItemEffect {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
-        Set effectTypes;
+        Set<? extends Enum> effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesEnum.getSafeClass(),
+        if (null == (effectTypes = getSet(PotionEffectTypesLoader.get(),
                 config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
         } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"), String.format("strength of %s", title)))) {

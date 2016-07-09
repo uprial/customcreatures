@@ -12,20 +12,23 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 public class HItem {
     private final String name;
     private final HItemFilter filter;
-    private final HItemEffectsList effectsList;
+    private final HItemEffectsList effects;
     private final IValue<Double> maxHealth;
+    private final HItemEquipment equipment;
 
-    private HItem(String name, HItemFilter filter, HItemEffectsList effectsList, IValue<Double> maxHealth) {
+    private HItem(String name, HItemFilter filter, HItemEffectsList effects, IValue<Double> maxHealth, HItemEquipment equipment) {
         this.name = name;
         this.filter = filter;
-        this.effectsList = effectsList;
+        this.effects = effects;
         this.maxHealth = maxHealth;
+        this.equipment = equipment;
     }
 
     public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
         if (filter.pass(entity.getType(), spawnReason)) {
             applyMaxHealth(customLogger, entity);
-            applyEffectsList(customLogger, entity);
+            applyEffects(customLogger, entity);
+            applyEquipment(customLogger, entity);
         }
     }
 
@@ -40,9 +43,15 @@ public class HItem {
         }
     }
 
-    private void applyEffectsList(CustomLogger customLogger, LivingEntity entity) {
-        if (null != effectsList) {
-            effectsList.apply(customLogger, entity);
+    private void applyEffects(CustomLogger customLogger, LivingEntity entity) {
+        if (null != effects) {
+            effects.apply(customLogger, entity);
+        }
+    }
+
+    private void applyEquipment(CustomLogger customLogger, LivingEntity entity) {
+        if (null != equipment) {
+            equipment.apply(customLogger, entity);
         }
     }
 
@@ -53,10 +62,12 @@ public class HItem {
                 String.format("effects of handler '%s'", key));
         IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health"),
                 String.format("max. health multiplier of handler '%s'", key));
-        if ((null == maxHealth) && (null == effectsList)) {
+        HItemEquipment equipment = HItemEquipment.getFromConfig(config, customLogger, joinPaths(key, "equipment"),
+                String.format("equipment of handler '%s'", key));
+        if ((null == maxHealth) && (null == effectsList) && (null == equipment)) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }
 
-        return new HItem(key, filter, effectsList, maxHealth);
+        return new HItem(key, filter, effectsList, maxHealth, equipment);
     }
 }

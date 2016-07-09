@@ -4,10 +4,10 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
+import static com.gmail.uprial.customcreatures.common.Utils.getParentPath;
+import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
 public class ConfigReader {
     public static boolean getBoolean(FileConfiguration config, CustomLogger customLogger, String key, String title, boolean defaultValue) throws InvalidConfigException {
@@ -106,7 +106,7 @@ public class ConfigReader {
 
     public static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
         try {
-            //noinspection RedundantCast
+            //noinspection unchecked,RedundantCast
             return (T)Enum.valueOf(enumType, string.toUpperCase());
         } catch (java.lang.IllegalArgumentException e) {
             throw new InvalidConfigException(String.format("Invalid %s '%s' in %s%s", enumType.getName(), string, title, desc));
@@ -136,4 +136,43 @@ public class ConfigReader {
         }
         return key;
     }
+
+    public static Set<String> getItemsList(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+        List<?> itemsConfig = config.getList(key);
+        if((null == itemsConfig) || (itemsConfig.size() <= 0)) {
+            customLogger.debug(String.format("Empty %s. Use default value NULL", title));
+            return null;
+        }
+
+        Map<String,Integer> keys = new HashMap<>();
+
+        for(int i = 0; i < itemsConfig.size(); i++) {
+            String subKey = getKey(itemsConfig.get(i), title, i);
+            String subKeyFull;
+            if (null != config.get(subKey)) {
+                subKeyFull = subKey;
+            } else {
+                String relativeKeyFull = joinPaths(getParentPath(key), subKey);
+                if (!relativeKeyFull.equals(subKey)) {
+                    if (null != config.get(relativeKeyFull)) {
+                        subKeyFull = relativeKeyFull;
+                    } else {
+                        throw new InvalidConfigException(String.format("Null definition of keys '%s' and '%s' in %s at pos %d",
+                                relativeKeyFull, subKey, title, i));
+                    }
+                } else {
+                    throw new InvalidConfigException(String.format("Null definition of key '%s' in %s at pos %d",
+                            subKey, title, i));
+                }
+            }
+            if (keys.containsKey(subKeyFull.toLowerCase())) {
+                throw new InvalidConfigException(String.format("Key '%s' in %s is not unique", subKey, title));
+            }
+
+            keys.put(subKeyFull.toLowerCase(), 1);
+        }
+
+        return keys.keySet();
+    }
+
 }

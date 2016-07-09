@@ -153,37 +153,35 @@ rapid-creeper:
 iron-creep:
   filter:
     reasons:
-      - NATURAL
+      - DEFAULT
     types:
       - ZOMBIE
       - SKELETON
-    probability: 0
+    probability: 100
   equipment:
-    helm:
-      probability: 100
-      variants:
-        - material: IRON
-          enchantments:
-           - type: strength
-             level:
-               type: int
-               value: 3
-          drop-chance: 50
+    helmet:
+      drop-chance: 100
+      material: IRON
+      enchantments:
+        - strong_helm
+      strong_helm:
+        type: PROTECTION_ENVIRONMENTAL
+        level: 4
     boots:
+      drop-chance: 100
+      material: IRON
       probability: 100
-      variants:
-        - material: IRON
-          enchantments:
-           - type: strength
-             level:
-               type: int
-               value: 3
-          drop-chance: 50
+      enchantments:
+        - strong_boots
+      strong_boots:
+        type: PROTECTION_ENVIRONMENTAL
+        level: 4
     chest:
     pens:
     main-hand:
+    saddle:
+    armor:
     off-hand:
       item: IRON
       count: 8
       drop-chance: 100
-  max-health: 1.0
