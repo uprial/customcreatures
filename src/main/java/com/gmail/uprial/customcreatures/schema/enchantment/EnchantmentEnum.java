@@ -1,8 +1,8 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.enchantment;
 
 import org.bukkit.enchantments.Enchantment;
 
-public enum EnchantmentEnumOld implements IEnchantmentEnum {
+public enum EnchantmentEnum implements IEnchantmentEnum {
     PROTECTION_ENVIRONMENTAL(Enchantment.PROTECTION_ENVIRONMENTAL),
     PROTECTION_FIRE(Enchantment.PROTECTION_FIRE),
     PROTECTION_FALL(Enchantment.PROTECTION_FALL),
@@ -12,6 +12,7 @@ public enum EnchantmentEnumOld implements IEnchantmentEnum {
     WATER_WORKER(Enchantment.WATER_WORKER),
     THORNS(Enchantment.THORNS),
     DEPTH_STRIDER(Enchantment.DEPTH_STRIDER),
+    FROST_WALKER(Enchantment.FROST_WALKER),
     DAMAGE_ALL(Enchantment.DAMAGE_ALL),
     DAMAGE_UNDEAD(Enchantment.DAMAGE_UNDEAD),
     DAMAGE_ARTHROPODS(Enchantment.DAMAGE_ARTHROPODS),
@@ -27,15 +28,17 @@ public enum EnchantmentEnumOld implements IEnchantmentEnum {
     ARROW_FIRE(Enchantment.ARROW_FIRE),
     ARROW_INFINITE(Enchantment.ARROW_INFINITE),
     LUCK(Enchantment.LUCK),
-    LURE(Enchantment.LURE);
+    LURE(Enchantment.LURE),
+    MENDING(Enchantment.MENDING);
 
     private final Enchantment type;
 
-    EnchantmentEnumOld(Enchantment type) {
+    EnchantmentEnum(Enchantment type) {
         this.type = type;
     }
 
     public Enchantment getType() {
         return this.type;
     }
+
 }

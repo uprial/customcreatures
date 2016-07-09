@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.numerics;
 
 import org.bukkit.configuration.file.FileConfiguration;
 

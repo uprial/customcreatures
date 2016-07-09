@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.numerics;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getEnum;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
 abstract public class AbstractValueRandom<T> implements IValue<T> {
     private static final RandomDistributionType defaultDistributionType = NORMAL;

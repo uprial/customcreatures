@@ -1,5 +1,6 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.enchantment;
 
+import com.gmail.uprial.customcreatures.schema.enchantment.EnchantmentEnumOld;
 import org.bukkit.enchantments.Enchantment;
 import org.junit.Test;
 

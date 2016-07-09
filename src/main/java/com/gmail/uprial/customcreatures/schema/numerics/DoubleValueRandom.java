@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.numerics;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
@@ -6,8 +6,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReader.getDouble;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_DOWN;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_UP;
 
 public class DoubleValueRandom extends AbstractValueRandom<Double> {
     DoubleValueRandom(RandomDistributionType distributionType, Double min, Double max) {

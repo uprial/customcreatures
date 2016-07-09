@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.enchantment;
 
 import org.bukkit.enchantments.Enchantment;
 

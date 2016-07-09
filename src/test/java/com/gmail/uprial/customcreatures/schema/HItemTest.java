@@ -94,7 +94,7 @@ public class HItemTest extends TestConfigBase {
     @Test
     public void testLongErrorMessageWithEffects() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.RandomDistributionType" +
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType" +
                 " 'exp_dow' in distribution type of strength of effect 'h.acceleration' in effects of handler 'h'");
         getFromConfig(getPreparedConfig(
                 "h:",
@@ -116,7 +116,7 @@ public class HItemTest extends TestConfigBase {
     @Test
     public void testLongErrorMessageWithEquipment() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.RandomDistributionType" +
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType" +
                 " 'exp_dow' in distribution type of level of enchantment 'h.equipment.helmet.e' in enchantments of helmet" +
                 " of equipment of handler 'h'");
         getFromConfig(getPreparedConfig(

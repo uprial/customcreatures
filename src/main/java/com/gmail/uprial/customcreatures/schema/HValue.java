@@ -2,6 +2,10 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.numerics.DoubleValueRandom;
+import com.gmail.uprial.customcreatures.schema.numerics.IValue;
+import com.gmail.uprial.customcreatures.schema.numerics.IntValueRandom;
+import com.gmail.uprial.customcreatures.schema.numerics.ValueSimple;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class HValue {

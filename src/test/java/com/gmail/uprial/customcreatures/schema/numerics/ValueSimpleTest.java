@@ -1,6 +1,7 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.numerics;
 
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
+import com.gmail.uprial.customcreatures.schema.numerics.ValueSimple;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

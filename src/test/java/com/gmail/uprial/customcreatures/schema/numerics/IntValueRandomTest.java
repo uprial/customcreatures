@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.numerics;
 
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
@@ -9,10 +9,10 @@ import org.junit.rules.ExpectedException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.gmail.uprial.customcreatures.schema.IntValueRandom.getFromConfig;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_DOWN;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.EXP_UP;
-import static com.gmail.uprial.customcreatures.schema.RandomDistributionType.NORMAL;
+import static com.gmail.uprial.customcreatures.schema.numerics.IntValueRandom.getFromConfig;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_DOWN;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_UP;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

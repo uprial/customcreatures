@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema;
+package com.gmail.uprial.customcreatures.schema.potioneffect;
 
 import org.bukkit.potion.PotionEffectType;
 
