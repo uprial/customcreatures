@@ -1,5 +1,7 @@
 package com.gmail.uprial.customcreatures.common;
 
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+
 import java.util.List;
 
 public class Utils {

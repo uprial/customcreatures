@@ -1,6 +1,6 @@
 package com.gmail.uprial.customcreatures;
 
-import com.gmail.uprial.customcreatures.common.InvalidConfigException;
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.junit.Rule;

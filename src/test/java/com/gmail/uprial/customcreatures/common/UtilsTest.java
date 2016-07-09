@@ -1,5 +1,6 @@
 package com.gmail.uprial.customcreatures.common;
 
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.google.common.collect.Lists;
 import org.junit.Rule;
 import org.junit.Test;

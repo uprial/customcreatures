@@ -1,7 +1,7 @@
 package com.gmail.uprial.customcreatures.helpers;
 
 import com.gmail.uprial.customcreatures.CreaturesConfig;
-import com.gmail.uprial.customcreatures.common.InvalidConfigException;
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.google.common.collect.Lists;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;

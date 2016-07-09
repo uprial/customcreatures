@@ -1,6 +1,5 @@
 package com.gmail.uprial.customcreatures.config;
 
-import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import com.gmail.uprial.customcreatures.helpers.TestEnum;
 import org.junit.Rule;

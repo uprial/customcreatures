@@ -1,7 +1,6 @@
 package com.gmail.uprial.customcreatures.config;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
-import com.gmail.uprial.customcreatures.common.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.*;
