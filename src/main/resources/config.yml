@@ -2,28 +2,28 @@
 # ==== General info ====
 # 
 # * You can add your own handlers in this file but don't forget to
-# add they into 'handlers' list
+# add they into 'handlers' list.
 #
 # * After editing of this file you need to check server logs to be
-# sure that no errors was appeared
+# sure that no errors was appeared.
 #
 
 #
 # Show debug info. Possible values: true | false (default = false)
 #
-# This option can affect the performance
+# This option can affect the performance.
 #
 debug: false
 
 #
-# handlers:     ### List of handlers' paths
+# handlers:     ### List of handlers' paths.
 #               ### (* see description of <handler> below)
 # - <handler1>
 #   ...
 # - <handlerN>
 #
 # All handlers will handle a CreatureSpawnEvent in sequence in which
-# they are described in this option
+# they are described in this option.
 #
 
 handlers:
@@ -40,7 +40,7 @@ handlers:
 #                      ### (* see description of <filter> below)
 #
 #   max-health: <float-value:>0> ### A multiplier for max. health of an entity.
-#                                ### By default, max. health won't be modified
+#                                ### By default, max. health won't be modified.
 #                                ### (* see description of <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
@@ -49,18 +49,18 @@ handlers:
 #             ### Path of each effect can be absolute from the root of the config
 #             ### or relative to the current handler definition.
 #
-#     - <effect-path-rel>  ### Relative path
-#     - <effect-path-abs>  ### Absolute path
+#     - <effect-path-rel>  ### Relative path.
+#     - <effect-path-abs>  ### Absolute path.
 #       ...
 #     - <effect-pathN>
 #
-#   effect-path-rel: <effect> ### Effect described in handler's namespace
+#   effect-path-rel: <effect> ### Effect described in handler's namespace.
 #                             ### (* see description of <effect> below)
 #
-#   equipment: <equipment>    ### Modifications of entity's equipment
+#   equipment: <equipment>    ### Modifications of entity's equipment.
 #                             ### (* see description of <equipment> below)
 #
-# effect-path-abs: <effect>   ### Effect described anywhere else
+# effect-path-abs: <effect>   ### Effect described anywhere else.
 #
 # #### Filter ####
 #
@@ -73,7 +73,7 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
 #            ### By default, spawns with all reason will be processed.
 #            ###
-#            ### Hint: a spawn via "summon" command will be detected as "DEFAULT"
+#            ### Hint: a spawn via "summon" command will be detected as "DEFAULT".
 #     - <spawn-reason1>
 #       ...
 #     - <spawn-reasonN>
@@ -97,23 +97,23 @@ handlers:
 # <effect>:
 #   types:   ### Effect types, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
-#            ### Effects of all these types will be applied to an entity
+#            ### Effects of all these types will be applied to an entity.
 #     - <effect-type1>
 #       ...
 #     - <effect-typeN>
 #
-#   strength:  <int-value:>0>   ### Strength of the effect
+#   strength:  <int-value:>0>   ### Strength of the effect.
 #                               ### (* see description of <int-value> below)
-#   duration:  <int-value:>0>   ### Duration of the effect, in seconds
+#   duration:  <int-value:>0>   ### Duration of the effect, in seconds.
 #
 # #### Equipment ####
 #
 # <equipment>:
-#   helmet: <equipment-cloth> ### Description of entity's helmet
+#   helmet: <equipment-cloth> ### Description of entity's helmet.
 #                             ### (* see description of <equipment-cloth> below)
-#   boots: <equipment-cloth>  ### Description of entity's boots
-#   chest: <equipment-cloth>  ### Description of entity's chest
-#   pens: <equipment-cloth>   ### Description of entity's pens
+#   boots: <equipment-cloth>  ### Description of entity's boots.
+#   chest: <equipment-cloth>  ### Description of entity's chest.
+#   pens: <equipment-cloth>   ### Description of entity's pens.
 #
 # #### Equipment cloth ####
 #
@@ -136,21 +136,26 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
 #
-#   enchantments:  ### List of enchantments will be applied to this cloth.
-#                  ### By default, no enchantments will be applied.
-#                  ###
-#                  ### Path of each enchantment can be absolute from the root of the config
-#                  ### or relative to the current cloth definition.
+#   enchantments <enchantments>:  ### List of enchantments will be applied to this cloth.
+#                                 ### By default, no enchantments will be applied.
+#                                 ### (* see description of <enchantments> below)
 #
-#     - <enchantment-path-rel>  ### Relative path
-#     - <enchantment-path-abs>  ### Absolute path
+# #### Enchantments ####
+#
+# <relative-path>:
+#   <enchantments>:  ### List of enchantments' paths.
+#                    ### Path of each enchantment can be absolute from the root of the config
+#                    ### or relative to the current <relative-path> definition.
+#
+#     - <enchantment-path-rel>  ### Relative path.
+#     - <enchantment-path-abs>  ### Absolute path.
 #       ...
 #     - <enchantment-pathN>
 #
-#   enchantment-path-rel: <enchantment> ### Enchantment described in cloth's namespace
+#   enchantment-path-rel: <enchantment> ### Enchantment described in <relative-path> namespace.
 #                                       ### (* see description of <enchantment> below)
 #
-# enchantment-path-abs: <enchantment>   ### Enchantment described anywhere else
+# enchantment-path-abs: <enchantment>   ### Enchantment described anywhere else.
 #
 # #### Enchantment ####
 #
@@ -159,40 +164,40 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
 #                             ###
 #                             ### Hint: common protection's enchantment
-#                             ### is "PROTECTION_ENVIRONMENTAL"
+#                             ### is "PROTECTION_ENVIRONMENTAL".
 #
-#   level: <int-value:1..5>   ### Level of enchantment
+#   level: <int-value:1..5>   ### Level of enchantment.
 #
 # #### Floating point value ####
 #
-# <float-value>: <float>      ### Normal floating point value
+# <float-value>: <float>      ### Normal floating point value.
 # ||
 # <float-value>:
 #   type: random              ### Type of floating point value. Currently
 #                             ### only 'random' type is supported.
-#   min: <float>              ### Minumum value
-#   max: <float>              ### Maximum value
-#   distribution: <rnd-distr> ### Type of random distribution
+#   min: <float>              ### Minumum value.
+#   max: <float>              ### Maximum value.
+#   distribution: <rnd-distr> ### Type of random distribution.
 #                             ### (* see description of <rnd-distr> below)
 #
 # #### Integer value ####
 #
-# <int-value>: <int>          ### Normal integer value
+# <int-value>: <int>          ### Normal integer value.
 # ||
 # <int-value>:
 #   type: random              ### Random integer value. Currently
 #                             ### only 'random' type is supported.
-#   min: <int>                ### Minumum value
-#   max: <int>                ### Maximum value
-#   distribution: <rnd-distr> ### Type of random distribution
+#   min: <int>                ### Minumum value.
+#   max: <int>                ### Maximum value.
+#   distribution: <rnd-distr> ### Type of random distribution.
 #                             ### (* see description of <rnd-distr> below)
 #
 # #### Random distribution ####
 #
 # <rnd-distr>: normal | exp_up | exp_down
-# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%
-# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%
-# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%
+# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%.
+# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%.
+# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%.
 #
 
 fat-rabbit:

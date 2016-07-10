@@ -1,4 +1,5 @@
 # High priority
+- Limit integer and float point values
 - Implement two hands
 - Implement specific properties of LivingEntity children
 - Test on 1.10.2 in Runtime
