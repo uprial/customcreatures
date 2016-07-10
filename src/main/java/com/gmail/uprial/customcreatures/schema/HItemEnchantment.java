@@ -45,7 +45,12 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
             customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
                     title, format(entity), enchantment.getType().getName(), enchantmentLevel));
         }
-        itemStack.addEnchantment(enchantment.getType(), enchantmentLevel);
+        try {
+            itemStack.addEnchantment(enchantment.getType(), enchantmentLevel);
+        } catch (IllegalArgumentException e) {
+            customLogger.error(String.format("Can't handle %s of %s: %s",
+                    title, format(entity), e.getMessage()));
+        }
     }
 
     public static HItemEnchantment getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
