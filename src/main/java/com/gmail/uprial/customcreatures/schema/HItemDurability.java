@@ -14,7 +14,7 @@ public class HItemDurability {
     private final String title;
     private final IValue<Integer> durability;
 
-    protected HItemDurability(String title, IValue<Integer> durability) {
+    private HItemDurability(String title, IValue<Integer> durability) {
         this.title = title;
         this.durability = durability;
     }

@@ -109,11 +109,14 @@ handlers:
 # #### Equipment ####
 #
 # <equipment>:
-#   helmet: <equipment-cloth> ### Description of entity's helmet.
-#                             ### (* see description of <equipment-cloth> below)
-#   boots: <equipment-cloth>  ### Description of entity's boots.
-#   chest: <equipment-cloth>  ### Description of entity's chest.
-#   pens: <equipment-cloth>   ### Description of entity's pens.
+#   helmet: <equipment-cloth>   ### Description of entity's helmet.
+#                               ### (* see description of <equipment-cloth> below)
+#   boots: <equipment-cloth>    ### Description of entity's boots.
+#   chest: <equipment-cloth>    ### Description of entity's chest.
+#   pens: <equipment-cloth>     ### Description of entity's pens.
+#   main-hand: <item-in-hand>   ### Description of entity's main hand equipment
+#                               ### (* see description of <item-in-hand> below)
+#   off-hand: <item-in-hand>    ### Description of entity's off hand equipment
 #
 # #### Equipment cloth ####
 #
@@ -129,14 +132,37 @@ handlers:
 #                                  ###  - DIAMOND
 #                                  ###  - GOLD
 #
-#   drop-chance:   ### Chance that this cloth will be dropped as
-#                  ### an award for the killer.
-#                  ### By default the probability is 0%.
+#   drop-chance: <0..100> ### Chance that this cloth will be dropped as
+#                         ### an award for the killer.
+#                         ### By default the probability is 0%.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
 #
 #   enchantments <enchantments>:  ### List of enchantments will be applied to this cloth.
+#                                 ### By default, no enchantments will be applied.
+#                                 ### (* see description of <enchantments> below)
+#
+# #### Item in hand ####
+#
+# <item-in-hand>:
+#   probability: <0..100>   ### Probability in percents that this item will
+#                           ### be in hand of the entity.
+#                           ### By default the probability is 100%.
+#
+#   material: <material>    ### Material of the item, see:
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+#
+#   amount: <int-value:1..64> ### Amount of items.
+#
+#   drop-chance: <0..100> ### Chance that this item will be dropped as
+#                         ### an award for the killer.
+#                         ### By default the probability is 0%.
+#
+#   durability: <int-value:0..100>  ### Durability in percents of this item.
+#                                   ### By default the durability is 100%.
+#
+#   enchantments <enchantments>:  ### List of enchantments will be applied to this item.
 #                                 ### By default, no enchantments will be applied.
 #                                 ### (* see description of <enchantments> below)
 #
@@ -264,12 +290,15 @@ iron-creep:
       enchantments:
         - enchantments.high_protection
     main-hand:
-    saddle:
-    armor:
+      drop-chance: 100
+      material: IRON_SWORD
+      amount: 2
     off-hand:
       drop-chance: 100
-      item: IRON
-      count: 8
+      material: GOLD_ORE
+      amount: 20
+    saddle:
+    armor:
   max-health: 0.01
 
 enchantments:

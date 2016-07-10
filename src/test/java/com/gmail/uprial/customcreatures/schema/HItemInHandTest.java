@@ -1,0 +1,128 @@
+package com.gmail.uprial.customcreatures.schema;
+
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import static com.gmail.uprial.customcreatures.schema.HItemInHand.getFromConfig;
+import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
+import static org.junit.Assert.assertEquals;
+
+public class HItemInHandTest extends TestConfigBase {
+    @Rule
+    public final ExpectedException e = ExpectedException.none();
+
+    @Test
+    public void testWholeItemInHand() throws Exception {
+        HItemInHand itemInHand = getFromConfig(getPreparedConfig(
+                "i:",
+                "  material: DIAMOND_SWORD"),
+                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+        //noinspection ConstantConditions
+        assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1, enchantments: null," +
+                        " drop-chance: 0, durability: null]",
+                itemInHand.toString());
+    }
+
+    @Test
+    public void testWholeItemInHandWithoutDefaults() throws Exception {
+        HItemInHand itemInHand = getFromConfig(getPreparedConfig(
+                "i:",
+                "  probability: 50",
+                "  material: DIAMOND_SWORD",
+                "  amount: 10",
+                "  enchantments:",
+                "   - e",
+                "  e:",
+                "    type: THORNS",
+                "    level: 1",
+                "  drop-chance: 50",
+                "  durability: 40"),
+                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+        //noinspection ConstantConditions
+        assertEquals("[probability: 50, material: DIAMOND_SWORD, amount: 10, enchantments: {[type: THORNS, level: 1]}," +
+                        " drop-chance: 50, durability: 40]",
+                itemInHand.toString());
+    }
+
+    @Test
+    public void testEmptyItemInHand() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty item in hand");
+        getFromConfig(getPreparedConfig(
+                "?:"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyProbability() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty probability of item in hand. Use default value 100");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " k: v"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyMaterial() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Null or empty material of item in hand");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " k: v"),
+                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyAmount() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty amount of item in hand. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " probability: 50",
+                " material: DIAMOND_SWORD"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyDropChance() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty drop chance of item in hand. Use default value 0");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " probability: 50",
+                " material: DIAMOND_SWORD",
+                " amount: 1"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyDurability() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty durability of item in hand");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " probability: 77",
+                " drop-chance: 77",
+                " material: DIAMOND_SWORD",
+                " amount: 1"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+
+    @Test
+    public void testEmptyEnchantments() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty enchantments of item in hand");
+        getFromConfig(getPreparedConfig(
+                "i:",
+                " probability: 77",
+                " drop-chance: 77",
+                " durability: 77",
+                " material: DIAMOND_SWORD",
+                " amount: 1"),
+                getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
+    }
+}
