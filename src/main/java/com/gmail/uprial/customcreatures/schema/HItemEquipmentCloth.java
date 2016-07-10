@@ -19,17 +19,17 @@ import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 public class HItemEquipmentCloth {
     private final String title;
     private final Probability probability;
-    private final MaterialType material;
+    private final MaterialType materialType;
     private final BodyType bodyType;
     private final HItemEnchantmentsList enchantments;
     private final int dropChance;
     private final IValue<Integer> durability;
 
-    private HItemEquipmentCloth(String title, Probability probability, MaterialType material,
+    private HItemEquipmentCloth(String title, Probability probability, MaterialType materialType,
                                 BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance, IValue<Integer> durability) {
         this.title = title;
         this.probability = probability;
-        this.material = material;
+        this.materialType = materialType;
         this.bodyType = bodyType;
         this.enchantments = enchantments;
         this.dropChance = dropChance;
@@ -38,37 +38,41 @@ public class HItemEquipmentCloth {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((null == probability) || (probability.pass())) {
-            Material itemMaterial;
+            Material material;
             try {
-                itemMaterial = getItemMaterial(material, bodyType, title);
+                material = getMaterial(materialType, bodyType, title);
             } catch (InvalidConfigException e) {
                 customLogger.error(e.getMessage());
                 return;
             }
-            ItemStack itemStack = new ItemStack(itemMaterial);
+
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %s to %s",
-                        title, itemMaterial, format(entity)));
+                        title, material, format(entity)));
             }
+            ItemStack itemStack = new ItemStack(material);
+
             if (null != enchantments) {
                 enchantments.apply(customLogger, entity, itemStack);
             }
+
             if (null != durability) {
                 int itemDurability = durability.getValue();
                 if (customLogger.isDebugMode()) {
                     customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
-                            title, itemMaterial, format(entity), itemDurability));
+                            title, material, format(entity), itemDurability));
                 }
-                itemStack.setDurability((short)Math.round(itemMaterial.getMaxDurability() * itemDurability / 100));
+                itemStack.setDurability((short)Math.round(material.getMaxDurability() * itemDurability / 100));
             }
 
             EntityEquipment entityEquipment = entity.getEquipment();
 
             setBodyItem(entityEquipment, itemStack);
+
             if (dropChance > 0) {
                 if (customLogger.isDebugMode()) {
                     customLogger.debug(String.format("Handle %s: set drop chance of %s of %s to %d",
-                            title, itemMaterial, format(entity), dropChance));
+                            title, material, format(entity), dropChance));
                 }
                 setBodyItemDropChance(entityEquipment, dropChance);
             }
@@ -108,9 +112,9 @@ public class HItemEquipmentCloth {
         Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
                 String.format("probability of %s", title));
 
-        MaterialType material = getEnum(MaterialType.class, config,
-                joinPaths(key, "material"), String.format("material of %s", title));
-        getItemMaterial(material, bodyType, title);
+        MaterialType materialType = getEnum(MaterialType.class, config,
+                joinPaths(key, "material-type"), String.format("material type of %s", title));
+        getMaterial(materialType, bodyType, title);
 
         int dropChance = getInt(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, MAX_PERCENT, 0);
@@ -119,21 +123,21 @@ public class HItemEquipmentCloth {
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
-        return new HItemEquipmentCloth(title, probability, material, bodyType, enchantments, dropChance, durability);
+        return new HItemEquipmentCloth(title, probability, materialType, bodyType, enchantments, dropChance, durability);
     }
 
-    private static Material getItemMaterial(MaterialType material, BodyType bodyType, String title) throws InvalidConfigException {
-        String itemName = String.format("%s_%s", material, bodyType);
+    private static Material getMaterial(MaterialType materialType, BodyType bodyType, String title) throws InvalidConfigException {
+        String itemName = String.format("%s_%s", materialType, bodyType);
         try {
             return Material.valueOf(itemName);
         } catch (java.lang.IllegalArgumentException e) {
-            throw new InvalidConfigException(String.format("Invalid item material '%s' of %s", itemName, title));
+            throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
         }
     }
 
     public String toString() {
-        return String.format("[probability: %s, material: %s, enchantments: %s, drop-chance: %d, durability: %s]",
-                probability, material, enchantments, dropChance, durability);
+        return String.format("[probability: %s, material-type: %s, enchantments: %s, drop-chance: %d, durability: %s]",
+                probability, materialType, enchantments, dropChance, durability);
     }
 
 }

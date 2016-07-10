@@ -19,7 +19,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     public void testWholeEquipmentCloth() throws Exception {
         HItemEquipmentCloth itemEquipmentCloth = getFromConfig(getPreparedConfig(
                 "eq:",
-                "  material: IRON",
+                "  material-type: IRON",
                 "  enchantments:",
                 "   - e",
                 "  e:",
@@ -27,7 +27,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         //noinspection ConstantConditions
-        assertEquals("[probability: null, material: IRON, enchantments: {[type: THORNS, level: 1]}," +
+        assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 0, durability: null]",
                 itemEquipmentCloth.toString());
     }
@@ -39,7 +39,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "  probability: 77",
                 "  drop-chance: 50",
                 "  durability: 50",
-                "  material: IRON",
+                "  material-type: IRON",
                 "  enchantments:",
                 "   - e",
                 "  e:",
@@ -47,7 +47,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         //noinspection ConstantConditions
-        assertEquals("[probability: 77, material: IRON, enchantments: {[type: THORNS, level: 1]}," +
+        assertEquals("[probability: 77, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 50, durability: 50]",
                 itemEquipmentCloth.toString());
     }
@@ -74,7 +74,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     @Test
     public void testEmptyMaterial() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null or empty material of equipment cloth");
+        e.expectMessage("Null or empty material type of equipment cloth");
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " k: v"),
@@ -88,7 +88,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " probability: 50",
-                " material: IRON"),
+                " material-type: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 
@@ -100,7 +100,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "eq:",
                 " probability: 77",
                 " drop-chance: 77",
-                " material: IRON"),
+                " material-type: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 
@@ -113,17 +113,17 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 " probability: 77",
                 " drop-chance: 77",
                 " durability: 77",
-                " material: IRON"),
+                " material-type: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 
     @Test
     public void testNotExistingItem() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Invalid item material 'LEATHER_BARDING' of equipment cloth");
+        e.expectMessage("Invalid item material type 'LEATHER_BARDING' of equipment cloth");
         getFromConfig(getPreparedConfig(
                 "eq:",
-                " material: LEATHER"),
+                " material-type: LEATHER"),
                 getParanoiacCustomLogger(), BARDING, "eq", "equipment cloth");
     }
 }

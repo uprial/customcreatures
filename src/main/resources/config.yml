@@ -102,9 +102,9 @@ handlers:
 #       ...
 #     - <effect-typeN>
 #
-#   strength:  <int-value:0..?>   ### Strength of the effect.
-#                                 ### (* see description of <int-value> below)
-#   duration:  <int-value:0..?>   ### Duration of the effect, in seconds.
+#   strength: <int-value:0..?>   ### Strength of the effect.
+#                                ### (* see description of <int-value> below)
+#   duration: <int-value:0..?>   ### Duration of the effect, in seconds.
 #
 # #### Equipment ####
 #
@@ -122,12 +122,12 @@ handlers:
 #                           ### be dressed on the entity.
 #                           ### By default the probability is 100%.
 #
-#   material:      ### Material of the cloth. Possible values:
-#                  ###  - LEATHER
-#                  ###  - CHAINMAIL
-#                  ###  - IRON
-#                  ###  - DIAMOND
-#                  ###  - GOLD
+#   material-type: <material-type> ### Material of the cloth. Possible values:
+#                                  ###  - LEATHER
+#                                  ###  - CHAINMAIL
+#                                  ###  - IRON
+#                                  ###  - DIAMOND
+#                                  ###  - GOLD
 #
 #   drop-chance:   ### Chance that this cloth will be dropped as
 #                  ### an award for the killer.
@@ -241,25 +241,25 @@ iron-creep:
   equipment:
     helmet:
       drop-chance: 100
-      material: IRON
+      material-type: IRON
       durability: 50
       enchantments:
         - enchantments.high_protection
     boots:
       drop-chance: 100
-      material: IRON
+      material-type: IRON
       durability: 50
       enchantments:
         - enchantments.high_protection
     chest:
       drop-chance: 100
-      material: IRON
+      material-type: IRON
       durability: 50
       enchantments:
         - enchantments.high_protection
     leggings:
       drop-chance: 100
-      material: IRON
+      material-type: IRON
       durability: 50
       enchantments:
         - enchantments.high_protection

@@ -125,7 +125,7 @@ public class HItemTest extends TestConfigBase {
                 "  probability: 99",
                 " equipment:",
                 "  helmet:",
-                "   material: IRON",
+                "   material-type: IRON",
                 "   enchantments:",
                 "    - e",
                 "   e:",

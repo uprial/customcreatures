@@ -18,14 +18,14 @@ public class HItemEquipmentTest extends TestConfigBase {
         HItemEquipment itemEquipment = getFromConfig(getPreparedConfig(
                 "e:",
                 " helmet:",
-                "  material: IRON",
+                "  material-type: IRON",
                 " leggings:",
-                "  material: GOLD"),
+                "  material-type: GOLD"),
                 getParanoiacCustomLogger(), "e", "equipment");
         //noinspection ConstantConditions
-        assertEquals("[helmet: [probability: null, material: IRON, enchantments: null, drop-chance: 0, durability: null]," +
+        assertEquals("[helmet: [probability: null, material-type: IRON, enchantments: null, drop-chance: 0, durability: null]," +
                 " boots: null, chest: null," +
-                " leggings: [probability: null, material: GOLD, enchantments: null, drop-chance: 0, durability: null]]",
+                " leggings: [probability: null, material-type: GOLD, enchantments: null, drop-chance: 0, durability: null]]",
                 itemEquipment.toString());
     }
 
