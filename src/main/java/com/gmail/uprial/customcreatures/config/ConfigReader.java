@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.*;
 
-import static com.gmail.uprial.customcreatures.common.Utils.getParentPath;
+import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
 public class ConfigReader {

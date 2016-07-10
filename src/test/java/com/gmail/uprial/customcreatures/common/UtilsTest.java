@@ -1,18 +1,12 @@
 package com.gmail.uprial.customcreatures.common;
 
-import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.google.common.collect.Lists;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.common.Utils.*;
 import static org.junit.Assert.assertEquals;
 
 public class UtilsTest {
-    @Rule
-    public final ExpectedException e = ExpectedException.none();
-
     @Test
     public void testSeconds2ticks() throws Exception {
         assertEquals(40, seconds2ticks(2));
@@ -46,28 +40,5 @@ public class UtilsTest {
     @Test
     public void testJoinRightEmptyPaths() throws Exception {
         assertEquals("a.", joinPaths("a", ""));
-    }
-
-    @Test
-    public void testParentPath() throws Exception {
-        assertEquals("a", getParentPath("a.b"));
-    }
-
-    @Test
-    public void testParentPathLonger() throws Exception {
-        assertEquals("a.b", getParentPath("a.b.c"));
-    }
-
-    @Test
-    public void testRootParentPath() throws Exception {
-        assertEquals("", getParentPath("a"));
-    }
-
-    @Test
-    public void testPathWithoutParents() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Path '' doesn't have any parents");
-
-        getParentPath("");
     }
 }

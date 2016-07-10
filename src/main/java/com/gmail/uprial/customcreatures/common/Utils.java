@@ -1,7 +1,5 @@
 package com.gmail.uprial.customcreatures.common;
 
-import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-
 import java.util.List;
 
 public class Utils {
@@ -30,20 +28,5 @@ public class Utils {
         }
 
         return path;
-    }
-
-    public static String getParentPath(String path) throws InvalidConfigException {
-        if (path.length() < 1) {
-            throw new InvalidConfigException(String.format("Path '%s' doesn't have any parents", path));
-        }
-        int index = path.lastIndexOf(".");
-        String parentPath;
-        if (-1 == index) {
-            parentPath = "";
-        } else {
-            parentPath = path.substring(0, index);
-        }
-
-        return parentPath;
     }
 }
