@@ -1,8 +1,10 @@
 # High priority
-- Check that all null returns are explicit checked
-- Test on 1.10.2 in Runtime
+- Check that all null returns are explicitly checked.
+- Test on v1.10.2 in Runtime.
+- Explicitly limit all integer and float point values.
 
 # Low priority
-- Implement specific properties of LivingEntity children
-- Unique flag: don't apply two handlers with the same value of this flag
-- Explicitly limit all integer and float point values
+- Implement specific properties of paticular LivingEntity's children.
+- Unique flag: don't apply two handlers with the same value of this
+flag. This flag should replace filter's probability with a system of
+ weights.
