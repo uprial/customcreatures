@@ -4,7 +4,7 @@
 - Explicitly limit all integer and float point values.
 
 # Low priority
-- Implement specific properties of paticular LivingEntity's children.
+- Implement specific properties of particular LivingEntity's children.
 - Unique flag: don't apply two handlers with the same value of this
 flag. This flag should replace filter's probability with a system of
  weights.
