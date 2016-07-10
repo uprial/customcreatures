@@ -2,7 +2,6 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -23,10 +22,10 @@ public class HItemEquipmentCloth {
     private final BodyType bodyType;
     private final HItemEnchantmentsList enchantments;
     private final int dropChance;
-    private final IValue<Integer> durability;
+    private final HItemDurability durability;
 
     private HItemEquipmentCloth(String title, Probability probability, MaterialType materialType,
-                                BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance, IValue<Integer> durability) {
+                                BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance, HItemDurability durability) {
         this.title = title;
         this.probability = probability;
         this.materialType = materialType;
@@ -57,12 +56,7 @@ public class HItemEquipmentCloth {
             }
 
             if (null != durability) {
-                int itemDurability = durability.getValue();
-                if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
-                            title, material, format(entity), itemDurability));
-                }
-                itemStack.setDurability((short)Math.round(material.getMaxDurability() * itemDurability / 100));
+                durability.apply(customLogger, entity, itemStack);
             }
 
             EntityEquipment entityEquipment = entity.getEquipment();
@@ -118,7 +112,7 @@ public class HItemEquipmentCloth {
 
         int dropChance = getInt(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, MAX_PERCENT, 0);
-        IValue<Integer> durability = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "durability"),
+        HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
