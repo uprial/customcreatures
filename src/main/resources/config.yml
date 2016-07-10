@@ -39,9 +39,9 @@ handlers:
 #                      ### By default, no filters will be applied.
 #                      ### (* see description of <filter> below)
 #
-#   max-health: <float-value:>0> ### A multiplier for max. health of an entity.
-#                                ### By default, max. health won't be modified.
-#                                ### (* see description of <float-value> below)
+#   max-health: <float-value:0..?> ### A multiplier for max. health of an entity.
+#                                  ### By default, max. health won't be modified.
+#                                  ### (* see description of <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.
@@ -102,9 +102,9 @@ handlers:
 #       ...
 #     - <effect-typeN>
 #
-#   strength:  <int-value:>0>   ### Strength of the effect.
-#                               ### (* see description of <int-value> below)
-#   duration:  <int-value:>0>   ### Duration of the effect, in seconds.
+#   strength:  <int-value:0..?>   ### Strength of the effect.
+#                                 ### (* see description of <int-value> below)
+#   duration:  <int-value:0..?>   ### Duration of the effect, in seconds.
 #
 # #### Equipment ####
 #
