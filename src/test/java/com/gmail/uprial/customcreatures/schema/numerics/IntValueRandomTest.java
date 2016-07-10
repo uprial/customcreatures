@@ -67,10 +67,10 @@ public class IntValueRandomTest extends TestConfigBase {
     public void testExpDownDistribution() throws Exception {
         IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
 
-        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        Map<Integer, Long> distribution = getDistribution(1000, valueRandom);
         assertTrue(distribution.get(10) > 400);
         assertTrue(distribution.get(10) < 1000);
-        assertTrue(distribution.get(11) > 200);
+        assertTrue(distribution.get(11) > 150);
         assertTrue(distribution.get(11) < 500);
         assertTrue(distribution.get(12) > 100);
         assertTrue(distribution.get(12) < 250);
@@ -84,14 +84,14 @@ public class IntValueRandomTest extends TestConfigBase {
     public void testExpUpDistribution() throws Exception {
         IntValueRandom valueRandom = new IntValueRandom(EXP_UP, 10, 13);
 
-        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        Map<Integer, Long> distribution = getDistribution(1000, valueRandom);
         assertTrue(distribution.get(10) > 50);
         assertTrue(distribution.get(10) < 150);
         assertTrue(distribution.get(11) > 100);
         assertTrue(distribution.get(11) < 250);
-        assertTrue(distribution.get(12) > 200);
+        assertTrue(distribution.get(12) > 150);
         assertTrue(distribution.get(12) < 400);
-        assertTrue(distribution.get(13) > 500);
+        assertTrue(distribution.get(13) > 400);
         assertTrue(distribution.get(13) < 1000);
         assertFalse(distribution.containsKey(9));
         assertFalse(distribution.containsKey(14));
