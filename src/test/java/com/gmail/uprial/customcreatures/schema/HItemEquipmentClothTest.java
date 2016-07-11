@@ -62,6 +62,13 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyEquipmentClothValue() throws Exception {
+        assertEquals(null, getFromConfig(getPreparedConfig(
+                "?:"),
+                getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth"));
+    }
+
+    @Test
     public void testEmptyProbability() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty probability of equipment cloth. Use default value 100");

@@ -43,6 +43,13 @@ public class HItemEquipmentTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyEquipmentValue() throws Exception {
+        assertEquals(null, getFromConfig(getPreparedConfig(
+                "?:"),
+                getParanoiacCustomLogger(), "e", "equipment"));
+    }
+
+    @Test
     public void testNoModifications() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("No cloths or tools found in equipment");

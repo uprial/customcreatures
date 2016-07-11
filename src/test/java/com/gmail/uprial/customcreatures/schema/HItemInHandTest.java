@@ -57,6 +57,13 @@ public class HItemInHandTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyItemInHandValue() throws Exception {
+        assertEquals(null, getFromConfig(getPreparedConfig(
+                "?:"),
+                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand"));
+    }
+
+    @Test
     public void testEmptyProbability() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty probability of item in hand. Use default value 100");

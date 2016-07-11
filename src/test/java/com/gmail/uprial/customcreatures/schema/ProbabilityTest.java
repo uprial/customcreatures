@@ -1,13 +1,17 @@
 package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.Probability.getFromConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ProbabilityTest extends TestConfigBase {
+    @Rule
+    public final ExpectedException e = ExpectedException.none();
 
     @Test
     public void testWholeProbability() throws Exception {
@@ -19,12 +23,26 @@ public class ProbabilityTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyProbability() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty probability. Use default value 100");
+        getFromConfig(getPreparedConfig(
+                "?: 100"),
+                getDebugFearingCustomLogger(), "p", "probability");
+    }
+
+    @Test
+    public void testEmptyProbabilityValue() throws Exception {
+        assertEquals(null, getFromConfig(getPreparedConfig(
+                "?: 100"),
+                getParanoiacCustomLogger(), "p", "probability"));
+    }
+
+    @Test
     public void testNullProbability() throws Exception {
-        Probability probability = getFromConfig(getPreparedConfig(
+        assertEquals(null, getFromConfig(getPreparedConfig(
                 "p: 100"),
-                getParanoiacCustomLogger(), "p", "probability");
-        //noinspection ConstantConditions
-        assertEquals(null, probability);
+                getParanoiacCustomLogger(), "p", "probability"));
     }
 
     @Test

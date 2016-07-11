@@ -53,10 +53,15 @@ public class ConfigReaderTest extends TestConfigBase {
     }
 
     @Test
-    public void testInvalidStringList() throws Exception {
+    public void testEmptyStringList() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty list. Use default value NULL");
         getStringList(getPreparedConfig("sl: "), getDebugFearingCustomLogger(), "sl", "list");
+    }
+
+    @Test
+    public void testEmptyStringListValue() throws Exception {
+        assertEquals(null, getStringList(getPreparedConfig("sl: "), getParanoiacCustomLogger(), "sl", "list"));
     }
 
     @Test
@@ -189,6 +194,11 @@ public class ConfigReaderTest extends TestConfigBase {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty set. Use default value NULL");
         getSet(TestEnum.class, getPreparedConfig(""), getDebugFearingCustomLogger(), "s", "set");
+    }
+
+    @Test
+    public void testEmptySetValue() throws Exception {
+        assertEquals(null, getSet(TestEnum.class, getPreparedConfig(""), getParanoiacCustomLogger(), "s", "set"));
     }
 
     @Test

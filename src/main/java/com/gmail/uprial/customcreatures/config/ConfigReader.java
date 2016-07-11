@@ -95,7 +95,7 @@ public class ConfigReader {
             }
             set.add(enumItem);
         }
-        return set.size() > 0 ? set : null;
+        return set;
     }
 
     public static <T extends Enum> T getEnum(Class<T> enumType, FileConfiguration config, String key, String title) throws InvalidConfigException {

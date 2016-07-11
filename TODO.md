@@ -1,7 +1,7 @@
 # High priority
-- Check that all null returns are explicitly checked.
 - Test on v1.10.2 in Runtime.
 - Explicitly limit all integer and float point values.
+- Review getCustomLogger: always fail on error or warning.
 
 # Low priority
 - Implement specific properties of LivingEntities: powered creeper;
