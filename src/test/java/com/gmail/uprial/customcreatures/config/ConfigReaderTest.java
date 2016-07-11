@@ -34,7 +34,7 @@ public class ConfigReaderTest extends TestConfigBase {
     public void testInvalidBoolean() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Invalid 'value' flag. Use default value false");
-        getBoolean(getPreparedConfig("f: x"), getCustomLogger(), "f", "'value' flag", false);
+        getBoolean(getPreparedConfig("f: x"), getParanoiacCustomLogger(), "f", "'value' flag", false);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ConfigReaderTest extends TestConfigBase {
 
     @Test
     public void testEmptyStringListValue() throws Exception {
-        assertEquals(null, getStringList(getPreparedConfig("sl: "), getParanoiacCustomLogger(), "sl", "list"));
+        assertEquals(null, getStringList(getPreparedConfig("sl: "), getCustomLogger(), "sl", "list"));
     }
 
     @Test
@@ -83,21 +83,21 @@ public class ConfigReaderTest extends TestConfigBase {
     public void testWrongInt() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("A value number is not an integer");
-        getInt(getPreparedConfig("n: 1.0"), getCustomLogger(), "n", "value number", 0, 100, 0);
+        getInt(getPreparedConfig("n: 1.0"), getParanoiacCustomLogger(), "n", "value number", 0, 100, 0);
     }
 
     @Test
     public void testSmallInt() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("A value number should be at least 0. Use default value 0");
-        getInt(getPreparedConfig("n: -1"), getCustomLogger(), "n", "value number", 0, 100, 0);
+        getInt(getPreparedConfig("n: -1"), getParanoiacCustomLogger(), "n", "value number", 0, 100, 0);
     }
 
     @Test
     public void testBigInt() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("A value number should be at most 100. Use default value 0");
-        getInt(getPreparedConfig("n: 1000"), getCustomLogger(), "n", "value number", 0, 100, 0);
+        getInt(getPreparedConfig("n: 1000"), getParanoiacCustomLogger(), "n", "value number", 0, 100, 0);
     }
 
     @Test
@@ -198,14 +198,14 @@ public class ConfigReaderTest extends TestConfigBase {
 
     @Test
     public void testEmptySetValue() throws Exception {
-        assertEquals(null, getSet(TestEnum.class, getPreparedConfig(""), getParanoiacCustomLogger(), "s", "set"));
+        assertEquals(null, getSet(TestEnum.class, getPreparedConfig(""), getCustomLogger(), "s", "set"));
     }
 
     @Test
     public void testWrongSetType() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Invalid com.gmail.uprial.customcreatures.helpers.TestEnum 'Z' in set at pos 0");
-        getSet(TestEnum.class, getPreparedConfig("x:", "  entities:", "   - Z"), getCustomLogger(),
+        getSet(TestEnum.class, getPreparedConfig("x:", "  entities:", "   - Z"), getParanoiacCustomLogger(),
                 "x.entities", "set");
     }
 
@@ -214,7 +214,7 @@ public class ConfigReaderTest extends TestConfigBase {
         e.expect(InvalidConfigException.class);
         e.expectMessage("com.gmail.uprial.customcreatures.helpers.TestEnum 'A' in set is not unique");
         getSet(TestEnum.class, getPreparedConfig("x:", "  entities:", "   - A", "   - A"),
-                getCustomLogger(), "x.entities", "set");
+                getParanoiacCustomLogger(), "x.entities", "set");
     }
 
     @Test
@@ -283,7 +283,7 @@ public class ConfigReaderTest extends TestConfigBase {
     public void testEmptyItemsValue() throws Exception {
         Set<String> items = getItemsList(getPreparedConfig(
                 "x:"),
-                getParanoiacCustomLogger(), "x", "items list");
+                getCustomLogger(), "x", "items list");
         assertEquals(null, items);
     }
 

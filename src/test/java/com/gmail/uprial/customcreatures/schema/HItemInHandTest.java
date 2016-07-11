@@ -18,11 +18,21 @@ public class HItemInHandTest extends TestConfigBase {
     public void testWholeItemInHand() throws Exception {
         HItemInHand itemInHand = getFromConfig(getPreparedConfig(
                 "i:",
-                "  material: DIAMOND_SWORD"),
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  material: DIAMOND_SWORD",
+                "  amount: 1",
+                "  enchantments:",
+                "   - e1",
+                "e1:",
+                " type: PROTECTION_ENVIRONMENTAL",
+                " level: 2"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         //noinspection ConstantConditions
-        assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1, enchantments: null," +
-                        " drop-chance: 0, durability: null]",
+        assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 2]}," +
+                " drop-chance: 100, durability: 100]",
                 itemInHand.toString());
     }
 
@@ -60,7 +70,7 @@ public class HItemInHandTest extends TestConfigBase {
     public void testEmptyItemInHandValue() throws Exception {
         assertEquals(null, getFromConfig(getPreparedConfig(
                 "?:"),
-                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand"));
+                getCustomLogger(), MAIN_HAND, "i", "item in hand"));
     }
 
     @Test
@@ -80,7 +90,7 @@ public class HItemInHandTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "i:",
                 " k: v"),
-                getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+                getCustomLogger(), MAIN_HAND, "i", "item in hand");
     }
 
     @Test

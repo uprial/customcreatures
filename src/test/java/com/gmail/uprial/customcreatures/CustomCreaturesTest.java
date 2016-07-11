@@ -13,6 +13,6 @@ public class CustomCreaturesTest extends TestConfigBase {
     public void testLoadException() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("[ERROR] Empty 'handlers' list");
-        CustomCreatures.loadConfig(getPreparedConfig(""), getParanoiacCustomLogger());
+        CustomCreatures.loadConfig(getPreparedConfig(""), getCustomLogger());
     }
 }

@@ -50,6 +50,6 @@ public class AbstractValueRandomTest extends TestConfigBase {
     @Test
     public void testDistribution() throws Exception {
         assertEquals(EXP_UP,  getDistributionTypeFromConfig(getPreparedConfig("i: ", "  distribution: EXP_UP"),
-                getDebugFearingCustomLogger(), "i", "i"));
+                getParanoiacCustomLogger(), "i", "i"));
     }
 }

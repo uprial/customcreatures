@@ -33,7 +33,7 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
     public void testEmptyEnchantmentsValue() throws Exception {
         HItemEnchantmentsList itemEnchantmentsList = getFromConfig(getPreparedConfig(
                 "ee:"),
-                getParanoiacCustomLogger(), "ee", "enchantments list");
+                getCustomLogger(), "ee", "enchantments list");
         assertEquals(null, itemEnchantmentsList);
     }
 }

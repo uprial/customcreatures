@@ -224,6 +224,8 @@ handlers:
 # ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%.
 # ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%.
 # ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%.
+# ###
+# ### By default, a NORMAL distribution will be chosen.
 #
 
 fat-rabbit:

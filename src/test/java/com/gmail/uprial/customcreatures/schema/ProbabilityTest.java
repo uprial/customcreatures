@@ -35,7 +35,7 @@ public class ProbabilityTest extends TestConfigBase {
     public void testEmptyProbabilityValue() throws Exception {
         assertEquals(null, getFromConfig(getPreparedConfig(
                 "?: 100"),
-                getParanoiacCustomLogger(), "p", "probability"));
+                getCustomLogger(), "p", "probability"));
     }
 
     @Test

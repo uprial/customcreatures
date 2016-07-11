@@ -19,7 +19,10 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     public void testWholeEquipmentCloth() throws Exception {
         HItemEquipmentCloth itemEquipmentCloth = getFromConfig(getPreparedConfig(
                 "eq:",
+                "  probability: 100",
+                "  drop-chance: 50",
                 "  material-type: IRON",
+                "  durability: 100",
                 "  enchantments:",
                 "   - e",
                 "  e:",
@@ -28,7 +31,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         //noinspection ConstantConditions
         assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
-                " drop-chance: 0, durability: null]",
+                " drop-chance: 50, durability: 100]",
                 itemEquipmentCloth.toString());
     }
 
@@ -65,7 +68,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     public void testEmptyEquipmentClothValue() throws Exception {
         assertEquals(null, getFromConfig(getPreparedConfig(
                 "?:"),
-                getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth"));
+                getCustomLogger(), HELMET, "eq", "equipment cloth"));
     }
 
     @Test
@@ -85,7 +88,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " k: v"),
-                getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
+                getCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 
     @Test
@@ -131,6 +134,6 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " material-type: LEATHER"),
-                getParanoiacCustomLogger(), BARDING, "eq", "equipment cloth");
+                getCustomLogger(), BARDING, "eq", "equipment cloth");
     }
 }

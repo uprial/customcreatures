@@ -31,7 +31,7 @@ public class HItemEffectsListTest extends TestConfigBase {
     public void testEmptyEffectsValue() throws Exception {
         HItemEffectsList itemEffectsList = getFromConfig(getPreparedConfig(
                 "ee:"),
-                getParanoiacCustomLogger(), "ee", "effects list");
+                getCustomLogger(), "ee", "effects list");
         assertEquals(null, itemEffectsList);
     }
 }

@@ -18,18 +18,72 @@ public class HItemEquipmentTest extends TestConfigBase {
         HItemEquipment itemEquipment = getFromConfig(getPreparedConfig(
                 "e:",
                 " helmet:",
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
                 "  material-type: IRON",
+                " boots:",
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material-type: GOLD",
+                " chest:",
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material-type: GOLD",
                 " leggings:",
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
                 "  material-type: GOLD",
                 " main-hand:",
-                "  material: DIAMOND_SWORD"),
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material: DIAMOND_SWORD",
+                "  amount: 1",
+                " off-hand:",
+                "  probability: 100",
+                "  drop-chance: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material: DIAMOND_SWORD",
+                "  amount: 1",
+                "e1:",
+                " type: PROTECTION_ENVIRONMENTAL",
+                " level: 1"),
                 getParanoiacCustomLogger(), "e", "equipment");
         //noinspection ConstantConditions
-        assertEquals("[helmet: [probability: null, material-type: IRON, enchantments: null, drop-chance: 0, durability: null]," +
-                " boots: null, chest: null," +
-                " leggings: [probability: null, material-type: GOLD, enchantments: null, drop-chance: 0, durability: null]," +
-                " main-hand: [probability: null, material: DIAMOND_SWORD, amount: 1, enchantments: null, drop-chance: 0, durability: null]," +
-                " off-hand: null]",
+        assertEquals("[helmet: [probability: null, material-type: IRON," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]," +
+                " boots: [probability: null, material-type: GOLD," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]," +
+                " chest: [probability: null, material-type: GOLD," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]," +
+                " leggings: [probability: null, material-type: GOLD," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]," +
+                " main-hand: [probability: null, material: DIAMOND_SWORD, amount: 1," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]," +
+                " off-hand: [probability: null, material: DIAMOND_SWORD, amount: 1," +
+                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
+                " drop-chance: 100, durability: 100]]",
                 itemEquipment.toString());
     }
 
@@ -46,7 +100,7 @@ public class HItemEquipmentTest extends TestConfigBase {
     public void testEmptyEquipmentValue() throws Exception {
         assertEquals(null, getFromConfig(getPreparedConfig(
                 "?:"),
-                getParanoiacCustomLogger(), "e", "equipment"));
+                getCustomLogger(), "e", "equipment"));
     }
 
     @Test
@@ -56,6 +110,6 @@ public class HItemEquipmentTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "e:",
                 " k: v"),
-                getParanoiacCustomLogger(), "e", "equipment");
+                getCustomLogger(), "e", "equipment");
     }
 }

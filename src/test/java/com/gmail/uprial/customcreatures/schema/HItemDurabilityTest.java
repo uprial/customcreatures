@@ -20,7 +20,7 @@ public class HItemDurabilityTest extends TestConfigBase {
     public void testEmptyDurability() throws Exception {
         HItemDurability itemDurability = getFromConfig(getPreparedConfig(
                 "?: 1"),
-                getParanoiacCustomLogger(), "d", "durability");
+                getCustomLogger(), "d", "durability");
         //noinspection ConstantConditions
         assertEquals(null, itemDurability);
     }

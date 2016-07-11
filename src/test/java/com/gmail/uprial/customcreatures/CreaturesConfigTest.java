@@ -54,7 +54,10 @@ public class CreaturesConfigTest extends TestConfigBase {
         loadConfig("handlers:",
                 " - x",
                 " - x",
-                "x: y");
+                "x:",
+                " filter:",
+                "   probability: 99",
+                " max-health: 1.0");
     }
 
     @Test
@@ -64,14 +67,17 @@ public class CreaturesConfigTest extends TestConfigBase {
         loadConfig("handlers:",
                 " - x",
                 " - X",
-                "x: y");
+                "x:",
+                " filter:",
+                "  probability: 99",
+                " max-health: 1.0");
     }
 
     @Test
     public void testNoValidHandlersDefinitions() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("There are no valid handlers definitions");
-        loadConfig("handlers:",
+        loadConfig(getIndifferentCustomLogger(), "handlers:",
                 " - x",
                 "x:",
                 " filter: dd");

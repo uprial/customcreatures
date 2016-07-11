@@ -42,7 +42,7 @@ public class HItemEffectTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "e:",
                 "  types:"),
-                getParanoiacCustomLogger(), "e", "effect");
+                getCustomLogger(), "e", "effect");
     }
 
     @Test
@@ -53,7 +53,7 @@ public class HItemEffectTest extends TestConfigBase {
                 "e:",
                 "  types:",
                 "    - SPEED"),
-                getParanoiacCustomLogger(), "e", "effect");
+                getCustomLogger(), "e", "effect");
     }
 
     @Test
@@ -65,7 +65,7 @@ public class HItemEffectTest extends TestConfigBase {
                 "  types:",
                 "    - SPEED",
                 "  strength: 1"),
-                getParanoiacCustomLogger(), "e", "effect");
+                getCustomLogger(), "e", "effect");
     }
 
 }

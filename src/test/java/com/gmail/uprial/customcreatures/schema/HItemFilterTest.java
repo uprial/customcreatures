@@ -93,7 +93,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  reasons:",
-                "    - NATURAL"), getParanoiacCustomLogger(), "f", "filter");
+                "    - NATURAL"), getCustomLogger(), "f", "filter");
         assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.INFECTION));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
@@ -121,7 +121,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
-                "  probability: 50"), getParanoiacCustomLogger(), "f", "filter");
+                "  probability: 50"), getCustomLogger(), "f", "filter");
         assertTrue(20 < getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertTrue(80 > getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
@@ -133,7 +133,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
-                "  probability: 0"), getParanoiacCustomLogger(), "f", "filter");
+                "  probability: 0"), getCustomLogger(), "f", "filter");
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
     }
 

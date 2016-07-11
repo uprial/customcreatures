@@ -50,6 +50,6 @@ public class HItemEnchantmentTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "e:",
                 "  type: THORNS"),
-                getParanoiacCustomLogger(), "e", "enchantment");
+                getCustomLogger(), "e", "enchantment");
     }
 }

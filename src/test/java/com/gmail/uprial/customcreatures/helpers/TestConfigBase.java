@@ -45,4 +45,11 @@ public abstract class TestConfigBase {
 
         return testCustomLogger;
     }
+
+    protected TestCustomLogger getIndifferentCustomLogger() {
+        TestCustomLogger testCustomLogger = new TestCustomLogger();
+        testCustomLogger.doNotFailOnError();
+
+        return testCustomLogger;
+    }
 }
