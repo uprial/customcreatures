@@ -65,14 +65,14 @@ public class ConfigReaderSimpleTest extends TestConfigBase {
     @Test
     public void testSmallInt() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("A value number should be at least 0. Use default value 0");
+        e.expectMessage("A value number should be at least 0");
         getInt(getPreparedConfig("n: -1"), getParanoiacCustomLogger(), "n", "value number", 0, 100, 0);
     }
 
     @Test
     public void testBigInt() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("A value number should be at most 100. Use default value 0");
+        e.expectMessage("A value number should be at most 100");
         getInt(getPreparedConfig("n: 1000"), getParanoiacCustomLogger(), "n", "value number", 0, 100, 0);
     }
 

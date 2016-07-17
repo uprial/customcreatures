@@ -32,9 +32,9 @@ public class ConfigReaderSimple {
         } else {
             int intValue = config.getInt(key);
             if(min > intValue)
-                throw new InvalidConfigException(String.format("A %s should be at least %d. Use default value %d", title, min, defaultValue));
+                throw new InvalidConfigException(String.format("A %s should be at least %d", title, min));
             else if(max < intValue)
-                throw new InvalidConfigException(String.format("A %s should be at most %d. Use default value %d", title, max, defaultValue));
+                throw new InvalidConfigException(String.format("A %s should be at most %d", title, max));
             else
                 value = intValue;
         }
