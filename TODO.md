@@ -1,12 +1,15 @@
 # High priority
-- Split ConfigReader into several classes.
-- Explicitly limit all integer and float point values.
+- Split ConfigReader into several classes and hide its internal
+methods like getString.
+- Explicitly limit all integer and float point values. Use delta
+while detecting a deviation of float point value.
 - Analyze all the code via all the possible instruments in Idea.
 - Create default set of handlers:
 (gold, iron, diamond) * (zombie, skeleton)
 - Find way to identify a neutral entities and make some of them fat.
 - Find way to identify potentially aggressive entities
 and make some of them rapid.
+- Remove all the trailing spaces.
 - Release v1.0.1.
 
 # Low priority
