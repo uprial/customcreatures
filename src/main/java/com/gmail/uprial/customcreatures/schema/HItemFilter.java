@@ -9,7 +9,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
 public class HItemFilter {
     private final Set<EntityType> entityTypes;

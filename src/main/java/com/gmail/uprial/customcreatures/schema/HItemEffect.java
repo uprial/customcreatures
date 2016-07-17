@@ -14,7 +14,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getSet;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
 public class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
 

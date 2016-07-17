@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.config.ConfigReader;
+import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.schema.HItem;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getKey;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
 public class CreaturesConfig {
     private List<HItem> handlers;
@@ -29,7 +29,7 @@ public class CreaturesConfig {
     }
 
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-        boolean debug = ConfigReader.getBoolean(config, customLogger, "debug", "'debug' flag", false);
+        boolean debug = ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
         customLogger.setDebugMode(debug);
 
         List<?> handlersConfig = config.getList("handlers");

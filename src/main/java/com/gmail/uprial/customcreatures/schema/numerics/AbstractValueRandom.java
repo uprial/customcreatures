@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.Random;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getEnum;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
 abstract public class AbstractValueRandom<T> implements IValue<T> {

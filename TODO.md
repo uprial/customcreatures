@@ -1,6 +1,4 @@
 # High priority
-- Split ConfigReader into several classes and hide its internal
-methods like getString.
 - Explicitly limit all integer and float point values. Use delta
 while detecting a deviation of float point value.
 - Analyze all the code via all the possible instruments in Idea.

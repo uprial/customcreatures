@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getItemsList;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
 
 public class HItemEnchantmentsList {
 

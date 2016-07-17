@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.Random;
 
-import static com.gmail.uprial.customcreatures.config.ConfigReader.getInt;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getInt;
 
 public class Probability {
     public static final int MAX_PERCENT = 100;
