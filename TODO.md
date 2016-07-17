@@ -1,4 +1,5 @@
 # High priority
+- Split ConfigReader into several classes.
 - Explicitly limit all integer and float point values.
 - Analyze all the code via all the possible instruments in Idea.
 - Create default set of handlers:
