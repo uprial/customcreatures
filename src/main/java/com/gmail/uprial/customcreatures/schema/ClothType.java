@@ -1,6 +1,6 @@
 package com.gmail.uprial.customcreatures.schema;
 
-public enum BodyType {
+public enum ClothType implements IBodyType {
     BARDING,
     BOOTS,
     CHESTPLATE,

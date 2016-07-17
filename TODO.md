@@ -1,6 +1,7 @@
 # High priority
-- Test on v1.10.2 in Runtime.
 - Explicitly limit all integer and float point values.
+- Create default set of handlers:
+(gold, iron, diamond) * (zombie, skeleton)
 
 # Low priority
 - Implement specific properties of LivingEntities: powered creeper;

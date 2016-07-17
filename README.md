@@ -33,5 +33,5 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 ### GitHub
 https://github.com/uprial/customcreatures
 
-### Configuration examples
-[Default configuration](src/main/resources/config.yml)
+### Configuration example
+[config.yml](src/main/resources/config.yml)

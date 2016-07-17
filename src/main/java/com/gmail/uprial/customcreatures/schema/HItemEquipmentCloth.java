@@ -2,10 +2,10 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
@@ -20,17 +20,17 @@ public class HItemEquipmentCloth {
     private final String title;
     private final Probability probability;
     private final MaterialType materialType;
-    private final BodyType bodyType;
+    private final ClothType clothType;
     private final HItemEnchantmentsList enchantments;
     private final int dropChance;
     private final HItemDurability durability;
 
     private HItemEquipmentCloth(String title, Probability probability, MaterialType materialType,
-                                BodyType bodyType, HItemEnchantmentsList enchantments, int dropChance, HItemDurability durability) {
+                                ClothType clothType, HItemEnchantmentsList enchantments, int dropChance, HItemDurability durability) {
         this.title = title;
         this.probability = probability;
         this.materialType = materialType;
-        this.bodyType = bodyType;
+        this.clothType = clothType;
         this.enchantments = enchantments;
         this.dropChance = dropChance;
         this.durability = durability;
@@ -40,7 +40,7 @@ public class HItemEquipmentCloth {
         if ((null == probability) || (probability.pass())) {
             Material material;
             try {
-                material = getMaterial(materialType, bodyType, title);
+                material = getMaterial(materialType, clothType, title);
             } catch (InvalidConfigException e) {
                 customLogger.error(e.getMessage());
                 return;
@@ -60,21 +60,30 @@ public class HItemEquipmentCloth {
                 durability.apply(customLogger, entity, itemStack);
             }
 
-            EntityEquipment entityEquipment = entity.getEquipment();
-
-            setItem(entityEquipment, bodyType, itemStack);
+            try {
+                setItem(entity.getEquipment(), clothType, itemStack);
+            } catch (OperationIsNotSupportedException e) {
+                customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
+                return ;
+            }
 
             if (dropChance > 0) {
                 if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Handle %s: set drop chance of %s of %s to %d",
+                    customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %d",
                             title, material, format(entity), dropChance));
                 }
-                setItemDropChance(entityEquipment, bodyType, dropChance);
+                try {
+                    setItemDropChance(entity.getEquipment(), clothType, dropChance);
+                } catch (OperationIsNotSupportedException e) {
+                    customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                    //noinspection UnnecessaryReturnStatement
+                    return ;
+                }
             }
         }
     }
 
-    public static HItemEquipmentCloth getFromConfig(FileConfiguration config, CustomLogger customLogger, BodyType bodyType, String key, String title) throws InvalidConfigException {
+    public static HItemEquipmentCloth getFromConfig(FileConfiguration config, CustomLogger customLogger, ClothType clothType, String key, String title) throws InvalidConfigException {
         if (null == config.get(key)) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
@@ -85,7 +94,7 @@ public class HItemEquipmentCloth {
 
         MaterialType materialType = getEnum(MaterialType.class, config,
                 joinPaths(key, "material-type"), String.format("material type of %s", title));
-        getMaterial(materialType, bodyType, title);
+        getMaterial(materialType, clothType, title);
 
         int dropChance = getInt(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, MAX_PERCENT, 0);
@@ -94,11 +103,11 @@ public class HItemEquipmentCloth {
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
-        return new HItemEquipmentCloth(title, probability, materialType, bodyType, enchantments, dropChance, durability);
+        return new HItemEquipmentCloth(title, probability, materialType, clothType, enchantments, dropChance, durability);
     }
 
-    private static Material getMaterial(MaterialType materialType, BodyType bodyType, String title) throws InvalidConfigException {
-        String itemName = String.format("%s_%s", materialType, bodyType);
+    private static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
+        String itemName = String.format("%s_%s", materialType, clothType);
         try {
             return Material.valueOf(itemName);
         } catch (java.lang.IllegalArgumentException e) {

@@ -6,8 +6,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static com.gmail.uprial.customcreatures.schema.BodyType.BARDING;
-import static com.gmail.uprial.customcreatures.schema.BodyType.HELMET;
+import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
+import static com.gmail.uprial.customcreatures.schema.ClothType.HELMET;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipmentCloth.getFromConfig;
 import static org.junit.Assert.assertEquals;
 

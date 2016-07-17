@@ -2,12 +2,13 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.exceptions.MethodIsNotSupportedException;
+import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import com.gmail.uprial.customcreatures.schema.numerics.ValueConst;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
@@ -57,24 +58,23 @@ public class HItemInHand {
                 durability.apply(customLogger, entity, itemStack);
             }
 
-            EntityEquipment entityEquipment = entity.getEquipment();
-
             try {
-                setItem(entityEquipment, handType, itemStack);
-            } catch (OffHandIsNotSupportedException e) {
+                setItem(entity.getEquipment(), handType, itemStack);
+            } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
                 customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
                 return ;
             }
 
             if (dropChance > 0) {
                 if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Handle %s: set drop chance of %s of %s to %d",
+                    customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %d",
                             title, material, format(entity), dropChance));
                 }
                 try {
-                    setItemDropChance(entityEquipment, handType, dropChance);
-                } catch (OffHandIsNotSupportedException e) {
-                    customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
+                    setItemDropChance(entity.getEquipment(), handType, dropChance);
+                } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+                    customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                    //noinspection UnnecessaryReturnStatement
                     return ;
                 }
             }

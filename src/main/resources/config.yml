@@ -1,11 +1,15 @@
 #
 # ==== General info ====
-# 
+#
 # * You can add your own handlers in this file but don't forget to
 # add they into 'handlers' list.
 #
 # * After editing of this file you need to check server logs to be
 # sure that no errors was appeared.
+#
+# * It's highly recommended to check that your handler
+# can modify an entity in the such way. For example, you can't
+# set a drop chance for items in hands of a human.
 #
 
 #
@@ -30,7 +34,7 @@ handlers:
   - fat-rabbit
   - rapid-creeper
   - iron-creep
-    
+
 #
 # ==== Handler ====
 #
@@ -265,6 +269,8 @@ iron-creep:
     types:
       - ZOMBIE
       - SKELETON
+      - PLAYER
+      - CREEPER
     probability: 100
   equipment:
     helmet:
@@ -294,10 +300,10 @@ iron-creep:
     main-hand:
       drop-chance: 100
       material: IRON_SWORD
-      amount: 2
+      amount: 1
     off-hand:
       drop-chance: 100
-      material: GOLD_ORE
+      material: GOLD_SWORD
       amount: 20
     saddle:
     armor:

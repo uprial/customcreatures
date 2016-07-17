@@ -11,16 +11,16 @@ import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.CO
 public final class CustomCreatures extends JavaPlugin {
     private CustomLogger customLogger;
     private CreaturesConfig creaturesConfig;
-    private CreatureSpawnListener creatureSpawnListener;
+    private CustomCreaturesEventListener customCreaturesEventListener;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         customLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), customLogger);
-        creatureSpawnListener = new CreatureSpawnListener(this, customLogger);
+        customCreaturesEventListener = new CustomCreaturesEventListener(this, customLogger);
 
-        getServer().getPluginManager().registerEvents(creatureSpawnListener, this);
+        getServer().getPluginManager().registerEvents(customCreaturesEventListener, this);
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this, customLogger));
         customLogger.info("Plugin enabled");
     }
@@ -36,7 +36,7 @@ public final class CustomCreatures extends JavaPlugin {
     
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(creatureSpawnListener);
+        HandlerList.unregisterAll(customCreaturesEventListener);
         customLogger.info("Plugin disabled");
     }
 

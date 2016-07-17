@@ -24,7 +24,7 @@ public class HItemDurability {
 
         int itemDurability = durability.getValue();
         if (customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s: set %s of %s to %d",
+            customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
                     title, material, format(entity), itemDurability));
         }
         itemStack.setDurability((short)Math.round(material.getMaxDurability() * itemDurability / 100));

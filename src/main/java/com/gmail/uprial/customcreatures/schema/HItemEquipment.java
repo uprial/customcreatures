@@ -13,12 +13,12 @@ import java.util.Map;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
-import static com.gmail.uprial.customcreatures.schema.BodyType.*;
+import static com.gmail.uprial.customcreatures.schema.ClothType.*;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
 
 public class HItemEquipment {
-    private static final Map<String, BodyType> key2bodyType = ImmutableMap.<String, BodyType>builder()
+    private static final Map<String, ClothType> key2clothType = ImmutableMap.<String, ClothType>builder()
             .put("helmet", HELMET)
             .put("boots", BOOTS)
             .put("chest", CHESTPLATE)
@@ -53,7 +53,7 @@ public class HItemEquipment {
         }
 
         Map<String,HItemEquipmentCloth> cloths = new HashMap<>();
-        for (Map.Entry<String,BodyType> entry : key2bodyType.entrySet()) {
+        for (Map.Entry<String,ClothType> entry : key2clothType.entrySet()) {
             HItemEquipmentCloth cloth = HItemEquipmentCloth.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
             if (null != cloth) {
@@ -77,7 +77,7 @@ public class HItemEquipment {
 
     public String toString() {
         List<String> items = new ArrayList<>();
-        for (String key : key2bodyType.keySet()) {
+        for (String key : key2clothType.keySet()) {
             items.add(String.format("%s: %s", key, cloths.get(key)));
         }
         for (String key : key2handType.keySet()) {
