@@ -121,6 +121,9 @@ handlers:
 #   main-hand: <item-in-hand>   ### Description of entity's main hand equipment
 #                               ### (* see description of <item-in-hand> below)
 #   off-hand: <item-in-hand>    ### Description of entity's off hand equipment
+#                               ###
+#                               ### Warning: off hand configuration works only with
+#                               ### Minecraft version greater or equal 1.9.0
 #
 # #### Equipment cloth ####
 #
