@@ -47,7 +47,7 @@ public class HItemEquipment {
     }
 
     public static HItemEquipment getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
@@ -56,7 +56,7 @@ public class HItemEquipment {
         for (Map.Entry<String,ClothType> entry : key2clothType.entrySet()) {
             HItemEquipmentCloth cloth = HItemEquipmentCloth.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
-            if (null != cloth) {
+            if (cloth != null) {
                 cloths.put(entry.getKey(), cloth);
             }
         }
@@ -64,7 +64,7 @@ public class HItemEquipment {
         for (Map.Entry<String,HandType> entry : key2handType.entrySet()) {
             HItemInHand tool = HItemInHand.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
-            if (null != tool) {
+            if (tool != null) {
                 tools.put(entry.getKey(), tool);
             }
         }

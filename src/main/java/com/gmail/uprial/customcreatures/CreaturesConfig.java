@@ -33,7 +33,7 @@ public class CreaturesConfig {
         customLogger.setDebugMode(debug);
 
         List<?> handlersConfig = config.getList("handlers");
-        if((null == handlersConfig) || (handlersConfig.size() <= 0)) {
+        if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
             throw new InvalidConfigException("Empty 'handlers' list");
         }
 
@@ -45,7 +45,7 @@ public class CreaturesConfig {
             if (keys.containsKey(key.toLowerCase())) {
                 throw new InvalidConfigException(String.format("Key '%s' in 'handlers' is not unique", key));
             }
-            if (null == config.get(key)) {
+            if (config.get(key) == null) {
                 throw new InvalidConfigException(String.format("Null definition of handler '%s' at pos %d", key, i));
             }
             keys.put(key.toLowerCase(), 1);

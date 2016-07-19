@@ -9,7 +9,7 @@ public class Formatter {
         Location location = entity.getLocation();
         return String.format("%s[world: %s, x: %.0f, y: %.0f, z: %.0f]",
                 entity.getType().toString(),
-                null != location.getWorld() ? location.getWorld().getName() : "empty",
+                location.getWorld() != null ? location.getWorld().getName() : "empty",
                 location.getX(), location.getY(), location.getZ());
     }
 

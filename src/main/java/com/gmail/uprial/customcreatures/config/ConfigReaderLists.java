@@ -13,7 +13,7 @@ import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
 
 public class ConfigReaderLists {
     public static String getKey(Object item, String title, int i) throws InvalidConfigException {
-        if (null == item) {
+        if (item == null) {
             throw new InvalidConfigException(String.format("Null key in %s at pos %d", title, i));
         }
         if (!(item instanceof String)) {
@@ -28,7 +28,7 @@ public class ConfigReaderLists {
 
     public static Set<String> getItemsList(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         List<?> itemsConfig = config.getList(key);
-        if((null == itemsConfig) || (itemsConfig.size() <= 0)) {
+        if((itemsConfig == null) || (itemsConfig.size() <= 0)) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
@@ -38,12 +38,12 @@ public class ConfigReaderLists {
         for(int i = 0; i < itemsConfig.size(); i++) {
             String subKey = getKey(itemsConfig.get(i), title, i);
             String subKeyFull;
-            if (null != config.get(subKey)) {
+            if (config.get(subKey) != null) {
                 subKeyFull = subKey;
             } else {
                 String relativeKeyFull = joinPaths(getParentPath(key), subKey);
                 if (!relativeKeyFull.equals(subKey)) {
-                    if (null != config.get(relativeKeyFull)) {
+                    if (config.get(relativeKeyFull) != null) {
                         subKeyFull = relativeKeyFull;
                     } else {
                         throw new InvalidConfigException(String.format("Null definition of keys '%s' and '%s' in %s at pos %d",

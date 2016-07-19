@@ -23,15 +23,15 @@ public class HItemFilter {
     }
 
     public boolean pass(EntityType entityType, CreatureSpawnEvent.SpawnReason spawnReason) {
-        if (null != entityTypes) {
+        if (entityTypes != null) {
             if (! entityTypes.contains(entityType))
                 return false;
         }
-        if (null != spawnReasons) {
+        if (spawnReasons != null) {
             if (! spawnReasons.contains(spawnReason))
                 return false;
         }
-        if (null != probability) {
+        if (probability != null) {
             if (! probability.pass())
                 return false;
         }
@@ -40,7 +40,7 @@ public class HItemFilter {
     }
 
     public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
@@ -49,7 +49,7 @@ public class HItemFilter {
         Set<CreatureSpawnEvent.SpawnReason> spawnReasons = getSet(CreatureSpawnEvent.SpawnReason.class, config, customLogger,
                 joinPaths(key, "reasons"), String.format("reasons of %s", title));
         Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title));
-        if ((null == entityTypes) && (null == spawnReasons) && (null == probability)) {
+        if ((entityTypes == null) && (spawnReasons == null) && (probability == null)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }
 

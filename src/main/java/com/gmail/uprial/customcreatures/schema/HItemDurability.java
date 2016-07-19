@@ -33,7 +33,7 @@ public class HItemDurability {
 
     public static HItemDurability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         IValue<Integer> durability = HValue.getIntFromConfig(config, customLogger, key, title, 0, MAX_PERCENT);
-        if (null == durability) {
+        if (durability == null) {
             return null;
         }
 

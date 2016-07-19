@@ -54,14 +54,14 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
     }
 
     public static HItemEnchantment getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
         Enum enchantment = getEnum(EnchantmentLoader.get(), config, joinPaths(key, "type"), String.format("enchantment type of %s", title));
         IValue<Integer> level = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "level"),
                 String.format("level of %s", title), 1, 5);
-        if (null == level) {
+        if (level == null) {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }
 

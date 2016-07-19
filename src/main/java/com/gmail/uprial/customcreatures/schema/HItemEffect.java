@@ -37,21 +37,21 @@ public class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     }
 
     public static HItemEffect getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
         Set<? extends Enum> effectTypes;
         IValue<Integer> strength;
         IValue<Integer> duration;
-        if (null == (effectTypes = getSet(PotionEffectTypesLoader.get(),
-                config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title)))) {
+        if ((effectTypes = getSet(PotionEffectTypesLoader.get(),
+                config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title))) == null) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
-        } else if (null == (strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"),
-                String.format("strength of %s", title), 1, Integer.MAX_VALUE))) {
+        } else if ((strength = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "strength"),
+                String.format("strength of %s", title), 1, Integer.MAX_VALUE)) == null) {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));
-        } else if (null == (duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"),
-                String.format("duration of %s", title), 1, Integer.MAX_VALUE))) {
+        } else if ((duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"),
+                String.format("duration of %s", title), 1, Integer.MAX_VALUE)) == null) {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 

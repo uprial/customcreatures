@@ -47,7 +47,7 @@ public class ProbabilityTest extends TestConfigBase {
 
     @Test
     public void testPassNormalProbability() throws Exception {
-        assertTrue(20 < getPasses(100, new Probability(50)));
+        assertTrue(getPasses(100, new Probability(50)) > 20);
     }
 
     @Test

@@ -7,7 +7,7 @@ public class ConfigUtils {
         }
         int index = path.lastIndexOf(".");
         String parentPath;
-        if (-1 == index) {
+        if (index == -1) {
             parentPath = "";
         } else {
             parentPath = path.substring(0, index);

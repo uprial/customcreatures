@@ -12,7 +12,7 @@ public class HValue {
 
     public static IValue<Double> getDoubleFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                      double hardMin, double hardMax) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
@@ -27,7 +27,7 @@ public class HValue {
 
     public static IValue<Integer> getIntFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                    int hardMin, int hardMax) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }

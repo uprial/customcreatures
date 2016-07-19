@@ -10,7 +10,7 @@ public class ConfigReaderSimple {
     public static boolean getBoolean(FileConfiguration config, CustomLogger customLogger, String key, String title, boolean defaultValue) throws InvalidConfigException {
         boolean value = defaultValue;
 
-        if(null == config.getString(key)) {
+        if(config.getString(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value %b", title, defaultValue));
         } else {
             String strValue = config.getString(key);
@@ -43,8 +43,8 @@ public class ConfigReaderSimple {
 
         Integer value = defaultValue;
 
-        if(null == config.getString(key)) {
-            if (null == defaultValue || null == customLogger) {
+        if(config.getString(key) == null) {
+            if (defaultValue == null || customLogger == null) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %d", title, defaultValue));
@@ -81,7 +81,7 @@ public class ConfigReaderSimple {
             throw new InternalConfigurationError(String.format("Min value of %s has too many digits", title));
         } else if (!isLengthOfDoubleGood(max)) {
             throw new InternalConfigurationError(String.format("Max value of %s has too many digits", title));
-        } else if ((null != defaultValue) && (!isLengthOfDoubleGood(defaultValue))) {
+        } else if ((defaultValue != null) && (!isLengthOfDoubleGood(defaultValue))) {
             throw new InternalConfigurationError(String.format("Default value of %s has too many digits", title));
         } else if (min > max) {
             throw new InternalConfigurationError(String.format("Max value of %s is greater than max value", title));
@@ -89,8 +89,8 @@ public class ConfigReaderSimple {
 
         Double value = defaultValue;
 
-        if(null == config.getString(key)) {
-            if (null == defaultValue || null == customLogger) {
+        if(config.getString(key) == null) {
+            if (defaultValue == null || customLogger == null) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %s", title, formatDoubleValue(defaultValue)));

@@ -36,7 +36,7 @@ public class HItem {
     }
 
     private void applyMaxHealth(CustomLogger customLogger, LivingEntity entity) {
-        if (null != maxHealth) {
+        if (maxHealth != null) {
             double value = entity.getMaxHealth() * maxHealth.getValue();
             entity.setMaxHealth(value);
             if(customLogger.isDebugMode()) {
@@ -47,13 +47,13 @@ public class HItem {
     }
 
     private void applyEffects(CustomLogger customLogger, LivingEntity entity) {
-        if (null != effects) {
+        if (effects != null) {
             effects.apply(customLogger, entity);
         }
     }
 
     private void applyEquipment(CustomLogger customLogger, LivingEntity entity) {
-        if (null != equipment) {
+        if (equipment != null) {
             equipment.apply(customLogger, entity);
         }
     }
@@ -67,7 +67,7 @@ public class HItem {
                 String.format("max. health multiplier of handler '%s'", key), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
         HItemEquipment equipment = HItemEquipment.getFromConfig(config, customLogger, joinPaths(key, "equipment"),
                 String.format("equipment of handler '%s'", key));
-        if ((null == maxHealth) && (null == effectsList) && (null == equipment)) {
+        if ((maxHealth == null) && (effectsList == null) && (equipment == null)) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }
 

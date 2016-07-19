@@ -37,7 +37,7 @@ public class HItemEquipmentCloth {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        if ((null == probability) || (probability.pass())) {
+        if ((probability == null) || (probability.pass())) {
             Material material;
             try {
                 material = getMaterial(materialType, clothType, title);
@@ -52,11 +52,11 @@ public class HItemEquipmentCloth {
             }
             ItemStack itemStack = new ItemStack(material);
 
-            if (null != enchantments) {
+            if (enchantments != null) {
                 enchantments.apply(customLogger, entity, itemStack);
             }
 
-            if (null != durability) {
+            if (durability != null) {
                 durability.apply(customLogger, entity, itemStack);
             }
 
@@ -84,7 +84,7 @@ public class HItemEquipmentCloth {
     }
 
     public static HItemEquipmentCloth getFromConfig(FileConfiguration config, CustomLogger customLogger, ClothType clothType, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }

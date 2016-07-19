@@ -19,12 +19,12 @@ public class Probability {
     }
 
     public boolean pass() {
-        return (MAX_PERCENT <= probability) || (random.nextInt(MAX_PERCENT) < probability);
+        return (probability >= MAX_PERCENT) || (random.nextInt(MAX_PERCENT) < probability);
     }
 
     public static Probability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         int probability = getInt(config, customLogger, key, title, 0, MAX_PERCENT, MAX_PERCENT);
-        if (MAX_PERCENT <= probability) {
+        if (probability >= MAX_PERCENT) {
             return null;
         }
 

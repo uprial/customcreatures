@@ -42,7 +42,7 @@ public class HItemInHand {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        if ((null == probability) || (probability.pass())) {
+        if ((probability == null) || (probability.pass())) {
             int itemAmount = amount.getValue();
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %d x %s to %s",
@@ -50,11 +50,11 @@ public class HItemInHand {
             }
             ItemStack itemStack = new ItemStack(material, itemAmount);
 
-            if (null != enchantments) {
+            if (enchantments != null) {
                 enchantments.apply(customLogger, entity, itemStack);
             }
 
-            if (null != durability) {
+            if (durability != null) {
                 durability.apply(customLogger, entity, itemStack);
             }
 
@@ -82,7 +82,7 @@ public class HItemInHand {
     }
 
     public static HItemInHand getFromConfig(FileConfiguration config, CustomLogger customLogger, HandType handType, String key, String title) throws InvalidConfigException {
-        if (null == config.get(key)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
@@ -94,7 +94,7 @@ public class HItemInHand {
                 joinPaths(key, "material"), String.format("material of %s", title));
         IValue<Integer> amount = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount"),
                 String.format("amount of %s", title), 1, 64);
-        if (null == amount) {
+        if (amount == null) {
             amount = new ValueConst<>(1);
         }
 

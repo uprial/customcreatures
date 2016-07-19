@@ -29,7 +29,7 @@ public class HItemEnchantmentsList {
 
     public static HItemEnchantmentsList getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         Set<String> subKeys = getItemsList(config, customLogger, key, title);
-        if (null == subKeys) {
+        if (subKeys == null) {
             return null;
         }
 
