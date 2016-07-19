@@ -93,7 +93,7 @@ public class HItemInHand {
         Material material = getEnum(Material.class, config,
                 joinPaths(key, "material"), String.format("material of %s", title));
         IValue<Integer> amount = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount"),
-                String.format("amount of %s", title));
+                String.format("amount of %s", title), 1, 64);
         if (null == amount) {
             amount = new ValueConst<>(1);
         }

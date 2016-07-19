@@ -24,10 +24,11 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
             return random.nextDouble() * (max - min) + min;
     }
 
-    public static DoubleValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+    public static DoubleValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
+                                                  double hardMin, double hardMax) throws InvalidConfigException {
         RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title);
-        Double min = getDouble(config, joinPaths(key, "min"), String.format("minimum of %s", title));
-        Double max = getDouble(config, joinPaths(key, "max"), String.format("maximum of %s", title));
+        Double min = getDouble(config, joinPaths(key, "min"), String.format("minimum of %s", title), hardMin, hardMax);
+        Double max = getDouble(config, joinPaths(key, "max"), String.format("maximum of %s", title), hardMin, hardMax);
 
         return new DoubleValueRandom(distributionType, min, max);
     }

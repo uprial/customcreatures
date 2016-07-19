@@ -59,7 +59,8 @@ public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
         }
 
         Enum enchantment = getEnum(EnchantmentLoader.get(), config, joinPaths(key, "type"), String.format("enchantment type of %s", title));
-        IValue<Integer> level = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "level"), String.format("level of %s", title));
+        IValue<Integer> level = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "level"),
+                String.format("level of %s", title), 1, 5);
         if (null == level) {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }

@@ -9,6 +9,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
+import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 
 public class HItemDurability {
     private final String title;
@@ -31,7 +32,7 @@ public class HItemDurability {
     }
 
     public static HItemDurability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        IValue<Integer> durability = HValue.getIntFromConfig(config, customLogger, key, title);
+        IValue<Integer> durability = HValue.getIntFromConfig(config, customLogger, key, title, 0, MAX_PERCENT);
         if (null == durability) {
             return null;
         }

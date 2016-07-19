@@ -19,7 +19,7 @@ public class HValueTest extends TestConfigBase {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Wrong type of i");
 
-        getDoubleFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i");
+        getDoubleFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i", 0, 100);
     }
 
     @Test
@@ -27,21 +27,21 @@ public class HValueTest extends TestConfigBase {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Wrong type of i");
 
-        getIntFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i");
+        getIntFromConfig(getPreparedConfig("i: 1z.0"), getParanoiacCustomLogger(), "i", "i", 0, 100);
     }
 
     @Test
     public void testSimpleDoubleValue() throws Exception {
         //noinspection ConstantConditions
         assertEquals(42, Math.round(getDoubleFromConfig(getPreparedConfig("i: 42"),
-                         getParanoiacCustomLogger(), "i", "i").getValue()));
+                         getParanoiacCustomLogger(), "i", "i", 0, 100).getValue()));
     }
 
     @Test
     public void testSimpleIntValue() throws Exception {
         //noinspection ConstantConditions
         assertEquals(42, getIntFromConfig(getPreparedConfig("i: 42"),
-                getParanoiacCustomLogger(), "i", "i").getValue().intValue());
+                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue().intValue());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class HValueTest extends TestConfigBase {
                 " min: 2.0",
                 " max: 2.0",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i").getValue()));
+                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue()));
     }
 
     @Test
@@ -65,19 +65,19 @@ public class HValueTest extends TestConfigBase {
                 " min: 2",
                 " max: 2",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i").getValue().intValue());
+                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue().intValue());
     }
 
     @Test
     public void testEmptyDoubleValue() throws Exception {
         assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
-                getCustomLogger(), "i", "i"));
+                getCustomLogger(), "i", "i", 0, 100));
     }
 
     @Test
     public void testEmptyIntValue() throws Exception {
         assertEquals(null, getIntFromConfig(getPreparedConfig(""),
-                getCustomLogger(), "i", "i"));
+                getCustomLogger(), "i", "i", 0, 100));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class HValueTest extends TestConfigBase {
         e.expectMessage("Empty i. Use default value NULL");
 
         assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
-                getDebugFearingCustomLogger(), "i", "i"));
+                getDebugFearingCustomLogger(), "i", "i", 0, 100));
     }
 
     @Test
@@ -95,6 +95,6 @@ public class HValueTest extends TestConfigBase {
         e.expectMessage("Empty i. Use default value NULL");
 
         assertEquals(null, getIntFromConfig(getPreparedConfig(""),
-                getDebugFearingCustomLogger(), "i", "i"));
+                getDebugFearingCustomLogger(), "i", "i", 0, 100));
     }
 }

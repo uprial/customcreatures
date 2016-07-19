@@ -7,6 +7,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
@@ -62,7 +64,7 @@ public class HItem {
         HItemEffectsList effectsList = HItemEffectsList.getFromConfig(config, customLogger, joinPaths(key, "effects"),
                 String.format("effects of handler '%s'", key));
         IValue<Double> maxHealth = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health"),
-                String.format("max. health multiplier of handler '%s'", key));
+                String.format("max. health multiplier of handler '%s'", key), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
         HItemEquipment equipment = HItemEquipment.getFromConfig(config, customLogger, joinPaths(key, "equipment"),
                 String.format("equipment of handler '%s'", key));
         if ((null == maxHealth) && (null == effectsList) && (null == equipment)) {

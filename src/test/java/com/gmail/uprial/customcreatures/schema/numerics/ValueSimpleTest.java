@@ -1,12 +1,9 @@
 package com.gmail.uprial.customcreatures.schema.numerics;
 
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
-import com.gmail.uprial.customcreatures.schema.numerics.ValueSimple;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ValueSimpleTest extends TestConfigBase {
     @Test
@@ -31,11 +28,11 @@ public class ValueSimpleTest extends TestConfigBase {
 
     @Test
     public void testIntValue() throws Exception {
-        assertEquals(1, ValueSimple.getIntFromConfig(getPreparedConfig("v: 1.6"), "v").getValue().intValue());
+        assertEquals(1, ValueSimple.getIntFromConfig(getPreparedConfig("v: 1"), "v", "v", 0, 100).getValue().intValue());
     }
 
     @Test
     public void testDoubleValue() throws Exception {
-        assertEquals(1, Math.round(ValueSimple.getDoubleFromConfig(getPreparedConfig("v: 1.0"), "v").getValue()));
+        assertEquals(1, Math.round(ValueSimple.getDoubleFromConfig(getPreparedConfig("v: 1.0"), "v", "v", 0, 100).getValue()));
     }
 }

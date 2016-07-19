@@ -26,7 +26,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty minimum of i");
 
-        getFromConfig(getPreparedConfig("i: "), getCustomLogger(), "i", "i");
+        getFromConfig(getPreparedConfig("i: "), getCustomLogger(), "i", "i", 0, 100);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
         getFromConfig(getPreparedConfig(
                 "i: ",
-                " min: 0"), getCustomLogger(), "i", "i");
+                " min: 0"), getCustomLogger(), "i", "i", 0, 100);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
         DoubleValueRandom valueRandom = getFromConfig(getPreparedConfig(
                 "i: ",
                 " min: 0",
-                " max: 1"), getCustomLogger(), "i", "i");
+                " max: 1"), getCustomLogger(), "i", "i", 0, 100);
         assertEquals(0, valueRandom.min.intValue());
         assertEquals(1, valueRandom.max.intValue());
         assertEquals(NORMAL, valueRandom.distributionType);
