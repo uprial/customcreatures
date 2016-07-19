@@ -9,15 +9,15 @@ package com.gmail.uprial.customcreatures.common;
 
 public class DoubleHelper {
     // This value is just picked by author.
-    protected static int MAX_RIGHT_SIZE = 4;
+    protected static final int MAX_RIGHT_SIZE = 4;
 
     // This value is calculated based on MAX_RIGHT_SIZE and capacity of Java’s double type.
     // See tests to understand how it works.
-    protected static int MAX_LEFT_SIZE = 11;
+    protected static final int MAX_LEFT_SIZE = 11;
 
-    public static double MIN_DOUBLE_VALUE = Math.pow(10.0, -MAX_RIGHT_SIZE);
+    public static final double MIN_DOUBLE_VALUE = Math.pow(10.0, -MAX_RIGHT_SIZE);
 
-    public static double MAX_DOUBLE_VALUE = Math.pow(10.0, MAX_LEFT_SIZE) - MIN_DOUBLE_VALUE;
+    public static final double MAX_DOUBLE_VALUE = Math.pow(10.0, MAX_LEFT_SIZE) - MIN_DOUBLE_VALUE;
 
     // Create a visible representation without needless digits after the point.
     public static String formatDoubleValue(double value) {

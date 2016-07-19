@@ -55,7 +55,7 @@ public class IntValueRandomTest extends TestConfigBase {
     public void testNormalDistribution() throws Exception {
         IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
 
-        Map<Integer,Long> distribution = getDistribution(1000, valueRandom);
+        Map<Integer,Long> distribution = getDistribution(valueRandom);
         for (Integer i = 10; i < 20; i++) {
             assertTrue(distribution.get(i) > 50);
         }
@@ -67,7 +67,7 @@ public class IntValueRandomTest extends TestConfigBase {
     public void testExpDownDistribution() throws Exception {
         IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
 
-        Map<Integer, Long> distribution = getDistribution(1000, valueRandom);
+        Map<Integer, Long> distribution = getDistribution(valueRandom);
         assertTrue(distribution.get(10) > 400);
         assertTrue(distribution.get(10) < 1000);
         assertTrue(distribution.get(11) > 150);
@@ -84,7 +84,7 @@ public class IntValueRandomTest extends TestConfigBase {
     public void testExpUpDistribution() throws Exception {
         IntValueRandom valueRandom = new IntValueRandom(EXP_UP, 10, 13);
 
-        Map<Integer, Long> distribution = getDistribution(1000, valueRandom);
+        Map<Integer, Long> distribution = getDistribution(valueRandom);
         assertTrue(distribution.get(10) > 50);
         assertTrue(distribution.get(10) < 150);
         assertTrue(distribution.get(11) > 100);
@@ -97,9 +97,9 @@ public class IntValueRandomTest extends TestConfigBase {
         assertFalse(distribution.containsKey(14));
     }
 
-    private static Map<Integer,Long> getDistribution(int tries, IntValueRandom valueRandom) {
+    private static Map<Integer,Long> getDistribution(IntValueRandom valueRandom) {
         Map<Integer,Long> distribution = new HashMap<>();
-        for (Integer i = 0; i < tries; i++) {
+        for (Integer i = 0; i < 1000; i++) {
             Integer value = valueRandom.getValue();
             Long prev = distribution.containsKey(value) ? distribution.get(value) : 0;
             distribution.put(value, prev + 1);
