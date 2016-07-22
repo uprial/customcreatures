@@ -17,7 +17,7 @@ import static com.gmail.uprial.customcreatures.schema.ClothType.*;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
 
-public class HItemEquipment {
+public final class HItemEquipment {
     private static final Map<String, ClothType> key2clothType = ImmutableMap.<String, ClothType>builder()
             .put("helmet", HELMET)
             .put("boots", BOOTS)

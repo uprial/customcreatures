@@ -11,7 +11,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
-public class HItemFilter {
+public final class HItemFilter {
     private final Set<EntityType> entityTypes;
     private final Set<CreatureSpawnEvent.SpawnReason> spawnReasons;
     private final Probability probability;

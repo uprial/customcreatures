@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 
-public class HItemDurability {
+public final class HItemDurability {
     private final String title;
     private final IValue<Integer> durability;
 

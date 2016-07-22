@@ -12,7 +12,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VA
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
-public class HItem {
+public final class HItem {
     private final String name;
     private final HItemFilter filter;
     private final HItemEffectsList effects;

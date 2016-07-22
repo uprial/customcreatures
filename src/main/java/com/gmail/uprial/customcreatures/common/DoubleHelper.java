@@ -7,7 +7,7 @@ package com.gmail.uprial.customcreatures.common;
     Here we define some restrictions related to max size of left and right parts.
  */
 
-public class DoubleHelper {
+public final class DoubleHelper {
     // This value is just picked by author.
     protected static final int MAX_RIGHT_SIZE = 4;
 

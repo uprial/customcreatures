@@ -5,7 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
 
-public class ConfigReaderSimple {
+public final class ConfigReaderSimple {
 
     public static boolean getBoolean(FileConfiguration config, CustomLogger customLogger, String key, String title, boolean defaultValue) throws InvalidConfigException {
         boolean value = defaultValue;

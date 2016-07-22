@@ -4,7 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.potion.PotionEffect;
 
-public class Formatter {
+public final class Formatter {
     public static String format(Entity entity) {
         Location location = entity.getLocation();
         return String.format("%s[world: %s, x: %.0f, y: %.0f, z: %.0f]",

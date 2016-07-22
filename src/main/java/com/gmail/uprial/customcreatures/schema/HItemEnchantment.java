@@ -14,7 +14,7 @@ import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 
-public class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
+public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
     private final String title;
     private final T enchantment;
     private final IValue<Integer> level;

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ConfigReaderEnums {
+public final class ConfigReaderEnums {
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         List<String> strings = getStringList(config, customLogger, key, title);
         if (strings == null)

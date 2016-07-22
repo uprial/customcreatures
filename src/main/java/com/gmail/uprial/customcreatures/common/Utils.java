@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures.common;
 
 import java.util.List;
 
-public class Utils {
+public final class Utils {
     public static int seconds2ticks(int seconds) {
         return seconds * 20;
     }

@@ -6,7 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getInt;
 
-public class ValueSimple<T> implements IValue<T> {
+public final class ValueSimple<T> implements IValue<T> {
     private final T value;
 
     private ValueSimple(T value) {

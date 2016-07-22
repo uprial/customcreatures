@@ -17,7 +17,7 @@ import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
   - Set item and its drop chance
  */
 
-public class EntityEquipmentHelper {
+public final class EntityEquipmentHelper {
 
     public static void setItem(EntityEquipment entityEquipment, ClothType clothType, ItemStack itemStack) throws OperationIsNotSupportedException {
         try {

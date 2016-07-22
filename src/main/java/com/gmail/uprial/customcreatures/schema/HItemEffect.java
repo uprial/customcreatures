@@ -16,7 +16,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
-public class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
+public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
 
     private final String title;
     private final Set<T> effectTypes;

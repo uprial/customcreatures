@@ -16,7 +16,7 @@ import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setI
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItemDropChance;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 
-public class HItemEquipmentCloth {
+public final class HItemEquipmentCloth {
     private final String title;
     private final Probability probability;
     private final MaterialType materialType;

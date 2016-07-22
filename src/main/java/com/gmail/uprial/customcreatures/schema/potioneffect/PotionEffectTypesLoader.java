@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures.schema.potioneffect;
 
 import org.bukkit.potion.PotionEffectType;
 
-public class PotionEffectTypesLoader {
+public final class PotionEffectTypesLoader {
     public static Class<? extends Enum> get() {
         try {
             PotionEffectType.class.getField("GLOWING");

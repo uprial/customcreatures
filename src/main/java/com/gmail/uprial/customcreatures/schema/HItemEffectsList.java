@@ -12,7 +12,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
 
-public class HItemEffectsList {
+public final class HItemEffectsList {
 
     private final List<HItemEffect> itemEffects;
 

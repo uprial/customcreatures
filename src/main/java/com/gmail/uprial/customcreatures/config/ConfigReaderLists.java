@@ -11,7 +11,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
 
-public class ConfigReaderLists {
+public final class ConfigReaderLists {
     public static String getKey(Object item, String title, int i) throws InvalidConfigException {
         if (item == null) {
             throw new InvalidConfigException(String.format("Null key in %s at pos %d", title, i));
