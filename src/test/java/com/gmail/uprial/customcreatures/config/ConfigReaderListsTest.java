@@ -111,7 +111,6 @@ public class ConfigReaderListsTest extends TestConfigBase {
                 " z:",
                 "  - zz"),
                 getParanoiacCustomLogger(), "x.y", "items list");
-        //noinspection ConstantConditions
         assertEquals("[x.z]", items.toString());
     }
 
@@ -124,7 +123,6 @@ public class ConfigReaderListsTest extends TestConfigBase {
                 " z:",
                 "  - zz"),
                 getParanoiacCustomLogger(), "x.y", "effects list");
-        //noinspection ConstantConditions
         assertEquals("[x.z]", items.toString());
     }
 }

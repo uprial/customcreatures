@@ -32,7 +32,6 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
     @Test
     public void testStringList() throws Exception {
         List<String> sl = getStringList(getPreparedConfig("sl: ", " - x"), getDebugFearingCustomLogger(), "sl", "list");
-        //noinspection ConstantConditions
         assertEquals(1, sl.size());
         assertEquals("x", sl.get(0));
     }
@@ -108,7 +107,6 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
 
     @Test
     public void testNormalSet() throws Exception {
-        //noinspection ConstantConditions
         assertEquals("[A]", getSet(TestEnum.class, getPreparedConfig("entities:", " - A"),
                 getParanoiacCustomLogger(), "entities", "path").toString());
     }
@@ -117,7 +115,6 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
     public void testContentOfSet() throws Exception {
         Set<TestEnum> entities = getSet(TestEnum.class, getPreparedConfig("entities:", " - A", " - B"),
                 getParanoiacCustomLogger(), "entities", "path");
-        //noinspection ConstantConditions
         assertEquals(2, entities.size());
         assertTrue(entities.contains(TestEnum.A));
         assertTrue(entities.contains(TestEnum.B));

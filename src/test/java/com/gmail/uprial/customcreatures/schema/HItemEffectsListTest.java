@@ -23,7 +23,6 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  strength: 1",
                 "  duration: 1"),
                 getParanoiacCustomLogger(), "ee", "effects list");
-        //noinspection ConstantConditions
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 

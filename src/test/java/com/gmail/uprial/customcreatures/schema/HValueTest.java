@@ -32,21 +32,18 @@ public class HValueTest extends TestConfigBase {
 
     @Test
     public void testSimpleDoubleValue() throws Exception {
-        //noinspection ConstantConditions
         assertEquals(42, Math.round(getDoubleFromConfig(getPreparedConfig("i: 42"),
                          getParanoiacCustomLogger(), "i", "i", 0, 100).getValue()));
     }
 
     @Test
     public void testSimpleIntValue() throws Exception {
-        //noinspection ConstantConditions
         assertEquals(42, getIntFromConfig(getPreparedConfig("i: 42"),
                 getParanoiacCustomLogger(), "i", "i", 0, 100).getValue().intValue());
     }
 
     @Test
     public void testRandomDoubleValue() throws Exception {
-        //noinspection ConstantConditions
         assertEquals(2, Math.round(getDoubleFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",
@@ -58,7 +55,6 @@ public class HValueTest extends TestConfigBase {
 
     @Test
     public void testRandomIntValue() throws Exception {
-        //noinspection ConstantConditions
         assertEquals(2, getIntFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",

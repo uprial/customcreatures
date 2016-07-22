@@ -20,7 +20,6 @@ public class HItemEnchantmentTest extends TestConfigBase {
                 "  type: THORNS",
                 "  level: 1"),
                 getParanoiacCustomLogger(), "e", "enchantment");
-        //noinspection ConstantConditions
         assertEquals("[type: THORNS, level: 1]", itemEnchantment.toString());
     }
 

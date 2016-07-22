@@ -12,7 +12,6 @@ public class HItemDurabilityTest extends TestConfigBase {
         HItemDurability itemDurability = getFromConfig(getPreparedConfig(
                 "d: 1"),
                 getParanoiacCustomLogger(), "d", "durability");
-        //noinspection ConstantConditions
         assertEquals("1", itemDurability.toString());
     }
 
@@ -21,7 +20,6 @@ public class HItemDurabilityTest extends TestConfigBase {
         HItemDurability itemDurability = getFromConfig(getPreparedConfig(
                 "?: 1"),
                 getCustomLogger(), "d", "durability");
-        //noinspection ConstantConditions
         assertEquals(null, itemDurability);
     }
 }

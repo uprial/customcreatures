@@ -29,7 +29,6 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    type: THORNS",
                 "    level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
-        //noinspection ConstantConditions
         assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 50, durability: 100]",
                 itemEquipmentCloth.toString());
@@ -49,7 +48,6 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    type: THORNS",
                 "    level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
-        //noinspection ConstantConditions
         assertEquals("[probability: 77, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 50, durability: 50]",
                 itemEquipmentCloth.toString());

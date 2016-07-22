@@ -55,7 +55,6 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 
-        //noinspection unchecked
         return new HItemEffect(title, effectTypes, strength, duration);
     }
 

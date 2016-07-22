@@ -41,7 +41,6 @@ public final class EntityEquipmentHelper {
                 try {
                     entityEquipment.setItemInMainHand(itemStack);
                 } catch (NoSuchMethodError e) {
-                    //noinspection deprecation
                     entityEquipment.setItemInHand(itemStack);
                 }
             } else if (handType == OFF_HAND) {
@@ -78,7 +77,6 @@ public final class EntityEquipmentHelper {
                 try {
                     entityEquipment.setItemInMainHandDropChance(dropChance);
                 } catch (NoSuchMethodError e) {
-                    //noinspection deprecation
                     entityEquipment.setItemInHandDropChance(dropChance);
                 }
             } else if (handType == OFF_HAND) {

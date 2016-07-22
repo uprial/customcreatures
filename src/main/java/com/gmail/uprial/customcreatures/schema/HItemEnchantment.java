@@ -65,7 +65,6 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }
 
-        //noinspection unchecked
         return new HItemEnchantment(title, enchantment, level);
     }
 

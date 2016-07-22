@@ -25,7 +25,6 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
                 "  type: LUCK",
                 "  level: 1"),
                 getParanoiacCustomLogger(), "ee", "enchantments list");
-        //noinspection ConstantConditions
         assertEquals("{[type: THORNS, level: 1], [type: LUCK, level: 1]}", itemEnchantmentsList.toString());
     }
 

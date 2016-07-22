@@ -65,7 +65,6 @@ public class HItemEquipmentTest extends TestConfigBase {
                 " type: PROTECTION_ENVIRONMENTAL",
                 " level: 1"),
                 getParanoiacCustomLogger(), "e", "equipment");
-        //noinspection ConstantConditions
         assertEquals("[helmet: [probability: null, material-type: IRON," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 100, durability: 100]," +
