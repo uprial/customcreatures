@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ConfigReaderEnumsTest extends TestConfigBase {
     @Rule
@@ -26,7 +25,7 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
 
     @Test
     public void testEmptyStringListValue() throws Exception {
-        assertEquals(null, getStringList(getPreparedConfig("sl: "), getCustomLogger(), "sl", "list"));
+        assertNull(getStringList(getPreparedConfig("sl: "), getCustomLogger(), "sl", "list"));
     }
 
     @Test
@@ -86,7 +85,7 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
 
     @Test
     public void testEmptySetValue() throws Exception {
-        assertEquals(null, getSet(TestEnum.class, getPreparedConfig(""), getCustomLogger(), "s", "set"));
+        assertNull(getSet(TestEnum.class, getPreparedConfig(""), getCustomLogger(), "s", "set"));
     }
 
     @Test

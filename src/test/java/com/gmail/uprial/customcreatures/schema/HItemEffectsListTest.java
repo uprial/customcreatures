@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEffectsList.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HItemEffectsListTest extends TestConfigBase {
     @Rule
@@ -31,6 +32,6 @@ public class HItemEffectsListTest extends TestConfigBase {
         HItemEffectsList itemEffectsList = getFromConfig(getPreparedConfig(
                 "ee:"),
                 getCustomLogger(), "ee", "effects list");
-        assertEquals(null, itemEffectsList);
+        assertNull(itemEffectsList);
     }
 }

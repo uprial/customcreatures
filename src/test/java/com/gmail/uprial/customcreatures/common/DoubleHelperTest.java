@@ -3,7 +3,7 @@ package com.gmail.uprial.customcreatures.common;
 import org.junit.Test;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class DoubleHelperTest {
     private static final double INFINITE_DECIMAL = 10000000000000000000000000000000000.200000000000000000000000002;
@@ -96,38 +96,38 @@ public class DoubleHelperTest {
 
     @Test
     public void testLeftPartChecker() throws Exception {
-        assertEquals(true, isLengthOfLeftPartOfDoubleGood(1.0));
-        assertEquals(true, isLengthOfLeftPartOfDoubleGood(12345678901.0));
-        assertEquals(false, isLengthOfLeftPartOfDoubleGood(123456789012.0));
+        assertTrue(isLengthOfLeftPartOfDoubleGood(1.0));
+        assertTrue(isLengthOfLeftPartOfDoubleGood(12345678901.0));
+        assertFalse(isLengthOfLeftPartOfDoubleGood(123456789012.0));
     }
 
     @Test
     public void testRightPartChecker() throws Exception {
-        assertEquals(true, isLengthOfRightPartOfDoubleGood(1.0));
-        assertEquals(true, isLengthOfRightPartOfDoubleGood(1.0001));
-        assertEquals(false, isLengthOfRightPartOfDoubleGood(1.00001));
+        assertTrue(isLengthOfRightPartOfDoubleGood(1.0));
+        assertTrue(isLengthOfRightPartOfDoubleGood(1.0001));
+        assertFalse(isLengthOfRightPartOfDoubleGood(1.00001));
     }
 
     @Test
     public void testChecker() throws Exception {
-        assertEquals(true, isLengthOfDoubleGood(12345678901.0001));
-        assertEquals(false, isLengthOfDoubleGood(12345678901.00001));
-        assertEquals(false, isLengthOfDoubleGood(123456789012.0001));
-        assertEquals(false, isLengthOfDoubleGood(123456789012.00001));
+        assertTrue(isLengthOfDoubleGood(12345678901.0001));
+        assertFalse(isLengthOfDoubleGood(12345678901.00001));
+        assertFalse(isLengthOfDoubleGood(123456789012.0001));
+        assertFalse(isLengthOfDoubleGood(123456789012.00001));
     }
 
     @Test
     public void testMaxValue() throws Exception {
         assertEquals(99999999999.9999, MAX_DOUBLE_VALUE, Double.MIN_VALUE);
-        assertEquals(true, isLengthOfDoubleGood(MAX_DOUBLE_VALUE));
-        assertEquals(false, isLengthOfDoubleGood(MAX_DOUBLE_VALUE + 1));
+        assertTrue(isLengthOfDoubleGood(MAX_DOUBLE_VALUE));
+        assertFalse(isLengthOfDoubleGood(MAX_DOUBLE_VALUE + 1));
     }
 
     @Test
     public void testMinValue() throws Exception {
         assertEquals(0.0001, MIN_DOUBLE_VALUE, Double.MIN_VALUE);
-        assertEquals(true, isLengthOfDoubleGood(MIN_DOUBLE_VALUE));
-        assertEquals(false, isLengthOfDoubleGood(MIN_DOUBLE_VALUE * 0.9));
+        assertTrue(isLengthOfDoubleGood(MIN_DOUBLE_VALUE));
+        assertFalse(isLengthOfDoubleGood(MIN_DOUBLE_VALUE * 0.9));
     }
 
     // This version is slow because of potential loop with 1k iterations.

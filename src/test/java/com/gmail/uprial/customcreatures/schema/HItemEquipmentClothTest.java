@@ -10,6 +10,7 @@ import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
 import static com.gmail.uprial.customcreatures.schema.ClothType.HELMET;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipmentCloth.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HItemEquipmentClothTest extends TestConfigBase {
     @Rule
@@ -64,7 +65,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
 
     @Test
     public void testEmptyEquipmentClothValue() throws Exception {
-        assertEquals(null, getFromConfig(getPreparedConfig(
+        assertNull(getFromConfig(getPreparedConfig(
                 "?:"),
                 getCustomLogger(), HELMET, "eq", "equipment cloth"));
     }

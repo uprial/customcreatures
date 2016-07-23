@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.schema.HItemInHand.getFromConfig;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HItemInHandTest extends TestConfigBase {
     @Rule
@@ -66,7 +67,7 @@ public class HItemInHandTest extends TestConfigBase {
 
     @Test
     public void testEmptyItemInHandValue() throws Exception {
-        assertEquals(null, getFromConfig(getPreparedConfig(
+        assertNull(getFromConfig(getPreparedConfig(
                 "?:"),
                 getCustomLogger(), MAIN_HAND, "i", "item in hand"));
     }

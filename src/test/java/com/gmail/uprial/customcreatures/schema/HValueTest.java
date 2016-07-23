@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.schema.HValue.getDoubleFromConfig;
 import static com.gmail.uprial.customcreatures.schema.HValue.getIntFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HValueTest extends TestConfigBase {
     @Rule
@@ -66,13 +67,13 @@ public class HValueTest extends TestConfigBase {
 
     @Test
     public void testEmptyDoubleValue() throws Exception {
-        assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
+        assertNull(getDoubleFromConfig(getPreparedConfig(""),
                 getCustomLogger(), "i", "i", 0, 100));
     }
 
     @Test
     public void testEmptyIntValue() throws Exception {
-        assertEquals(null, getIntFromConfig(getPreparedConfig(""),
+        assertNull(getIntFromConfig(getPreparedConfig(""),
                 getCustomLogger(), "i", "i", 0, 100));
     }
 
@@ -81,7 +82,7 @@ public class HValueTest extends TestConfigBase {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty i. Use default value NULL");
 
-        assertEquals(null, getDoubleFromConfig(getPreparedConfig(""),
+        assertNull(getDoubleFromConfig(getPreparedConfig(""),
                 getDebugFearingCustomLogger(), "i", "i", 0, 100));
     }
 
@@ -90,7 +91,7 @@ public class HValueTest extends TestConfigBase {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty i. Use default value NULL");
 
-        assertEquals(null, getIntFromConfig(getPreparedConfig(""),
+        assertNull(getIntFromConfig(getPreparedConfig(""),
                 getDebugFearingCustomLogger(), "i", "i", 0, 100));
     }
 }

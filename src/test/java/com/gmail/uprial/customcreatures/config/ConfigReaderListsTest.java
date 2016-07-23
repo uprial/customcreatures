@@ -10,6 +10,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ConfigReaderListsTest extends TestConfigBase {
     @Rule
@@ -65,7 +66,7 @@ public class ConfigReaderListsTest extends TestConfigBase {
         Set<String> items = getItemsList(getPreparedConfig(
                 "x:"),
                 getCustomLogger(), "x", "items list");
-        assertEquals(null, items);
+        assertNull(items);
     }
 
     @Test

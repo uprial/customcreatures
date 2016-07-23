@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEquipment.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HItemEquipmentTest extends TestConfigBase {
     @Rule
@@ -97,7 +98,7 @@ public class HItemEquipmentTest extends TestConfigBase {
 
     @Test
     public void testEmptyEquipmentValue() throws Exception {
-        assertEquals(null, getFromConfig(getPreparedConfig(
+        assertNull(getFromConfig(getPreparedConfig(
                 "?:"),
                 getCustomLogger(), "e", "equipment"));
     }

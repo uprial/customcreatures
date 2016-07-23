@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEnchantmentsList.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class HItemEnchantmentsListTest extends TestConfigBase {
     @Rule
@@ -33,6 +34,6 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
         HItemEnchantmentsList itemEnchantmentsList = getFromConfig(getPreparedConfig(
                 "ee:"),
                 getCustomLogger(), "ee", "enchantments list");
-        assertEquals(null, itemEnchantmentsList);
+        assertNull(itemEnchantmentsList);
     }
 }

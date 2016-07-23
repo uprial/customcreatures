@@ -6,8 +6,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.Probability.getFromConfig;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ProbabilityTest extends TestConfigBase {
     @Rule
@@ -32,14 +31,14 @@ public class ProbabilityTest extends TestConfigBase {
 
     @Test
     public void testEmptyProbabilityValue() throws Exception {
-        assertEquals(null, getFromConfig(getPreparedConfig(
+        assertNull(getFromConfig(getPreparedConfig(
                 "?: 100"),
                 getCustomLogger(), "p", "probability"));
     }
 
     @Test
     public void testNullProbability() throws Exception {
-        assertEquals(null, getFromConfig(getPreparedConfig(
+        assertNull(getFromConfig(getPreparedConfig(
                 "p: 100"),
                 getParanoiacCustomLogger(), "p", "probability"));
     }
