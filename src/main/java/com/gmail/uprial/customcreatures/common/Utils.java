@@ -16,13 +16,14 @@ public final class Utils {
         stringBuilder.append(contents.get(0));
         int contentsSize = contents.size();
         for (int i = 1; i < contentsSize; i++) {
-            stringBuilder.append(delimiter + contents.get(i));
+            stringBuilder.append(delimiter);
+            stringBuilder.append(contents.get(i));
         }
 
         return stringBuilder.toString();
     }
 
     public static String joinPaths(String rootPath, String childPath) {
-        return !rootPath.isEmpty() ? rootPath + '.' + childPath : childPath;
+        return !rootPath.isEmpty() ? (rootPath + '.' + childPath) : childPath;
     }
 }
