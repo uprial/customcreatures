@@ -41,11 +41,6 @@ public final class DoubleHelper {
 
     // #### protected functions ####
 
-    // This version is slow because of potential loop with 1k iterations.
-    protected static int getRightDigits(double value) {
-        return getRightDigits(value, -Double.MIN_EXPONENT);
-    }
-
     protected static int getRightDigits(double value, int max_exponent) {
         int digits = 0;
         while((Math.abs(round(value, digits) - value) > Double.MIN_VALUE) && (digits < max_exponent)) {

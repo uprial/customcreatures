@@ -66,17 +66,17 @@ public class DoubleHelperTest {
 
     @Test
     public void testRightDigits() throws Exception {
-        assertEquals(0,  getRightDigits(1.0));
-        assertEquals(1,  getRightDigits(1.1));
-        assertEquals(2,  getRightDigits(1.12));
-        assertEquals(0,  getRightDigits(1.00000000000000003));
-        assertEquals(16, getRightDigits(1.0000000000000003));
-        assertEquals(17, getRightDigits(0.00000000000000003));
-        assertEquals(16, getRightDigits(0.0000000000000003));
-        assertEquals(16, getRightDigits(1.1000000000000003));
-        assertEquals(1,  getRightDigits(1.10000000000000003));
+        assertEquals(0,  getRightDigitsSlowly(1.0));
+        assertEquals(1,  getRightDigitsSlowly(1.1));
+        assertEquals(2,  getRightDigitsSlowly(1.12));
+        assertEquals(0,  getRightDigitsSlowly(1.00000000000000003));
+        assertEquals(16, getRightDigitsSlowly(1.0000000000000003));
+        assertEquals(17, getRightDigitsSlowly(0.00000000000000003));
+        assertEquals(16, getRightDigitsSlowly(0.0000000000000003));
+        assertEquals(16, getRightDigitsSlowly(1.1000000000000003));
+        assertEquals(1,  getRightDigitsSlowly(1.10000000000000003));
         // Found accidentally, I don't know how to reproduce that.
-        assertEquals(-Double.MIN_EXPONENT, getRightDigits(INFINITE_DECIMAL));
+        assertEquals(-Double.MIN_EXPONENT, getRightDigitsSlowly(INFINITE_DECIMAL));
     }
 
     @Test
@@ -128,5 +128,10 @@ public class DoubleHelperTest {
         assertEquals(0.0001, MIN_DOUBLE_VALUE, Double.MIN_VALUE);
         assertEquals(true, isLengthOfDoubleGood(MIN_DOUBLE_VALUE));
         assertEquals(false, isLengthOfDoubleGood(MIN_DOUBLE_VALUE * 0.9));
+    }
+
+    // This version is slow because of potential loop with 1k iterations.
+    private int getRightDigitsSlowly(double value) {
+        return getRightDigits(value, -Double.MIN_EXPONENT);
     }
 }
