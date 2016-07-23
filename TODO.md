@@ -3,7 +3,6 @@
 - Find way to identify a neutral entities and make some of them fat.
 - Find way to identify potentially aggressive entities
 and make some of them rapid.
-- Remove all the trailing spaces.
 - Check what's going on with an entity's effects when it unloads.
 - Create default set of handlers:
 (gold, iron, diamond) * (zombie, skeleton)
