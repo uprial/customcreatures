@@ -36,6 +36,6 @@ public enum EnchantmentEnumOld implements IEnchantmentEnum {
     }
 
     public Enchantment getType() {
-        return this.type;
+        return type;
     }
 }

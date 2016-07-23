@@ -15,15 +15,15 @@ class TestCustomLogger extends CustomLogger {
     }
 
     public void doFailOnDebug() {
-        this.failOnDebug = true;
+        failOnDebug = true;
     }
 
     public void doFailOnAny() {
-        this.failOnAny = true;
+        failOnAny = true;
     }
 
     public void doNotFailOnError() {
-        this.failOnError = false;
+        failOnError = false;
     }
 
     @Override

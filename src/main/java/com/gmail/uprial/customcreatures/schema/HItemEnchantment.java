@@ -39,7 +39,7 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
             return ;
         }
 
-        int enchantmentLevel = this.level.getValue();
+        int enchantmentLevel = level.getValue();
 
         if(customLogger.isDebugMode()) {
             customLogger.debug(String.format("Handle %s of %s: add %s with level %d",

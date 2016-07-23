@@ -38,6 +38,6 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     }
 
     public PotionEffectType getType() {
-        return this.type;
+        return type;
     }
 }

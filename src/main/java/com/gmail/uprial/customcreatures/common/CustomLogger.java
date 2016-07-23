@@ -16,11 +16,11 @@ public class CustomLogger {
     }
 
     public void setDebugMode(boolean value) {
-        this.debug = value;
+        debug = value;
     }
 
     public boolean isDebugMode() {
-        return this.debug;
+        return debug;
     }
 
     public void error(String message) {
