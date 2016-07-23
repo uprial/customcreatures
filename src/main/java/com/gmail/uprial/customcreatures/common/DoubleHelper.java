@@ -41,9 +41,9 @@ public final class DoubleHelper {
 
     // #### protected functions ####
 
-    static int getRightDigits(double value, int max_exponent) {
+    static int getRightDigits(double value, int maxExponent) {
         int digits = 0;
-        while((Math.abs(round(value, digits) - value) > Double.MIN_VALUE) && (digits < max_exponent)) {
+        while((Math.abs(round(value, digits) - value) > Double.MIN_VALUE) && (digits < maxExponent)) {
             digits += 1;
         }
         return digits;
