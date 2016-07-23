@@ -12,13 +12,14 @@ public final class Utils {
             return "";
         }
 
-        String content = contents.get(0).toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(contents.get(0));
         int contentsSize = contents.size();
         for (int i = 1; i < contentsSize; i++) {
-            content += delimiter + contents.get(i);
+            stringBuilder.append(delimiter + contents.get(i));
         }
 
-        return content;
+        return stringBuilder.toString();
     }
 
     public static String joinPaths(String rootPath, String childPath) {
