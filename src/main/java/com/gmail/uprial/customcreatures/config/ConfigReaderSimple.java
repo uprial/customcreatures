@@ -65,7 +65,7 @@ public final class ConfigReaderSimple {
             }
         }
 
-        return value.intValue();
+        return value;
     }
 
     public static double getDouble(FileConfiguration config, String key, String title,
@@ -85,7 +85,7 @@ public final class ConfigReaderSimple {
             throw new InternalConfigurationError(String.format("Min value of %s has too many digits", title));
         } else if (!isLengthOfDoubleGood(max)) {
             throw new InternalConfigurationError(String.format("Max value of %s has too many digits", title));
-        } else if ((defaultValue != null) && (!isLengthOfDoubleGood(defaultValue.doubleValue()))) {
+        } else if ((defaultValue != null) && (!isLengthOfDoubleGood(defaultValue))) {
             throw new InternalConfigurationError(String.format("Default value of %s has too many digits", title));
         } else if (min > max) {
             throw new InternalConfigurationError(String.format("Max value of %s is greater than max value", title));
@@ -97,7 +97,7 @@ public final class ConfigReaderSimple {
             if ((defaultValue == null) || (customLogger == null)) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
-                customLogger.debug(String.format("Empty %s. Use default value %s", title, formatDoubleValue(defaultValue.doubleValue())));
+                customLogger.debug(String.format("Empty %s. Use default value %s", title, formatDoubleValue(defaultValue)));
             }
         } else if ((! config.isDouble(key)) && (! config.isInt(key))) {
             throw new InvalidConfigException(String.format("A %s is not a double", title));
@@ -118,6 +118,6 @@ public final class ConfigReaderSimple {
             }
         }
 
-        return value.doubleValue();
+        return value;
     }
 }
