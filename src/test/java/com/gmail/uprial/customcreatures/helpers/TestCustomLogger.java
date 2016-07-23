@@ -28,9 +28,7 @@ class TestCustomLogger extends CustomLogger {
 
     @Override
     protected void log(Level level, String message) {
-        if (failOnAny) {
-            fail(message);
-        } else if ((failOnError) && ((level == Level.SEVERE) || (level == Level.WARNING))) {
+        if (failOnAny || (failOnError) && ((level == Level.SEVERE) || (level == Level.WARNING))) {
             fail(message);
         }
     }
