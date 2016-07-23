@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemFilter.getFromConfig;
+import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -144,6 +145,6 @@ public class HItemFilterTest extends TestConfigBase {
             }
         }
 
-        return Math.round((passes * 100) / tries);
+        return Math.round((passes * MAX_PERCENT) / tries);
     }
 }

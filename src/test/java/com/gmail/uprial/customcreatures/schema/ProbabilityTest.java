@@ -5,6 +5,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 import static com.gmail.uprial.customcreatures.schema.Probability.getFromConfig;
 import static org.junit.Assert.*;
 
@@ -66,7 +67,7 @@ public class ProbabilityTest extends TestConfigBase {
             }
         }
 
-        return Math.round((passes * 100) / tries);
+        return Math.round((passes * MAX_PERCENT) / tries);
     }
 
 }
