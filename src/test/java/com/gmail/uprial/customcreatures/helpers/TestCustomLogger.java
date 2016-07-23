@@ -10,7 +10,7 @@ class TestCustomLogger extends CustomLogger {
     private boolean failOnAny = false;
     private boolean failOnError = true;
 
-    public TestCustomLogger() {
+    TestCustomLogger() {
         super(Logger.getLogger("test"));
     }
 

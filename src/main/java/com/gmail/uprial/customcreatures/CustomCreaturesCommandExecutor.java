@@ -12,7 +12,7 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
     private final CustomCreatures plugin;
     private final CustomLogger customLogger;
 
-    public CustomCreaturesCommandExecutor(CustomCreatures plugin, CustomLogger customLogger) {
+    CustomCreaturesCommandExecutor(CustomCreatures plugin, CustomLogger customLogger) {
         this.plugin = plugin;
         this.customLogger = customLogger;
     }

@@ -11,7 +11,7 @@ class CustomCreaturesEventListener implements Listener {
     private final CustomCreatures plugin;
     private final CustomLogger customLogger;
 
-    public CustomCreaturesEventListener(CustomCreatures plugin, CustomLogger customLogger) {
+    CustomCreaturesEventListener(CustomCreatures plugin, CustomLogger customLogger) {
         this.plugin = plugin;
         this.customLogger = customLogger;
     }
