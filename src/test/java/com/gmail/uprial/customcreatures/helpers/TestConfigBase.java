@@ -24,7 +24,7 @@ public abstract class TestConfigBase {
 
     protected static YamlConfiguration getPreparedConfig(String... contents) throws InvalidConfigurationException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
-        yamlConfiguration.loadFromString(joinStrings("\n", Lists.newArrayList(contents)));
+        yamlConfiguration.loadFromString(joinStrings(System.lineSeparator(), Lists.newArrayList(contents)));
 
         return yamlConfiguration;
     }
