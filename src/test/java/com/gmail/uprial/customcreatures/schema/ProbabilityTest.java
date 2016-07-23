@@ -61,7 +61,7 @@ public class ProbabilityTest extends TestConfigBase {
     private int getPasses(int tries, Probability probability) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
-            if (probability.pass()) {
+            if (probability.isPassed()) {
                 passes += 1;
             }
         }

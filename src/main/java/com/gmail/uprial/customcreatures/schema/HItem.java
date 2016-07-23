@@ -28,7 +28,7 @@ public final class HItem {
     }
 
     public void handle(CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
-        if (filter.pass(entity.getType(), spawnReason)) {
+        if (filter.isPassed(entity.getType(), spawnReason)) {
             applyMaxHealth(customLogger, entity);
             applyEffects(customLogger, entity);
             applyEquipment(customLogger, entity);

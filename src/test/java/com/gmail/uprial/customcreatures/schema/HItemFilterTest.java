@@ -139,7 +139,7 @@ public class HItemFilterTest extends TestConfigBase {
     private int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
-            if (filter.pass(entityType, spawnReason)) {
+            if (filter.isPassed(entityType, spawnReason)) {
                 passes += 1;
             }
         }

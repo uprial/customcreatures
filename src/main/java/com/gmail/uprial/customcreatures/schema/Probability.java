@@ -18,7 +18,7 @@ public class Probability {
         this.probability = probability;
     }
 
-    public boolean pass() {
+    public boolean isPassed() {
         return (probability >= MAX_PERCENT) || (random.nextInt(MAX_PERCENT) < probability);
     }
 

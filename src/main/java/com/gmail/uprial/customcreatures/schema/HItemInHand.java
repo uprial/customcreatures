@@ -42,7 +42,7 @@ public final class HItemInHand {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        if ((probability == null) || (probability.pass())) {
+        if ((probability == null) || (probability.isPassed())) {
             int itemAmount = amount.getValue();
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %d x %s to %s",

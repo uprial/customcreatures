@@ -7,7 +7,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
 
 public final class ConfigReaderSimple {
 
-    @SuppressWarnings("BooleanParameter")
+    @SuppressWarnings({"BooleanParameter", "BooleanMethodNameMustStartWithQuestion"})
     public static boolean getBoolean(FileConfiguration config, CustomLogger customLogger, String key, String title, boolean defaultValue) throws InvalidConfigException {
         boolean value = defaultValue;
 

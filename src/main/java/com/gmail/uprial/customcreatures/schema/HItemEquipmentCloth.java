@@ -37,7 +37,7 @@ public final class HItemEquipmentCloth {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        if ((probability == null) || (probability.pass())) {
+        if ((probability == null) || (probability.isPassed())) {
             Material material;
             try {
                 material = getMaterial(materialType, clothType, title);

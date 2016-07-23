@@ -22,7 +22,7 @@ public final class HItemFilter {
         this.probability = probability;
     }
 
-    public boolean pass(EntityType entityType, SpawnReason spawnReason) {
+    public boolean isPassed(EntityType entityType, SpawnReason spawnReason) {
         if (entityTypes != null) {
             if (! entityTypes.contains(entityType)) {
                 return false;
@@ -34,7 +34,7 @@ public final class HItemFilter {
             }
         }
         if (probability != null) {
-            if (! probability.pass()) {
+            if (! probability.isPassed()) {
                 return false;
             }
         }
