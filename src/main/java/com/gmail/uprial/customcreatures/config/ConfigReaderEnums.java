@@ -3,10 +3,7 @@ package com.gmail.uprial.customcreatures.config;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public final class ConfigReaderEnums {
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
@@ -35,7 +32,7 @@ public final class ConfigReaderEnums {
     static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
         try {
             //noinspection unchecked
-            return (T)Enum.valueOf(enumType, string.toUpperCase());
+            return (T)Enum.valueOf(enumType, string.toUpperCase(Locale.getDefault()));
         } catch (IllegalArgumentException ignored) {
             throw new InvalidConfigException(String.format("Invalid %s '%s' in %s%s", enumType.getName(), string, title, desc));
         }

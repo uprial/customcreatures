@@ -3,10 +3,7 @@ package com.gmail.uprial.customcreatures.config;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
@@ -54,11 +51,12 @@ public final class ConfigReaderLists {
                     }
                 }
             }
-            if (keys.containsKey(subKeyFull.toLowerCase())) {
+            String subKeyFullLC = subKeyFull.toLowerCase(Locale.getDefault());
+            if (keys.containsKey(subKeyFullLC)) {
                 throw new InvalidConfigException(String.format("Key '%s' in %s is not unique", subKey, title));
             }
 
-            keys.put(subKeyFull.toLowerCase(), 1);
+            keys.put(subKeyFullLC, 1);
         }
 
         return keys.keySet();
