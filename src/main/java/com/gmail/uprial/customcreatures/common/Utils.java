@@ -14,7 +14,7 @@ public final class Utils {
 
         String content = contents.get(0).toString();
         for (int i = 1; i < contents.size(); i++) {
-            content += delimiter + contents.get(i).toString();
+            content += delimiter + contents.get(i);
         }
 
         return content;
