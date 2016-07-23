@@ -68,17 +68,17 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     }
 
     private void addEffect(CustomLogger customLogger, LivingEntity entity, PotionEffect effect) {
-        boolean hasPowered = false;
+        boolean notAffectedOrAffectedMoreWeakly = true;
         for (PotionEffect currentEffect : entity.getActivePotionEffects()) {
             if(currentEffect.getType() == effect.getType()) {
                 if(currentEffect.getAmplifier() > effect.getAmplifier()) {
-                    hasPowered = true;
+                    notAffectedOrAffectedMoreWeakly = false;
                 } else {
                     entity.removePotionEffect(currentEffect.getType());
                 }
             }
         }
-        if(!hasPowered) {
+        if(notAffectedOrAffectedMoreWeakly) {
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %s to %s",
                         title, format(effect), format(entity)));
