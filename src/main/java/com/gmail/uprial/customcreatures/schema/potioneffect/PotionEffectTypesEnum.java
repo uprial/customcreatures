@@ -37,6 +37,7 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
         this.type = type;
     }
 
+    @Override
     public PotionEffectType getType() {
         return type;
     }

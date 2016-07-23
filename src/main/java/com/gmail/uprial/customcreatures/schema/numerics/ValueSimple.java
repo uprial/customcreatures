@@ -13,6 +13,7 @@ public final class ValueSimple<T> implements IValue<T> {
         this.value = value;
     }
 
+    @Override
     public T getValue() {
         return value;
     }

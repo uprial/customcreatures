@@ -37,6 +37,7 @@ public enum EnchantmentEnum implements IEnchantmentEnum {
         this.type = type;
     }
 
+    @Override
     public Enchantment getType() {
         return type;
     }

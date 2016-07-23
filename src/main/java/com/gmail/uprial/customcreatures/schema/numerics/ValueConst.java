@@ -7,6 +7,7 @@ public class ValueConst<T> implements IValue<T> {
         this.value = value;
     }
 
+    @Override
     public T getValue() {
         return value;
     }
