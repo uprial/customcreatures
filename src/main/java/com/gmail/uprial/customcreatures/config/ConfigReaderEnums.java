@@ -52,8 +52,8 @@ public final class ConfigReaderEnums {
         List<?> lines = config.getList(key);
         if(lines != null) {
             List<String> strings = new ArrayList<>();
-            for(int i = 0; i < lines.size(); i++) {
-                strings.add(lines.get(i).toString());
+            for (Object line : lines) {
+                strings.add(line.toString());
             }
 
             return strings;
