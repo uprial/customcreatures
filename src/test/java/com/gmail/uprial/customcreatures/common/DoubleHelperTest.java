@@ -6,7 +6,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
 import static org.junit.Assert.assertEquals;
 
 public class DoubleHelperTest {
-    private static final Double INFINITE_DECIMAL = 10000000000000000000000000000000000.200000000000000000000000002;
+    private static final double INFINITE_DECIMAL = 10000000000000000000000000000000000.200000000000000000000000002;
 
 
     @Test
