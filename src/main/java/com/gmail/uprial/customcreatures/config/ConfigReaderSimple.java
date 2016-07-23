@@ -80,6 +80,7 @@ public final class ConfigReaderSimple {
 
     private static double getDoubleInternal(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                    double min, double max, Double defaultValue) throws InvalidConfigException {
+        //noinspection IfStatementWithTooManyBranches
         if (!isLengthOfDoubleGood(min)) {
             throw new InternalConfigurationError(String.format("Min value of %s has too many digits", title));
         } else if (!isLengthOfDoubleGood(max)) {
@@ -103,6 +104,7 @@ public final class ConfigReaderSimple {
         } else {
             double doubleValue = config.getDouble(key);
 
+            //noinspection IfStatementWithTooManyBranches
             if(!isLengthOfLeftPartOfDoubleGood(doubleValue)) {
                 throw new InvalidConfigException(String.format("A left part of %s has too many digits", title));
             } else if(!isLengthOfRightPartOfDoubleGood(doubleValue)) {

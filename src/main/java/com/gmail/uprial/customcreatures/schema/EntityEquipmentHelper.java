@@ -22,6 +22,7 @@ public final class EntityEquipmentHelper {
 
     public static void setItem(EntityEquipment entityEquipment, ClothType clothType, ItemStack itemStack) throws OperationIsNotSupportedException {
         try {
+            //noinspection IfStatementWithTooManyBranches
             if (clothType == HELMET) {
                 entityEquipment.setHelmet(itemStack);
             } else if (clothType == BOOTS) {
@@ -59,6 +60,7 @@ public final class EntityEquipmentHelper {
 
     public static void setItemDropChance(EntityEquipment entityEquipment, ClothType clothType, int dropChance) throws OperationIsNotSupportedException {
         try {
+            //noinspection IfStatementWithTooManyBranches
             if (clothType == HELMET) {
                 entityEquipment.setHelmetDropChance(dropChance);
             } else if (clothType == BOOTS) {
