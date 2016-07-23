@@ -10,7 +10,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
-abstract public class AbstractValueRandom<T> implements IValue<T> {
+public abstract class AbstractValueRandom<T> implements IValue<T> {
     private static final RandomDistributionType defaultDistributionType = NORMAL;
 
     protected final RandomDistributionType distributionType;
