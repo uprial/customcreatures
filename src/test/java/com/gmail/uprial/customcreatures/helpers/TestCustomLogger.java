@@ -40,7 +40,7 @@ class TestCustomLogger extends CustomLogger {
         }
     }
 
-    private void fail(String message) {
+    private static void fail(String message) {
         throw new RuntimeException(message);
     }
 }

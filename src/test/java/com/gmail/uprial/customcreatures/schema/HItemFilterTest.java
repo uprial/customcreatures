@@ -137,7 +137,7 @@ public class HItemFilterTest extends TestConfigBase {
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL));
     }
 
-    private int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
+    private static int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
             if (filter.isPassed(entityType, spawnReason)) {

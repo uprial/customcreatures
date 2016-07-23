@@ -14,40 +14,40 @@ public abstract class TestConfigBase {
         loadConfig(new String[]{content});
     }
 
-    protected void loadConfig(String ... contents) throws InvalidConfigurationException, InvalidConfigException {
+    protected static void loadConfig(String... contents) throws InvalidConfigurationException, InvalidConfigException {
         loadConfig(getCustomLogger(), contents);
     }
 
-    protected void loadConfig(TestCustomLogger testCustomLogger, String ... contents) throws InvalidConfigurationException, InvalidConfigException {
+    protected static void loadConfig(TestCustomLogger testCustomLogger, String... contents) throws InvalidConfigurationException, InvalidConfigException {
         new CreaturesConfig(getPreparedConfig(contents), testCustomLogger);
     }
 
-    protected YamlConfiguration getPreparedConfig(String ... contents) throws InvalidConfigurationException {
+    protected static YamlConfiguration getPreparedConfig(String... contents) throws InvalidConfigurationException {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
         yamlConfiguration.loadFromString(joinStrings("\n", Lists.newArrayList(contents)));
 
         return yamlConfiguration;
     }
 
-    protected TestCustomLogger getCustomLogger() {
+    protected static TestCustomLogger getCustomLogger() {
         return new TestCustomLogger();
     }
 
-    protected TestCustomLogger getDebugFearingCustomLogger() {
+    protected static TestCustomLogger getDebugFearingCustomLogger() {
         TestCustomLogger testCustomLogger = new TestCustomLogger();
         testCustomLogger.doFailOnDebug();
 
         return testCustomLogger;
     }
 
-    protected TestCustomLogger getParanoiacCustomLogger() {
+    protected static TestCustomLogger getParanoiacCustomLogger() {
         TestCustomLogger testCustomLogger = new TestCustomLogger();
         testCustomLogger.doFailOnAny();
 
         return testCustomLogger;
     }
 
-    protected TestCustomLogger getIndifferentCustomLogger() {
+    protected static TestCustomLogger getIndifferentCustomLogger() {
         TestCustomLogger testCustomLogger = new TestCustomLogger();
         testCustomLogger.doNotFailOnError();
 

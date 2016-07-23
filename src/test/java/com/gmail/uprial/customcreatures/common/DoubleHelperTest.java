@@ -131,7 +131,7 @@ public class DoubleHelperTest {
     }
 
     // This version is slow because of potential loop with 1k iterations.
-    private int getRightDigitsSlowly(double value) {
+    private static int getRightDigitsSlowly(double value) {
         return getRightDigits(value, -Double.MIN_EXPONENT);
     }
 }

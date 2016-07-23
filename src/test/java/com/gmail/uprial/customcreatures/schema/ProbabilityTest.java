@@ -59,7 +59,7 @@ public class ProbabilityTest extends TestConfigBase {
         assertEquals(100, getPasses(10, new Probability(100)));
     }
 
-    private int getPasses(int tries, Probability probability) {
+    private static int getPasses(int tries, Probability probability) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
             if (probability.isPassed()) {
