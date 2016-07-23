@@ -11,8 +11,9 @@ import java.util.Set;
 public final class ConfigReaderEnums {
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         List<String> strings = getStringList(config, customLogger, key, title);
-        if (strings == null)
+        if (strings == null) {
             return null;
+        }
 
         Set<T> set = new HashSet<>();
         for(int i = 0; i < strings.size(); i++) {
@@ -53,8 +54,9 @@ public final class ConfigReaderEnums {
         List<?> lines = config.getList(key);
         if(lines != null) {
             List<String> strings = new ArrayList<>();
-            for(int i = 0; i < lines.size(); i++)
+            for(int i = 0; i < lines.size(); i++) {
                 strings.add(lines.get(i).toString());
+            }
 
             return strings;
         } else {

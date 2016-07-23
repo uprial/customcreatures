@@ -30,8 +30,9 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
             else if((args.length == 0) || (args[0].equalsIgnoreCase("help"))) {
                 String Help = "==== CustomCreatures help ====\n";
 
-                if (sender.hasPermission(COMMAND_NS + ".reload"))
+                if (sender.hasPermission(COMMAND_NS + ".reload")) {
                     Help += "/" + COMMAND_NS + " reload - reload config from disk\n";
+                }
 
                 customLogger.userInfo(sender, Help);
                 return true;

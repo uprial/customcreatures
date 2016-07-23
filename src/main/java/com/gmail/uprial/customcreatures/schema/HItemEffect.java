@@ -70,10 +70,11 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
         boolean hasPowered = false;
         for (PotionEffect currentEffect : entity.getActivePotionEffects()) {
             if(currentEffect.getType() == effect.getType()) {
-                if(currentEffect.getAmplifier() > effect.getAmplifier())
+                if(currentEffect.getAmplifier() > effect.getAmplifier()) {
                     hasPowered = true;
-                else
+                } else {
                     entity.removePotionEffect(currentEffect.getType());
+                }
             }
         }
         if(!hasPowered) {

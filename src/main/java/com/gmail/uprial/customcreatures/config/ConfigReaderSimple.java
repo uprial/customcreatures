@@ -15,12 +15,13 @@ public final class ConfigReaderSimple {
             customLogger.debug(String.format("Empty %s. Use default value %b", title, defaultValue));
         } else {
             String strValue = config.getString(key);
-            if(strValue.equalsIgnoreCase("true"))
+            if(strValue.equalsIgnoreCase("true")) {
                 value = true;
-            else if(strValue.equalsIgnoreCase("false"))
+            } else if(strValue.equalsIgnoreCase("false")) {
                 value = false;
-            else
+            } else {
                 throw new InvalidConfigException(String.format("Invalid %s. Use default value %b", title, defaultValue));
+            }
         }
 
         return value;
@@ -55,12 +56,13 @@ public final class ConfigReaderSimple {
         } else {
             int intValue = config.getInt(key);
 
-            if(min > intValue)
+            if(min > intValue) {
                 throw new InvalidConfigException(String.format("A %s should be at least %d", title, min));
-            else if(max < intValue)
+            } else if(max < intValue) {
                 throw new InvalidConfigException(String.format("A %s should be at most %d", title, max));
-            else
+            } else {
                 value = intValue;
+            }
         }
 
         return value;
@@ -109,8 +111,9 @@ public final class ConfigReaderSimple {
                 throw new InvalidConfigException(String.format("A %s should be at least %s", title, formatDoubleValue(min)));
             } else if (max + Double.MIN_VALUE < doubleValue) {
                 throw new InvalidConfigException(String.format("A %s should be at most %s", title, formatDoubleValue(max)));
-            } else
+            } else {
                 value = doubleValue;
+            }
         }
 
         return value;

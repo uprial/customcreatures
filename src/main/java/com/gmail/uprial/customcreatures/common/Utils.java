@@ -8,8 +8,9 @@ public final class Utils {
     }
 
     public static <T> String joinStrings(String delimiter, List<T> contents) {
-        if (contents.size() < 1)
+        if (contents.size() < 1) {
             return "";
+        }
 
         String content = contents.get(0).toString();
         for (int i = 1; i < contents.size(); i++) {

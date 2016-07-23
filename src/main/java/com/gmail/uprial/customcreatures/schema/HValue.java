@@ -21,8 +21,9 @@ public final class HValue {
             return ValueSimple.getDoubleFromConfig(config, key, title, hardMin, hardMax);
         } else if (DoubleValueRandom.is(config, key)) {
             return DoubleValueRandom.getFromConfig(config, customLogger, key, title, hardMin, hardMax);
-        } else
+        } else {
             throw new InvalidConfigException(String.format("Wrong type of %s", title));
+        }
     }
 
     public static IValue<Integer> getIntFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -36,7 +37,8 @@ public final class HValue {
             return ValueSimple.getIntFromConfig(config, key, title, hardMin, hardMax);
         } else if (IntValueRandom.is(config, key)) {
             return IntValueRandom.getFromConfig(config, customLogger, key, title, hardMin, hardMax);
-        } else
+        } else {
             throw new InvalidConfigException(String.format("Wrong type of %s", title));
+        }
     }
 }

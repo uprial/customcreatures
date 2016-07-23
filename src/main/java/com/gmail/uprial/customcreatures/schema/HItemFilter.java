@@ -24,16 +24,19 @@ public final class HItemFilter {
 
     public boolean pass(EntityType entityType, CreatureSpawnEvent.SpawnReason spawnReason) {
         if (entityTypes != null) {
-            if (! entityTypes.contains(entityType))
+            if (! entityTypes.contains(entityType)) {
                 return false;
+            }
         }
         if (spawnReasons != null) {
-            if (! spawnReasons.contains(spawnReason))
+            if (! spawnReasons.contains(spawnReason)) {
                 return false;
+            }
         }
         if (probability != null) {
-            if (! probability.pass())
+            if (! probability.pass()) {
                 return false;
+            }
         }
 
         return true;

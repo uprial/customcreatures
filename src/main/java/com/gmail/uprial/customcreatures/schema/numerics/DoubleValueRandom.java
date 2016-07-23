@@ -20,8 +20,9 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
             return getExpRandom(max - min) + min;
         } else if (distributionType == EXP_UP) {
             return max - getExpRandom(max - min);
-        } else
+        } else {
             return random.nextDouble() * (max - min) + min;
+        }
     }
 
     public static DoubleValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -36,8 +37,9 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
     private Double getExpRandom(Double max) {
         Double average = max / 2.0;
         Double value = -average * Math.log(random.nextDouble());
-        if (value > max)
+        if (value > max) {
             value = 0.0;
+        }
 
         return value;
     }

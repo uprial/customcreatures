@@ -20,8 +20,9 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
             return getExpRandom(max - min) + min;
         } else if (distributionType == EXP_UP) {
             return max - getExpRandom(max - min);
-        } else
+        } else {
             return random.nextInt(max - min + 1) + min;
+        }
     }
 
     public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -37,8 +38,9 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
         Double average = (max.doubleValue() + 1.0)/ 2.0;
         Double doubleValue = -average * Math.log(random.nextDouble());
         Integer value = (int)Math.round(Math.floor(doubleValue));
-        if (value > max)
+        if (value > max) {
             value = 0;
+        }
 
         return value;
     }
