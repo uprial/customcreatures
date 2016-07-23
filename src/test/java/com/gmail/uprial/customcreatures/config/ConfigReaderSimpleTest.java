@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.*;
 import static org.junit.Assert.*;
 
+@SuppressWarnings("ClassWithTooManyMethods")
 public class ConfigReaderSimpleTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();
