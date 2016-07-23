@@ -40,7 +40,7 @@ public final class CustomCreatures extends JavaPlugin {
         customLogger.info("Plugin disabled");
     }
 
-    protected static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {
+    static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {
         CreaturesConfig creaturesConfig = null;
         try {
             creaturesConfig = new CreaturesConfig(config, customLogger);

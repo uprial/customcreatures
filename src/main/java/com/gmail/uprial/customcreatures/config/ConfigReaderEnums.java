@@ -31,7 +31,7 @@ public final class ConfigReaderEnums {
         return getEnumFromString(enumType, string, title, "");
     }
 
-    protected static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
+    static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
         try {
             return (T)Enum.valueOf(enumType, string.toUpperCase());
         } catch (java.lang.IllegalArgumentException e) {
@@ -39,7 +39,7 @@ public final class ConfigReaderEnums {
         }
     }
 
-    protected static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
+    static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
         String string = config.getString(key);
 
         if(string == null) {
@@ -49,7 +49,7 @@ public final class ConfigReaderEnums {
         return string;
     }
 
-    protected static List<String> getStringList(FileConfiguration config, CustomLogger customLogger, String key, String title) {
+    static List<String> getStringList(FileConfiguration config, CustomLogger customLogger, String key, String title) {
         List<?> lines = config.getList(key);
         if(lines != null) {
             List<String> strings = new ArrayList<>();

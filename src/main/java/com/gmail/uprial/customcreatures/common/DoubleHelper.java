@@ -9,11 +9,11 @@ package com.gmail.uprial.customcreatures.common;
 
 public final class DoubleHelper {
     // This value is just picked by author.
-    protected static final int MAX_RIGHT_SIZE = 4;
+    static final int MAX_RIGHT_SIZE = 4;
 
     // This value is calculated based on MAX_RIGHT_SIZE and capacity of Java’s double type.
     // See tests to understand how it works.
-    protected static final int MAX_LEFT_SIZE = 11;
+    static final int MAX_LEFT_SIZE = 11;
 
     public static final double MIN_DOUBLE_VALUE = Math.pow(10.0, -MAX_RIGHT_SIZE);
 
@@ -41,7 +41,7 @@ public final class DoubleHelper {
 
     // #### protected functions ####
 
-    protected static int getRightDigits(double value, int max_exponent) {
+    static int getRightDigits(double value, int max_exponent) {
         int digits = 0;
         while((Math.abs(round(value, digits) - value) > Double.MIN_VALUE) && (digits < max_exponent)) {
             digits += 1;
@@ -49,17 +49,17 @@ public final class DoubleHelper {
         return digits;
     }
 
-    protected static int getLeftDigits(double value) {
+    static int getLeftDigits(double value) {
         return Math.max(0, (int)Math.floor(log(10.0, value))) + 1;
     }
 
     // Get a logarithm with a specific base
-    protected static double log(double base, double value) {
+    static double log(double base, double value) {
         return Math.log(value) / Math.log(base);
     }
 
     // Round a value to a specific digit
-    protected static double round(double value, int digit) {
+    static double round(double value, int digit) {
         double multiplier = Math.pow(10.0, digit);
 
         return Math.round(value * multiplier) / multiplier;
