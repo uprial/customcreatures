@@ -9,9 +9,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
 public final class CustomCreatures extends JavaPlugin {
-    private CustomLogger customLogger;
-    private CreaturesConfig creaturesConfig;
-    private CustomCreaturesEventListener customCreaturesEventListener;
+    private CustomLogger customLogger = null;
+    private CreaturesConfig creaturesConfig = null;
+    private CustomCreaturesEventListener customCreaturesEventListener = null;
 
     @Override
     public void onEnable() {
