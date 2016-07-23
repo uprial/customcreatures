@@ -30,15 +30,15 @@ public class DoubleHelperTest {
 
             MantissaBits = SizeOf(Double) - 1 - ceil(log(2, Double.MAX_EXPONENT + 1))
         */
-        int MantissaBits = Double.SIZE - 1 - (int)Math.ceil(log(2.0, Double.MAX_EXPONENT + 1.0));
-        assertEquals(53, MantissaBits);
+        int mantissaBits = Double.SIZE - 1 - (int)Math.ceil(log(2.0, Double.MAX_EXPONENT + 1.0));
+        assertEquals(53, mantissaBits);
         /*
             If we have MAX_RIGHT_SIZE decimals for right part, then size of left part should be:
 
             floor(log(10, pow(2, MantissaBits - log(2, pow(10, MAX_RIGHT_SIZE))))).
          */
         assertEquals(MAX_LEFT_SIZE, (int)Math.floor(log(10.0, Math.pow(2.0,
-                MantissaBits - log(2.0, Math.pow(10.0, MAX_RIGHT_SIZE))))));
+                mantissaBits - log(2.0, Math.pow(10.0, MAX_RIGHT_SIZE))))));
     }
 
     @Test
