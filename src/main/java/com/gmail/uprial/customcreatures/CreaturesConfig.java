@@ -7,6 +7,7 @@ import com.gmail.uprial.customcreatures.schema.HItem;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class CreaturesConfig {
         readConfig(config, customLogger);
     }
 
-    public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
+    public void handle(CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         for (HItem handler : handlers) {
             handler.handle(customLogger, entity, spawnReason);
         }

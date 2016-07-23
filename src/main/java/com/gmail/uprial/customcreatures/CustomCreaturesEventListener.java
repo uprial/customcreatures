@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 class CustomCreaturesEventListener implements Listener {
@@ -25,6 +26,6 @@ class CustomCreaturesEventListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        plugin.getCreaturesConfig().handle(customLogger, event.getPlayer(), CreatureSpawnEvent.SpawnReason.DEFAULT);
+        plugin.getCreaturesConfig().handle(customLogger, event.getPlayer(), SpawnReason.DEFAULT);
     }
 }

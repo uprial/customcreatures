@@ -6,6 +6,7 @@ import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
@@ -27,7 +28,7 @@ public final class HItem {
         this.equipment = equipment;
     }
 
-    public void handle(CustomLogger customLogger, LivingEntity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
+    public void handle(CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         if (filter.pass(entity.getType(), spawnReason)) {
             applyMaxHealth(customLogger, entity);
             applyEffects(customLogger, entity);

@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -93,10 +94,10 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - ZOMBIE",
                 "  reasons:",
                 "    - NATURAL"), getCustomLogger(), "f", "filter");
-        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
-        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.INFECTION));
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.INFECTION));
+        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL));
+        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.INFECTION));
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL));
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.INFECTION));
     }
 
     @Test
@@ -121,9 +122,9 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 50"), getCustomLogger(), "f", "filter");
-        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL) > 20);
-        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL) < 80);
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, CreatureSpawnEvent.SpawnReason.NATURAL));
+        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) > 20);
+        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) < 80);
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL));
     }
 
     @Test
@@ -133,10 +134,10 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 0"), getCustomLogger(), "f", "filter");
-        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, CreatureSpawnEvent.SpawnReason.NATURAL));
+        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL));
     }
 
-    private int getPasses(int tries, HItemFilter filter, EntityType entityType, CreatureSpawnEvent.SpawnReason spawnReason) {
+    private int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
             if (filter.pass(entityType, spawnReason)) {

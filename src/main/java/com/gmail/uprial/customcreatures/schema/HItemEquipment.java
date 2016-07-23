@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
@@ -53,7 +54,7 @@ public final class HItemEquipment {
         }
 
         Map<String,HItemEquipmentCloth> cloths = new HashMap<>();
-        for (Map.Entry<String,ClothType> entry : key2clothType.entrySet()) {
+        for (Entry<String,ClothType> entry : key2clothType.entrySet()) {
             HItemEquipmentCloth cloth = HItemEquipmentCloth.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
             if (cloth != null) {
@@ -61,7 +62,7 @@ public final class HItemEquipment {
             }
         }
         Map<String,HItemInHand> tools = new HashMap<>();
-        for (Map.Entry<String,HandType> entry : key2handType.entrySet()) {
+        for (Entry<String,HandType> entry : key2handType.entrySet()) {
             HItemInHand tool = HItemInHand.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
             if (tool != null) {
