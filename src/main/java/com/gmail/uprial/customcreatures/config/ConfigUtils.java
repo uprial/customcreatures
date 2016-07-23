@@ -6,13 +6,7 @@ public final class ConfigUtils {
             throw new InvalidConfigException(String.format("Path '%s' doesn't have any parents", path));
         }
         int index = path.lastIndexOf(".");
-        String parentPath;
-        if (index == -1) {
-            parentPath = "";
-        } else {
-            parentPath = path.substring(0, index);
-        }
 
-        return parentPath;
+        return (index == -1) ? "" : path.substring(0, index);
     }
 }
