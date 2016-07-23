@@ -42,16 +42,16 @@ public final class ConfigReaderLists {
                 subKeyFull = subKey;
             } else {
                 String relativeKeyFull = joinPaths(getParentPath(key), subKey);
-                if (!relativeKeyFull.equals(subKey)) {
+                if (relativeKeyFull.equals(subKey)) {
+                    throw new InvalidConfigException(String.format("Null definition of key '%s' in %s at pos %d",
+                            subKey, title, i));
+                } else {
                     if (config.get(relativeKeyFull) != null) {
                         subKeyFull = relativeKeyFull;
                     } else {
                         throw new InvalidConfigException(String.format("Null definition of keys '%s' and '%s' in %s at pos %d",
                                 relativeKeyFull, subKey, title, i));
                     }
-                } else {
-                    throw new InvalidConfigException(String.format("Null definition of key '%s' in %s at pos %d",
-                            subKey, title, i));
                 }
             }
             if (keys.containsKey(subKeyFull.toLowerCase())) {
