@@ -31,7 +31,7 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
                 String helpString = "==== CustomCreatures help ====\n";
 
                 if (sender.hasPermission(COMMAND_NS + ".reload")) {
-                    helpString += "/" + COMMAND_NS + " reload - reload config from disk\n";
+                    helpString += '/' + COMMAND_NS + " reload - reload config from disk\n";
                 }
 
                 customLogger.userInfo(sender, helpString);

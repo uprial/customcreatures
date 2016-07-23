@@ -22,6 +22,6 @@ public final class Utils {
     }
 
     public static String joinPaths(String rootPath, String childPath) {
-        return !rootPath.isEmpty() ? rootPath + "." + childPath : childPath;
+        return !rootPath.isEmpty() ? rootPath + '.' + childPath : childPath;
     }
 }

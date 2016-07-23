@@ -21,7 +21,7 @@ public final class DoubleHelper {
 
     // Create a visible representation without needless digits after the point.
     public static String formatDoubleValue(double value) {
-        return String.format("%." + getRightDigits(value, MAX_RIGHT_SIZE) + "f", value);
+        return String.format("%." + getRightDigits(value, MAX_RIGHT_SIZE) + 'f', value);
     }
 
     // Check if a value has too many digits the left part.
