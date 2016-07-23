@@ -3,7 +3,6 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.bukkit.entity.EntityType;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.junit.Rule;
 import org.junit.Test;

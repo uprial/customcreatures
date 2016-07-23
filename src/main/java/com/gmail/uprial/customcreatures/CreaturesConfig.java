@@ -6,7 +6,6 @@ import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.schema.HItem;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import java.util.ArrayList;
