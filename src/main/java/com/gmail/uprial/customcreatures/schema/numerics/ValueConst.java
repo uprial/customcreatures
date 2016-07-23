@@ -13,7 +13,7 @@ public class ValueConst<T> implements IValue<T> {
     }
 
     public String toString() {
-        return getValue().toString();
+        return value.toString();
     }
 }
 

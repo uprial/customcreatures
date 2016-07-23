@@ -33,6 +33,6 @@ public final class ValueSimple<T> implements IValue<T> {
     }
 
     public String toString() {
-        return getValue().toString();
+        return value.toString();
     }
 }
