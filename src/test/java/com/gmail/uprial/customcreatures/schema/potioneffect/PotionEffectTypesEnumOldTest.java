@@ -10,6 +10,7 @@ public class PotionEffectTypesEnumOldTest {
     public void testSequence() throws Exception {
         int i = 1;
         for(PotionEffectTypesEnumOld potionEffectTypesEnumOld : PotionEffectTypesEnumOld.values()) {
+            //noinspection deprecation
             assertEquals(i, potionEffectTypesEnumOld.getType().getId());
             i += 1;
         }
