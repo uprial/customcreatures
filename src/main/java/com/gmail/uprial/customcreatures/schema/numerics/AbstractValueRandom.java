@@ -11,7 +11,7 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
 public abstract class AbstractValueRandom<T> implements IValue<T> {
-    private static final RandomDistributionType defaultDistributionType = NORMAL;
+    private static final RandomDistributionType DEFAULT_DISTRIBUTION_TYPE = NORMAL;
 
     protected final RandomDistributionType distributionType;
     protected final T min;
@@ -27,7 +27,7 @@ public abstract class AbstractValueRandom<T> implements IValue<T> {
     public static RandomDistributionType getDistributionTypeFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         RandomDistributionType distributionType;
         if (config.get(joinPaths(key, "distribution")) == null) {
-            customLogger.debug(String.format("Empty distribution of %s. Use default value %s", title, defaultDistributionType));
+            customLogger.debug(String.format("Empty distribution of %s. Use default value %s", title, DEFAULT_DISTRIBUTION_TYPE));
             distributionType = NORMAL;
         } else {
             distributionType = getEnum(RandomDistributionType.class, config, joinPaths(key, "distribution"), String.format("distribution type of %s", title));

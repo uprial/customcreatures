@@ -19,13 +19,13 @@ import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
 
 public final class HItemEquipment {
-    private static final Map<String, ClothType> key2clothType = ImmutableMap.<String, ClothType>builder()
+    private static final Map<String, ClothType> KEY_2_CLOTH_TYPE = ImmutableMap.<String, ClothType>builder()
             .put("helmet", HELMET)
             .put("boots", BOOTS)
             .put("chest", CHESTPLATE)
             .put("leggings", LEGGINGS)
             .build();
-    private static final Map<String, HandType> key2handType = ImmutableMap.<String, HandType>builder()
+    private static final Map<String, HandType> KEY_2_HAND_TYPE = ImmutableMap.<String, HandType>builder()
             .put("main-hand", MAIN_HAND)
             .put("off-hand", OFF_HAND)
             .build();
@@ -54,7 +54,7 @@ public final class HItemEquipment {
         }
 
         Map<String,HItemEquipmentCloth> cloths = new HashMap<>();
-        for (Entry<String,ClothType> entry : key2clothType.entrySet()) {
+        for (Entry<String,ClothType> entry : KEY_2_CLOTH_TYPE.entrySet()) {
             HItemEquipmentCloth cloth = HItemEquipmentCloth.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
             if (cloth != null) {
@@ -62,7 +62,7 @@ public final class HItemEquipment {
             }
         }
         Map<String,HItemInHand> tools = new HashMap<>();
-        for (Entry<String,HandType> entry : key2handType.entrySet()) {
+        for (Entry<String,HandType> entry : KEY_2_HAND_TYPE.entrySet()) {
             HItemInHand tool = HItemInHand.getFromConfig(config, customLogger, entry.getValue(),
                     joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
             if (tool != null) {
@@ -78,10 +78,10 @@ public final class HItemEquipment {
 
     public String toString() {
         List<String> items = new ArrayList<>();
-        for (String key : key2clothType.keySet()) {
+        for (String key : KEY_2_CLOTH_TYPE.keySet()) {
             items.add(String.format("%s: %s", key, cloths.get(key)));
         }
-        for (String key : key2handType.keySet()) {
+        for (String key : KEY_2_HAND_TYPE.keySet()) {
             items.add(String.format("%s: %s", key, tools.get(key)));
         }
         return String.format("[%s]", joinStrings(", ", items));
