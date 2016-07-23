@@ -39,5 +39,5 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
             }
         }
         return false;
-    }    
+    }
 }

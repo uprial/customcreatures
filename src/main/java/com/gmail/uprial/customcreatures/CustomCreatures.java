@@ -24,16 +24,16 @@ public final class CustomCreatures extends JavaPlugin {
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this, customLogger));
         customLogger.info("Plugin enabled");
     }
-    
+
     public CreaturesConfig getCreaturesConfig() {
         return creaturesConfig;
     }
-    
+
     public void reloadCreaturesConfig() {
         reloadConfig();
         creaturesConfig = loadConfig(getConfig(), customLogger);
     }
-    
+
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(customCreaturesEventListener);
