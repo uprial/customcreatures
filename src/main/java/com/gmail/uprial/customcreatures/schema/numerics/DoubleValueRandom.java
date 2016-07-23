@@ -21,7 +21,7 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
         } else if (distributionType == EXP_UP) {
             return max - getExpRandom(max - min);
         } else {
-            return random.nextDouble() * (max - min) + min;
+            return (random.nextDouble() * (max - min)) + min;
         }
     }
 

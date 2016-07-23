@@ -46,7 +46,7 @@ public final class ConfigReaderSimple {
         Integer value = defaultValue;
 
         if(config.getString(key) == null) {
-            if (defaultValue == null || customLogger == null) {
+            if ((defaultValue == null) || (customLogger == null)) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %d", title, defaultValue));
@@ -93,7 +93,7 @@ public final class ConfigReaderSimple {
         Double value = defaultValue;
 
         if(config.getString(key) == null) {
-            if (defaultValue == null || customLogger == null) {
+            if ((defaultValue == null) || (customLogger == null)) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %s", title, formatDoubleValue(defaultValue)));
@@ -107,9 +107,9 @@ public final class ConfigReaderSimple {
                 throw new InvalidConfigException(String.format("A left part of %s has too many digits", title));
             } else if(!isLengthOfRightPartOfDoubleGood(doubleValue)) {
                 throw new InvalidConfigException(String.format("A right part of %s has too many digits", title));
-            } else if (min - Double.MIN_VALUE > doubleValue) {
+            } else if ((min - Double.MIN_VALUE) > doubleValue) {
                 throw new InvalidConfigException(String.format("A %s should be at least %s", title, formatDoubleValue(min)));
-            } else if (max + Double.MIN_VALUE < doubleValue) {
+            } else if ((max + Double.MIN_VALUE) < doubleValue) {
                 throw new InvalidConfigException(String.format("A %s should be at most %s", title, formatDoubleValue(max)));
             } else {
                 value = doubleValue;

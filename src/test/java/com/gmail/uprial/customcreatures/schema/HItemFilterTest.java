@@ -144,6 +144,6 @@ public class HItemFilterTest extends TestConfigBase {
             }
         }
 
-        return Math.round(passes * 100 / tries);
+        return Math.round((passes * 100) / tries);
     }
 }

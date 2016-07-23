@@ -28,7 +28,7 @@ public final class HItemDurability {
             customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
                     title, material, format(entity), itemDurability));
         }
-        itemStack.setDurability((short)Math.round(material.getMaxDurability() * itemDurability / 100));
+        itemStack.setDurability((short)Math.round((material.getMaxDurability() * itemDurability) / 100));
     }
 
     public static HItemDurability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {

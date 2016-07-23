@@ -21,7 +21,7 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
         } else if (distributionType == EXP_UP) {
             return max - getExpRandom(max - min);
         } else {
-            return random.nextInt(max - min + 1) + min;
+            return random.nextInt((max - min) + 1) + min;
         }
     }
 
