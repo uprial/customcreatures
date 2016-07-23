@@ -40,6 +40,7 @@ public final class EntityEquipmentHelper {
     public static void setItem(EntityEquipment entityEquipment, HandType handType, ItemStack itemStack) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
         try {
             if (handType == MAIN_HAND) {
+                //noinspection ErrorNotRethrown
                 try {
                     entityEquipment.setItemInMainHand(itemStack);
                 } catch (NoSuchMethodError e) {
@@ -47,6 +48,7 @@ public final class EntityEquipmentHelper {
                     entityEquipment.setItemInHand(itemStack);
                 }
             } else if (handType == OFF_HAND) {
+                //noinspection ErrorNotRethrown
                 try {
                     entityEquipment.setItemInOffHand(itemStack);
                 } catch (NoSuchMethodError e) {
@@ -78,6 +80,7 @@ public final class EntityEquipmentHelper {
     public static void setItemDropChance(EntityEquipment entityEquipment, HandType handType, int dropChance) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
         try {
             if (handType == MAIN_HAND) {
+                //noinspection ErrorNotRethrown
                 try {
                     entityEquipment.setItemInMainHandDropChance(dropChance);
                 } catch (NoSuchMethodError e) {
@@ -85,6 +88,7 @@ public final class EntityEquipmentHelper {
                     entityEquipment.setItemInHandDropChance(dropChance);
                 }
             } else if (handType == OFF_HAND) {
+                //noinspection ErrorNotRethrown
                 try {
                     entityEquipment.setItemInOffHandDropChance(dropChance);
                 } catch (NoSuchMethodError e) {
