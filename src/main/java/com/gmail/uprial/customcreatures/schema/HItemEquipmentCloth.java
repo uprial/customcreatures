@@ -110,7 +110,7 @@ public final class HItemEquipmentCloth {
         String itemName = String.format("%s_%s", materialType, clothType);
         try {
             return Material.valueOf(itemName);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ignored) {
             throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
         }
     }

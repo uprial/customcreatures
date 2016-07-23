@@ -10,7 +10,7 @@ public final class PotionEffectTypesLoader {
             PotionEffectType.class.getField("LUCK");
             PotionEffectType.class.getField("UNLUCK");
             return PotionEffectTypesEnum.class;
-        } catch (NoSuchFieldException e) {
+        } catch (NoSuchFieldException ignored) {
             return PotionEffectTypesEnumOld.class;
         }
     }

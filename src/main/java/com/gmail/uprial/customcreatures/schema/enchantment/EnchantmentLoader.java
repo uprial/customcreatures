@@ -8,7 +8,7 @@ public final class EnchantmentLoader {
             Enchantment.class.getField("FROST_WALKER");
             Enchantment.class.getField("MENDING");
             return EnchantmentEnum.class;
-        } catch (NoSuchFieldException e) {
+        } catch (NoSuchFieldException ignored) {
             return EnchantmentEnumOld.class;
         }
     }

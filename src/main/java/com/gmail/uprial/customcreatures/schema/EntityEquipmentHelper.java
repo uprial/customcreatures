@@ -32,7 +32,7 @@ public final class EntityEquipmentHelper {
             } else if (clothType == LEGGINGS) {
                 entityEquipment.setLeggings(itemStack);
             }
-        } catch (UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
         }
     }
@@ -43,7 +43,7 @@ public final class EntityEquipmentHelper {
                 //noinspection ErrorNotRethrown,NestedTryStatement
                 try {
                     entityEquipment.setItemInMainHand(itemStack);
-                } catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError ignored) {
                     //noinspection deprecation
                     entityEquipment.setItemInHand(itemStack);
                 }
@@ -51,11 +51,11 @@ public final class EntityEquipmentHelper {
                 //noinspection ErrorNotRethrown,NestedTryStatement
                 try {
                     entityEquipment.setItemInOffHand(itemStack);
-                } catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError ignored) {
                     throw new MethodIsNotSupportedException("setItemInOffHand");
                 }
             }
-        } catch (UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
         }
     }
@@ -72,7 +72,7 @@ public final class EntityEquipmentHelper {
             } else if (clothType == LEGGINGS) {
                 entityEquipment.setLeggingsDropChance(dropChance);
             }
-        } catch (UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
         }
     }
@@ -83,7 +83,7 @@ public final class EntityEquipmentHelper {
                 //noinspection ErrorNotRethrown,NestedTryStatement
                 try {
                     entityEquipment.setItemInMainHandDropChance(dropChance);
-                } catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError ignored) {
                     //noinspection deprecation
                     entityEquipment.setItemInHandDropChance(dropChance);
                 }
@@ -91,11 +91,11 @@ public final class EntityEquipmentHelper {
                 //noinspection ErrorNotRethrown,NestedTryStatement
                 try {
                     entityEquipment.setItemInOffHandDropChance(dropChance);
-                } catch (NoSuchMethodError e) {
+                } catch (NoSuchMethodError ignored) {
                     throw new MethodIsNotSupportedException("setItemInOffHandDropChance");
                 }
             }
-        } catch (UnsupportedOperationException e) {
+        } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
         }
     }

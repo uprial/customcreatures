@@ -36,7 +36,7 @@ public final class ConfigReaderEnums {
         try {
             //noinspection unchecked
             return (T)Enum.valueOf(enumType, string.toUpperCase());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException ignored) {
             throw new InvalidConfigException(String.format("Invalid %s '%s' in %s%s", enumType.getName(), string, title, desc));
         }
     }
