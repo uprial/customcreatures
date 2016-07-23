@@ -74,6 +74,7 @@ public final class HItemInHand {
                     setItemDropChance(entity.getEquipment(), handType, dropChance);
                 } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
                     customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                    //noinspection UnnecessaryReturnStatement
                     return ;
                 }
             }
