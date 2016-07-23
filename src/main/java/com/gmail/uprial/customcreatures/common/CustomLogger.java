@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CustomLogger {
-    private boolean debug = true;
+    private boolean debugMode = true;
 
     private final Logger logger;
 
@@ -16,11 +16,11 @@ public class CustomLogger {
     }
 
     public void setDebugMode(boolean value) {
-        debug = value;
+        debugMode = value;
     }
 
     public boolean isDebugMode() {
-        return debug;
+        return debugMode;
     }
 
     public void error(String message) {
@@ -32,7 +32,7 @@ public class CustomLogger {
     }
 
     public void debug(String message) {
-        if (debug) {
+        if (debugMode) {
             log(Level.INFO, String.format("[DEBUG] %s", message));
         }
     }
