@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 
+@SuppressWarnings("AbstractClassWithoutAbstractMethods")
 public abstract class TestConfigBase {
     protected void loadConfig(String content) throws InvalidConfigurationException, InvalidConfigException {
         loadConfig(new String[]{content});
