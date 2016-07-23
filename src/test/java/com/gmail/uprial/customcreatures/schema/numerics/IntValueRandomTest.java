@@ -13,7 +13,7 @@ import static com.gmail.uprial.customcreatures.schema.numerics.IntValueRandom.ge
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_UP;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
