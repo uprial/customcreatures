@@ -13,7 +13,8 @@ public final class Utils {
         }
 
         String content = contents.get(0).toString();
-        for (int i = 1; i < contents.size(); i++) {
+        int contentsSize = contents.size();
+        for (int i = 1; i < contentsSize; i++) {
             content += delimiter + contents.get(i);
         }
 
