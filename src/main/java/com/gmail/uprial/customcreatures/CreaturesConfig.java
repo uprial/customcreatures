@@ -19,9 +19,9 @@ public class CreaturesConfig {
         readConfig(config, customLogger);
     }
 
-    public void handle(CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
+    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         for (HItem handler : handlers) {
-            handler.handle(customLogger, entity, spawnReason);
+            handler.handle(plugin, customLogger, entity, spawnReason);
         }
     }
 

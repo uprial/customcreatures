@@ -49,9 +49,6 @@ handlers:
 #   max-health: <float-value:0.0001..?> ### A multiplier for max. health of an entity.
 #                                       ### By default, max. health won't be modified.
 #                                       ### (* see description of <float-value> below)
-#                                       ###
-#                                       ### Warning: player's max health is saved on disk
-#                                       ### and each new change will be applied cumulatively.
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.

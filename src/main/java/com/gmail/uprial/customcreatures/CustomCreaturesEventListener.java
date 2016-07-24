@@ -20,12 +20,12 @@ class CustomCreaturesEventListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (! event.isCancelled()) {
-            plugin.getCreaturesConfig().handle(customLogger, event.getEntity(), event.getSpawnReason());
+            plugin.getCreaturesConfig().handle(plugin, customLogger, event.getEntity(), event.getSpawnReason());
         }
     }
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        plugin.getCreaturesConfig().handle(customLogger, event.getPlayer(), SpawnReason.DEFAULT);
+        plugin.getCreaturesConfig().handle(plugin, customLogger, event.getPlayer(), SpawnReason.DEFAULT);
     }
 }

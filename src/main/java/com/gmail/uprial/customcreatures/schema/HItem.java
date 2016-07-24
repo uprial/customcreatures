@@ -1,11 +1,16 @@
 package com.gmail.uprial.customcreatures.schema;
 
+import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
@@ -13,6 +18,8 @@ import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
 public final class HItem {
+    private static final String INITIAL_MAX_HEALTH_METADATA_KEY = "initial_max_health";
+
     private final String name;
     private final HItemFilter filter;
     private final HItemEffectsList effects;
@@ -27,17 +34,19 @@ public final class HItem {
         this.equipment = equipment;
     }
 
-    public void handle(CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
+    public void handle(CustomCreatures plugin, CustomLogger customLogger,
+                       LivingEntity entity, SpawnReason spawnReason) {
         if (filter.isPassed(entity.getType(), spawnReason)) {
-            applyMaxHealth(customLogger, entity);
+            applyMaxHealth(plugin, customLogger, entity);
             applyEffects(customLogger, entity);
             applyEquipment(customLogger, entity);
         }
     }
 
-    private void applyMaxHealth(CustomLogger customLogger, LivingEntity entity) {
+    private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (maxHealth != null) {
-            double value = entity.getMaxHealth() * maxHealth.getValue();
+            double initialMaxHealth = getInitialMaxHealth(plugin, entity);
+            double value = initialMaxHealth * maxHealth.getValue();
             entity.setMaxHealth(value);
             entity.setHealth(value);
             if(customLogger.isDebugMode()) {
@@ -57,6 +66,28 @@ public final class HItem {
         if (equipment != null) {
             equipment.apply(customLogger, entity);
         }
+    }
+
+    /*
+        The game stores all changes of max. health of players.
+        To avoid cumulative changes after respawn we need to multiply initial max. health.
+      */
+    private static double getInitialMaxHealth(CustomCreatures plugin, LivingEntity entity) {
+        Double maxHealth = null;
+        if (entity.hasMetadata(INITIAL_MAX_HEALTH_METADATA_KEY)) {
+            List<MetadataValue> metadataValues = entity.getMetadata(INITIAL_MAX_HEALTH_METADATA_KEY);
+            if (!metadataValues.isEmpty()) {
+                maxHealth = metadataValues.get(0).asDouble();
+            }
+        }
+        if (maxHealth == null) {
+            maxHealth = entity.getMaxHealth();
+
+            MetadataValue metadataValue = new FixedMetadataValue(plugin, maxHealth);
+            entity.setMetadata(INITIAL_MAX_HEALTH_METADATA_KEY, metadataValue);
+        }
+
+        return maxHealth;
     }
 
     public static HItem getFromConfig(FileConfiguration config, CustomLogger customLogger, String key) throws InvalidConfigException {
