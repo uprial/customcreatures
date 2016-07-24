@@ -18,8 +18,8 @@ public abstract class TestConfigBase {
         loadConfig(getCustomLogger(), contents);
     }
 
-    protected static void loadConfig(TestCustomLogger testCustomLogger, String... contents) throws InvalidConfigurationException, InvalidConfigException {
-        new CreaturesConfig(getPreparedConfig(contents), testCustomLogger);
+    protected static CreaturesConfig loadConfig(TestCustomLogger testCustomLogger, String... contents) throws InvalidConfigurationException, InvalidConfigException {
+        return new CreaturesConfig(getPreparedConfig(contents), testCustomLogger);
     }
 
     protected static YamlConfiguration getPreparedConfig(String... contents) throws InvalidConfigurationException {

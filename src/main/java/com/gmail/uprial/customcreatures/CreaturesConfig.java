@@ -13,7 +13,7 @@ import java.util.*;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
 public class CreaturesConfig {
-    private List<HItem> handlers;
+    List<HItem> handlers;
 
     public CreaturesConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         readConfig(config, customLogger);
