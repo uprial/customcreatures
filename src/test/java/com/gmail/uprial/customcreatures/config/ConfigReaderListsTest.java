@@ -10,6 +10,7 @@ import java.util.Set;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class ConfigReaderListsTest extends TestConfigBase {
@@ -112,6 +113,7 @@ public class ConfigReaderListsTest extends TestConfigBase {
                 " z:",
                 "  - zz"),
                 getParanoiacCustomLogger(), "x.y", "items list");
+        assertNotNull(items);
         assertEquals("[x.z]", items.toString());
     }
 
@@ -124,6 +126,7 @@ public class ConfigReaderListsTest extends TestConfigBase {
                 " z:",
                 "  - zz"),
                 getParanoiacCustomLogger(), "x.y", "effects list");
+        assertNotNull(items);
         assertEquals("[x.z]", items.toString());
     }
 }

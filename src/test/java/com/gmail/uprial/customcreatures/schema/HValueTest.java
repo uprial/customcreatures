@@ -2,6 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
+import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -9,6 +10,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.schema.HValue.getDoubleFromConfig;
 import static com.gmail.uprial.customcreatures.schema.HValue.getIntFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HValueTest extends TestConfigBase {
@@ -33,36 +35,44 @@ public class HValueTest extends TestConfigBase {
 
     @Test
     public void testSimpleDoubleValue() throws Exception {
-        assertEquals(42, Math.round(getDoubleFromConfig(getPreparedConfig("i: 42"),
-                         getParanoiacCustomLogger(), "i", "i", 0, 100).getValue()));
+        IValue<Double> value = getDoubleFromConfig(getPreparedConfig("i: 42"),
+                getParanoiacCustomLogger(), "i", "i", 0, 100);
+        assertNotNull(value);
+        assertEquals(42, Math.round(value.getValue()));
     }
 
     @Test
     public void testSimpleIntValue() throws Exception {
-        assertEquals(42, getIntFromConfig(getPreparedConfig("i: 42"),
-                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue().intValue());
+        IValue<Integer> value = getIntFromConfig(getPreparedConfig("i: 42"),
+                getParanoiacCustomLogger(), "i", "i", 0, 100);
+        assertNotNull(value);
+        assertEquals(42, value.getValue().intValue());
     }
 
     @Test
     public void testRandomDoubleValue() throws Exception {
-        assertEquals(2, Math.round(getDoubleFromConfig(getPreparedConfig(
+        IValue<Double> value = getDoubleFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",
                 " min: 2.0",
                 " max: 2.0",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue()));
+                getParanoiacCustomLogger(), "i", "i", 0, 100);
+        assertNotNull(value);
+        assertEquals(2, Math.round(value.getValue()));
     }
 
     @Test
     public void testRandomIntValue() throws Exception {
-        assertEquals(2, getIntFromConfig(getPreparedConfig(
+        IValue<Integer> value = getIntFromConfig(getPreparedConfig(
                 "i:",
                 " type: random",
                 " min: 2",
                 " max: 2",
                 " distribution: exp_up"),
-                getParanoiacCustomLogger(), "i", "i", 0, 100).getValue().intValue());
+                getParanoiacCustomLogger(), "i", "i", 0, 100);
+        assertNotNull(value);
+        assertEquals(2, value.getValue().intValue());
     }
 
     @Test

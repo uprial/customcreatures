@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.schema.HItemInHand.getFromConfig;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemInHandTest extends TestConfigBase {
@@ -30,6 +31,7 @@ public class HItemInHandTest extends TestConfigBase {
                 " type: PROTECTION_ENVIRONMENTAL",
                 " level: 2"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+        assertNotNull(itemInHand);
         assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 2]}," +
                 " drop-chance: 100, durability: 100]",
@@ -51,6 +53,7 @@ public class HItemInHandTest extends TestConfigBase {
                 "  drop-chance: 50",
                 "  durability: 40"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
+        assertNotNull(itemInHand);
         assertEquals("[probability: 50, material: DIAMOND_SWORD, amount: 10, enchantments: {[type: THORNS, level: 1]}," +
                         " drop-chance: 50, durability: 40]",
                 itemInHand.toString());

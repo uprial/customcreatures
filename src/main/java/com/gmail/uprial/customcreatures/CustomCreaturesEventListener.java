@@ -17,6 +17,7 @@ class CustomCreaturesEventListener implements Listener {
         this.customLogger = customLogger;
     }
 
+    @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (! event.isCancelled()) {
@@ -24,6 +25,7 @@ class CustomCreaturesEventListener implements Listener {
         }
     }
 
+    @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         plugin.getCreaturesConfig().handle(plugin, customLogger, event.getPlayer(), SpawnReason.DEFAULT);

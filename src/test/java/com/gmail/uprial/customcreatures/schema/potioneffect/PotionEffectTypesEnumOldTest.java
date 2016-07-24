@@ -9,9 +9,9 @@ public class PotionEffectTypesEnumOldTest {
     @Test
     public void testSequence() throws Exception {
         int i = 1;
-        for(PotionEffectTypesEnumOld potionEffectTypesEnumOld : PotionEffectTypesEnumOld.values()) {
+        for(PotionEffectTypesEnumOld potionEffectType : PotionEffectTypesEnumOld.values()) {
             //noinspection deprecation
-            assertEquals(i, potionEffectTypesEnumOld.getType().getId());
+            assertEquals(i, potionEffectType.getType().getId());
             i += 1;
         }
     }

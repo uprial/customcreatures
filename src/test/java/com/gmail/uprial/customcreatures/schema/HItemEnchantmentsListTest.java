@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEnchantmentsList.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemEnchantmentsListTest extends TestConfigBase {
@@ -26,6 +27,7 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
                 "  type: LUCK",
                 "  level: 1"),
                 getParanoiacCustomLogger(), "ee", "enchantments list");
+        assertNotNull(itemEnchantmentsList);
         assertEquals("{[type: THORNS, level: 1], [type: LUCK, level: 1]}", itemEnchantmentsList.toString());
     }
 

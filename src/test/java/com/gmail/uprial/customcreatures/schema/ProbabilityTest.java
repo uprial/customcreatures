@@ -19,6 +19,7 @@ public class ProbabilityTest extends TestConfigBase {
         Probability probability = getFromConfig(getPreparedConfig(
                 "p: 1"),
                 getParanoiacCustomLogger(), "p", "probability");
+        assertNotNull(probability);
         assertEquals("1", probability.toString());
     }
 

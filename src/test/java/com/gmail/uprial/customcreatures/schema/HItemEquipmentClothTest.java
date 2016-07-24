@@ -10,6 +10,7 @@ import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
 import static com.gmail.uprial.customcreatures.schema.ClothType.HELMET;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipmentCloth.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemEquipmentClothTest extends TestConfigBase {
@@ -30,6 +31,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    type: THORNS",
                 "    level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
+        assertNotNull(itemEquipmentCloth);
         assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 50, durability: 100]",
                 itemEquipmentCloth.toString());
@@ -49,6 +51,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    type: THORNS",
                 "    level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
+        assertNotNull(itemEquipmentCloth);
         assertEquals("[probability: 77, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
                 " drop-chance: 50, durability: 50]",
                 itemEquipmentCloth.toString());

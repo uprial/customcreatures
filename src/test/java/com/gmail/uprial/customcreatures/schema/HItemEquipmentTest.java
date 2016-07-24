@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEquipment.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemEquipmentTest extends TestConfigBase {
@@ -66,6 +67,7 @@ public class HItemEquipmentTest extends TestConfigBase {
                 " type: PROTECTION_ENVIRONMENTAL",
                 " level: 1"),
                 getParanoiacCustomLogger(), "e", "equipment");
+        assertNotNull(itemEquipment);
         assertEquals("[helmet: [probability: null, material-type: IRON," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 100, durability: 100]," +

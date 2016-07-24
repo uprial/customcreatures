@@ -7,6 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemEffectsList.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemEffectsListTest extends TestConfigBase {
@@ -24,6 +25,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  strength: 1",
                 "  duration: 1"),
                 getParanoiacCustomLogger(), "ee", "effects list");
+        assertNotNull(itemEffectsList);
         assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
     }
 

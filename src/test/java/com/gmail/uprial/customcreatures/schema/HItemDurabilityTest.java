@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static com.gmail.uprial.customcreatures.schema.HItemDurability.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 public class HItemDurabilityTest extends TestConfigBase {
@@ -13,6 +14,7 @@ public class HItemDurabilityTest extends TestConfigBase {
         HItemDurability itemDurability = getFromConfig(getPreparedConfig(
                 "d: 1"),
                 getParanoiacCustomLogger(), "d", "durability");
+        assertNotNull(itemDurability);
         assertEquals("1", itemDurability.toString());
     }
 

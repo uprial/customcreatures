@@ -68,6 +68,7 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     }
 
     private void addEffect(CustomLogger customLogger, LivingEntity entity, PotionEffect effect) {
+        //noinspection LocalVariableNamingConvention
         boolean notAffectedOrAffectedMoreWeakly = true;
         for (PotionEffect currentEffect : entity.getActivePotionEffects()) {
             if(currentEffect.getType() == effect.getType()) {
