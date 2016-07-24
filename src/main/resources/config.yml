@@ -33,7 +33,10 @@ debug: false
 handlers:
   - fat-animal
   - rapid-monster
-  - iron-creep
+  - player
+  - iron-zombie
+  - gold-zombie
+  - diamond-skeleton
 
 #
 # ==== Handler ====
@@ -46,6 +49,9 @@ handlers:
 #   max-health: <float-value:0.0001..?> ### A multiplier for max. health of an entity.
 #                                       ### By default, max. health won't be modified.
 #                                       ### (* see description of <float-value> below)
+#                                       ###
+#                                       ### Warning: player's max health is saved on disk
+#                                       ### and each new change will be applied cumulatively.
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.
@@ -274,7 +280,7 @@ fat-animal:
     probability: 5
   max-health:
     type: random
-    min: 2.0
+    min: 1.0
     max: 4.0
     distribution: exp_down
 
@@ -295,54 +301,272 @@ rapid-monster:
       distribution: exp_down
     duration: 99999
 
-iron-creep:
+player:
   filter:
     reasons:
       - DEFAULT
     types:
-      - ZOMBIE
-      - SKELETON
       - PLAYER
-      - CREEPER
-    probability: 100
+  equipment:
+    main-hand:
+      material: APPLE
+
+iron-zombie:
+  filter:
+    types:
+      - ZOMBIE
+    probability: 5
+  effects:
+    - acceleration
+  acceleration:
+    types:
+      - SPEED
+      - JUMP
+    strength: 1
+    duration: 99999
+
   equipment:
     helmet:
-      drop-chance: 100
+      drop-chance: 10
       material-type: IRON
+      durability: 25
+      enchantments:
+        - enchantments.rand_protection
+    boots:
+      drop-chance: 10
+      material-type: IRON
+      durability: 25
+      enchantments:
+        - enchantments.rand_protection
+    chest:
+      drop-chance: 10
+      material-type: IRON
+      durability: 25
+      enchantments:
+        - enchantments.rand_protection
+    leggings:
+      drop-chance: 10
+      material-type: IRON
+      durability: 25
+      enchantments:
+        - enchantments.rand_protection
+    main-hand:
+      drop-chance: 10
+      material: IRON_SWORD
+      durability: 25
+      enchantments:
+        - enchantments.rand_sword_damage
+  max-health: 2.0
+
+gold-zombie:
+  filter:
+    types:
+      - ZOMBIE
+    probability: 2
+  effects:
+    - acceleration
+    - fire_resistance
+  acceleration:
+    types:
+      - SPEED
+      - JUMP
+    strength: 2
+    duration: 99999
+  fire_resistance:
+    types:
+      - FIRE_RESISTANCE
+    strength: 1
+    duration: 99999
+  equipment:
+    helmet:
+      drop-chance: 10
+      material-type: GOLD
       durability: 50
       enchantments:
         - enchantments.high_protection
     boots:
-      drop-chance: 100
-      material-type: IRON
+      drop-chance: 10
+      material-type: GOLD
       durability: 50
       enchantments:
+        - enchantments.high_durability
         - enchantments.high_protection
+        - enchantments.rand_thorns
     chest:
-      drop-chance: 100
-      material-type: IRON
+      drop-chance: 10
+      material-type: GOLD
       durability: 50
       enchantments:
-        - enchantments.high_protection
+        - enchantments.high_protection_fire
     leggings:
-      drop-chance: 100
-      material-type: IRON
+      drop-chance: 10
+      material-type: GOLD
       durability: 50
       enchantments:
         - enchantments.high_protection
     main-hand:
-      drop-chance: 100
-      material: IRON_SWORD
-      amount: 1
-    off-hand:
-      drop-chance: 100
+      drop-chance: 5
       material: GOLD_SWORD
-      amount: 20
-    saddle:
-    armor:
-  max-health: 0.01
+      durability: 50
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_sword_damage
+        - enchantments.high_sword_knockback
+        - enchantments.high_sword_fire_aspect
+        - enchantments.high_sword_looting
+  max-health: 3.0
+
+diamond-skeleton:
+  filter:
+    types:
+      - SKELETON
+    probability: 1
+  effects:
+    - acceleration
+    - regeneration_and_fire_resistance
+    - glowing
+  acceleration:
+    types:
+      - SPEED
+      - JUMP
+    strength: 3
+    duration: 99999
+  regeneration_and_fire_resistance:
+    types:
+      - REGENERATION
+      - FIRE_RESISTANCE
+    strength: 1
+    duration: 99999
+  glowing:
+    types:
+      - GLOWING
+    strength: 1
+    duration: 60
+  equipment:
+    helmet:
+      drop-chance: 5
+      material-type: DIAMOND
+      durability: 33
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_protection
+        - enchantments.high_oxygen_helmet
+        - enchantments.water_worker_helmet
+        - enchantments.high_thorns
+    boots:
+      drop-chance: 5
+      material-type: DIAMOND
+      durability: 33
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_protection
+        - enchantments.high_protection_fall_boots
+        - enchantments.high_depth_strider_boots
+        - enchantments.high_thorns
+    chest:
+      drop-chance: 5
+      material-type: DIAMOND
+      durability: 33
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_protection_fire
+        - enchantments.high_thorns
+    leggings:
+      drop-chance: 5
+      material-type: DIAMOND
+      durability: 33
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_protection
+        - enchantments.high_thorns
+    main-hand:
+      drop-chance: 5
+      material: BOW
+      durability: 33
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_bow_damage
+        - enchantments.high_bow_knockback
+        - enchantments.bow_fire
+        - enchantments.bow_infinity
+  max-health: 4.0
 
 enchantments:
+  # Mix
+  rand_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    level:
+      type: random
+      min: 1
+      max: 4
+      distribution: exp_down
+  rand_sword_damage:
+    type: DAMAGE_ALL
+    level:
+      type: random
+      min: 1
+      max: 5
+      distribution: exp_down
+  rand_thorns:
+    type: THORNS
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
+
+  # Cloths and weapon
+  high_durability:
+    type: DURABILITY
+    level: 3
+
+  # Cloths
   high_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 4
+  high_protection_fire:
+    type: PROTECTION_FIRE
+    level: 4
+  high_protection_fall_boots:
+    type: PROTECTION_FALL
+    level: 4
+  high_oxygen_helmet:
+    type: OXYGEN
+    level: 3
+  water_worker_helmet:
+    type: WATER_WORKER
+    level: 1
+  high_thorns:
+    type: THORNS
+    level: 3
+  high_depth_strider_boots:
+    type: DEPTH_STRIDER
+    level: 3
+
+  # Sword
+  high_sword_damage:
+    type: DAMAGE_ALL
+    level: 5
+  high_sword_knockback:
+    type: KNOCKBACK
+    level: 2
+  high_sword_fire_aspect:
+    type: FIRE_ASPECT
+    level: 2
+  high_sword_looting:
+    type: LOOT_BONUS_MOBS
+    level: 3
+
+  # Bow
+  high_bow_damage:
+    type: ARROW_DAMAGE
+    level: 5
+  high_bow_knockback:
+    type: ARROW_KNOCKBACK
+    level: 2
+  bow_fire:
+    type: ARROW_FIRE
+    level: 1
+  bow_infinity:
+    type: ARROW_INFINITE
+    level: 1
