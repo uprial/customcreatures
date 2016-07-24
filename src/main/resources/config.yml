@@ -92,9 +92,31 @@ handlers:
 #       ...
 #     - <entity-typeN>
 #
+#   type-sets:  ### Pre-defined sets of possible entity types.
+#               ### By default, entities of all types will be processed.
+#               ###
+#               ### If you define both "types" and "type-sets" filters,
+#               ### then entity types will be merged.
+#               ### So, you can define types as [ZOMBIE] and type-sets as [ANIMALS].
+#               ###
+#     - <type-set1>   ### (* see description of <type-set> below)
+#       ...
+#     - <type-setN>
+#
 #   probability: <0..100> ### Probability in percents that this handler will
 #                         ### be applied after all the filters.
 #                         ### By default the probability is 100%.
+#
+# #### Type set ####
+#
+# <type-set>: ANIMALS | GOLEMS | MONSTERS | CREATURES | FLYING
+#
+# ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR, RABBIT, SHEEP, WOLF]
+# GOLEMS: [IRON_GOLEM, SHULKER, SNOWMAN]
+# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE, SILVERFISH,
+#            SKELETON, SPIDER, WITCH, WITHER, ZOMBIE]
+# CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, VILLAGER]
+# FLYING: [ENDER_DRAGON, GHAST]
 #
 # #### Effect ####
 #
@@ -244,8 +266,8 @@ fat-rabbit:
   filter:
     reasons:
       - NATURAL
-    types:
-      - RABBIT
+    type-sets:
+      - ANIMALS
     probability: 5
   max-health:
     type: random
@@ -255,8 +277,8 @@ fat-rabbit:
 
 rapid-creeper:
   filter:
-    types:
-      - CREEPER
+    type-sets:
+      - MONSTERS
     probability: 5
   effects:
     - acceleration
@@ -266,7 +288,7 @@ rapid-creeper:
     strength:
       type: random
       min: 1
-      max: 10
+      max: 5
       distribution: exp_down
     duration: 99999
 
