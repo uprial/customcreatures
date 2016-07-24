@@ -164,7 +164,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 1"), getCustomLogger(), "f", "filter");
-        assertTrue(getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) < 2);
+        assertTrue(getPasses(1000, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) < 10);
     }
 
     private static int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
