@@ -39,6 +39,7 @@ public final class HItem {
         if (maxHealth != null) {
             double value = entity.getMaxHealth() * maxHealth.getValue();
             entity.setMaxHealth(value);
+            entity.setHealth(value);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle '%s' modification: set max. health of %s to %.2f",
                         name, format(entity), value));
