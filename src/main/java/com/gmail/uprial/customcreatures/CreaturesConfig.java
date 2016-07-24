@@ -13,10 +13,16 @@ import java.util.*;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
 public class CreaturesConfig {
+    private boolean debugMode;
+
     List<HItem> handlers;
 
     public CreaturesConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         readConfig(config, customLogger);
+    }
+
+    public boolean isDebugMode() {
+        return debugMode;
     }
 
     public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
@@ -26,8 +32,8 @@ public class CreaturesConfig {
     }
 
     private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-        boolean debug = ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
-        customLogger.setDebugMode(debug);
+        debugMode = ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
+        customLogger.setDebugMode(debugMode);
 
         List<?> handlersConfig = config.getList("handlers");
         if((handlersConfig == null) || (handlersConfig.size() <= 0)) {

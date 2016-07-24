@@ -1,7 +1,8 @@
 # High priority
-- Fix enchantment of a Skeleton’s bow in main hand.
+- Fix config reload
 - Check that Zombie's sword’s enchantments work.
 - Fix player's effects at respawn.
+- Fix enchantment of a Skeleton’s bow in main hand.
 - Release v1.0.1.
 
 # Next versions

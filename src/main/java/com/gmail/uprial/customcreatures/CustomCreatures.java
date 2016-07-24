@@ -29,9 +29,10 @@ public final class CustomCreatures extends JavaPlugin {
         return creaturesConfig;
     }
 
-    public void reloadCreaturesConfig(CustomLogger customLogger) {
+    public void reloadCreaturesConfig(CustomLogger userCustomLogger) {
         reloadConfig();
-        creaturesConfig = loadConfig(getConfig(), customLogger);
+        creaturesConfig = loadConfig(getConfig(), userCustomLogger);
+        customLogger.setDebugMode(creaturesConfig.isDebugMode());
     }
 
     @Override

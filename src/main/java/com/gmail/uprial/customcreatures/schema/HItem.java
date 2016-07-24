@@ -34,8 +34,7 @@ public final class HItem {
         this.equipment = equipment;
     }
 
-    public void handle(CustomCreatures plugin, CustomLogger customLogger,
-                       LivingEntity entity, SpawnReason spawnReason) {
+    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         if (filter.isPassed(entity.getType(), spawnReason)) {
             applyMaxHealth(plugin, customLogger, entity);
             applyEffects(customLogger, entity);
