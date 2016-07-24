@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.*;
 
 import static com.gmail.uprial.customcreatures.schema.HItemTypeSet.ANIMALS;
-import static com.sun.xml.internal.xsom.impl.UName.comparator;
 import static org.bukkit.entity.EntityType.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -117,11 +116,7 @@ public class HItemTypeSetTest {
         Comparator<String> comparator = new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                if (o1.compareTo(o2) >= 1) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                return o1.compareTo(o2) >= 1 ? 1 : -1;
             }
         };
 
