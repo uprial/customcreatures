@@ -1,5 +1,6 @@
 package com.gmail.uprial.customcreatures.schema;
 
+import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,6 +20,15 @@ public class ProbabilityTest extends TestConfigBase {
                 "p: 1"),
                 getParanoiacCustomLogger(), "p", "probability");
         assertEquals("1", probability.toString());
+    }
+
+    @Test
+    public void testZeroProbability() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A probability should be at least 1");
+        getFromConfig(getPreparedConfig(
+                "p: 0"),
+                getParanoiacCustomLogger(), "p", "probability");
     }
 
     @Test

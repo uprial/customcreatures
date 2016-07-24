@@ -23,7 +23,7 @@ public class Probability {
     }
 
     public static Probability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        int probability = getInt(config, customLogger, key, title, 0, MAX_PERCENT, MAX_PERCENT);
+        int probability = getInt(config, customLogger, key, title, 1, MAX_PERCENT, MAX_PERCENT);
         if (probability >= MAX_PERCENT) {
             return null;
         }
