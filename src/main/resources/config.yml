@@ -365,17 +365,19 @@ gold-zombie:
     probability: 2
   effects:
     - acceleration
-    - fire_resistance
+    - damage
+    - effects.fire_resistance
+    - effects.regeneration
   acceleration:
     types:
       - SPEED
       - JUMP
     strength: 2
     duration: 99999
-  fire_resistance:
+  damage:
     types:
-      - FIRE_RESISTANCE
-    strength: 1
+      - INCREASE_DAMAGE
+    strength: 4
     duration: 99999
   equipment:
     helmet:
@@ -423,19 +425,14 @@ diamond-skeleton:
     probability: 1
   effects:
     - acceleration
-    - regeneration_and_fire_resistance
     - glowing
+    - effects.fire_resistance
+    - effects.regeneration
   acceleration:
     types:
       - SPEED
       - JUMP
     strength: 3
-    duration: 99999
-  regeneration_and_fire_resistance:
-    types:
-      - REGENERATION
-      - FIRE_RESISTANCE
-    strength: 1
     duration: 99999
   glowing:
     types:
@@ -491,6 +488,20 @@ diamond-skeleton:
         - enchantments.bow_infinity
   max-health: 4.0
 
+# Global templates of effects
+effects:
+  fire_resistance:
+    types:
+      - FIRE_RESISTANCE
+    strength: 1
+    duration: 99999
+  regeneration:
+    types:
+      - REGENERATION
+    strength: 1
+    duration: 99999
+
+# Global templates of enchantments
 enchantments:
   # Mix
   rand_protection:
