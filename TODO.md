@@ -1,10 +1,11 @@
 # High priority
-- Change bow for Skeleton in main hand
-- Fix start health if its max changed
-- Check that Zombie's sword enchantments work
+- Fix enchantment of a Skeleton’s bow in main hand.
+- Fix a starting health if its max value was changed.
+- Check that Zombie's sword’s enchantments work.
+- Fix player's effects at respawn.
 - Release v1.0.1.
 
-# Low priority
+# Next versions
 - Implement specific properties of LivingEntities: powered creeper;
 horse's jump strength, domestication, style, variant, armor and saddle;
 saddled pig; angry bunny; baby zombie.
