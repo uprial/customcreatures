@@ -14,8 +14,8 @@ public abstract class TestConfigBase {
         loadConfig(new String[]{content});
     }
 
-    protected static void loadConfig(String... contents) throws InvalidConfigurationException, InvalidConfigException {
-        loadConfig(getCustomLogger(), contents);
+    protected static CreaturesConfig loadConfig(String... contents) throws InvalidConfigurationException, InvalidConfigException {
+        return loadConfig(getCustomLogger(), contents);
     }
 
     protected static CreaturesConfig loadConfig(TestCustomLogger testCustomLogger, String... contents) throws InvalidConfigurationException, InvalidConfigException {

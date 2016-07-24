@@ -9,44 +9,53 @@ import org.bukkit.plugin.java.JavaPlugin;
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
 public final class CustomCreatures extends JavaPlugin {
-    private CustomLogger customLogger = null;
+    private CustomLogger consoleLogger = null;
     private CreaturesConfig creaturesConfig = null;
     private CustomCreaturesEventListener customCreaturesEventListener = null;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        customLogger = new CustomLogger(getLogger());
-        creaturesConfig = loadConfig(getConfig(), customLogger);
-        customCreaturesEventListener = new CustomCreaturesEventListener(this, customLogger);
+        consoleLogger = new CustomLogger(getLogger());
+        creaturesConfig = loadConfig(getConfig(), consoleLogger);
+        customCreaturesEventListener = new CustomCreaturesEventListener(this, consoleLogger);
 
         getServer().getPluginManager().registerEvents(customCreaturesEventListener, this);
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));
-        customLogger.info("Plugin enabled");
+        consoleLogger.info("Plugin enabled");
     }
 
     public CreaturesConfig getCreaturesConfig() {
         return creaturesConfig;
     }
 
-    public void reloadCreaturesConfig(CustomLogger userCustomLogger) {
+    public void reloadCreaturesConfig(CustomLogger userLogger) {
         reloadConfig();
-        creaturesConfig = loadConfig(getConfig(), userCustomLogger);
-        customLogger.setDebugMode(creaturesConfig.isDebugMode());
+        creaturesConfig = loadConfig(getConfig(), userLogger, consoleLogger);
     }
 
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(customCreaturesEventListener);
-        customLogger.info("Plugin disabled");
+        consoleLogger.info("Plugin disabled");
     }
 
     static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {
+        return loadConfig(config, customLogger, null);
+    }
+
+    static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger mainLogger, CustomLogger secondLogger) {
         CreaturesConfig creaturesConfig = null;
         try {
-            creaturesConfig = new CreaturesConfig(config, customLogger);
+            boolean isDebugMode = CreaturesConfig.isDebugMode(config, mainLogger);
+            mainLogger.setDebugMode(isDebugMode);
+            if(secondLogger != null) {
+                secondLogger.setDebugMode(isDebugMode);
+            }
+
+            creaturesConfig = new CreaturesConfig(config, mainLogger);
         } catch (InvalidConfigException e) {
-            customLogger.error(e.getMessage());
+            mainLogger.error(e.getMessage());
         }
 
         return creaturesConfig;

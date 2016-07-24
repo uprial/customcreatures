@@ -8,23 +8,36 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CreaturesConfigTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();
 
     @Test
+    public void testEmptyDebug() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'debug' flag. Use default value false");
+        CreaturesConfig.isDebugMode(getPreparedConfig(""), getDebugFearingCustomLogger());
+    }
+
+    @Test
+    public void testNormalDebug() throws Exception {
+        assertTrue(CreaturesConfig.isDebugMode(getPreparedConfig("debug: true"), getDebugFearingCustomLogger()));
+    }
+
+    @Test
+    public void testEmpty() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty 'handlers' list");
+        loadConfig(getDebugFearingCustomLogger(), "");
+    }
+
+    @Test
     public void testNotMap() throws Exception {
         e.expect(InvalidConfigurationException.class);
         e.expectMessage("Top level is not a Map.");
         loadConfig("x");
-    }
-
-    @Test
-    public void testEmptyDebug() throws Exception {
-        e.expect(RuntimeException.class);
-        e.expectMessage("Empty 'debug' flag. Use default value false");
-        loadConfig(getDebugFearingCustomLogger(), "");
     }
 
     @Test
@@ -87,10 +100,10 @@ public class CreaturesConfigTest extends TestConfigBase {
 
     @Test
     public void testNormalConfig() throws Exception {
-        assertEquals("[[name: x, filter: [types: null, type-sets: null, reasons: null," +
+        assertEquals(
+                "[[name: x, filter: [types: null, type-sets: null, reasons: null," +
                 " probability: 99], effects: null, maxHealth: 4.0, equipment: null]]",
-                loadConfig(getCustomLogger(),
-                        "handlers:",
+                loadConfig("handlers:",
                         " - x",
                         "x:",
                         " filter:",
