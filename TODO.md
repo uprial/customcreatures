@@ -1,6 +1,7 @@
 # High priority
-- Fix enchantment of a Skeleton’s bow in main hand.
 - Fix a starting health if its max value was changed.
+- Fix max health's configuration of player: don't change it cumulatively.
+- Fix enchantment of a Skeleton’s bow in main hand.
 - Check that Zombie's sword’s enchantments work.
 - Fix player's effects at respawn.
 - Release v1.0.1.
