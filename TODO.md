@@ -1,6 +1,7 @@
 # High priority
-- Create default set of handlers:
-(gold, iron, diamond) * (zombie, skeleton)
+- Change bow for Skeleton in main hand
+- Fix start health if its max changed
+- Check that Zombie's sword enchantments work
 - Release v1.0.1.
 
 # Low priority

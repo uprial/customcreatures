@@ -32,7 +32,7 @@ public class CustomLogger {
     public void debug(String message) {
         if (debugMode) {
             //Never ever show debug messages to user
-            log2console(Level.INFO, message);
+            log2console(Level.INFO, String.format("[DEBUG] %s", message));
         }
     }
 
