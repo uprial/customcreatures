@@ -7,6 +7,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+
 public class CreaturesConfigTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();
@@ -81,5 +83,18 @@ public class CreaturesConfigTest extends TestConfigBase {
                 " - x",
                 "x:",
                 " filter: dd");
+    }
+
+    @Test
+    public void testNormalConfig() throws Exception {
+        assertEquals("[[name: x, filter: [types: null, type-sets: null, reasons: null," +
+                " probability: 99], effects: null, maxHealth: 4.0, equipment: null]]",
+                loadConfig(getCustomLogger(),
+                        "handlers:",
+                        " - x",
+                        "x:",
+                        " filter:",
+                        "   probability: 99",
+                        " max-health: 4.0").toString());
     }
 }

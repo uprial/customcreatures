@@ -104,4 +104,9 @@ public final class HItem {
 
         return new HItem(key, filter, effectsList, maxHealth, equipment);
     }
+
+    public String toString() {
+        return String.format("[name: %s, filter: %s, effects: %s, maxHealth: %s, equipment: %s]",
+                name, filter, effects, maxHealth, equipment);
+    }
 }

@@ -65,4 +65,8 @@ public class CreaturesConfig {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
     }
+
+    public String toString() {
+        return handlers.toString();
+    }
 }
