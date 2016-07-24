@@ -4,13 +4,13 @@ import com.google.common.collect.Lists;
 import org.bukkit.entity.EntityType;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.schema.HItemTypeSet.ANIMALS;
 import static org.bukkit.entity.EntityType.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class HItemTypeSetTest {
 
@@ -113,20 +113,14 @@ public class HItemTypeSetTest {
     }
 
     private static <T> List<String> getSortedList(Set<T> list) {
-        Comparator<String> comparator = new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2) >= 1 ? 1 : -1;
-            }
-        };
-
-        ArrayList<String> stringList = new ArrayList<>();
+        String[] strings = new String[list.size()];
+        int i = 0;
         for (T item : list) {
-            stringList.add(item.toString());
+            strings[i] = item.toString();
+            i ++;
         }
+        Arrays.sort(strings);
 
-        stringList.sort(comparator);
-
-        return stringList;
+        return Lists.newArrayList(strings);
     }
 }
