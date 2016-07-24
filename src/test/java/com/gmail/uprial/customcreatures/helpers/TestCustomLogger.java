@@ -27,7 +27,7 @@ class TestCustomLogger extends CustomLogger {
     }
 
     @Override
-    protected void log(Level level, String message) {
+    protected void log2console(Level level, String message) {
         if (failOnAny || ((failOnError) && ((level == Level.SEVERE) || (level == Level.WARNING)))) {
             fail(message);
         }

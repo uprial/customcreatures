@@ -10,20 +10,20 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
     public static final String COMMAND_NS = "customcreatures";
 
     private final CustomCreatures plugin;
-    private final CustomLogger customLogger;
 
-    CustomCreaturesCommandExecutor(CustomCreatures plugin, CustomLogger customLogger) {
+    CustomCreaturesCommandExecutor(CustomCreatures plugin) {
         this.plugin = plugin;
-        this.customLogger = customLogger;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase(COMMAND_NS)) {
+            CustomLogger customLogger = new CustomLogger(plugin.getLogger(), sender);
+
             if((args.length >= 1) && (args[0].equalsIgnoreCase("reload"))) {
                 if (sender.hasPermission(COMMAND_NS + ".reload")) {
-                    plugin.reloadCreaturesConfig();
-                    customLogger.userInfo(sender, "CustomCreatures config reloaded.");
+                    plugin.reloadCreaturesConfig(customLogger);
+                    customLogger.info("CustomCreatures config reloaded.");
                     return true;
                 }
             }
@@ -34,7 +34,7 @@ class CustomCreaturesCommandExecutor implements CommandExecutor {
                     helpString += '/' + COMMAND_NS + " reload - reload config from disk\n";
                 }
 
-                customLogger.userInfo(sender, helpString);
+                customLogger.info(helpString);
                 return true;
             }
         }

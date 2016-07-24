@@ -21,7 +21,7 @@ public final class CustomCreatures extends JavaPlugin {
         customCreaturesEventListener = new CustomCreaturesEventListener(this, customLogger);
 
         getServer().getPluginManager().registerEvents(customCreaturesEventListener, this);
-        getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this, customLogger));
+        getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));
         customLogger.info("Plugin enabled");
     }
 
@@ -29,7 +29,7 @@ public final class CustomCreatures extends JavaPlugin {
         return creaturesConfig;
     }
 
-    public void reloadCreaturesConfig() {
+    public void reloadCreaturesConfig(CustomLogger customLogger) {
         reloadConfig();
         creaturesConfig = loadConfig(getConfig(), customLogger);
     }
