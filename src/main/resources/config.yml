@@ -31,8 +31,8 @@ debug: false
 #
 
 handlers:
-  - fat-rabbit
-  - rapid-creeper
+  - fat-animal
+  - rapid-monster
   - iron-creep
 
 #
@@ -109,12 +109,15 @@ handlers:
 #
 # #### Type set ####
 #
+# A set of entity types. Some living entities do not belong to any groups:
+# [SLIME, MAGMA_CUBE, SQUID, PLAYER]
+#
 # <type-set>: ANIMALS | GOLEMS | MONSTERS | CREATURES | FLYING
 #
 # ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR, RABBIT, SHEEP, WOLF]
 # GOLEMS: [IRON_GOLEM, SHULKER, SNOWMAN]
-# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE, SILVERFISH,
-#            SKELETON, SPIDER, WITCH, WITHER, ZOMBIE]
+# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE,
+#            SILVERFISH, SKELETON, SPIDER, WITCH, WITHER, ZOMBIE]
 # CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, VILLAGER]
 # FLYING: [ENDER_DRAGON, GHAST]
 #
@@ -262,7 +265,7 @@ handlers:
 # ### By default, a NORMAL distribution will be chosen.
 #
 
-fat-rabbit:
+fat-animal:
   filter:
     reasons:
       - NATURAL
@@ -275,7 +278,7 @@ fat-rabbit:
     max: 4.0
     distribution: exp_down
 
-rapid-creeper:
+rapid-monster:
   filter:
     type-sets:
       - MONSTERS
