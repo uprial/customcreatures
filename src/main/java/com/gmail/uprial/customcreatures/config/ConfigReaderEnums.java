@@ -13,7 +13,8 @@ public final class ConfigReaderEnums {
         }
 
         Set<T> set = new HashSet<>();
-        for(int i = 0; i < strings.size(); i++) {
+        int stringSize = strings.size();
+        for(int i = 0; i < stringSize; i++) {
             String string = strings.get(i);
             T enumItem = getEnumFromString(enumType, string, title, String.format(" at pos %d", i));
             if (set.contains(enumItem)) {

@@ -38,7 +38,8 @@ public class CreaturesConfig {
         handlers = new ArrayList<>();
         Map<String,Integer> keys = new HashMap<>();
 
-        for(int i = 0; i < handlersConfig.size(); i++) {
+        int handlersConfigSize = handlersConfig.size();
+        for(int i = 0; i < handlersConfigSize; i++) {
             String key = getKey(handlersConfig.get(i), "'handlers'", i);
             String keyLC = key.toLowerCase(Locale.getDefault());
             if (keys.containsKey(keyLC)) {

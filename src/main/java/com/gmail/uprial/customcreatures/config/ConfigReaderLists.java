@@ -32,7 +32,8 @@ public final class ConfigReaderLists {
 
         Map<String,Integer> keys = new HashMap<>();
 
-        for(int i = 0; i < itemsConfig.size(); i++) {
+        int itemsConfigSize = itemsConfig.size();
+        for(int i = 0; i < itemsConfigSize; i++) {
             String subKey = getKey(itemsConfig.get(i), title, i);
             String subKeyFull;
             if (config.get(subKey) != null) {
