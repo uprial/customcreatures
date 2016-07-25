@@ -12,7 +12,7 @@ import java.util.*;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
-public class CreaturesConfig {
+public final class CreaturesConfig {
     private final List<HItem> handlers;
 
     private CreaturesConfig(List<HItem> handlers) {

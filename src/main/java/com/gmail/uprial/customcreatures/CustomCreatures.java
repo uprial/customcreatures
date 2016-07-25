@@ -12,6 +12,8 @@ import java.io.File;
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
 public final class CustomCreatures extends JavaPlugin {
+    private static final int DEFER_DELAY = 1;
+
     private final String CONFIG_FILE_NAME = "config.yml";
     private final File configFile = new File(getDataFolder(), CONFIG_FILE_NAME);
 
@@ -56,6 +58,10 @@ public final class CustomCreatures extends JavaPlugin {
     @Override
     public FileConfiguration getConfig() {
         return YamlConfiguration.loadConfiguration(configFile);
+    }
+
+    public void defer(Runnable task) {
+        getServer().getScheduler().scheduleSyncDelayedTask(this, task, DEFER_DELAY);
     }
 
     static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {

@@ -1,7 +1,5 @@
 # High priority
-- Localize workarounds related to schedulers. Detect a real need to 
-schedule a task with maximal accuracy and use only one periodic 
-scheduler.
+- Use only one periodic  scheduler.
 - Release v1.0.1.
 
 # Next versions

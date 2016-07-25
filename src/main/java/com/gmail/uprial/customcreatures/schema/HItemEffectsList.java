@@ -1,9 +1,12 @@
 package com.gmail.uprial.customcreatures.schema;
 
+import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.tasks.HItemEffectListTask;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,15 @@ public final class HItemEffectsList {
         this.itemEffects = itemEffects;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+        if(entity instanceof Player) {
+            plugin.defer(new HItemEffectListTask(this, customLogger, entity));
+        } else {
+            applyImmediately(customLogger, entity);
+        }
+    }
+
+    public void applyImmediately(CustomLogger customLogger, LivingEntity entity) {
         for (HItemEffect itemEffect : itemEffects) {
             itemEffect.apply(customLogger, entity);
         }
