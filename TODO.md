@@ -1,5 +1,4 @@
 # High priority
-- Use only one periodic  scheduler.
 - Release v1.0.1.
 
 # Next versions

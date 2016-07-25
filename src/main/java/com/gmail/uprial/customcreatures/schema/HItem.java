@@ -38,8 +38,8 @@ public final class HItem {
     public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         if (filter.isPassed(entity.getType(), spawnReason)) {
             applyMaxHealth(plugin, customLogger, entity);
-            applyEffects(plugin, customLogger, entity);
-            applyEquipment(plugin, customLogger, entity);
+            applyEffects(customLogger, entity);
+            applyEquipment(customLogger, entity);
         }
     }
 
@@ -55,15 +55,15 @@ public final class HItem {
         }
     }
 
-    private void applyEffects(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    private void applyEffects(CustomLogger customLogger, LivingEntity entity) {
         if (effects != null) {
-            effects.apply(plugin, customLogger, entity);
+            effects.apply(customLogger, entity);
         }
     }
 
-    private void applyEquipment(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    private void applyEquipment(CustomLogger customLogger, LivingEntity entity) {
         if (equipment != null) {
-            equipment.apply(plugin, customLogger, entity);
+            equipment.apply(customLogger, entity);
         }
     }
 

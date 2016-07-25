@@ -45,10 +45,10 @@ public final class HItemInHand {
         this.durability = durability;
     }
 
-    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
             if((entity instanceof Skeleton) && (handType == MAIN_HAND)) {
-                plugin.defer(new HItemInHandTask(this, customLogger, entity));
+                CustomCreatures.defer(new HItemInHandTask(this, customLogger, entity));
             } else {
                 applyImmediately(customLogger, entity);
             }

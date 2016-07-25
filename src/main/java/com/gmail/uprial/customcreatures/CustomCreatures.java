@@ -12,7 +12,7 @@ import java.io.File;
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
 public final class CustomCreatures extends JavaPlugin {
-    private static final int DEFER_DELAY = 1;
+    private static final int CRON_INTERVAL = 1;
 
     private final String CONFIG_FILE_NAME = "config.yml";
     private final File configFile = new File(getDataFolder(), CONFIG_FILE_NAME);
@@ -24,6 +24,10 @@ public final class CustomCreatures extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
+
+        CustomCreaturesCron cronTask = new CustomCreaturesCron();
+        getServer().getScheduler().scheduleSyncRepeatingTask(this, cronTask, CRON_INTERVAL, CRON_INTERVAL);
+
         consoleLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
         customCreaturesEventListener = new CustomCreaturesEventListener(this, consoleLogger);
@@ -60,8 +64,8 @@ public final class CustomCreatures extends JavaPlugin {
         return YamlConfiguration.loadConfiguration(configFile);
     }
 
-    public void defer(Runnable task) {
-        getServer().getScheduler().scheduleSyncDelayedTask(this, task, DEFER_DELAY);
+    public static void defer(Runnable task) {
+        CustomCreaturesCron.defer(task);
     }
 
     static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {

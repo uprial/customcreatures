@@ -23,9 +23,9 @@ public final class HItemEffectsList {
         this.itemEffects = itemEffects;
     }
 
-    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, LivingEntity entity) {
         if(entity instanceof Player) {
-            plugin.defer(new HItemEffectListTask(this, customLogger, entity));
+            CustomCreatures.defer(new HItemEffectListTask(this, customLogger, entity));
         } else {
             applyImmediately(customLogger, entity);
         }
