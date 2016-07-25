@@ -1,6 +1,4 @@
 # High priority
-- Use metadata to store initial maximal health only for instances of
-'Player' class.
 - Use static method to create a creatures' config.
 - Hide access to 'handlers' field in config.
 - Localize workarounds related to schedulers. Detect a real need to 

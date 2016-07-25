@@ -102,7 +102,7 @@ public class CreaturesConfigTest extends TestConfigBase {
     public void testNormalConfig() throws Exception {
         assertEquals(
                 "[[name: x, filter: [types: null, type-sets: null, reasons: null," +
-                " probability: 99], effects: null, maxHealth: 4.0, equipment: null]]",
+                " probability: 99], effects: null, max-health: 4.0, equipment: null]]",
                 loadConfig("handlers:",
                         " - x",
                         "x:",
