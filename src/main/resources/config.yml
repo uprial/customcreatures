@@ -91,6 +91,11 @@ handlers:
 #            ###
 #            ### An entity should be a subinterface of LivingEntity, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+#            ###
+#            ### If an entity's type is "PLAYER", then all the handlers will
+#            ### be applied with delay of 1 server's tick.
+#            ### That's caused by tricky behaviour of PlayerRespawnEvent, see
+#https://bukkit.org/threads/add-potion-effect.62082/
 #     - <entity-type1>
 #       ...
 #     - <entity-typeN>
@@ -304,6 +309,14 @@ player:
       - DEFAULT
     types:
       - PLAYER
+  effects:
+    - acceleration
+  acceleration:
+    types:
+      - SPEED
+      - JUMP
+    strength: 1
+    duration: 30
   equipment:
     main-hand:
       material: APPLE

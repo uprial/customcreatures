@@ -1,5 +1,4 @@
 # High priority
-- Fix player's effects at respawn.
 - Fix enchantment of a Skeleton’s bow in main hand.
 - Release v1.0.1.
 
