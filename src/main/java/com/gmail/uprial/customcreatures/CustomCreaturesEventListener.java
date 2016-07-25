@@ -9,7 +9,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 class CustomCreaturesEventListener implements Listener {
-    private final static int RESPAWN_HADNLER_DELAY = 1;
+    private static final int RESPAWN_HANDLER_DELAY = 1;
 
     private final CustomCreatures plugin;
     private final CustomLogger customLogger;
@@ -31,7 +31,7 @@ class CustomCreaturesEventListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         PlayerRespawnTask task = new PlayerRespawnTask(this, event);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, RESPAWN_HADNLER_DELAY);
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, RESPAWN_HANDLER_DELAY);
     }
 
     public void onPlayerRespawnDelayed(PlayerRespawnEvent event) {
