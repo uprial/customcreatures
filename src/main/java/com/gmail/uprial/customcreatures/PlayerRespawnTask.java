@@ -13,6 +13,6 @@ class PlayerRespawnTask implements Runnable {
 
     @Override
     public void run() {
-        eventListener.onPlayerRespawnDelayed(event);
+        eventListener.handlePlayerRespawn(event);
     }
 }

@@ -1,5 +1,5 @@
 # High priority
-- Fix enchantment of a Skeleton’s bow in main hand.
+- Localize workarounds related to schedulers.
 - Release v1.0.1.
 
 # Next versions

@@ -1,6 +1,7 @@
 package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -9,7 +10,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 class CustomCreaturesEventListener implements Listener {
-    private static final int RESPAWN_HANDLER_DELAY = 1;
+    private static final int HANDLER_DELAY = 1;
 
     private final CustomCreatures plugin;
     private final CustomLogger customLogger;
@@ -23,19 +24,30 @@ class CustomCreaturesEventListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (! event.isCancelled()) {
-            plugin.getCreaturesConfig().handle(plugin, customLogger, event.getEntity(), event.getSpawnReason());
+            if (event.getEntity() instanceof Skeleton) {
+                defer(new CreatureSpawnTask(this, event));
+            } else {
+                handleCreatureSpawn(event);
+            }
         }
+    }
+
+    public void handleCreatureSpawn(CreatureSpawnEvent event) {
+        plugin.getCreaturesConfig().handle(plugin, customLogger, event.getEntity(), event.getSpawnReason());
     }
 
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        PlayerRespawnTask task = new PlayerRespawnTask(this, event);
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, RESPAWN_HANDLER_DELAY);
+        defer(new PlayerRespawnTask(this, event));
     }
 
-    public void onPlayerRespawnDelayed(PlayerRespawnEvent event) {
+    public void handlePlayerRespawn(PlayerRespawnEvent event) {
         plugin.getCreaturesConfig().handle(plugin, customLogger, event.getPlayer(), SpawnReason.DEFAULT);
+    }
+
+    private void defer(Runnable task) {
+        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, HANDLER_DELAY);
     }
 
 }
