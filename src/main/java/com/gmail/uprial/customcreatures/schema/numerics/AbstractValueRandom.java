@@ -13,10 +13,10 @@ import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributio
 public abstract class AbstractValueRandom<T> implements IValue<T> {
     private static final RandomDistributionType DEFAULT_DISTRIBUTION_TYPE = NORMAL;
 
-    protected final RandomDistributionType distributionType;
-    protected final T min;
-    protected final T max;
-    protected final Random random = new Random();
+    final RandomDistributionType distributionType;
+    final T min;
+    final T max;
+    final Random random = new Random();
 
     AbstractValueRandom(RandomDistributionType distributionType, T min, T max) {
         this.distributionType = distributionType;

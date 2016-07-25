@@ -8,7 +8,7 @@ import com.gmail.uprial.customcreatures.schema.numerics.IntValueRandom;
 import com.gmail.uprial.customcreatures.schema.numerics.ValueSimple;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public final class HValue {
+final class HValue {
 
     public static IValue<Double> getDoubleFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                      double hardMin, double hardMax) throws InvalidConfigException {

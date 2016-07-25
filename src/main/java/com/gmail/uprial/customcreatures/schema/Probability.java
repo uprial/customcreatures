@@ -14,7 +14,7 @@ public class Probability {
     private final int probability;
     private final Random random = new Random();
 
-    protected Probability(int probability) {
+    Probability(int probability) {
         this.probability = probability;
     }
 

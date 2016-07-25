@@ -18,7 +18,7 @@ import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
  */
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public final class EntityEquipmentHelper {
+final class EntityEquipmentHelper {
 
     public static void setItem(EntityEquipment entityEquipment, ClothType clothType, ItemStack itemStack) throws OperationIsNotSupportedException {
         try {

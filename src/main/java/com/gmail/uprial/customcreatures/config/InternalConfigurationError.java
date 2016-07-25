@@ -1,8 +1,8 @@
 package com.gmail.uprial.customcreatures.config;
 
 @SuppressWarnings("ExceptionClassNameDoesntEndWithException")
-public class InternalConfigurationError extends RuntimeException {
-    public InternalConfigurationError(String message) {
+class InternalConfigurationError extends RuntimeException {
+    InternalConfigurationError(String message) {
         super(message);
     }
 }
