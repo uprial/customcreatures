@@ -71,7 +71,7 @@ public final class CustomCreatures extends JavaPlugin {
                 secondLogger.setDebugMode(isDebugMode);
             }
 
-            creaturesConfig = new CreaturesConfig(config, mainLogger);
+            creaturesConfig = CreaturesConfig.getFromConfig(config, mainLogger);
         } catch (InvalidConfigException e) {
             mainLogger.error(e.getMessage());
         }

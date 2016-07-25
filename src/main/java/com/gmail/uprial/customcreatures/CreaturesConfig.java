@@ -13,10 +13,10 @@ import java.util.*;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
 public class CreaturesConfig {
-    List<HItem> handlers;
+    private final List<HItem> handlers;
 
-    public CreaturesConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
-        readConfig(config, customLogger);
+    private CreaturesConfig(List<HItem> handlers) {
+        this.handlers = handlers;
     }
 
     public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
@@ -29,13 +29,13 @@ public class CreaturesConfig {
         return ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
     }
 
-    private void readConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
+    public static CreaturesConfig getFromConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         List<?> handlersConfig = config.getList("handlers");
         if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
             throw new InvalidConfigException("Empty 'handlers' list");
         }
 
-        handlers = new ArrayList<>();
+        List<HItem> handlers = new ArrayList<>();
         Map<String,Integer> keys = new HashMap<>();
 
         int handlersConfigSize = handlersConfig.size();
@@ -60,6 +60,8 @@ public class CreaturesConfig {
         if(handlers.size() < 1) {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
+
+        return new CreaturesConfig(handlers);
     }
 
     public String toString() {
