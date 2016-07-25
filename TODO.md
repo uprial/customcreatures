@@ -1,5 +1,4 @@
 # High priority
-- Hide access to 'handlers' field in config.
 - Localize workarounds related to schedulers. Detect a real need to 
 schedule a task with maximal accuracy and use only one periodic 
 scheduler.
