@@ -283,7 +283,7 @@ fat-animal:
   max-health:
     type: random
     min: 1.0
-    max: 4.0
+    max: 5.0
     distribution: exp_down
 
 rapid-monster:
@@ -299,7 +299,7 @@ rapid-monster:
     strength:
       type: random
       min: 1
-      max: 5
+      max: 10
       distribution: exp_down
     duration: 99999
 
@@ -315,8 +315,8 @@ player:
     types:
       - SPEED
       - JUMP
-    strength: 1
-    duration: 30
+    strength: 2
+    duration: 20
   equipment:
     main-hand:
       material: APPLE
@@ -332,7 +332,7 @@ iron-zombie:
     types:
       - SPEED
       - JUMP
-    strength: 1
+    strength: 2
     duration: 99999
 
   equipment:
@@ -366,7 +366,7 @@ iron-zombie:
       durability: 25
       enchantments:
         - enchantments.rand_sword_damage
-  max-health: 2.0
+  max-health: 1.5
 
 gold-zombie:
   filter:
@@ -382,7 +382,7 @@ gold-zombie:
     types:
       - SPEED
       - JUMP
-    strength: 2
+    strength: 3
     duration: 99999
   damage:
     types:
@@ -426,7 +426,7 @@ gold-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
-  max-health: 3.0
+  max-health: 2.0
 
 diamond-skeleton:
   filter:
@@ -442,13 +442,13 @@ diamond-skeleton:
     types:
       - SPEED
       - JUMP
-    strength: 3
+    strength: 5
     duration: 99999
   glowing:
     types:
       - GLOWING
     strength: 1
-    duration: 60
+    duration: 30
   equipment:
     helmet:
       drop-chance: 5
@@ -496,7 +496,7 @@ diamond-skeleton:
         - enchantments.high_bow_knockback
         - enchantments.bow_fire
         - enchantments.bow_infinity
-  max-health: 4.0
+  max-health: 3.0
 
 # Global templates of effects
 effects:

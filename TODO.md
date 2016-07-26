@@ -1,5 +1,4 @@
 # High priority
-- Increase speed of all the entities.
 - Investigate how a helmet works with the sun.
 - Investigate if fire protection prevents from damage from the sun.
 - Investigate if a view range is increased when monsters get speed
