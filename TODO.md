@@ -1,4 +1,12 @@
 # High priority
+- Increase speed of all the entities.
+- Investigate how a helmet works with the sun.
+- Investigate if fire protection prevents from damage from the sun.
+- Investigate if a view range is increased when monsters get speed
+modifier.
+- Give an axe to zombies.
+- Try to restrict entities' despawn.
+- Modify Creeper's fuse ticks and its jumps height.
 - Release v1.0.1.
 
 # Next versions
