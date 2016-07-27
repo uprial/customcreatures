@@ -1,5 +1,4 @@
 # High priority
-- Give an axe to zombies.
 - Investigate how a helmet works with the sun. Add duration to 
 all the helmets if needed.
 - Investigate if fire protection prevents from damage from the sun.

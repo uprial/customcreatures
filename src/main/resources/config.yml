@@ -362,10 +362,11 @@ iron-zombie:
         - enchantments.rand_protection
     main-hand:
       drop-chance: 10
-      material: IRON_SWORD
+      material: IRON_AXE
       durability: 25
       enchantments:
-        - enchantments.rand_sword_damage
+        - enchantments.rand_melee_damage
+        - enchantments.rand_dig_speed
   max-health: 1.5
 
 gold-zombie:
@@ -422,7 +423,7 @@ gold-zombie:
       durability: 50
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_sword_damage
+        - enchantments.high_melee_damage
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
@@ -521,7 +522,7 @@ enchantments:
       min: 1
       max: 4
       distribution: exp_down
-  rand_sword_damage:
+  rand_melee_damage:
     type: DAMAGE_ALL
     level:
       type: random
@@ -534,6 +535,13 @@ enchantments:
       type: random
       min: 1
       max: 3
+      distribution: exp_down
+  rand_dig_speed:
+    type: DIG_SPEED
+    level:
+      type: random
+      min: 1
+      max: 5
       distribution: exp_down
 
   # Cloths and weapon
@@ -565,7 +573,7 @@ enchantments:
     level: 3
 
   # Sword
-  high_sword_damage:
+  high_melee_damage:
     type: DAMAGE_ALL
     level: 5
   high_sword_knockback:
