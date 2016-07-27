@@ -325,7 +325,7 @@ iron-zombie:
   filter:
     types:
       - ZOMBIE
-    probability: 5
+    probability: 4
   effects:
     - acceleration
   acceleration:
@@ -337,10 +337,11 @@ iron-zombie:
 
   equipment:
     helmet:
-      drop-chance: 10
+      drop-chance: 5
       material-type: IRON
       durability: 25
       enchantments:
+        - enchantments.high_durability
         - enchantments.rand_protection
     boots:
       drop-chance: 10
@@ -392,13 +393,14 @@ gold-zombie:
     duration: 99999
   equipment:
     helmet:
-      drop-chance: 10
+      drop-chance: 5
       material-type: GOLD
       durability: 50
       enchantments:
+        - enchantments.high_durability
         - enchantments.high_protection
     boots:
-      drop-chance: 10
+      drop-chance: 5
       material-type: GOLD
       durability: 50
       enchantments:
@@ -511,7 +513,6 @@ test-zombie:
       - ZOMBIE
     probability: 100
   max-health: 0.5
-
 
 # Global templates of effects
 effects:
