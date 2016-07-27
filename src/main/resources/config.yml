@@ -510,12 +510,6 @@ test-zombie:
     types:
       - ZOMBIE
     probability: 100
-
-  equipment:
-    helmet:
-      drop-chance: 100
-      material-type: IRON
-      durability: 1
   max-health: 0.5
 
 
