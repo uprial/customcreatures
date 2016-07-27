@@ -368,7 +368,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_melee_damage
         - enchantments.rand_dig_speed
-  max-health: 1.5
+  max-health: 1.0
 
 gold-zombie:
   filter:
@@ -429,7 +429,7 @@ gold-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
-  max-health: 2.0
+  max-health: 1.0
 
 diamond-skeleton:
   filter:
@@ -504,7 +504,7 @@ diamond-skeleton:
         - enchantments.high_bow_knockback
         - enchantments.bow_fire
         - enchantments.bow_infinity
-  max-health: 3.0
+  max-health: 1.5
 
 # This handler isn’t listed in handlers’ list and can be used for experiments.
 test-zombie:

@@ -1,6 +1,4 @@
 # High priority
-- Investigate if fire protection prevents from damage from the sun.
-Otherwise find other ways to protect these entities.
 - Investigate if a view range is increased when a monster get speed
 modifier. Otherwise add such configuration parameter.
 - Try to restrict entities' despawn.
