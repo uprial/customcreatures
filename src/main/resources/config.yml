@@ -37,6 +37,8 @@ handlers:
   - iron-zombie
   - gold-zombie
   - diamond-skeleton
+# Uncomment this line to play with test zombie.
+#  - test-zombie
 
 #
 # ==== Handler ====
@@ -509,9 +511,14 @@ diamond-skeleton:
 # This handler isn’t listed in handlers’ list and can be used for experiments.
 test-zombie:
   filter:
+    reason:
+      - DEFAULT
     types:
       - ZOMBIE
+      - SKELETON
     probability: 100
+  effects:
+    - effects.fire_resistance
   max-health: 0.5
 
 # Global templates of effects
