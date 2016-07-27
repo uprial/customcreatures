@@ -504,6 +504,23 @@ diamond-skeleton:
         - enchantments.bow_infinity
   max-health: 3.0
 
+# This handler isn’t listed in handlers’ list and can be used for experiments.
+test-zombie:
+  filter:
+    types:
+      - ZOMBIE
+    probability: 100
+
+  equipment:
+    helmet:
+      drop-chance: 100
+      material-type: IRON
+      durability: 5
+      enchantments:
+        - enchantments.rand_protection
+  max-health: 0.5
+
+
 # Global templates of effects
 effects:
   fire_resistance:
