@@ -32,7 +32,9 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         for (IPotionEffectTypesEnum effectType : effectTypes) {
-            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), strength.getValue()));
+            // The 1st level of effect mean 0 in these numbers.
+            int amplifier = strength.getValue() - 1;
+            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), amplifier));
         }
     }
 
