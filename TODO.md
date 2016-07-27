@@ -1,6 +1,4 @@
 # High priority
-- Investigate how a helmet works with the sun. Add duration to 
-all the helmets if needed.
 - Investigate if fire protection prevents from damage from the sun.
 Otherwise find other ways to protect these entities.
 - Investigate if a view range is increased when a monster get speed
