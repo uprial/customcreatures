@@ -400,19 +400,19 @@ gold-zombie:
         - enchantments.high_durability
         - enchantments.high_protection
     boots:
-      drop-chance: 5
-      material-type: GOLD
-      durability: 50
-      enchantments:
-        - enchantments.high_durability
-        - enchantments.high_protection
-        - enchantments.rand_thorns
-    chest:
       drop-chance: 10
       material-type: GOLD
       durability: 50
       enchantments:
+        - enchantments.high_protection
+    chest:
+      drop-chance: 5
+      material-type: GOLD
+      durability: 50
+      enchantments:
         - enchantments.high_protection_fire
+        - enchantments.high_durability
+        - enchantments.rand_thorns
     leggings:
       drop-chance: 10
       material-type: GOLD
