@@ -315,7 +315,7 @@ player:
     types:
       - SPEED
       - JUMP
-    strength: 2
+    strength: 1
     duration: 20
   equipment:
     main-hand:
@@ -515,9 +515,7 @@ test-zombie:
     helmet:
       drop-chance: 100
       material-type: IRON
-      durability: 5
-      enchantments:
-        - enchantments.rand_protection
+      durability: 1
   max-health: 0.5
 
 

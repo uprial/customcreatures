@@ -33,6 +33,10 @@ class CustomCreaturesEventListener implements Listener {
     }
 
     private void handle(LivingEntity entity, SpawnReason spawnReason) {
-        plugin.getCreaturesConfig().handle(plugin, customLogger, entity, spawnReason);
+        CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
+        // Don't try to handle an entity if there was error in loading of config.
+        if (creaturesConfig != null) {
+            creaturesConfig.handle(plugin, customLogger, entity, spawnReason);
+        }
     }
 }
