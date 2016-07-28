@@ -1,6 +1,3 @@
-# High priority
-- Release v1.0.1.
-
 # Next versions
 - Backport bug-fixes (reload of debug configuration, fair config
 reload) to other plugins.
