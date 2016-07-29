@@ -35,4 +35,5 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 
 ## Useful links
 * [Project on GitHub](https://github.com/uprial/customcreatures)
+* [Project on Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customcreatures/)
 * [TODO list](TODO.md)
