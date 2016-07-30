@@ -48,15 +48,18 @@ handlers:
 #                      ### By default, no filters will be applied.
 #                      ### (* see description of <filter> below)
 #
-#   max-health: <float-value:0.0001..?> ### A multiplier for max. health of an entity.
-#                                       ### By default, max. health won't be modified.
-#                                       ### (* see description of <float-value> below)
+#   max-health: <float-value:0.0001..?> ### A multiplier for max. health
+#                                       ### of an entity.
+#                                       ### By default, max. health won't
+#                                       ### be modified.
+#                                       ### (* see description of
+#                                       ### <float-value> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.
 #             ###
-#             ### Path of each effect can be absolute from the root of the config
-#             ### or relative to the current handler definition.
+#             ### Path of each effect can be absolute from the root of the
+#             ### config or relative to the current handler definition.
 #
 #     - <effect-path-rel>  ### Relative path.
 #     - <effect-path-abs>  ### Absolute path.
@@ -82,7 +85,8 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
 #            ### By default, spawns with all reason will be processed.
 #            ###
-#            ### Hint: a spawn via "summon" command will be detected as "DEFAULT".
+#            ### Hint: a spawn via "summon" command will be detected
+#            ### as "DEFAULT".
 #     - <spawn-reason1>
 #       ...
 #     - <spawn-reasonN>
@@ -107,7 +111,8 @@ handlers:
 #               ###
 #               ### If you define both "types" and "type-sets" filters,
 #               ### then entity types will be merged.
-#               ### So, you can define types as [ZOMBIE] and type-sets as [ANIMALS].
+#               ### So, you can define types as [ZOMBIE] and type-sets
+#               ### as [ANIMALS].
 #               ###
 #     - <type-set1>   ### (* see description of <type-set> below)
 #       ...
@@ -124,10 +129,12 @@ handlers:
 #
 # <type-set>: ANIMALS | GOLEMS | MONSTERS | CREATURES | FLYING
 #
-# ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR, RABBIT, SHEEP, WOLF]
+# ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR,
+#           RABBIT, SHEEP, WOLF]
 # GOLEMS: [IRON_GOLEM, SHULKER, SNOWMAN]
-# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE,
-#            SILVERFISH, SKELETON, SPIDER, WITCH, WITHER, ZOMBIE]
+# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT,
+#            GUARDIAN, PIG_ZOMBIE, SILVERFISH, SKELETON, SPIDER,
+#            WITCH, WITHER, ZOMBIE]
 # CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, VILLAGER]
 # FLYING: [ENDER_DRAGON, GHAST]
 #
@@ -149,16 +156,21 @@ handlers:
 #
 # <equipment>:
 #   helmet: <equipment-cloth>   ### Description of entity's helmet.
-#                               ### (* see description of <equipment-cloth> below)
+#                               ### (* see description of
+#                               ### <equipment-cloth> below)
 #   boots: <equipment-cloth>    ### Description of entity's boots.
 #   chest: <equipment-cloth>    ### Description of entity's chest.
 #   pens: <equipment-cloth>     ### Description of entity's pens.
-#   main-hand: <item-in-hand>   ### Description of entity's main hand equipment
-#                               ### (* see description of <item-in-hand> below)
-#   off-hand: <item-in-hand>    ### Description of entity's off hand equipment
+#   main-hand: <item-in-hand>   ### Description of entity's
+#                               ### main hand equipment.
+#                               ### (* see description of
+#                               ### <item-in-hand> below)
+#   off-hand: <item-in-hand>    ### Description of entity's
+#                               ### off hand equipment.
 #                               ###
-#                               ### Warning: off hand configuration works only with
-#                               ### Minecraft version greater or equal 1.9.0
+#                               ### Warning: off hand configuration works
+#                               ### only with Minecraft version greater
+#                               ### or equal 1.9.0.
 #
 # #### Equipment cloth ####
 #
@@ -167,7 +179,7 @@ handlers:
 #                           ### be dressed on the entity.
 #                           ### By default the probability is 100%.
 #
-#   material-type: <material-type> ### Material of the cloth. Possible values:
+#   material-type: <material-type> ### Material of the cloth. Values:
 #                                  ###  - LEATHER
 #                                  ###  - CHAINMAIL
 #                                  ###  - IRON
@@ -181,9 +193,12 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
 #
-#   enchantments <enchantments>:  ### List of enchantments will be applied to this cloth.
-#                                 ### By default, no enchantments will be applied.
-#                                 ### (* see description of <enchantments> below)
+#   enchantments <enchantments>:  ### List of enchantments will be applied
+#                                 ### to this cloth.
+#                                 ### By default, no enchantments will
+#                                 ### be applied.
+#                                 ### (* see description of 
+#                                 ### <enchantments> below)
 #
 # #### Item in hand ####
 #
@@ -204,26 +219,33 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
 #
-#   enchantments <enchantments>:  ### List of enchantments will be applied to this item.
-#                                 ### By default, no enchantments will be applied.
-#                                 ### (* see description of <enchantments> below)
+#   enchantments <enchantments>:  ### List of enchantments will be applied
+#                                 ### to this item.
+#                                 ### By default, no enchantments will
+#                                 ### be applied.
+#                                 ### (* see description of 
+#                                 ### <enchantments> below)
 #
 # #### Enchantments ####
 #
 # <relative-path>:
 #   <enchantments>:  ### List of enchantments' paths.
-#                    ### Path of each enchantment can be absolute from the root of the config
-#                    ### or relative to the current <relative-path> definition.
+#                    ### Path of each enchantment can be absolute from
+#                    ### the root of the config or relative
+#                    ### to the current <relative-path> definition.
 #
 #     - <enchantment-path-rel>  ### Relative path.
 #     - <enchantment-path-abs>  ### Absolute path.
 #       ...
 #     - <enchantment-pathN>
 #
-#   enchantment-path-rel: <enchantment> ### Enchantment described in <relative-path> namespace.
-#                                       ### (* see description of <enchantment> below)
+#   enchantment-path-rel: <enchantment> ### Enchantment described in
+#                                       ### <relative-path> namespace.
+#                                       ### (* see description of
+#                                       ### <enchantment> below)
 #
-# enchantment-path-abs: <enchantment>   ### Enchantment described anywhere else.
+# enchantment-path-abs: <enchantment>   ### Enchantment described
+#                                       ### anywhere else.
 #
 # #### Enchantment ####
 #
@@ -268,9 +290,12 @@ handlers:
 # #### Random distribution ####
 #
 # <rnd-distr>: normal | exp_up | exp_down
-# ### normal - normal distribution with uniform density from min to max, e.g. 33%, 33%, 33%.
-# ### exp_up - exponential distribution with growing density from min to max, e.g. 10%, 25%, 65%.
-# ### exp_down - exponential distribution with falling density from min to max, e.g. 65%, 25%, 10%.
+# ### normal - normal distribution with uniform density
+#               from min to max, e.g. 33%, 33%, 33%.
+# ### exp_up - exponential distribution with growing density
+#               from min to max, e.g. 10%, 25%, 65%.
+# ### exp_down - exponential distribution with falling density
+#                 from min to max, e.g. 65%, 25%, 10%.
 # ###
 # ### By default, a NORMAL distribution will be chosen.
 #
@@ -508,7 +533,8 @@ diamond-skeleton:
         - enchantments.bow_infinity
   max-health: 1.5
 
-# This handler isn’t listed in handlers’ list and can be used for experiments.
+# This handler isn’t listed in handlers’ list and can be used
+# for experiments.
 test-zombie:
   filter:
     reason:
