@@ -39,5 +39,5 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 * [TODO list](TODO.md)
 
 ## Related projects
-* [CustomDamage](http://dev.bukkit.org/bukkit-plugins/customdamage/)
-* [CustomNukes](http://dev.bukkit.org/bukkit-plugins/customnukes/)
+* CustomNukes: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customnukes/), [GitHub](https://github.com/uprial/customnukes)
+* CustomDamage: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customdamage/), [GitHub](https://github.com/uprial/customdamage)
