@@ -27,13 +27,17 @@ dangerous naturally
 * Access to 'reload' command:
 `customcreatures.reload` (default: op)
 
-## Configuration example
-[config.yml](src/main/resources/config.yml)
+## Configuration
+[Default configuration file](src/main/resources/config.yml)
 
 ## Author
 I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 
 ## Useful links
-* [Project on GitHub](https://github.com/uprial/customcreatures)
+* [Project on GitHub](https://github.com/uprial/customcreatures/)
 * [Project on Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customcreatures/)
 * [TODO list](TODO.md)
+
+## Related projects
+* [CustomDamage](http://dev.bukkit.org/bukkit-plugins/customdamage/)
+* [CustomNukes](http://dev.bukkit.org/bukkit-plugins/customnukes/)
