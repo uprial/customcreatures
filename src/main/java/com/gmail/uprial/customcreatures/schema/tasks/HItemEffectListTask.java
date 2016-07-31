@@ -14,6 +14,8 @@ public class HItemEffectListTask extends HItemAbstractTask {
 
     @Override
     public void run() {
-        effects.applyImmediately(customLogger, entity);
+        if (entity.isValid()) {
+            effects.applyImmediately(customLogger, entity);
+        }
     }
 }

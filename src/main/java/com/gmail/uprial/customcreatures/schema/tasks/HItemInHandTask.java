@@ -14,6 +14,8 @@ public class HItemInHandTask extends HItemAbstractTask {
 
     @Override
     public void run() {
-        tool.applyImmediately(customLogger, entity);
+        if(entity.isValid()) {
+            tool.applyImmediately(customLogger, entity);
+        }
     }
 }
