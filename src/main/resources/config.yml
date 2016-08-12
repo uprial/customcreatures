@@ -48,12 +48,8 @@ handlers:
 #                      ### By default, no filters will be applied.
 #                      ### (* see description of <filter> below)
 #
-#   max-health: <float-value:0.0001..?> ### A multiplier for max. health
-#                                       ### of an entity.
-#                                       ### By default, max. health won't
-#                                       ### be modified.
-#                                       ### (* see description of
-#                                       ### <float-value> below)
+#   attributes: <attributes> ### Generic attributes of an entity.
+#                            ### (* see description of <attributes> below)
 #
 #   effects:  ### List of effects which will be applied to an entity.
 #             ### By default, no effects will be applied.
@@ -121,6 +117,16 @@ handlers:
 #   probability: <0..100> ### Probability in percents that this handler will
 #                         ### be applied after all the filters.
 #                         ### By default the probability is 100%.
+#
+#
+# #### Attributes ####
+#
+# <attributes>:
+#   max-health-multiplier: <float-value:0.0001..?>
+#                          ###
+#                          ### A multiplier for max. health of an entity.
+#                          ### By default, max. health won't be modified.
+#                          ### (* see description of <float-value> below)
 #
 # #### Type set ####
 #
@@ -307,11 +313,12 @@ fat-animal:
     type-sets:
       - ANIMALS
     probability: 5
-  max-health:
-    type: random
-    min: 1.0
-    max: 5.0
-    distribution: exp_down
+  attributes:
+    max-health-multiplier:
+      type: random
+      min: 1.0
+      max: 5.0
+      distribution: exp_down
 
 rapid-monster:
   filter:
@@ -371,18 +378,21 @@ iron-zombie:
         - enchantments.high_durability
         - enchantments.rand_protection
     boots:
+      probability: 50
       drop-chance: 10
       material-type: IRON
       durability: 25
       enchantments:
         - enchantments.rand_protection
     chest:
+      probability: 50
       drop-chance: 10
       material-type: IRON
       durability: 25
       enchantments:
         - enchantments.rand_protection
     leggings:
+      probability: 50
       drop-chance: 10
       material-type: IRON
       durability: 25
@@ -395,7 +405,8 @@ iron-zombie:
       enchantments:
         - enchantments.rand_melee_damage
         - enchantments.rand_dig_speed
-  max-health: 1.0
+  attributes:
+    max-health-multiplier: 1.0
 
 gold-zombie:
   filter:
@@ -427,12 +438,14 @@ gold-zombie:
         - enchantments.high_durability
         - enchantments.high_protection
     boots:
+      probability: 50
       drop-chance: 10
       material-type: GOLD
       durability: 50
       enchantments:
         - enchantments.high_protection
     chest:
+      probability: 50
       drop-chance: 5
       material-type: GOLD
       durability: 50
@@ -441,6 +454,7 @@ gold-zombie:
         - enchantments.high_durability
         - enchantments.rand_thorns
     leggings:
+      probability: 50
       drop-chance: 10
       material-type: GOLD
       durability: 50
@@ -456,7 +470,8 @@ gold-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
-  max-health: 1.0
+  attributes:
+    max-health-multiplier: 1.0
 
 diamond-skeleton:
   filter:
@@ -496,6 +511,7 @@ diamond-skeleton:
         - enchantments.water_worker_helmet
         - enchantments.high_thorns
     boots:
+      probability: 50
       drop-chance: 5
       material-type: DIAMOND
       durability: 33
@@ -506,6 +522,7 @@ diamond-skeleton:
         - enchantments.high_depth_strider_boots
         - enchantments.high_thorns
     chest:
+      probability: 50
       drop-chance: 5
       material-type: DIAMOND
       durability: 33
@@ -514,6 +531,7 @@ diamond-skeleton:
         - enchantments.high_protection_fire
         - enchantments.high_thorns
     leggings:
+      probability: 50
       drop-chance: 5
       material-type: DIAMOND
       durability: 33
@@ -531,7 +549,8 @@ diamond-skeleton:
         - enchantments.high_bow_knockback
         - enchantments.bow_fire
         - enchantments.bow_infinity
-  max-health: 1.5
+  attributes:
+    max-health-multiplier: 1.5
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
@@ -541,11 +560,18 @@ test-zombie:
       - DEFAULT
     types:
       - ZOMBIE
-      - SKELETON
     probability: 100
   effects:
     - effects.fire_resistance
-  max-health: 0.5
+  attributes:
+    #armor: 1.0
+    #attack-damage: 10.0
+    #attack-speed: 10.1
+    #follow-range: 50.1
+    #knockback-resistance: 10.0
+    #max-health: 10.0
+    max-health-multiplier: 0.1
+    #movement-speed: 10.0
 
 # Global templates of effects
 effects:

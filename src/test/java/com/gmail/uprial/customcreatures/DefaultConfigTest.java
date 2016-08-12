@@ -1,6 +1,7 @@
 package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
+import com.gmail.uprial.customcreatures.schema.HItemAttributes;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.junit.Test;
@@ -18,6 +19,7 @@ public class DefaultConfigTest extends TestConfigBase {
     @Test
     public void testDefaultConfig() throws Exception {
         String contents = Files.toString(new File(CONFIG_FILE), Charsets.UTF_8);
+        HItemAttributes.saveBackwardCompatibility = false;
         assertNotNull(loadConfig(getCustomLogger(), contents));
     }
 }

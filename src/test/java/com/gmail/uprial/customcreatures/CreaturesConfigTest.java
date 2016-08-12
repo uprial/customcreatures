@@ -72,7 +72,8 @@ public class CreaturesConfigTest extends TestConfigBase {
                 "x:",
                 " filter:",
                 "   probability: 99",
-                " max-health: 1.0");
+                " attributes:",
+                "   max-health-multiplier: 1.0");
     }
 
     @Test
@@ -85,7 +86,8 @@ public class CreaturesConfigTest extends TestConfigBase {
                 "x:",
                 " filter:",
                 "  probability: 99",
-                " max-health: 1.0");
+                " attributes:",
+                "   max-health-multiplier: 1.0");
     }
 
     @Test
@@ -102,12 +104,13 @@ public class CreaturesConfigTest extends TestConfigBase {
     public void testNormalConfig() throws Exception {
         assertEquals(
                 "[[name: x, filter: [types: null, type-sets: null, reasons: null," +
-                " probability: 99], effects: null, max-health: 4.0, equipment: null]]",
+                " probability: 99], effects: null, attributes: [max-health-multiplier: 1.0], equipment: null]]",
                 loadConfig("handlers:",
                         " - x",
                         "x:",
                         " filter:",
                         "   probability: 99",
-                        " max-health: 4.0").toString());
+                        " attributes:",
+                        "   max-health-multiplier: 1.0").toString());
     }
 }

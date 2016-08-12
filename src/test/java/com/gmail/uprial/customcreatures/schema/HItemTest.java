@@ -38,9 +38,9 @@ public class HItemTest extends TestConfigBase {
     }
 
     @Test
-    public void testEmptyMaxHealth() throws Exception {
+    public void testEmptyAttributes() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty max. health multiplier of handler 'h'. Use default value NULL");
+        e.expectMessage("Empty attributes of handler 'h'. Use default value NULL");
 
         getFromConfig(getPreparedConfig(
                 "h: ",
