@@ -10,8 +10,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 
 public final class HItem {
-    private static final String INITIAL_MAX_HEALTH_METADATA_KEY = "initial_max_health";
-
     private final String name;
     private final HItemFilter filter;
     private final HItemEffectsList effects;

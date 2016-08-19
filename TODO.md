@@ -3,6 +3,9 @@
 - Add a possibility to modify custom attributes like follow-distance.
 Teach Skeletons to shoot much further via abstract configuration
 parameters.
+- Allow a probability lower than one percent
+- Add a filter based on entity's location: location in the world,
+under sun
 - Restrict entities' despawn (setRemoveWhenFarAway). Investigate
 a possibility to move such specific entities and limit their number.
 - Implement specific properties of LivingEntities: powered creeper;

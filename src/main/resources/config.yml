@@ -26,8 +26,9 @@ debug: false
 #   ...
 # - <handlerN>
 #
-# All handlers will handle a CreatureSpawnEvent in sequence in which
+# All handlers will handle a 'CreatureSpawn' event in sequence in which
 # they are described in this option.
+# For the players a 'PlayerRespawn' event will be used.
 #
 
 handlers:
@@ -127,6 +128,21 @@ handlers:
 #                          ### A multiplier for max. health of an entity.
 #                          ### By default, max. health won't be modified.
 #                          ### (* see description of <float-value> below)
+#
+#   base-armor: <float-value:0..?> ### Entity's base armor before all
+#                                  ### the other modifiers, see
+#                                  ### http://minecraft.gamepedia.com/Armor
+#
+#   attack-damage: <float-value:0..?> ### Damage that will be
+#                                     ### dealt by entity or
+#                                     ### its projectile.
+#
+#   follow-range: <float-value:1..100> ### Range at which an entity
+#                                      ### will follow others.
+#                                      ### This parameter changes
+#                                      ### significantly the
+#                                      ### behaviour of projectiles,
+#                                      ### affected by gravity.
 #
 # #### Type set ####
 #
@@ -318,6 +334,11 @@ fat-animal:
       type: random
       min: 1.0
       max: 5.0
+      distribution: exp_down
+    base-armor:
+      type: random
+      min: 0.0
+      max: 10.0
       distribution: exp_down
 
 rapid-monster:
@@ -551,6 +572,7 @@ diamond-skeleton:
         - enchantments.bow_infinity
   attributes:
     max-health-multiplier: 1.5
+    follow-range: 50.0
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
@@ -559,18 +581,19 @@ test-zombie:
     reason:
       - DEFAULT
     types:
+      - SKELETON
       - ZOMBIE
     probability: 100
   effects:
     - effects.fire_resistance
   attributes:
-    #armor: 1.0
+    #max-health-multiplier: 0.1
+    #base-armor: 2.0
     #attack-damage: 10.0
-    #attack-speed: 10.1
     #follow-range: 50.1
+
     #knockback-resistance: 10.0
     #max-health: 10.0
-    max-health-multiplier: 0.1
     #movement-speed: 10.0
 
 # Global templates of effects

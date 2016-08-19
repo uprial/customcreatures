@@ -2,12 +2,17 @@ package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.listeners.CustomCreaturesAttackEventListener;
+import com.gmail.uprial.customcreatures.listeners.CustomCreaturesSpawnEventListener;
+import com.gmail.uprial.customcreatures.schema.HItemAttributes;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.UUID;
 
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
@@ -19,10 +24,13 @@ public final class CustomCreatures extends JavaPlugin {
 
     private CustomLogger consoleLogger = null;
     private CreaturesConfig creaturesConfig = null;
-    private CustomCreaturesEventListener customCreaturesEventListener = null;
+    private CustomCreaturesSpawnEventListener customCreaturesSpawnEventListener = null;
+    private CustomCreaturesAttackEventListener customCreaturesAttackEventListener = null;
 
     @Override
     public void onEnable() {
+        HItemAttributes.setBackwardCompatibility(true);
+
         saveDefaultConfig();
 
         CustomCreaturesCron cronTask = new CustomCreaturesCron();
@@ -30,9 +38,13 @@ public final class CustomCreatures extends JavaPlugin {
 
         consoleLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
-        customCreaturesEventListener = new CustomCreaturesEventListener(this, consoleLogger);
 
-        getServer().getPluginManager().registerEvents(customCreaturesEventListener, this);
+        customCreaturesSpawnEventListener = new CustomCreaturesSpawnEventListener(this, consoleLogger);
+        getServer().getPluginManager().registerEvents(customCreaturesSpawnEventListener, this);
+
+        customCreaturesAttackEventListener = new CustomCreaturesAttackEventListener(this, consoleLogger);
+        getServer().getPluginManager().registerEvents(customCreaturesAttackEventListener, this);
+
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));
         consoleLogger.info("Plugin enabled");
     }
@@ -48,7 +60,8 @@ public final class CustomCreatures extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(customCreaturesEventListener);
+        HandlerList.unregisterAll(customCreaturesSpawnEventListener);
+        HandlerList.unregisterAll(customCreaturesAttackEventListener);
         consoleLogger.info("Plugin disabled");
     }
 
@@ -66,6 +79,16 @@ public final class CustomCreatures extends JavaPlugin {
 
     public static void defer(Runnable task) {
         CustomCreaturesCron.defer(task);
+    }
+
+    public Player getOnlinePlayerByUUID(UUID uuid) {
+        for (Player player : getServer().getOnlinePlayers()) {
+            if (player.getUniqueId().equals(uuid)) {
+                return player;
+            }
+        }
+
+        return null;
     }
 
     static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {

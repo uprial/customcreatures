@@ -3,8 +3,14 @@ package com.gmail.uprial.customcreatures.common;
 import java.util.List;
 
 public final class Utils {
+    // A number of server ticks in one second
+    public static final int SERVER_TICKS_IN_SECOND = 20;
+
+    // Gravity acceleration, m/s
+    public static final double GRAVITY_ACCELERATION = - 20.0;
+
     public static int seconds2ticks(int seconds) {
-        return seconds * 20;
+        return seconds * SERVER_TICKS_IN_SECOND;
     }
 
     public static <T> String joinStrings(String delimiter, List<T> contents) {

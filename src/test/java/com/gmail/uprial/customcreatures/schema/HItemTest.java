@@ -94,7 +94,15 @@ public class HItemTest extends TestConfigBase {
                 "   - SPEED",
                 "  strength: 1",
                 "  duration: 1",
-                " max-health: 1.5"), getDebugFearingCustomLogger(), "h");
+                " attributes:",
+                "  base-armor: 1.0",
+                "  attack-damage: 10.0",
+                "  attack-speed: 10.1",
+                "  follow-range: 50.1",
+                "  knockback-resistance: 10.0",
+                "  max-health: 10.0",
+                "  max-health-multiplier: 0.1",
+                "  movement-speed: 10.0"), getDebugFearingCustomLogger(), "h");
     }
 
     @Test

@@ -8,6 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getFromConfig;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 
@@ -43,7 +44,7 @@ public class HItemAttributesTest extends TestConfigBase {
     @Test
     public void testEmptyMaxHealthMultiplier() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty max. health multiplier of attributes. Use default value NULL");
+        e.expectMessage("Empty max. health multiplier in attributes. Use default value NULL");
 
         getFromConfig(getPreparedConfig(
                 "a: ",
@@ -54,20 +55,52 @@ public class HItemAttributesTest extends TestConfigBase {
     public void testWholeAttributes() throws Exception {
         HItemAttributes attributes = getFromConfig(getPreparedConfig(
                 "a:",
-                "  max-health-multiplier: 1.5"),
+                " base-armor: 1.0",
+                " attack-damage: 10.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 10.0",
+                " max-health: 10.0",
+                " max-health-multiplier: 0.1",
+                " movement-speed: 10.0"),
                 getParanoiacCustomLogger(), "a", "attributes");
-        assertEquals("[max-health-multiplier: 1.5]", attributes.toString());
+        assertNotNull(attributes);
+        assertEquals("[max-health-multiplier: 0.1, base-armor: 1.0, attack-damage: 10.0," +
+                " follow-range: 50.1, knockback-resistance: 10.0, max-health: 10.0, movement-speed: 10.0]", attributes.toString());
+    }
+
+    @Test
+    public void testAttributesBCWarning() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("[WARNING] Property 'h.a.max-health' of deprecated, please use 'h.a.max-health-multiplier");
+
+        HItemAttributes.setBackwardCompatibility(true);
+        try {
+            getFromConfig(getPreparedConfig(
+                    "h:",
+                    " a:",
+                    "  x, y",
+                    " max-health: 1.5"),
+                    getDebugFearingCustomLogger(), "h.a", "attributes");
+        } finally {
+            HItemAttributes.setBackwardCompatibility(false);
+        }
     }
 
     @Test
     public void testAttributesBC() throws Exception {
-        HItemAttributes.saveBackwardCompatibility = true;
-        HItemAttributes attributes = getFromConfig(getPreparedConfig(
-                "h:",
-                " a:",
-                "  x, y",
-                " max-health: 1.5"),
-                getParanoiacCustomLogger(), "h.a", "attributes");
-        assertEquals("[max-health-multiplier: 1.5]", attributes.toString());
+        HItemAttributes.setBackwardCompatibility(true);
+        try {
+            HItemAttributes attributes = getFromConfig(getPreparedConfig(
+                    "h:",
+                    " a:",
+                    "  x, y",
+                    " max-health: 1.5"),
+                    getIndifferentCustomLogger(), "h.a", "attributes");
+            assertNotNull(attributes);
+            assertEquals("[max-health-multiplier: 1.5, base-armor: null, attack-damage: null, " +
+                    "follow-range: null, knockback-resistance: null, max-health: null, movement-speed: null]", attributes.toString());
+        } finally {
+            HItemAttributes.setBackwardCompatibility(false);
+        }
     }
 }

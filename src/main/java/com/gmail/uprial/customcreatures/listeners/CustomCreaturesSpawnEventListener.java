@@ -1,38 +1,36 @@
-package com.gmail.uprial.customcreatures;
+package com.gmail.uprial.customcreatures.listeners;
 
+import com.gmail.uprial.customcreatures.CreaturesConfig;
+import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-class CustomCreaturesEventListener implements Listener {
-    private final CustomCreatures plugin;
-    private final CustomLogger customLogger;
+public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEventListener {
 
-    CustomCreaturesEventListener(CustomCreatures plugin, CustomLogger customLogger) {
-        this.plugin = plugin;
-        this.customLogger = customLogger;
+    public CustomCreaturesSpawnEventListener(CustomCreatures plugin, CustomLogger customLogger) {
+        super(plugin, customLogger);
     }
 
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (! event.isCancelled()) {
-            handle(event.getEntity(), event.getSpawnReason());
+            handleSpawn(event.getEntity(), event.getSpawnReason());
         }
     }
 
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        handle(event.getPlayer(), SpawnReason.DEFAULT);
+        handleSpawn(event.getPlayer(), SpawnReason.DEFAULT);
     }
 
-    private void handle(LivingEntity entity, SpawnReason spawnReason) {
+    private void handleSpawn(LivingEntity entity, SpawnReason spawnReason) {
         CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
         // Don't try to handle an entity if there was error in loading of config.
         if (creaturesConfig != null) {
