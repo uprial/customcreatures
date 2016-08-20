@@ -101,7 +101,7 @@ public final class HItemAttributes {
                         applyPlayerMovementSpeedMultiplier(plugin, customLogger, player, value.floatValue());
                         continue;
                     } else {
-                        value = value * baseValue;
+                        value *= baseValue;
                         attributeInstance.setBaseValue(value);
                     }
                     break;

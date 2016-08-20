@@ -7,7 +7,7 @@ class HItemGenericAttribute {
     private final String title;
     private final double hardMin;
     private final double hardMax;
-    
+
     HItemGenericAttribute(Attribute attribute, String title, double hardMin, double hardMax) {
         this.attribute = attribute;
         this.title = title;
@@ -15,15 +15,15 @@ class HItemGenericAttribute {
         this.hardMax = hardMax;
     }
 
-    public Attribute getAttribute() {
+    Attribute getAttribute() {
         return attribute;
     }
 
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 
-    public double getHardMin() { return hardMin; }
+    double getHardMin() { return hardMin; }
 
-    public double getHardMax() { return hardMax; }
+    double getHardMax() { return hardMax; }
 }

@@ -95,6 +95,7 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
             }
 
             if (livingSource != null) {
+                //noinspection LocalVariableNamingConvention
                 Double attackDamageMultiplier = getAttackDamageMultiplier(livingSource);
                 if (attackDamageMultiplier != null) {
                     double damage = event.getDamage();
