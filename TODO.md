@@ -1,8 +1,4 @@
 # Next versions
-- Split a projectile velocity and its targeting, check if a
-target is reachable at all
-- Allow a probability lower than one percent
-
 - Modify Creeper's fuse ticks and its jump height.
 - Add a filter based on entity's location: location in the world,
 under sun

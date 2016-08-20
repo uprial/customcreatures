@@ -26,7 +26,7 @@ public class ProbabilityTest extends TestConfigBase {
     @Test
     public void testZeroProbability() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("A probability should be at least 1");
+        e.expectMessage("A probability should be at least 0.0001");
         getFromConfig(getPreparedConfig(
                 "p: 0"),
                 getParanoiacCustomLogger(), "p", "probability");
@@ -58,6 +58,7 @@ public class ProbabilityTest extends TestConfigBase {
     @Test
     public void testPassNormalProbability() throws Exception {
         assertTrue(getPasses(100, new Probability(50)) > 20);
+        assertTrue(getPasses(100, new Probability(50)) < 80);
     }
 
     @Test
@@ -68,6 +69,11 @@ public class ProbabilityTest extends TestConfigBase {
     @Test
     public void testPassBigProbability() throws Exception {
         assertEquals(100, getPasses(10, new Probability(100)));
+    }
+
+    @Test
+    public void testSmallProbability() throws Exception {
+        assertEquals(0, getPasses(1000, new Probability(0.1)));
     }
 
     private static int getPasses(int tries, Probability probability) {

@@ -12,6 +12,7 @@ allows to change entity's resistance to knockback
 allows to change entity's max. health in absolute values
 * A new parameter `<handler>.attributes.movement-speed-multiplier`
 allows to change entity's base movement speed
+* Allow a probability lower than one percent
 ## Changes
 * Moved the configuration of max. health from `<handler>.max-health`
 to `<handler>.attributes.max-health-multiplier`,  marked the old

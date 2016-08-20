@@ -116,10 +116,11 @@ handlers:
 #       ...
 #     - <type-setN>
 #
-#   probability: <0..100> ### Probability in percents that this handler will
-#                         ### be applied after all the filters.
-#                         ### By default the probability is 100%.
-#
+#   probability: <float:0..100> ### Probability in percents that this
+#                               ### handler will be applied after all
+#                               ### the filters.
+#                               ### By default the probability is 100%.
+#                               ### (* see description of <float> below)
 #
 # #### Attributes ####
 # By default, all of the following attributes won't be modified.
@@ -308,6 +309,9 @@ handlers:
 #                             ### (* see description of <rnd-distr> below)
 #
 # #### Integer value ####
+# High-level restrictions:
+# Minimal value is -2147483648
+# Maximal value is 2147483647
 #
 # <int-value>: <int>          ### Normal integer value.
 # ||

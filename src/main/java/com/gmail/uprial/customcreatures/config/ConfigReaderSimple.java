@@ -33,7 +33,7 @@ public final class ConfigReaderSimple {
     }
 
     public static int getInt(FileConfiguration config, CustomLogger customLogger, String key, String title,
-                             int min, int max, int defaultValue) throws InvalidConfigException {
+                             int min, int max, @SuppressWarnings("SameParameterValue") int defaultValue) throws InvalidConfigException {
         return getIntInternal(config, customLogger, key, title, min, max, defaultValue);
     }
 
