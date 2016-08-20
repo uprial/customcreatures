@@ -38,7 +38,7 @@ public final class HItemAttributes {
             .put("follow-range", new HItemGenericAttribute(GENERIC_FOLLOW_RANGE, "follow range", 1.0, 100.0))
             .put("knockback-resistance", new HItemGenericAttribute(GENERIC_KNOCKBACK_RESISTANCE, "knockback resistance", 0.0, 1.0))
             .put("max-health", new HItemGenericAttribute(GENERIC_MAX_HEALTH, "max. health", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
-            .put("movement-speed", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed"))
+            .put("movement-speed-multiplier", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed multiplier", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .build();
 
     private static final String INITIAL_MAX_HEALTH_METADATA_KEY = "initial_max_health";
@@ -89,6 +89,10 @@ public final class HItemAttributes {
             switch (key) {
                 case "follow-range":
                     setMetadata(plugin, entity, MK_ORIGINAL_FOLLOW_RANGE, baseValue);
+                    attributeInstance.setBaseValue(value);
+                    break;
+                case "movement-speed-multiplier":
+                    value = value * baseValue;
                     attributeInstance.setBaseValue(value);
                     break;
                 default:

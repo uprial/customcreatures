@@ -131,8 +131,8 @@ handlers:
 #                          ### (* see description of <float-value> below)
 #
 #   attack-damage-multiplier: <float-value:0.0001..?>
-#                             ### Damage that will be dealt by entity
-#                             ### or its projectile.
+#                             ### Multiplier of damage that will
+#                             ### be dealt by entity or its projectile.
 #
 #   base-armor: <float-value:0..?> ### Entity's base armor before all
 #                                  ### the other modifiers, see
@@ -149,6 +149,10 @@ handlers:
 #                                            ### to knockback.
 #
 #   max-health: <float-value:0.0001..?> ### Max. health of an entity.
+#
+#   movement-speed-multiplier: <float-value:0.0001..?>
+#                              ### Multiplier of base movement speed
+#                              ### of an entity.
 #
 # #### Type set ####
 #
@@ -352,17 +356,12 @@ rapid-monster:
     type-sets:
       - MONSTERS
     probability: 5
-  effects:
-    - acceleration
-  acceleration:
-    types:
-      - SPEED
-    strength:
+  attributes:
+    movement-speed-multiplier:
       type: random
-      min: 1
-      max: 10
+      min: 1.0
+      max: 3.0
       distribution: exp_down
-    duration: 99999
 
 player:
   filter:
@@ -391,7 +390,6 @@ iron-zombie:
     - acceleration
   acceleration:
     types:
-      - SPEED
       - JUMP
     strength: 2
     duration: 99999
@@ -432,6 +430,8 @@ iron-zombie:
       enchantments:
         - enchantments.rand_melee_damage
         - enchantments.rand_dig_speed
+  attributes:
+    movement-speed-multiplier: 1.5
 
 gold-zombie:
   filter:
@@ -445,7 +445,6 @@ gold-zombie:
     - effects.regeneration
   acceleration:
     types:
-      - SPEED
       - JUMP
     strength: 3
     duration: 99999
@@ -495,6 +494,8 @@ gold-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
+  attributes:
+    movement-speed-multiplier: 1.5
 
 diamond-skeleton:
   filter:
@@ -502,16 +503,10 @@ diamond-skeleton:
       - SKELETON
     probability: 1
   effects:
-    - speed
     - jump
     - glowing
     - effects.fire_resistance
     - effects.regeneration
-  speed:
-    types:
-      - SPEED
-    strength: 5
-    duration: 99999
   jump:
     types:
       - JUMP
@@ -576,6 +571,7 @@ diamond-skeleton:
     follow-range: 50.0
     knockback-resistance: 0.5
     max-health: 30.0
+    movement-speed-multiplier: 2.0
 
 angry-ghast:
   filter:
@@ -605,10 +601,8 @@ test-handler:
     #follow-range: 50.1
     #knockback-resistance: 1.0
     #max-health: 10.0
+    #movement-speed-multiplier: 4.0
 
-    max-health: 30.0
-    max-health-multiplier: 1.1
-    #movement-speed-multiplier: 10.0
     #projectile-speed-multiplier: 3.0
 
 # Global templates of effects
