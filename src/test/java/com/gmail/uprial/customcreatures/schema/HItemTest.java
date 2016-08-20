@@ -95,13 +95,12 @@ public class HItemTest extends TestConfigBase {
                 "  strength: 1",
                 "  duration: 1",
                 " attributes:",
+                "  max-health-multiplier: 0.1",
+                "  attack-damage-multiplier: 10.0",
                 "  base-armor: 1.0",
-                "  attack-damage: 10.0",
-                "  attack-speed: 10.1",
                 "  follow-range: 50.1",
                 "  knockback-resistance: 10.0",
                 "  max-health: 10.0",
-                "  max-health-multiplier: 0.1",
                 "  movement-speed: 10.0"), getDebugFearingCustomLogger(), "h");
     }
 

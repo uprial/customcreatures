@@ -1,9 +1,10 @@
 # Next versions
-- Modify Creeper's fuse ticks and its jump height.
-- Add a possibility to modify custom attributes like follow-distance.
-Teach Skeletons to shoot much further via abstract configuration
-parameters.
+- Split a projectile velocity and its targeting, check if a
+target is reachable at all
+- Implement all the others generic attributes
 - Allow a probability lower than one percent
+
+- Modify Creeper's fuse ticks and its jump height.
 - Add a filter based on entity's location: location in the world,
 under sun
 - Restrict entities' despawn (setRemoveWhenFarAway). Investigate

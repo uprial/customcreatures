@@ -38,8 +38,9 @@ handlers:
   - iron-zombie
   - gold-zombie
   - diamond-skeleton
-# Uncomment this line to play with test zombie.
-#  - test-zombie
+  - angry-ghast
+# Uncomment this line to play with test handler.
+#  - test-handler
 
 #
 # ==== Handler ====
@@ -129,13 +130,13 @@ handlers:
 #                          ### By default, max. health won't be modified.
 #                          ### (* see description of <float-value> below)
 #
+#   attack-damage-multiplier: <float-value:0.0001..?>
+#                             ### Damage that will be dealt by entity
+#                             ### or its projectile.
+#
 #   base-armor: <float-value:0..?> ### Entity's base armor before all
 #                                  ### the other modifiers, see
 #                                  ### http://minecraft.gamepedia.com/Armor
-#
-#   attack-damage: <float-value:0..?> ### Damage that will be
-#                                     ### dealt by entity or
-#                                     ### its projectile.
 #
 #   follow-range: <float-value:1..100> ### Range at which an entity
 #                                      ### will follow others.
@@ -426,8 +427,6 @@ iron-zombie:
       enchantments:
         - enchantments.rand_melee_damage
         - enchantments.rand_dig_speed
-  attributes:
-    max-health-multiplier: 1.0
 
 gold-zombie:
   filter:
@@ -491,8 +490,6 @@ gold-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
-  attributes:
-    max-health-multiplier: 1.0
 
 diamond-skeleton:
   filter:
@@ -574,27 +571,37 @@ diamond-skeleton:
     max-health-multiplier: 1.5
     follow-range: 50.0
 
+angry-ghast:
+  filter:
+    types:
+      - GHAST
+    probability: 10
+  attributes:
+    attack-damage-multiplier: 2.0
+
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
-test-zombie:
+test-handler:
   filter:
     reason:
       - DEFAULT
     types:
       - SKELETON
       - ZOMBIE
+      - GHAST
     probability: 100
   effects:
     - effects.fire_resistance
   attributes:
     #max-health-multiplier: 0.1
+    #attack-damage-multiplier: 10.0
     #base-armor: 2.0
-    #attack-damage: 10.0
     #follow-range: 50.1
 
     #knockback-resistance: 10.0
     #max-health: 10.0
-    #movement-speed: 10.0
+    #movement-speed-multiplier: 10.0
+    #projectile-speed-multiplier: 3.0
 
 # Global templates of effects
 effects:

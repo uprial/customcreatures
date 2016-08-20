@@ -19,7 +19,7 @@ import static com.gmail.uprial.customcreatures.common.MetadataHelper.getMetadata
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata;
 import static com.gmail.uprial.customcreatures.common.Utils.GRAVITY_ACCELERATION;
 import static com.gmail.uprial.customcreatures.common.Utils.SERVER_TICKS_IN_SECOND;
-import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getFinalAttackDamage;
+import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getAttackDamageMultiplier;
 import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getOriginalFollowRange;
 
 public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesEventListener {
@@ -95,13 +95,15 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
             }
 
             if (livingSource != null) {
-                Double finalAttackDamage = getFinalAttackDamage(livingSource);
-                if (finalAttackDamage != null) {
+                Double attackDamageMultiplier = getAttackDamageMultiplier(livingSource);
+                if (attackDamageMultiplier != null) {
+                    double damage = event.getDamage();
+                    double newDamage = damage * attackDamageMultiplier;
                     if(customLogger.isDebugMode()) {
                         customLogger.debug(String.format("Modify damage of %s on %s from %.2f to %.2f",
-                                format(livingSource), format(event.getEntity()), event.getDamage(), finalAttackDamage));
+                                format(livingSource), format(event.getEntity()), damage, newDamage));
                     }
-                    event.setDamage(finalAttackDamage);
+                    event.setDamage(newDamage);
                 }
             }
         }

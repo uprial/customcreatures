@@ -55,16 +55,16 @@ public class HItemAttributesTest extends TestConfigBase {
     public void testWholeAttributes() throws Exception {
         HItemAttributes attributes = getFromConfig(getPreparedConfig(
                 "a:",
+                " max-health-multiplier: 0.1",
+                " attack-damage-multiplier: 10.0",
                 " base-armor: 1.0",
-                " attack-damage: 10.0",
                 " follow-range: 50.1",
                 " knockback-resistance: 10.0",
                 " max-health: 10.0",
-                " max-health-multiplier: 0.1",
                 " movement-speed: 10.0"),
                 getParanoiacCustomLogger(), "a", "attributes");
         assertNotNull(attributes);
-        assertEquals("[max-health-multiplier: 0.1, base-armor: 1.0, attack-damage: 10.0," +
+        assertEquals("[max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, base-armor: 1.0," +
                 " follow-range: 50.1, knockback-resistance: 10.0, max-health: 10.0, movement-speed: 10.0]", attributes.toString());
     }
 
@@ -97,7 +97,7 @@ public class HItemAttributesTest extends TestConfigBase {
                     " max-health: 1.5"),
                     getIndifferentCustomLogger(), "h.a", "attributes");
             assertNotNull(attributes);
-            assertEquals("[max-health-multiplier: 1.5, base-armor: null, attack-damage: null, " +
+            assertEquals("[max-health-multiplier: 1.5, attack-damage-multiplier: null, base-armor: null, " +
                     "follow-range: null, knockback-resistance: null, max-health: null, movement-speed: null]", attributes.toString());
         } finally {
             HItemAttributes.setBackwardCompatibility(false);
