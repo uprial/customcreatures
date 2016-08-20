@@ -591,6 +591,7 @@ test-handler:
       - SKELETON
       - ZOMBIE
       - GHAST
+      - PLAYER
     probability: 100
   effects:
     - effects.fire_resistance
