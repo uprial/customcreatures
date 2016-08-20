@@ -21,6 +21,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.GRAVITY_ACCELERATION
 import static com.gmail.uprial.customcreatures.common.Utils.SERVER_TICKS_IN_SECOND;
 import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getAttackDamageMultiplier;
 import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getOriginalFollowRange;
+import static com.gmail.uprial.customcreatures.schema.HItemAttributes.getProjectileSpeedMultiplier;
 
 public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesEventListener {
     private static final String MK_TARGET_PLAYER_UUID = "target-player-uuid";
@@ -57,11 +58,21 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
     public void onProjectileLaunchEvent(ProjectileLaunchEvent event) {
         if (!event.isCancelled()) {
             Projectile projectile = event.getEntity();
-            // Fireballs and shulker's bullets don't follow the gravity rules.
+            /*
+            Fireballs and shulker's bullets don't follow the gravity rules.
+            There is also no way to increase their speed.
+             */
             if (!(projectile instanceof Fireball) && !(projectile instanceof ShulkerBullet)) {
                 ProjectileSource shooter = projectile.getShooter();
                 if (shooter instanceof LivingEntity) {
                     LivingEntity projectileSource = (LivingEntity) shooter;
+
+                    //noinspection LocalVariableNamingConvention
+                    Double projectileSpeedMultiplier = getProjectileSpeedMultiplier(projectileSource);
+                    if (projectileSpeedMultiplier != null) {
+                        projectile.setVelocity(projectile.getVelocity().multiply(projectileSpeedMultiplier));
+                    }
+
                     Double originalFollowRange = getOriginalFollowRange(projectileSource);
                     if (originalFollowRange != null) {
                         UUID targetPlayerUUID = getMetadata(projectileSource, MK_TARGET_PLAYER_UUID);

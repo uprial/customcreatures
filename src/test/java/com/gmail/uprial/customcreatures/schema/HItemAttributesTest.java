@@ -61,11 +61,13 @@ public class HItemAttributesTest extends TestConfigBase {
                 " follow-range: 50.1",
                 " knockback-resistance: 1.0",
                 " max-health: 10.0",
-                " movement-speed-multiplier: 10.0"),
+                " movement-speed-multiplier: 10.0",
+                " projectile-speed-multiplier: 2.0"),
                 getParanoiacCustomLogger(), "a", "attributes");
         assertNotNull(attributes);
-        assertEquals("[max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, base-armor: 1.0," +
-                " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0, movement-speed-multiplier: 10.0]", attributes.toString());
+        assertEquals("[max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, projectile-speed-multiplier: 2.0," +
+                " base-armor: 1.0, follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0," +
+                " movement-speed-multiplier: 10.0]", attributes.toString());
     }
 
     @Test
@@ -97,8 +99,9 @@ public class HItemAttributesTest extends TestConfigBase {
                     " max-health: 1.5"),
                     getIndifferentCustomLogger(), "h.a", "attributes");
             assertNotNull(attributes);
-            assertEquals("[max-health-multiplier: 1.5, attack-damage-multiplier: null, base-armor: null, " +
-                    "follow-range: null, knockback-resistance: null, max-health: null, movement-speed-multiplier: null]", attributes.toString());
+            assertEquals("[max-health-multiplier: 1.5, attack-damage-multiplier: null, projectile-speed-multiplier: null," +
+                    " base-armor: null, follow-range: null, knockback-resistance: null, max-health: null," +
+                    " movement-speed-multiplier: null]", attributes.toString());
         } finally {
             HItemAttributes.setBackwardCompatibility(false);
         }

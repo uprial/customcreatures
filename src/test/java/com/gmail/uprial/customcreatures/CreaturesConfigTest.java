@@ -105,8 +105,9 @@ public class CreaturesConfigTest extends TestConfigBase {
         assertEquals(
                 "[[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99], " +
                         "effects: null, attributes: [max-health-multiplier: 1.0, attack-damage-multiplier: null, " +
-                        "base-armor: null, follow-range: null, knockback-resistance: null," +
-                        " max-health: null, movement-speed-multiplier: null], equipment: null]]",
+                        "projectile-speed-multiplier: null, base-armor: null, follow-range: null," +
+                        " knockback-resistance: null, max-health: null, movement-speed-multiplier: null]," +
+                        " equipment: null]]",
                 loadConfig("handlers:",
                         " - x",
                         "x:",

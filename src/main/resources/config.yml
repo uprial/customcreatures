@@ -154,6 +154,12 @@ handlers:
 #                              ### Multiplier of base movement speed
 #                              ### of an entity.
 #
+#   projectile-speed-multiplier: <float-value:0.0001..?>
+#                                ### Multiplier of speed of entity's
+#                                ### projectile. Doesn't work with
+#                                ### all kind of fireballs and with
+#                                ### Shulker's bullet.
+#
 # #### Type set ####
 #
 # A set of entity types. Some living entities do not belong to any groups:
@@ -603,8 +609,7 @@ test-handler:
     #knockback-resistance: 1.0
     #max-health: 10.0
     #movement-speed-multiplier: 4.0
-
-    #projectile-speed-multiplier: 3.0
+    #projectile-speed-multiplier: 0.3
 
 # Global templates of effects
 effects:

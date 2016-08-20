@@ -30,6 +30,7 @@ public final class HItemAttributes {
     private static boolean backwardCompatibility = false;
 
     private static final String MK_ATTACK_DAMAGE_MULTIPLIER = "attack-damage-multiplier";
+    private static final String MK_PROJECTILE_SPEED_MULTIPLIER = "projectile-speed-multiplier";
     private static final String MK_ORIGINAL_FOLLOW_RANGE = "original-follow-range";
 
     private static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
@@ -48,14 +49,17 @@ public final class HItemAttributes {
     private final String title;
     private final IValue<Double> maxHealthMultiplier;
     private final IValue<Double> attackDamageMultiplier;
+    private final IValue<Double> projectileSpeedMultiplier;
     private final Map<String, IValue<Double>> genericAttributes;
 
     private HItemAttributes(String title, IValue<Double> maxHealthMultiplier,
                             @SuppressWarnings("MethodParameterNamingConvention") IValue<Double> attackDamageMultiplier,
+                            @SuppressWarnings("MethodParameterNamingConvention") IValue<Double> projectileSpeedMultiplier,
                             Map<String, IValue<Double>> genericAttributes) {
         this.title = title;
         this.maxHealthMultiplier = maxHealthMultiplier;
         this.attackDamageMultiplier = attackDamageMultiplier;
+        this.projectileSpeedMultiplier = projectileSpeedMultiplier;
         this.genericAttributes = genericAttributes;
     }
 
@@ -64,10 +68,15 @@ public final class HItemAttributes {
         applyGenericAttributes(plugin, customLogger, entity);
         applyMaxHealth(plugin, customLogger, entity);
         applyAttackDamageMultiplier(plugin, customLogger, entity);
+        applyProjectileSpeedMultiplier(plugin, customLogger, entity);
     }
 
     public static Double getAttackDamageMultiplier(LivingEntity entity) {
         return getMetadata(entity, MK_ATTACK_DAMAGE_MULTIPLIER);
+    }
+
+    public static Double getProjectileSpeedMultiplier(LivingEntity entity) {
+        return getMetadata(entity, MK_PROJECTILE_SPEED_MULTIPLIER);
     }
 
     public static Double getOriginalFollowRange(LivingEntity entity) {
@@ -131,13 +140,24 @@ public final class HItemAttributes {
         }
     }
 
+    private void applyProjectileSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+        applyMetadataStoredValue(plugin, customLogger, entity, projectileSpeedMultiplier,
+                MK_PROJECTILE_SPEED_MULTIPLIER, "projectile speed multiplier");
+    }
+
     private void applyAttackDamageMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
-        if (attackDamageMultiplier != null) {
-            Double value = attackDamageMultiplier.getValue();
-            setMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, value);
+        applyMetadataStoredValue(plugin, customLogger, entity, attackDamageMultiplier,
+                MK_ATTACK_DAMAGE_MULTIPLIER, "attack damage multiplier");
+    }
+
+    private void applyMetadataStoredValue(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity,
+                                          IValue<Double> value, String key, String valueTitle) {
+        if (value != null) {
+            Double newValue = value.getValue();
+            setMetadata(plugin, entity, key, newValue);
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set attack damage multiplier of %s to %.2f",
-                        title, format(entity), value));
+                customLogger.debug(String.format("Handle %s modification: set %s of %s to %.2f",
+                        title, valueTitle, format(entity), newValue));
             }
         }
     }
@@ -201,6 +221,10 @@ public final class HItemAttributes {
         IValue<Double> attackDamageMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "attack-damage-multiplier"),
                 String.format("attack damage multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
+        //noinspection LocalVariableNamingConvention
+        IValue<Double> projectileSpeedMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "projectile-speed-multiplier"),
+                String.format("projectile speed multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
+
         Map<String, IValue<Double>> genericAttributes = new HashMap<>();
         IValue<Double> item;
 
@@ -214,17 +238,18 @@ public final class HItemAttributes {
             }
         }
 
-        if ((maxHealthMultiplier == null) && (attackDamageMultiplier == null) && (genericAttributes.isEmpty())) {
+        if ((maxHealthMultiplier == null) && (attackDamageMultiplier == null) && (projectileSpeedMultiplier == null) && (genericAttributes.isEmpty())) {
             throw new InvalidConfigException(String.format("No modifications found in %s", title));
         }
 
-        return new HItemAttributes(key, maxHealthMultiplier, attackDamageMultiplier, genericAttributes);
+        return new HItemAttributes(key, maxHealthMultiplier, attackDamageMultiplier, projectileSpeedMultiplier, genericAttributes);
     }
 
     public String toString() {
         List<String> items = new ArrayList<>();
         items.add(String.format("max-health-multiplier: %s", maxHealthMultiplier));
         items.add(String.format("attack-damage-multiplier: %s", attackDamageMultiplier));
+        items.add(String.format("projectile-speed-multiplier: %s", projectileSpeedMultiplier));
 
         IValue<Double> item;
         for (String key : KEY_2_GENERIC_ATTRIBUTE.keySet()) {

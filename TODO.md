@@ -1,7 +1,6 @@
 # Next versions
 - Split a projectile velocity and its targeting, check if a
 target is reachable at all
-- Implement all the others generic attributes
 - Allow a probability lower than one percent
 
 - Modify Creeper's fuse ticks and its jump height.
