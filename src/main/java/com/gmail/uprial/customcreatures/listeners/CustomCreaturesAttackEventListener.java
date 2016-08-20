@@ -100,7 +100,7 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
                     double damage = event.getDamage();
                     double newDamage = damage * attackDamageMultiplier;
                     if(customLogger.isDebugMode()) {
-                        customLogger.debug(String.format("Modify damage of %s on %s from %.2f to %.2f",
+                        customLogger.debug(String.format("Handle attack damage multiplier: change damage of %s on %s from %.2f to %.2f",
                                 format(livingSource), format(event.getEntity()), damage, newDamage));
                     }
                     event.setDamage(newDamage);

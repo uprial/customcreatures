@@ -122,12 +122,12 @@ handlers:
 #
 #
 # #### Attributes ####
+# By default, all of the following attributes won't be modified.
 #
 # <attributes>:
 #   max-health-multiplier: <float-value:0.0001..?>
 #                          ###
 #                          ### A multiplier for max. health of an entity.
-#                          ### By default, max. health won't be modified.
 #                          ### (* see description of <float-value> below)
 #
 #   attack-damage-multiplier: <float-value:0.0001..?>
@@ -144,6 +144,11 @@ handlers:
 #                                      ### significantly the
 #                                      ### behaviour of projectiles,
 #                                      ### affected by gravity.
+#
+#   knockback-resistance: <float-value:0..1> ### Resistance of an entity
+#                                            ### to knockback.
+#
+#   max-health: <float-value:0.0001..?> ### Max. health of an entity.
 #
 # #### Type set ####
 #
@@ -568,8 +573,9 @@ diamond-skeleton:
         - enchantments.bow_fire
         - enchantments.bow_infinity
   attributes:
-    max-health-multiplier: 1.5
     follow-range: 50.0
+    knockback-resistance: 0.5
+    max-health: 30.0
 
 angry-ghast:
   filter:
@@ -597,9 +603,11 @@ test-handler:
     #attack-damage-multiplier: 10.0
     #base-armor: 2.0
     #follow-range: 50.1
-
-    #knockback-resistance: 10.0
+    #knockback-resistance: 1.0
     #max-health: 10.0
+
+    max-health: 30.0
+    max-health-multiplier: 1.1
     #movement-speed-multiplier: 10.0
     #projectile-speed-multiplier: 3.0
 

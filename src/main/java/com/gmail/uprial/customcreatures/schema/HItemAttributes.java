@@ -36,8 +36,8 @@ public final class HItemAttributes {
             = ImmutableMap.<String, HItemGenericAttribute>builder()
             .put("base-armor", new HItemGenericAttribute(GENERIC_ARMOR, "base armor"))
             .put("follow-range", new HItemGenericAttribute(GENERIC_FOLLOW_RANGE, "follow range", 1.0, 100.0))
-            .put("knockback-resistance", new HItemGenericAttribute(GENERIC_KNOCKBACK_RESISTANCE, "knockback resistance"))
-            .put("max-health", new HItemGenericAttribute(GENERIC_MAX_HEALTH, "max. health"))
+            .put("knockback-resistance", new HItemGenericAttribute(GENERIC_KNOCKBACK_RESISTANCE, "knockback resistance", 0.0, 1.0))
+            .put("max-health", new HItemGenericAttribute(GENERIC_MAX_HEALTH, "max. health", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .put("movement-speed", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed"))
             .build();
 
@@ -116,21 +116,23 @@ public final class HItemAttributes {
     private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (maxHealthMultiplier != null) {
             double maxHealth = getMaxHealth(plugin, entity);
-            entity.setMaxHealth(maxHealth);
-            entity.setHealth(maxHealth);
+            double newMaxHealth = maxHealth * maxHealthMultiplier.getValue();
+
+            entity.setMaxHealth(newMaxHealth);
+            entity.setHealth(newMaxHealth);
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set max. health of %s to %.2f",
-                        title, format(entity), maxHealth));
+                customLogger.debug(String.format("Handle %s modification: change max. health of %s from %.2f to %.2f",
+                        title, format(entity), maxHealth, newMaxHealth));
             }
         }
     }
 
     private double getMaxHealth(CustomCreatures plugin, LivingEntity entity) {
-        double initialMaxHealth = (entity instanceof Player)
+        double maxHealth = (entity instanceof Player)
                 ? getInitialMaxHealth(plugin, entity)
                 : entity.getMaxHealth();
 
-        return initialMaxHealth * maxHealthMultiplier.getValue();
+        return maxHealth;
     }
 
     /*
@@ -138,13 +140,13 @@ public final class HItemAttributes {
         To avoid cumulative changes after respawn we need to multiply initial max. health.
       */
     private static double getInitialMaxHealth(CustomCreatures plugin, LivingEntity entity) {
-        Double maxHealth = getMetadata(entity, INITIAL_MAX_HEALTH_METADATA_KEY);
-        if (maxHealth == null) {
-            maxHealth = entity.getMaxHealth();
-            setMetadata(plugin, entity, INITIAL_MAX_HEALTH_METADATA_KEY, maxHealth);
+        Double initialMaxHealth = getMetadata(entity, INITIAL_MAX_HEALTH_METADATA_KEY);
+        if (initialMaxHealth == null) {
+            initialMaxHealth = entity.getMaxHealth();
+            setMetadata(plugin, entity, INITIAL_MAX_HEALTH_METADATA_KEY, initialMaxHealth);
         }
 
-        return maxHealth;
+        return initialMaxHealth;
     }
 
     public static void setBackwardCompatibility(boolean value) {

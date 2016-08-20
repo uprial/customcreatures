@@ -99,7 +99,7 @@ public class HItemTest extends TestConfigBase {
                 "  attack-damage-multiplier: 10.0",
                 "  base-armor: 1.0",
                 "  follow-range: 50.1",
-                "  knockback-resistance: 10.0",
+                "  knockback-resistance: 1.0",
                 "  max-health: 10.0",
                 "  movement-speed: 10.0"), getDebugFearingCustomLogger(), "h");
     }
