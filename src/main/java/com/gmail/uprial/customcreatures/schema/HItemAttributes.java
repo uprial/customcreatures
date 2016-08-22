@@ -29,6 +29,13 @@ import static org.bukkit.attribute.Attribute.*;
 public final class HItemAttributes {
     private static boolean backwardCompatibility = false;
 
+    /*
+     Because of rounding of float point variables we need to make sure that
+     health of entity is lower than its max. health.
+     So, we reduce an entity's health by this value.
+      */
+    private static double HEALTH_REDUCTION = 0.000001;
+
     private static final String MK_ATTACK_DAMAGE_MULTIPLIER = "attack-damage-multiplier";
     private static final String MK_ORIGINAL_FOLLOW_RANGE = "original-follow-range";
 
@@ -150,7 +157,7 @@ public final class HItemAttributes {
             double newMaxHealth = maxHealth * maxHealthMultiplier.getValue();
 
             entity.setMaxHealth(newMaxHealth);
-            entity.setHealth(newMaxHealth);
+            entity.setHealth(newMaxHealth - HEALTH_REDUCTION);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: change max. health of %s from %.2f to %.2f",
                         title, format(entity), maxHealth, newMaxHealth));
