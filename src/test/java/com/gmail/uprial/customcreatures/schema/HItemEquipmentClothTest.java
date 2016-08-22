@@ -22,7 +22,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         HItemEquipmentCloth itemEquipmentCloth = getFromConfig(getPreparedConfig(
                 "eq:",
                 "  probability: 100",
-                "  drop-chance: 50",
+                "  drop-chance: 0.5",
                 "  material-type: IRON",
                 "  durability: 100",
                 "  enchantments:",
@@ -33,7 +33,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
         assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
-                " drop-chance: 50, durability: 100]",
+                " drop-chance: 0.5, durability: 100]",
                 itemEquipmentCloth.toString());
     }
 
@@ -42,7 +42,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         HItemEquipmentCloth itemEquipmentCloth = getFromConfig(getPreparedConfig(
                 "eq:",
                 "  probability: 77",
-                "  drop-chance: 50",
+                "  drop-chance: 0.5",
                 "  durability: 50",
                 "  material-type: IRON",
                 "  enchantments:",
@@ -53,7 +53,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
         assertEquals("[probability: 77, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
-                " drop-chance: 50, durability: 50]",
+                " drop-chance: 0.5, durability: 50]",
                 itemEquipmentCloth.toString());
     }
 
@@ -111,7 +111,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " probability: 77",
-                " drop-chance: 77",
+                " drop-chance: 0.77",
                 " material-type: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
@@ -123,7 +123,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " probability: 77",
-                " drop-chance: 77",
+                " drop-chance: 0.77",
                 " durability: 77",
                 " material-type: IRON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");

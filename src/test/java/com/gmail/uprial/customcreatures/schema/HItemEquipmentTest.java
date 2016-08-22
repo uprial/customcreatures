@@ -21,35 +21,35 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "e:",
                 " helmet:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
                 "  material-type: IRON",
                 " boots:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLD",
                 " chest:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLD",
                 " leggings:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLD",
                 " main-hand:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
@@ -57,7 +57,7 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  amount: 1",
                 " off-hand:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
@@ -70,22 +70,22 @@ public class HItemEquipmentTest extends TestConfigBase {
         assertNotNull(itemEquipment);
         assertEquals("[helmet: [probability: null, material-type: IRON," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]," +
+                " drop-chance: 1, durability: 100]," +
                 " boots: [probability: null, material-type: GOLD," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]," +
+                " drop-chance: 1, durability: 100]," +
                 " chest: [probability: null, material-type: GOLD," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]," +
+                " drop-chance: 1, durability: 100]," +
                 " leggings: [probability: null, material-type: GOLD," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]," +
+                " drop-chance: 1, durability: 100]," +
                 " main-hand: [probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]," +
+                " drop-chance: 1, durability: 100]," +
                 " off-hand: [probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
-                " drop-chance: 100, durability: 100]]",
+                " drop-chance: 1, durability: 100]]",
                 itemEquipment.toString());
     }
 

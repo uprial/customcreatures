@@ -21,7 +21,7 @@ public class HItemInHandTest extends TestConfigBase {
         HItemInHand itemInHand = getFromConfig(getPreparedConfig(
                 "i:",
                 "  probability: 100",
-                "  drop-chance: 100",
+                "  drop-chance: 1",
                 "  durability: 100",
                 "  material: DIAMOND_SWORD",
                 "  amount: 1",
@@ -34,7 +34,7 @@ public class HItemInHandTest extends TestConfigBase {
         assertNotNull(itemInHand);
         assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 2]}," +
-                " drop-chance: 100, durability: 100]",
+                " drop-chance: 1, durability: 100]",
                 itemInHand.toString());
     }
 
@@ -50,12 +50,12 @@ public class HItemInHandTest extends TestConfigBase {
                 "  e:",
                 "    type: THORNS",
                 "    level: 1",
-                "  drop-chance: 50",
+                "  drop-chance: 0.5",
                 "  durability: 40"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
         assertEquals("[probability: 50, material: DIAMOND_SWORD, amount: 10, enchantments: {[type: THORNS, level: 1]}," +
-                        " drop-chance: 50, durability: 40]",
+                        " drop-chance: 0.5, durability: 40]",
                 itemInHand.toString());
     }
 
@@ -125,7 +125,7 @@ public class HItemInHandTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "i:",
                 " probability: 77",
-                " drop-chance: 77",
+                " drop-chance: 0.77",
                 " material: DIAMOND_SWORD",
                 " amount: 1"),
                 getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
@@ -138,7 +138,7 @@ public class HItemInHandTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "i:",
                 " probability: 77",
-                " drop-chance: 77",
+                " drop-chance: 0.77",
                 " durability: 77",
                 " material: DIAMOND_SWORD",
                 " amount: 1"),

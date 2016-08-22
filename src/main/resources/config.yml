@@ -219,9 +219,9 @@ handlers:
 #                                  ###  - DIAMOND
 #                                  ###  - GOLD
 #
-#   drop-chance: <0..100> ### Chance that this cloth will be dropped as
-#                         ### an award for the killer.
-#                         ### By default the probability is 0%.
+#   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
+#                             ### as an award for the killer.
+#                             ### By default the probability is 0%.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
@@ -245,9 +245,9 @@ handlers:
 #
 #   amount: <int-value:1..64> ### Amount of items.
 #
-#   drop-chance: <0..100> ### Chance that this item will be dropped as
-#                         ### an award for the killer.
-#                         ### By default the probability is 0%.
+#   drop-chance: <float:0..1> ### Chance that this item will be dropped
+#                             ### as an award for the killer.
+#                             ### By default the probability is 0%.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
@@ -400,7 +400,7 @@ iron-zombie:
 
   equipment:
     helmet:
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: IRON
       durability: 25
       enchantments:
@@ -408,27 +408,27 @@ iron-zombie:
         - enchantments.rand_protection
     boots:
       probability: 50
-      drop-chance: 10
+      drop-chance: 0.1
       material-type: IRON
       durability: 25
       enchantments:
         - enchantments.rand_protection
     chest:
       probability: 50
-      drop-chance: 10
+      drop-chance: 0.1
       material-type: IRON
       durability: 25
       enchantments:
         - enchantments.rand_protection
     leggings:
       probability: 50
-      drop-chance: 10
+      drop-chance: 0.1
       material-type: IRON
       durability: 25
       enchantments:
         - enchantments.rand_protection
     main-hand:
-      drop-chance: 10
+      drop-chance: 0.1
       material: IRON_AXE
       durability: 25
       enchantments:
@@ -459,7 +459,7 @@ gold-zombie:
     duration: 99999
   equipment:
     helmet:
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: GOLD
       durability: 50
       enchantments:
@@ -467,14 +467,14 @@ gold-zombie:
         - enchantments.high_protection
     boots:
       probability: 50
-      drop-chance: 10
+      drop-chance: 0.1
       material-type: GOLD
       durability: 50
       enchantments:
         - enchantments.high_protection
     chest:
       probability: 50
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: GOLD
       durability: 50
       enchantments:
@@ -483,13 +483,13 @@ gold-zombie:
         - enchantments.rand_thorns
     leggings:
       probability: 50
-      drop-chance: 10
+      drop-chance: 0.1
       material-type: GOLD
       durability: 50
       enchantments:
         - enchantments.high_protection
     main-hand:
-      drop-chance: 5
+      drop-chance: 0.05
       material: GOLD_SWORD
       durability: 50
       enchantments:
@@ -523,7 +523,7 @@ diamond-skeleton:
     duration: 30
   equipment:
     helmet:
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: DIAMOND
       durability: 33
       enchantments:
@@ -534,7 +534,7 @@ diamond-skeleton:
         - enchantments.high_thorns
     boots:
       probability: 50
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: DIAMOND
       durability: 33
       enchantments:
@@ -545,7 +545,7 @@ diamond-skeleton:
         - enchantments.high_thorns
     chest:
       probability: 50
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: DIAMOND
       durability: 33
       enchantments:
@@ -554,7 +554,7 @@ diamond-skeleton:
         - enchantments.high_thorns
     leggings:
       probability: 50
-      drop-chance: 5
+      drop-chance: 0.05
       material-type: DIAMOND
       durability: 33
       enchantments:
@@ -562,7 +562,7 @@ diamond-skeleton:
         - enchantments.high_protection
         - enchantments.high_thorns
     main-hand:
-      drop-chance: 5
+      drop-chance: 0.05
       material: BOW
       durability: 33
       enchantments:

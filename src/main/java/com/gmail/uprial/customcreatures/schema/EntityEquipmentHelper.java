@@ -60,7 +60,7 @@ final class EntityEquipmentHelper {
         }
     }
 
-    public static void setItemDropChance(EntityEquipment entityEquipment, ClothType clothType, int dropChance) throws OperationIsNotSupportedException {
+    public static void setItemDropChance(EntityEquipment entityEquipment, ClothType clothType, float dropChance) throws OperationIsNotSupportedException {
         try {
             //noinspection IfStatementWithTooManyBranches
             if (clothType == HELMET) {
@@ -77,7 +77,7 @@ final class EntityEquipmentHelper {
         }
     }
 
-    public static void setItemDropChance(EntityEquipment entityEquipment, HandType handType, int dropChance) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
+    public static void setItemDropChance(EntityEquipment entityEquipment, HandType handType, float dropChance) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
         try {
             if (handType == MAIN_HAND) {
                 //noinspection ErrorNotRethrown,NestedTryStatement

@@ -14,14 +14,14 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.inventory.ItemStack;
 
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getInt;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItem;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItemDropChance;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
-import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 
 public final class HItemInHand {
     private final String title;
@@ -30,11 +30,11 @@ public final class HItemInHand {
     private final IValue<Integer> amount;
     private final HandType handType;
     private final HItemEnchantmentsList enchantments;
-    private final int dropChance;
+    private final float dropChance;
     private final HItemDurability durability;
 
     private HItemInHand(String title, Probability probability, Material material, IValue<Integer> amount, HandType handType,
-                        HItemEnchantmentsList enchantments, int dropChance, HItemDurability durability) {
+                        HItemEnchantmentsList enchantments, float dropChance, HItemDurability durability) {
         this.title = title;
         this.probability = probability;
         this.material = material;
@@ -78,9 +78,9 @@ public final class HItemInHand {
             return ;
         }
 
-        if (dropChance > 0) {
+        if (dropChance > 0.0) {
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %d",
+                customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
                         title, material, format(entity), dropChance));
             }
             try {
@@ -110,8 +110,8 @@ public final class HItemInHand {
             amount = new ValueConst<>(1);
         }
 
-        int dropChance = getInt(config, customLogger, joinPaths(key, "drop-chance"),
-                String.format("drop chance of %s", title), 0, MAX_PERCENT, 0);
+        float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
+                String.format("drop chance of %s", title), 0, 1.0, 0);
         HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
@@ -121,8 +121,8 @@ public final class HItemInHand {
     }
 
     public String toString() {
-        return String.format("[probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %d, durability: %s]",
-                probability, material, amount, enchantments, dropChance, durability);
+        return String.format("[probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %s, durability: %s]",
+                probability, material, amount, enchantments, formatDoubleValue(dropChance), durability);
     }
 
 }
