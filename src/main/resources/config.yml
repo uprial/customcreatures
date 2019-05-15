@@ -36,7 +36,7 @@ handlers:
   - rapid-monster
   - player
   - iron-zombie
-  - gold-zombie
+  - golden-zombie
   - diamond-skeleton
   - angry-ghast
 # Uncomment this line to play with test handler.
@@ -162,13 +162,15 @@ handlers:
 #
 # <type-set>: ANIMALS | GOLEMS | MONSTERS | CREATURES | FLYING
 #
-# ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR,
-#           RABBIT, SHEEP, WOLF]
+# ANIMALS: [CAT, CHICKEN, COD, COW, DOLPHIN, DONKEY, FOX, HORSE,
+#           LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR,
+#           PUFFERFISH, RABBIT, SALMON, SHEEP, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]
 # GOLEMS: [IRON_GOLEM, SHULKER, SNOWMAN]
-# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT,
-#            GUARDIAN, PIG_ZOMBIE, SILVERFISH, SKELETON, SPIDER,
-#            WITCH, WITHER, ZOMBIE]
-# CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, VILLAGER]
+# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDERMAN, ENDERMITE, EVOKER,
+#            EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, PHANTOM, PIG_ZOMBIE, PILLAGER,
+#            RAVAGER, SILVERFISH, SKELETON, SKELETON_HORSE, SPIDER, STRAY, VEX, VINDICATOR,
+#            WITCH, WITHER, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER]
+# CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]
 # FLYING: [ENDER_DRAGON, GHAST]
 #
 # #### Effect ####
@@ -217,7 +219,7 @@ handlers:
 #                                  ###  - CHAINMAIL
 #                                  ###  - IRON
 #                                  ###  - DIAMOND
-#                                  ###  - GOLD
+#                                  ###  - GOLDEN
 #
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
@@ -437,7 +439,7 @@ iron-zombie:
   attributes:
     movement-speed-multiplier: 1.5
 
-gold-zombie:
+golden-zombie:
   filter:
     types:
       - ZOMBIE
@@ -460,7 +462,7 @@ gold-zombie:
   equipment:
     helmet:
       drop-chance: 0.05
-      material-type: GOLD
+      material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.high_durability
@@ -468,14 +470,14 @@ gold-zombie:
     boots:
       probability: 50
       drop-chance: 0.1
-      material-type: GOLD
+      material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.high_protection
     chest:
       probability: 50
       drop-chance: 0.05
-      material-type: GOLD
+      material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.high_protection_fire
@@ -484,13 +486,13 @@ gold-zombie:
     leggings:
       probability: 50
       drop-chance: 0.1
-      material-type: GOLD
+      material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.high_protection
     main-hand:
       drop-chance: 0.05
-      material: GOLD_SWORD
+      material: GOLDEN_SWORD
       durability: 50
       enchantments:
         - enchantments.high_durability

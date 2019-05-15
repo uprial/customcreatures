@@ -2,7 +2,7 @@ package com.gmail.uprial.customcreatures.schema.enchantment;
 
 import org.bukkit.enchantments.Enchantment;
 
-public enum EnchantmentEnumOld implements IEnchantmentEnum {
+public enum EnchantmentEnum108 implements IEnchantmentEnum {
     PROTECTION_ENVIRONMENTAL(Enchantment.PROTECTION_ENVIRONMENTAL),
     PROTECTION_FIRE(Enchantment.PROTECTION_FIRE),
     PROTECTION_FALL(Enchantment.PROTECTION_FALL),
@@ -31,7 +31,7 @@ public enum EnchantmentEnumOld implements IEnchantmentEnum {
 
     private final Enchantment type;
 
-    EnchantmentEnumOld(Enchantment type) {
+    EnchantmentEnum108(Enchantment type) {
         this.type = type;
     }
 

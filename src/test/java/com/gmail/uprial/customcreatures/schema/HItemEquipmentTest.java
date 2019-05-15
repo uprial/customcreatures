@@ -32,21 +32,21 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
-                "  material-type: GOLD",
+                "  material-type: GOLDEN",
                 " chest:",
                 "  probability: 100",
                 "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
-                "  material-type: GOLD",
+                "  material-type: GOLDEN",
                 " leggings:",
                 "  probability: 100",
                 "  drop-chance: 1",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e1",
-                "  material-type: GOLD",
+                "  material-type: GOLDEN",
                 " main-hand:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -71,13 +71,13 @@ public class HItemEquipmentTest extends TestConfigBase {
         assertEquals("[helmet: [probability: null, material-type: IRON," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 1, durability: 100]," +
-                " boots: [probability: null, material-type: GOLD," +
+                " boots: [probability: null, material-type: GOLDEN," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 1, durability: 100]," +
-                " chest: [probability: null, material-type: GOLD," +
+                " chest: [probability: null, material-type: GOLDEN," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 1, durability: 100]," +
-                " leggings: [probability: null, material-type: GOLD," +
+                " leggings: [probability: null, material-type: GOLDEN," +
                 " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 1]}," +
                 " drop-chance: 1, durability: 100]," +
                 " main-hand: [probability: null, material: DIAMOND_SWORD, amount: 1," +

@@ -6,5 +6,5 @@ public enum MaterialType {
     CHAINMAIL,
     IRON,
     DIAMOND,
-    GOLD
+    GOLDEN
 }

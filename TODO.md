@@ -10,3 +10,4 @@ saddled pig; angry bunny; baby zombie.
 - Unique flag: don't apply two handlers with the same value of this
 flag. This flag should replace filter's probability with a system of
  weights.
+- https://www.spigotmc.org/threads/setmaxhealth-for-a-entity.201869/

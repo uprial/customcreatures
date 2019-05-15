@@ -67,12 +67,12 @@ public class HItemTypeSetTest {
                 ARROW, SNOWBALL, FIREBALL, SMALL_FIREBALL,
                 ENDER_PEARL, ENDER_SIGNAL, THROWN_EXP_BOTTLE, ITEM_FRAME,
                 WITHER_SKULL, PRIMED_TNT, FALLING_BLOCK, FIREWORK,
-                TIPPED_ARROW, SPECTRAL_ARROW, SHULKER_BULLET, DRAGON_FIREBALL,
+                SPECTRAL_ARROW, SHULKER_BULLET, DRAGON_FIREBALL,
                 ARMOR_STAND, MINECART_COMMAND, BOAT, MINECART,
                 MINECART_CHEST, MINECART_FURNACE, MINECART_TNT, MINECART_HOPPER,
-                MINECART_MOB_SPAWNER, ENDER_CRYSTAL, SPLASH_POTION, LINGERING_POTION,
+                MINECART_MOB_SPAWNER, ENDER_CRYSTAL, SPLASH_POTION,
                 AREA_EFFECT_CLOUD, EGG, FISHING_HOOK, LIGHTNING,
-                WEATHER, COMPLEX_PART, UNKNOWN);
+                LLAMA_SPIT, TRIDENT, UNKNOWN);
 
         for(EntityType entityType : EntityType.values()) {
             boolean isFound = aloneEntityTypes.contains(entityType) || deadEntityTypes.contains(entityType);
@@ -104,11 +104,15 @@ public class HItemTypeSetTest {
             }
             stringBuilder.append(String.format(": %s\n", getSortedList(itemTypeSet.entityTypes)));
         }
-        assertEquals("ANIMALS: [CHICKEN, COW, HORSE, MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR, RABBIT, SHEEP, WOLF]\n" +
+        assertEquals("ANIMALS: [CAT, CHICKEN, COD, COW, DOLPHIN, DONKEY, FOX, HORSE, LLAMA, MULE," +
+                " MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP," +
+                " TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]\n" +
                 "GOLEMS: [IRON_GOLEM, SHULKER, SNOWMAN]\n" +
-                "MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE, SILVERFISH," +
-                " SKELETON, SPIDER, WITCH, WITHER, ZOMBIE]\n" +
-                "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, VILLAGER]\n" +
+                "MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDERMAN, ENDERMITE, EVOKER," +
+                " EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, PHANTOM, PIG_ZOMBIE, PILLAGER, RAVAGER," +
+                " SILVERFISH, SKELETON, SKELETON_HORSE, SPIDER, STRAY, VEX, VINDICATOR, WITCH, WITHER," +
+                " WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER]\n" +
+                "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [BAT, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]\n" +
                 "FLYING: [ENDER_DRAGON, GHAST]\n", stringBuilder.toString());
     }
 

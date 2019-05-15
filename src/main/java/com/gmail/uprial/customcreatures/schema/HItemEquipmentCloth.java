@@ -12,6 +12,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleV
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getString;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItem;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItemDropChance;
@@ -92,7 +93,7 @@ public final class HItemEquipmentCloth {
         Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
                 String.format("probability of %s", title));
 
-        MaterialType materialType = getEnum(MaterialType.class, config,
+        MaterialType materialType = getMaterialType(config,
                 joinPaths(key, "material-type"), String.format("material type of %s", title));
         getMaterial(materialType, clothType, title);
 
@@ -106,12 +107,33 @@ public final class HItemEquipmentCloth {
         return new HItemEquipmentCloth(title, probability, materialType, clothType, enchantments, dropChance, durability);
     }
 
+    private static MaterialType getMaterialType(FileConfiguration config, String key, String title) throws InvalidConfigException {
+        String materialTypeString = getString(config, key, title);
+
+        // Backward compatibility for old configs
+        if (materialTypeString.equalsIgnoreCase("GOLD")) {
+            return MaterialType.GOLDEN;
+        } else {
+            return getEnum(MaterialType.class, config, key, title);
+        }
+    }
+
     private static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
         String itemName = String.format("%s_%s", materialType, clothType);
         try {
             return Material.valueOf(itemName);
-        } catch (IllegalArgumentException ignored) {
-            throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
+        } catch (IllegalArgumentException ignored1) {
+            // Backward compatibility for old configs
+            if (materialType.equals(MaterialType.GOLDEN)) {
+                itemName = String.format("GOLD_%s", clothType);
+                try {
+                    return Material.valueOf(itemName);
+                } catch (IllegalArgumentException ignored2) {
+                    throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
+                }
+            } else {
+                throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
+            }
         }
     }
 

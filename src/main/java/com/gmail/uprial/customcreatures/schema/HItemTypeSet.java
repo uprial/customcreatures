@@ -11,25 +11,32 @@ import static org.bukkit.entity.EntityType.*;
 /*
     https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
 
-    Ageable, Ambient, Animals, ArmorStand, Bat, Blaze, CaveSpider, Chicken,
-    ComplexLivingEntity, Cow, Creature, Creeper, EnderDragon, Enderman, Endermite,
-    Flying, Ghast, Giant, Golem, Guardian, Horse, HumanEntity, IronGolem, MagmaCube,
-    Monster, MushroomCow, NPC, Ocelot, Pig, PigZombie, Player, PolarBear, Rabbit,
-    Sheep, Shulker, Silverfish, Skeleton, Slime, Snowman, Spider, Squid, Villager,
-    WaterMob, Witch, Wither, Wolf, Zombie
+    AbstractHorse, AbstractVillager, Ageable, Ambient, Animals, ArmorStand, Bat, Blaze,
+    Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity, Cow, Creature,
+    Creeper, Dolphin, Donkey, Drowned, ElderGuardian, EnderDragon, Enderman, Endermite,
+    Evoker, Fish, Flying, Fox, Ghast, Giant, Golem, Guardian,
+    Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem, Llama, MagmaCube,
+    Mob, Monster, Mule, MushroomCow, NPC, Ocelot, Panda, Parrot,
+    Phantom, Pig, PigZombie, Pillager, Player, PolarBear, PufferFish, Rabbit,
+    Raider, Ravager, Salmon, Sheep, Shulker, Silverfish, Skeleton, SkeletonHorse,
+    Slime, Snowman, Spellcaster, Spider, Squid, Stray, TraderLlama, TropicalFish,
+    Turtle, Vex, Villager, Vindicator, WanderingTrader, WaterMob, Witch, Wither,
+    WitherSkeleton, Wolf, Zombie, ZombieHorse, ZombieVillager
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(CHICKEN, COW, HORSE,
-                    MUSHROOM_COW, OCELOT, PIG, POLAR_BEAR,
-                    RABBIT, SHEEP, WOLF)),
+            Sets.newHashSet(CHICKEN, CAT, COD, COW, DOLPHIN, DONKEY, FOX, HORSE,
+                    LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR,
+                    PUFFERFISH, RABBIT, SALMON, SHEEP, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE)),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SHULKER, SNOWMAN)),
     MONSTERS(null,
-            Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, ENDERMAN, ENDERMITE, GIANT, GUARDIAN, PIG_ZOMBIE,
-                    SILVERFISH, SKELETON, SPIDER, WITCH, WITHER, ZOMBIE)),
+            Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ENDERMAN, ENDERMITE, EVOKER, ELDER_GUARDIAN,
+                    EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, PHANTOM, PIG_ZOMBIE, PILLAGER,
+                    RAVAGER, SILVERFISH, SKELETON, SKELETON_HORSE, SPIDER, STRAY, VEX, VINDICATOR,
+                    WITCH, WITHER, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER)),
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
-            Sets.newHashSet(BAT, VILLAGER)),
+            Sets.newHashSet(BAT, VILLAGER, TRADER_LLAMA, WANDERING_TRADER)),
     FLYING(null,
             Sets.newHashSet(ENDER_DRAGON, GHAST));
 

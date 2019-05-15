@@ -39,7 +39,7 @@ public final class ConfigReaderEnums {
         }
     }
 
-    static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
+    public static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
         String string = config.getString(key);
 
         if(string == null) {

@@ -5,10 +5,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class EnchantmentEnumOldTest {
+public class EnchantmentEnum108Test {
     @Test
     public void testConsistency() throws Exception {
-        assertEquals(EnchantmentEnumOld.values().length + 2, Enchantment.class.getFields().length);
+        assertEquals(EnchantmentEnum108.values().length + 12, Enchantment.class.getFields().length);
     }
 
 }
