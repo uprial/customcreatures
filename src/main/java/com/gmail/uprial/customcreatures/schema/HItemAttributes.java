@@ -5,6 +5,7 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import com.google.common.collect.ImmutableMap;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -151,12 +152,13 @@ public final class HItemAttributes {
 
     private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (maxHealthMultiplier != null) {
+            AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
             double maxHealth = (entity instanceof Player)
-                    ? getInitialValue(plugin, entity, MK_INITIAL_MAX_HEALTH, entity.getMaxHealth())
-                    : entity.getMaxHealth();
+                    ? getInitialValue(plugin, entity, MK_INITIAL_MAX_HEALTH, maxHealthAttributeInstance.getBaseValue())
+                    : maxHealthAttributeInstance.getBaseValue();
             double newMaxHealth = maxHealth * maxHealthMultiplier.getValue();
 
-            entity.setMaxHealth(newMaxHealth);
+            maxHealthAttributeInstance.setBaseValue(newMaxHealth);
             entity.setHealth(newMaxHealth - HEALTH_REDUCTION);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: change max. health of %s from %.2f to %.2f",

@@ -29,8 +29,8 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
         for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
             if (enchantment.getType().conflictsWith(existsEnchantment)) {
                 customLogger.error(String.format("Can't handle %s of %s because %s conflicts with %s",
-                        title, format(entity), enchantment.getType().getName(),
-                        existsEnchantment.getName()));
+                        title, format(entity), enchantment.getType().toString(),
+                        existsEnchantment.toString()));
                 return ;
             }
         }
@@ -43,7 +43,7 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
         if(customLogger.isDebugMode()) {
             customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
-                    title, format(entity), enchantment.getType().getName(), enchantmentLevel));
+                    title, format(entity), enchantment.getType().toString(), enchantmentLevel));
         }
         try {
             itemStack.addEnchantment(enchantment.getType(), enchantmentLevel);

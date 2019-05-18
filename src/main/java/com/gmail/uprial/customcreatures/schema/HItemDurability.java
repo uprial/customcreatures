@@ -7,6 +7,8 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
@@ -28,7 +30,11 @@ public final class HItemDurability {
             customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
                     title, material, format(entity), itemDurability));
         }
-        itemStack.setDurability((short)Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT));
+        int newItemDurability = (short)Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
+
+        Damageable itemStackMeta = (Damageable)itemStack.getItemMeta();
+        itemStackMeta.setDamage(newItemDurability);
+        itemStack.setItemMeta((ItemMeta)itemStackMeta);
     }
 
     public static HItemDurability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {

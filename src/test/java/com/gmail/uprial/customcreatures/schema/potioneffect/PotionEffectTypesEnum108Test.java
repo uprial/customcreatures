@@ -11,7 +11,7 @@ public class PotionEffectTypesEnum108Test {
         int i = 1;
         for(PotionEffectTypesEnum108 potionEffectType : PotionEffectTypesEnum108.values()) {
             //noinspection deprecation
-            assertEquals(i, potionEffectType.getType().getId());
+            assertEquals(i, potionEffectType.getType().hashCode());
             i += 1;
         }
     }
