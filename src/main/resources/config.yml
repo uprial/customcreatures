@@ -375,6 +375,7 @@ player:
       - DEFAULT
     types:
       - PLAYER
+    probability: 100
   effects:
     - acceleration
   acceleration:
@@ -402,6 +403,7 @@ iron-zombie:
 
   equipment:
     helmet:
+      probability: 100
       drop-chance: 0.05
       material-type: IRON
       durability: 25
@@ -430,6 +432,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_protection
     main-hand:
+      probability: 100
       drop-chance: 0.1
       material: IRON_AXE
       durability: 25
@@ -461,6 +464,7 @@ golden-zombie:
     duration: 99999
   equipment:
     helmet:
+      probability: 100
       drop-chance: 0.05
       material-type: GOLDEN
       durability: 50
@@ -491,6 +495,7 @@ golden-zombie:
       enchantments:
         - enchantments.high_protection
     main-hand:
+      probability: 100
       drop-chance: 0.05
       material: GOLDEN_SWORD
       durability: 50
@@ -525,6 +530,7 @@ diamond-skeleton:
     duration: 30
   equipment:
     helmet:
+      probability: 100
       drop-chance: 0.05
       material-type: DIAMOND
       durability: 33
@@ -564,6 +570,7 @@ diamond-skeleton:
         - enchantments.high_protection
         - enchantments.high_thorns
     main-hand:
+      probability: 100
       drop-chance: 0.05
       material: BOW
       durability: 33
