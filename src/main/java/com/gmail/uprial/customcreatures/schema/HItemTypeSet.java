@@ -25,20 +25,28 @@ import static org.bukkit.entity.EntityType.*;
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(CHICKEN, CAT, COD, COW, DOLPHIN, DONKEY, FOX, HORSE,
-                    LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR,
-                    PUFFERFISH, RABBIT, SALMON, SHEEP, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE)),
+            Sets.newHashSet(BAT, CHICKEN, CAT, COD, COW, DOLPHIN, DONKEY, FOX,
+                    HORSE, LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG,
+                    POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID, TROPICAL_FISH, TURTLE,
+                    WOLF, ZOMBIE_HORSE)),
     GOLEMS(null,
-            Sets.newHashSet(IRON_GOLEM, SHULKER, SNOWMAN)),
+            Sets.newHashSet(IRON_GOLEM, SNOWMAN)),
     MONSTERS(null,
             Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ENDERMAN, ENDERMITE, EVOKER, ELDER_GUARDIAN,
-                    EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, PHANTOM, PIG_ZOMBIE, PILLAGER,
-                    RAVAGER, SILVERFISH, SKELETON, SKELETON_HORSE, SPIDER, STRAY, VEX, VINDICATOR,
-                    WITCH, WITHER, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER)),
+                    EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIG_ZOMBIE,
+                    PILLAGER, RAVAGER, SILVERFISH, SHULKER, SKELETON, SKELETON_HORSE, SLIME, SPIDER,
+                    STRAY, VEX, VINDICATOR, WITCH, WITHER, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER)),
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
-            Sets.newHashSet(BAT, VILLAGER, TRADER_LLAMA, WANDERING_TRADER)),
-    FLYING(null,
-            Sets.newHashSet(ENDER_DRAGON, GHAST));
+            Sets.newHashSet(VILLAGER, TRADER_LLAMA, WANDERING_TRADER)),
+
+    // https://minecraft.gamepedia.com/Zombie_(disambiguation)
+    ZOMBIES(null,
+            Sets.newHashSet(DROWNED, GIANT, HUSK, PIG_ZOMBIE, ZOMBIE, ZOMBIE_VILLAGER)),
+    // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
+    SKELETONS(null,
+            Sets.newHashSet(SKELETON, STRAY, WITHER_SKELETON)),
+    FLYING_MOBS(null,
+            Sets.newHashSet(BAT, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER));
 
     final Set<EntityType> entityTypes;
     final Set<HItemTypeSet> subSets;
