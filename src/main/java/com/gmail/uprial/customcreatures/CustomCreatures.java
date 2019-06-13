@@ -10,6 +10,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 import java.util.UUID;
@@ -17,8 +18,6 @@ import java.util.UUID;
 import static com.gmail.uprial.customcreatures.CustomCreaturesCommandExecutor.COMMAND_NS;
 
 public final class CustomCreatures extends JavaPlugin {
-    private static final int CRON_INTERVAL = 1;
-
     private final String CONFIG_FILE_NAME = "config.yml";
     private final File configFile = new File(getDataFolder(), CONFIG_FILE_NAME);
 
@@ -27,14 +26,19 @@ public final class CustomCreatures extends JavaPlugin {
     private CustomCreaturesSpawnEventListener customCreaturesSpawnEventListener = null;
     private CustomCreaturesAttackEventListener customCreaturesAttackEventListener = null;
 
+    private int cronTaskId;
+    private int playerTrackerTaskId;
+
     @Override
     public void onEnable() {
         HItemAttributes.setBackwardCompatibility(true);
 
         saveDefaultConfig();
 
-        CustomCreaturesCron cronTask = new CustomCreaturesCron();
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, cronTask, CRON_INTERVAL, CRON_INTERVAL);
+        cronTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this,
+                new CustomCreaturesCron(), CustomCreaturesCron.getInterval(), CustomCreaturesCron.getInterval());
+        playerTrackerTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this,
+                new CustomCreaturesPlayerTracker(this), CustomCreaturesPlayerTracker.getInterval(), CustomCreaturesPlayerTracker.getInterval());
 
         consoleLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
@@ -60,8 +64,10 @@ public final class CustomCreatures extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(customCreaturesSpawnEventListener);
         HandlerList.unregisterAll(customCreaturesAttackEventListener);
+        HandlerList.unregisterAll(customCreaturesSpawnEventListener);
+        getServer().getScheduler().cancelTask(playerTrackerTaskId);
+        getServer().getScheduler().cancelTask(cronTaskId);
         consoleLogger.info("Plugin disabled");
     }
 

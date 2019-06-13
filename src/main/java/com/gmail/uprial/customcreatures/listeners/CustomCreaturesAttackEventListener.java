@@ -14,6 +14,7 @@ import org.bukkit.util.Vector;
 
 import java.util.UUID;
 
+import static com.gmail.uprial.customcreatures.CustomCreaturesPlayerTracker.getPlayerMovementVector;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.getMetadata;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata;
@@ -63,7 +64,7 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
                 if (shooter instanceof LivingEntity) {
                     LivingEntity projectileSource = (LivingEntity) shooter;
                     Double originalFollowRange = getOriginalFollowRange(projectileSource);
-                    if (originalFollowRange != null) {
+                    if (originalFollowRange != null || true) {
                         UUID targetPlayerUUID = getMetadata(projectileSource, MK_TARGET_PLAYER_UUID);
                         if (targetPlayerUUID != null) {
                             Player targetPlayer = plugin.getOnlinePlayerByUUID(targetPlayerUUID);
@@ -112,7 +113,7 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
 
     private void fixProjectileTrajectory(LivingEntity projectileSource, Projectile projectile, Double originalFollowRange, Player targetPlayer) {
         Location targetLocation = targetPlayer.getEyeLocation();
-        if (targetLocation.distance(projectile.getLocation()) > originalFollowRange) {
+        if (targetLocation.distance(projectile.getLocation()) > originalFollowRange || true) {
             Vector projectileVelocity = projectile.getVelocity();
             Location projectileLocation = projectile.getLocation();
 
@@ -141,6 +142,12 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
             double y2 = targetLocation.getY() - projectileLocation.getY();
             double t = ticksInFly / SERVER_TICKS_IN_SECOND;
             double vy = ((y2 - ((GRAVITY_ACCELERATION * (t * t)) / 2.0) - y1) / t) / SERVER_TICKS_IN_SECOND;
+
+            // Consider the target player is running somewhere ...
+            Vector targetVelocity = getPlayerMovementVector(targetPlayer);
+            vx += targetVelocity.getX();
+            vy += targetVelocity.getY();
+            vz += targetVelocity.getZ();
 
             Vector newVelocity = new Vector(vx, vy, vz);
             projectile.setVelocity(newVelocity);

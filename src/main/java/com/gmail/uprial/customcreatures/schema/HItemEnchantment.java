@@ -26,12 +26,13 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
-        for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
-            if (enchantment.getType().conflictsWith(existsEnchantment)) {
-                customLogger.error(String.format("Can't handle %s of %s because %s conflicts with %s",
-                        title, format(entity), enchantment.getType().toString(),
-                        existsEnchantment.toString()));
-                return ;
+        if(customLogger.isDebugMode()) {
+            for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
+                if (enchantment.getType().conflictsWith(existsEnchantment)) {
+                    customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
+                            title, format(entity), enchantment.getType().toString(),
+                            existsEnchantment.toString()));
+                }
             }
         }
         if (! enchantment.getType().canEnchantItem(itemStack)) {
@@ -46,7 +47,7 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
                     title, format(entity), enchantment.getType().toString(), enchantmentLevel));
         }
         try {
-            itemStack.addEnchantment(enchantment.getType(), enchantmentLevel);
+            itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
         } catch (IllegalArgumentException e) {
             customLogger.error(String.format("Can't handle %s of %s: %s",
                     title, format(entity), e.getMessage()));
@@ -60,7 +61,7 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
         Enum enchantment = getEnum(EnchantmentLoader.get(), config, joinPaths(key, "type"), String.format("enchantment type of %s", title));
         IValue<Integer> level = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "level"),
-                String.format("level of %s", title), 1, 5);
+                String.format("level of %s", title), 1, 10);
         if (level == null) {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }

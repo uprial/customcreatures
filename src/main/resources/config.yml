@@ -35,8 +35,8 @@ handlers:
   - fat-animal
   - rapid-monster
   - player
-  - iron-zombie
   - golden-zombie
+  - iron-zombie
   - diamond-skeleton
   - angry-ghast
 # Uncomment this line to play with test handler.
@@ -294,7 +294,7 @@ handlers:
 #                             ### Hint: common protection's enchantment
 #                             ### is "PROTECTION_ENVIRONMENTAL".
 #
-#   level: <int-value:1..5>   ### Level of enchantment.
+#   level: <int-value:1..10>  ### Level of enchantment.
 #
 # #### Floating point value ####
 # High-level restrictions:
@@ -380,8 +380,8 @@ player:
       - PLAYER
     probability: 100
   effects:
-    - acceleration
-  acceleration:
+    - jump
+  jump:
     types:
       - SPEED
       - JUMP
@@ -391,14 +391,15 @@ player:
     main-hand:
       material: APPLE
 
-iron-zombie:
+golden-zombie:
   filter:
     type-sets:
       - ZOMBIES
     probability: 4
   effects:
-    - acceleration
-  acceleration:
+    - jump
+    - effects.fire_resistance
+  jump:
     types:
       - JUMP
     strength: 2
@@ -407,55 +408,54 @@ iron-zombie:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.05
-      material-type: IRON
-      durability: 25
+      drop-chance: 0.1
+      material-type: GOLDEN
+      durability: 50
       enchantments:
-        - enchantments.high_durability
         - enchantments.rand_protection
     boots:
       probability: 50
       drop-chance: 0.1
-      material-type: IRON
-      durability: 25
+      material-type: GOLDEN
+      durability: 50
       enchantments:
         - enchantments.rand_protection
     chest:
       probability: 50
       drop-chance: 0.1
-      material-type: IRON
-      durability: 25
+      material-type: GOLDEN
+      durability: 50
       enchantments:
         - enchantments.rand_protection
     leggings:
       probability: 50
       drop-chance: 0.1
-      material-type: IRON
-      durability: 25
+      material-type: GOLDEN
+      durability: 50
       enchantments:
         - enchantments.rand_protection
     main-hand:
       probability: 100
       drop-chance: 0.1
-      material: IRON_AXE
-      durability: 25
+      material: GOLDEN_AXE
+      durability: 50
       enchantments:
-        - enchantments.rand_melee_damage
+        - enchantments.rand_damage_all
         - enchantments.rand_dig_speed
   attributes:
     movement-speed-multiplier: 1.5
 
-golden-zombie:
+iron-zombie:
   filter:
     type-sets:
       - ZOMBIES
     probability: 2
   effects:
-    - acceleration
+    - jump
     - damage
     - effects.fire_resistance
     - effects.regeneration
-  acceleration:
+  jump:
     types:
       - JUMP
     strength: 3
@@ -468,43 +468,44 @@ golden-zombie:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.05
-      material-type: GOLDEN
-      durability: 50
+      drop-chance: 0.1
+      material-type: IRON
+      durability: 33
       enchantments:
-        - enchantments.high_durability
+        - enchantments.rand_durability
         - enchantments.high_protection
     boots:
       probability: 50
       drop-chance: 0.1
-      material-type: GOLDEN
-      durability: 50
+      material-type: IRON
+      durability: 33
       enchantments:
+        - enchantments.rand_durability
         - enchantments.high_protection
     chest:
       probability: 50
-      drop-chance: 0.05
-      material-type: GOLDEN
-      durability: 50
+      drop-chance: 0.1
+      material-type: IRON
+      durability: 33
       enchantments:
-        - enchantments.high_protection_fire
-        - enchantments.high_durability
-        - enchantments.rand_thorns
+        - enchantments.rand_durability
+        - enchantments.high_protection
     leggings:
       probability: 50
       drop-chance: 0.1
-      material-type: GOLDEN
-      durability: 50
+      material-type: IRON
+      durability: 33
       enchantments:
+        - enchantments.rand_durability
         - enchantments.high_protection
     main-hand:
       probability: 100
       drop-chance: 0.05
-      material: GOLDEN_SWORD
-      durability: 50
+      material: IRON_SWORD
+      durability: 33
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_melee_damage
+        - enchantments.top_damage_all
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
@@ -530,56 +531,59 @@ diamond-skeleton:
     types:
       - GLOWING
     strength: 1
-    duration: 30
+    duration: 300
   equipment:
     helmet:
       probability: 100
       drop-chance: 0.05
       material-type: DIAMOND
-      durability: 33
+      durability: 25
       enchantments:
         - enchantments.high_durability
         - enchantments.high_protection
+        - enchantments.high_thorns
+        - enchantments.top_protection_explosions
         - enchantments.high_oxygen_helmet
         - enchantments.water_worker_helmet
-        - enchantments.high_thorns
     boots:
       probability: 50
       drop-chance: 0.05
       material-type: DIAMOND
-      durability: 33
+      durability: 25
       enchantments:
         - enchantments.high_durability
         - enchantments.high_protection
-        - enchantments.high_protection_fall_boots
-        - enchantments.high_depth_strider_boots
         - enchantments.high_thorns
+        - enchantments.top_protection_fall_boots
+        - enchantments.high_depth_strider_boots
     chest:
       probability: 50
       drop-chance: 0.05
       material-type: DIAMOND
-      durability: 33
-      enchantments:
-        - enchantments.high_durability
-        - enchantments.high_protection_fire
-        - enchantments.high_thorns
-    leggings:
-      probability: 50
-      drop-chance: 0.05
-      material-type: DIAMOND
-      durability: 33
+      durability: 25
       enchantments:
         - enchantments.high_durability
         - enchantments.high_protection
         - enchantments.high_thorns
+        - enchantments.top_protection_fire
+    leggings:
+      probability: 50
+      drop-chance: 0.05
+      material-type: DIAMOND
+      durability: 25
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.high_protection
+        - enchantments.high_thorns
+        - enchantments.top_protection_projectile
     main-hand:
       probability: 100
       drop-chance: 0.05
       material: BOW
-      durability: 33
+      durability: 25
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_bow_damage
+        - enchantments.top_bow_damage
         - enchantments.high_bow_knockback
         - enchantments.bow_fire
         - enchantments.bow_infinity
@@ -619,33 +623,12 @@ effects:
   regeneration:
     types:
       - REGENERATION
-    strength: 1
+    strength: 2
     duration: 99999
 
 # Global templates of enchantments
 enchantments:
-  # Mix
-  rand_protection:
-    type: PROTECTION_ENVIRONMENTAL
-    level:
-      type: random
-      min: 1
-      max: 4
-      distribution: exp_down
-  rand_melee_damage:
-    type: DAMAGE_ALL
-    level:
-      type: random
-      min: 1
-      max: 5
-      distribution: exp_down
-  rand_thorns:
-    type: THORNS
-    level:
-      type: random
-      min: 1
-      max: 3
-      distribution: exp_down
+  # Tools
   rand_dig_speed:
     type: DIG_SPEED
     level:
@@ -655,20 +638,40 @@ enchantments:
       distribution: exp_down
 
   # Cloths and weapon
+  rand_durability:
+    type: DURABILITY
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
   high_durability:
     type: DURABILITY
     level: 3
 
   # Cloths
+  rand_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    level:
+      type: random
+      min: 1
+      max: 4
+      distribution: exp_down
   high_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 4
-  high_protection_fire:
+  top_protection_explosions:
+    type: PROTECTION_EXPLOSIONS
+    level: 10
+  top_protection_projectile:
+    type: PROTECTION_PROJECTILE
+    level: 10
+  top_protection_fire:
     type: PROTECTION_FIRE
-    level: 4
-  high_protection_fall_boots:
+    level: 10
+  top_protection_fall_boots:
     type: PROTECTION_FALL
-    level: 4
+    level: 10
   high_oxygen_helmet:
     type: OXYGEN
     level: 3
@@ -683,9 +686,16 @@ enchantments:
     level: 3
 
   # Sword
-  high_melee_damage:
+  rand_damage_all:
     type: DAMAGE_ALL
-    level: 5
+    level:
+      type: random
+      min: 1
+      max: 5
+      distribution: exp_down
+  top_damage_all:
+    type: DAMAGE_ALL
+    level: 10
   high_sword_knockback:
     type: KNOCKBACK
     level: 2
@@ -697,9 +707,9 @@ enchantments:
     level: 3
 
   # Bow
-  high_bow_damage:
+  top_bow_damage:
     type: ARROW_DAMAGE
-    level: 5
+    level: 10
   high_bow_knockback:
     type: ARROW_KNOCKBACK
     level: 2
