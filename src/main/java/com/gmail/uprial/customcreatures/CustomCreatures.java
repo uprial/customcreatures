@@ -24,6 +24,7 @@ public final class CustomCreatures extends JavaPlugin {
     private CustomLogger consoleLogger = null;
     private CreaturesConfig creaturesConfig = null;
     private CustomCreaturesSpawnEventListener customCreaturesSpawnEventListener = null;
+    private boolean fixProjectileTrajectory;
     private CustomCreaturesAttackEventListener customCreaturesAttackEventListener = null;
 
     private int cronTaskId;
@@ -46,7 +47,8 @@ public final class CustomCreatures extends JavaPlugin {
         customCreaturesSpawnEventListener = new CustomCreaturesSpawnEventListener(this, consoleLogger);
         getServer().getPluginManager().registerEvents(customCreaturesSpawnEventListener, this);
 
-        customCreaturesAttackEventListener = new CustomCreaturesAttackEventListener(this, consoleLogger);
+        customCreaturesAttackEventListener = new CustomCreaturesAttackEventListener(this, consoleLogger,
+                creaturesConfig.fixProjectileTrajectory());
         getServer().getPluginManager().registerEvents(customCreaturesAttackEventListener, this);
 
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));

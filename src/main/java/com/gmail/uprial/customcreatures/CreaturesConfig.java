@@ -14,8 +14,10 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
 
 public final class CreaturesConfig {
     private final List<HItem> handlers;
+    private final boolean fixProjectileTrajectory;
 
-    private CreaturesConfig(List<HItem> handlers) {
+    private CreaturesConfig(boolean fixProjectileTrajectory, List<HItem> handlers) {
+        this.fixProjectileTrajectory = fixProjectileTrajectory;
         this.handlers = handlers;
     }
 
@@ -29,7 +31,13 @@ public final class CreaturesConfig {
         return ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
     }
 
+    public  boolean fixProjectileTrajectory() {
+        return fixProjectileTrajectory;
+    }
+
     public static CreaturesConfig getFromConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
+        boolean fixProjectileTrajectory = ConfigReaderSimple.getBoolean(config, customLogger, "fix-projectile-trajectory", "'fix-projectile-trajectory' flag", true);
+
         List<?> handlersConfig = config.getList("handlers");
         if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
             throw new InvalidConfigException("Empty 'handlers' list");
@@ -61,10 +69,11 @@ public final class CreaturesConfig {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
 
-        return new CreaturesConfig(handlers);
+        return new CreaturesConfig(fixProjectileTrajectory, handlers);
     }
 
     public String toString() {
-        return handlers.toString();
+        return String.format("fix-projectile-trajectory: %b, handlers: %s",
+                fixProjectileTrajectory, handlers.toString());
     }
 }

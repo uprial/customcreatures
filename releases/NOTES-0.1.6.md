@@ -1,3 +1,3 @@
 # Improvements
-* Made Skeletons to be much more accurate in shots
+* Added an option to allow Skeletons and other shooters fire projectiles into players with amazing precision.
 * Allowed to enchant unsafely enhancements

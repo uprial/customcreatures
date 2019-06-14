@@ -38,7 +38,6 @@ public final class HItemAttributes {
     private static double HEALTH_REDUCTION = 0.000001;
 
     private static final String MK_ATTACK_DAMAGE_MULTIPLIER = "attack-damage-multiplier";
-    private static final String MK_ORIGINAL_FOLLOW_RANGE = "original-follow-range";
 
     private static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
             = ImmutableMap.<String, HItemGenericAttribute>builder()
@@ -78,10 +77,6 @@ public final class HItemAttributes {
         return getMetadata(entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
-    public static Double getOriginalFollowRange(LivingEntity entity) {
-        return getMetadata(entity, MK_ORIGINAL_FOLLOW_RANGE);
-    }
-
     private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         for (Entry<String,IValue<Double>> entry : genericAttributes.entrySet()) {
             String key = entry.getKey();
@@ -100,7 +95,6 @@ public final class HItemAttributes {
 
             switch (key) {
                 case "follow-range":
-                    setMetadata(plugin, entity, MK_ORIGINAL_FOLLOW_RANGE, baseValue);
                     attributeInstance.setBaseValue(value);
                     break;
                 case "movement-speed-multiplier":

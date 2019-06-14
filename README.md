@@ -15,7 +15,7 @@ This is fully customizable Minecraft (Bukkit) plugin that allows you to control 
 * 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment with a well-enchanted sword and medium enchanted cloths, the drop chance is 5-10%.
 * 1% of skeleton-like mobs spawn with 30 seconds aura, with major jump and movement bonuses, in diamond equipment with the best enhancements and 5% drop chance.
 * 10% of ghasts move twice as fast.
-* Skeletons fire arrows with amazing pracising.
+* Skeletons and other shooters fire projectiles into players with amazing precision.
 
 #### You can configure:
 * Filter of types, spawn reasons and probabilities

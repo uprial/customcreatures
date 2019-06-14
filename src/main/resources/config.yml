@@ -20,6 +20,14 @@
 debug: false
 
 #
+# With this option Skeletons and other shooters fire projectiles into players with amazing precision.
+# Possible values: true | false (default = false)
+#
+# This option hugely affects game-play due to smart shoots.
+#
+fix-projectile-trajectory: true
+
+#
 # handlers:     ### List of handlers' paths.
 #               ### (* see description of <handler> below)
 # - <handler1>
@@ -134,6 +142,8 @@ handlers:
 #   attack-damage-multiplier: <float-value:0.0001..?>
 #                             ### Multiplier of damage that will
 #                             ### be dealt by entity or its projectile.
+#                             ### Warning: in case of a server reload,
+#                             ### the entity will lose this buff.
 #
 #   base-armor: <float-value:0..?> ### Entity's base armor before all
 #                                  ### the other modifiers, see

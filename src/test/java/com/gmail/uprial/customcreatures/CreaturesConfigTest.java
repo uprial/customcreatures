@@ -7,8 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class CreaturesConfigTest extends TestConfigBase {
     @Rule
@@ -27,10 +26,17 @@ public class CreaturesConfigTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyFixProjectileTrajectory() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'fix-projectile-trajectory' flag. Use default value true");
+        loadConfig(getDebugFearingCustomLogger(), "");
+    }
+
+    @Test
     public void testEmpty() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty 'handlers' list");
-        loadConfig(getDebugFearingCustomLogger(), "");
+        loadConfig(getDebugFearingCustomLogger(), "fix-projectile-trajectory: true");
     }
 
     @Test
@@ -103,7 +109,8 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testNormalConfig() throws Exception {
         assertEquals(
-                "[[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99], " +
+                "fix-projectile-trajectory: true, " +
+                        "handlers: [[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99], " +
                         "effects: null, attributes: [max-health-multiplier: 1.0, attack-damage-multiplier: null, " +
                         "base-armor: null, follow-range: null, knockback-resistance: null," +
                         " max-health: null, movement-speed-multiplier: null], equipment: null]]",
