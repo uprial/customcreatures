@@ -474,6 +474,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
+        - enchantments.rand_thorns
     boots:
       probability: 50
       drop-chance: 0.1
@@ -482,6 +483,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
+        - enchantments.rand_thorns
     chest:
       probability: 50
       drop-chance: 0.1
@@ -490,6 +492,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
+        - enchantments.rand_thorns
     leggings:
       probability: 50
       drop-chance: 0.1
@@ -498,6 +501,7 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
+        - enchantments.rand_thorns
     main-hand:
       probability: 100
       drop-chance: 0.05
@@ -505,7 +509,7 @@ iron-zombie:
       durability: 33
       enchantments:
         - enchantments.high_durability
-        - enchantments.top_damage_all
+        - enchantments.high_damage_all
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
@@ -540,9 +544,7 @@ diamond-skeleton:
       durability: 25
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_protection
-        - enchantments.high_thorns
-        - enchantments.top_protection_explosions
+        - enchantments.top_protection
         - enchantments.high_oxygen_helmet
         - enchantments.water_worker_helmet
     boots:
@@ -552,9 +554,8 @@ diamond-skeleton:
       durability: 25
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_protection
-        - enchantments.high_thorns
-        - enchantments.top_protection_fall_boots
+        - enchantments.top_protection
+        - enchantments.high_protection_fall_boots
         - enchantments.high_depth_strider_boots
     chest:
       probability: 50
@@ -563,9 +564,7 @@ diamond-skeleton:
       durability: 25
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_protection
-        - enchantments.high_thorns
-        - enchantments.top_protection_fire
+        - enchantments.top_protection
     leggings:
       probability: 50
       drop-chance: 0.05
@@ -573,9 +572,7 @@ diamond-skeleton:
       durability: 25
       enchantments:
         - enchantments.high_durability
-        - enchantments.high_protection
-        - enchantments.high_thorns
-        - enchantments.top_protection_projectile
+        - enchantments.top_protection
     main-hand:
       probability: 100
       drop-chance: 0.05
@@ -657,33 +654,27 @@ enchantments:
       min: 1
       max: 4
       distribution: exp_down
+  rand_thorns:
+    type: THORNS
+    level: 3
   high_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 4
-  top_protection_explosions:
-    type: PROTECTION_EXPLOSIONS
-    level: 10
-  top_protection_projectile:
-    type: PROTECTION_PROJECTILE
-    level: 10
-  top_protection_fire:
-    type: PROTECTION_FIRE
-    level: 10
-  top_protection_fall_boots:
+  high_protection_fall_boots:
     type: PROTECTION_FALL
-    level: 10
+    level: 4
   high_oxygen_helmet:
     type: OXYGEN
     level: 3
   water_worker_helmet:
     type: WATER_WORKER
     level: 1
-  high_thorns:
-    type: THORNS
-    level: 3
   high_depth_strider_boots:
     type: DEPTH_STRIDER
     level: 3
+  top_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    level: 5
 
   # Sword
   rand_damage_all:
@@ -693,9 +684,9 @@ enchantments:
       min: 1
       max: 5
       distribution: exp_down
-  top_damage_all:
+  high_damage_all:
     type: DAMAGE_ALL
-    level: 10
+    level: 5
   high_sword_knockback:
     type: KNOCKBACK
     level: 2
