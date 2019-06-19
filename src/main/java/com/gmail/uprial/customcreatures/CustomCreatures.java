@@ -41,7 +41,7 @@ public final class CustomCreatures extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new CustomCreaturesSpawnEventListener(this, consoleLogger), this);
         getServer().getPluginManager().registerEvents(new CustomCreaturesAttackEventListener(this, consoleLogger,
-                creaturesConfig.fixProjectileTrajectory());, this);
+                creaturesConfig.fixProjectileTrajectory()), this);
 
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));
         consoleLogger.info("Plugin enabled");
