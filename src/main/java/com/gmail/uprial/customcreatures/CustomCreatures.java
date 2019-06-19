@@ -23,12 +23,9 @@ public final class CustomCreatures extends JavaPlugin {
 
     private CustomLogger consoleLogger = null;
     private CreaturesConfig creaturesConfig = null;
-    private CustomCreaturesSpawnEventListener customCreaturesSpawnEventListener = null;
-    private boolean fixProjectileTrajectory;
-    private CustomCreaturesAttackEventListener customCreaturesAttackEventListener = null;
 
-    private int cronTaskId;
-    private int playerTrackerTaskId;
+    private BukkitTask cronTask;
+    private BukkitTask playerTrackerTask;
 
     @Override
     public void onEnable() {
@@ -36,20 +33,15 @@ public final class CustomCreatures extends JavaPlugin {
 
         saveDefaultConfig();
 
-        cronTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this,
-                new CustomCreaturesCron(), CustomCreaturesCron.getInterval(), CustomCreaturesCron.getInterval());
-        playerTrackerTaskId = getServer().getScheduler().scheduleSyncRepeatingTask(this,
-                new CustomCreaturesPlayerTracker(this), CustomCreaturesPlayerTracker.getInterval(), CustomCreaturesPlayerTracker.getInterval());
+        cronTask = new CustomCreaturesCron(this).runTaskTimer();
+        playerTrackerTask = new CustomCreaturesPlayerTracker(this).runTaskTimer();
 
         consoleLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
 
-        customCreaturesSpawnEventListener = new CustomCreaturesSpawnEventListener(this, consoleLogger);
-        getServer().getPluginManager().registerEvents(customCreaturesSpawnEventListener, this);
-
-        customCreaturesAttackEventListener = new CustomCreaturesAttackEventListener(this, consoleLogger,
-                creaturesConfig.fixProjectileTrajectory());
-        getServer().getPluginManager().registerEvents(customCreaturesAttackEventListener, this);
+        getServer().getPluginManager().registerEvents(new CustomCreaturesSpawnEventListener(this, consoleLogger), this);
+        getServer().getPluginManager().registerEvents(new CustomCreaturesAttackEventListener(this, consoleLogger,
+                creaturesConfig.fixProjectileTrajectory());, this);
 
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));
         consoleLogger.info("Plugin enabled");
@@ -66,10 +58,9 @@ public final class CustomCreatures extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        HandlerList.unregisterAll(customCreaturesAttackEventListener);
-        HandlerList.unregisterAll(customCreaturesSpawnEventListener);
-        getServer().getScheduler().cancelTask(playerTrackerTaskId);
-        getServer().getScheduler().cancelTask(cronTaskId);
+        HandlerList.unregisterAll(this);
+        playerTrackerTask.cancel();
+        cronTask.cancel();
         consoleLogger.info("Plugin disabled");
     }
 

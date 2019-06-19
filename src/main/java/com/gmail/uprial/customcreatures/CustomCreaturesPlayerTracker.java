@@ -2,13 +2,15 @@ package com.gmail.uprial.customcreatures;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CustomCreaturesPlayerTracker implements Runnable {
+public class CustomCreaturesPlayerTracker extends BukkitRunnable {
     private static final int INTERVAL = 10;
 
     private final CustomCreatures plugin;
@@ -16,12 +18,12 @@ public class CustomCreaturesPlayerTracker implements Runnable {
     private static final Map<UUID, Map<Boolean, Location>> PLAYERS = new HashMap<>();
     private static boolean SIDE = true;
 
-    public static int getInterval() {
-        return INTERVAL;
-    }
-
     public CustomCreaturesPlayerTracker(CustomCreatures plugin) {
         this.plugin = plugin;
+    }
+
+    public BukkitTask runTaskTimer() {
+        return runTaskTimer(plugin, INTERVAL, INTERVAL);
     }
 
     public static Vector getPlayerMovementVector(Player player) {
