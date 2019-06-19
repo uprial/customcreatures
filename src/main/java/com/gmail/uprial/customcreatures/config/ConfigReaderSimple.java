@@ -10,18 +10,16 @@ public final class ConfigReaderSimple {
     @SuppressWarnings({"BooleanParameter", "BooleanMethodNameMustStartWithQuestion"})
     public static boolean getBoolean(FileConfiguration config, CustomLogger customLogger, String key, String title, boolean defaultValue) throws InvalidConfigException {
         boolean value = defaultValue;
+        String strValue = config.getString(key);
 
-        if(config.getString(key) == null) {
+        if(strValue == null) {
             customLogger.debug(String.format("Empty %s. Use default value %b", title, defaultValue));
+        } else if(strValue.equalsIgnoreCase("true")) {
+            value = true;
+        } else if(strValue.equalsIgnoreCase("false")) {
+            value = false;
         } else {
-            String strValue = config.getString(key);
-            if(strValue.equalsIgnoreCase("true")) {
-                value = true;
-            } else if(strValue.equalsIgnoreCase("false")) {
-                value = false;
-            } else {
-                throw new InvalidConfigException(String.format("Invalid %s. Use default value %b", title, defaultValue));
-            }
+            throw new InvalidConfigException(String.format("Invalid %s. Use default value %b", title, defaultValue));
         }
 
         return value;
