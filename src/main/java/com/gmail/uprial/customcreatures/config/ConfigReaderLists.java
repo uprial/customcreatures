@@ -6,23 +6,10 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.*;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
 
 public final class ConfigReaderLists {
-    public static String getKey(Object item, String title, int i) throws InvalidConfigException {
-        if (item == null) {
-            throw new InvalidConfigException(String.format("Null key in %s at pos %d", title, i));
-        }
-        if (!(item instanceof String)) {
-            throw new InvalidConfigException(String.format("Key '%s' in %s at pos %d is not a string", item.toString(), title, i));
-        }
-        String key = item.toString();
-        if (key.length() < 1) {
-            throw new InvalidConfigException(String.format("Empty key in %s at pos %d", title, i));
-        }
-        return key;
-    }
-
     public static Set<String> getItemsList(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         List<?> itemsConfig = config.getList(key);
         if((itemsConfig == null) || (itemsConfig.size() <= 0)) {

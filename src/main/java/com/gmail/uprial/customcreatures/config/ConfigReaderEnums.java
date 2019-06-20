@@ -5,6 +5,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.*;
 
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getString;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getStringList;
+
 public final class ConfigReaderEnums {
     public static <T extends Enum> Set<T> getSet(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         List<String> strings = getStringList(config, customLogger, key, title);
@@ -36,31 +39,6 @@ public final class ConfigReaderEnums {
             return (T)Enum.valueOf(enumType, string.toUpperCase(Locale.getDefault()));
         } catch (IllegalArgumentException ignored) {
             throw new InvalidConfigException(String.format("Invalid %s '%s' in %s%s", enumType.getName(), string, title, desc));
-        }
-    }
-
-    public static String getString(FileConfiguration config, String key, String title) throws InvalidConfigException {
-        String string = config.getString(key);
-
-        if(string == null) {
-            throw new InvalidConfigException(String.format("Null or empty %s", title));
-        }
-
-        return string;
-    }
-
-    static List<String> getStringList(FileConfiguration config, CustomLogger customLogger, String key, String title) {
-        List<?> lines = config.getList(key);
-        if(lines != null) {
-            List<String> strings = new ArrayList<>();
-            for (Object line : lines) {
-                strings.add(line.toString());
-            }
-
-            return strings;
-        } else {
-            customLogger.debug(String.format("Empty %s. Use default value NULL", title));
-            return null;
         }
     }
 }

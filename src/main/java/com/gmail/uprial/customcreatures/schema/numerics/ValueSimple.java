@@ -4,8 +4,8 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getInt;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getInt;
 
 public final class ValueSimple<T> implements IValue<T> {
     private final T value;

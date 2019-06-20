@@ -10,7 +10,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import java.util.*;
 
-import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
     private final List<HItem> handlers;
@@ -44,19 +44,19 @@ public final class CreaturesConfig {
         }
 
         List<HItem> handlers = new ArrayList<>();
-        Map<String,Integer> keys = new HashMap<>();
+        Set<String> keys = new HashSet<>();
 
         int handlersConfigSize = handlersConfig.size();
         for(int i = 0; i < handlersConfigSize; i++) {
             String key = getKey(handlersConfig.get(i), "'handlers'", i);
             String keyLC = key.toLowerCase(Locale.getDefault());
-            if (keys.containsKey(keyLC)) {
+            if (keys.contains(keyLC)) {
                 throw new InvalidConfigException(String.format("Key '%s' in 'handlers' is not unique", key));
             }
             if (config.get(key) == null) {
                 throw new InvalidConfigException(String.format("Null definition of handler '%s' at pos %d", key, i));
             }
-            keys.put(keyLC, 1);
+            keys.add(keyLC);
 
             try {
                 handlers.add(HItem.getFromConfig(config, customLogger, key));

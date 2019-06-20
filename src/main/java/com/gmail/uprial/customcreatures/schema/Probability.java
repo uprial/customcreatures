@@ -8,7 +8,7 @@ import java.util.Random;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 
 public class Probability {
     public static final int MAX_PERCENT = 100;

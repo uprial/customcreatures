@@ -18,7 +18,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleV
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getDouble;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItem;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItemDropChance;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;

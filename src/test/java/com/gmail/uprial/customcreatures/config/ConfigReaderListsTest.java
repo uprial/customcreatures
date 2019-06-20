@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getKey;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -17,33 +17,7 @@ public class ConfigReaderListsTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();
 
-    @Test
-    public void testNullKey() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Null key in keys at pos 0");
-        getKey(null, "keys", 0);
-    }
-
-    @Test
-    public void testEmptyKey() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty key in keys at pos 0");
-        getKey("", "keys", 0);
-    }
-
-    @Test
-    public void testNotStringKey() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Key '1' in keys at pos 0 is not a string");
-
-        getKey(1, "keys", 0);
-    }
-
-    @Test
-    public void testNormalKey() throws Exception {
-        assertEquals("k", getKey("k", "keys", 0));
-    }
-
+    // ==== getItemsList ====
     @Test
     public void testNoItems() throws Exception {
         e.expect(RuntimeException.class);
