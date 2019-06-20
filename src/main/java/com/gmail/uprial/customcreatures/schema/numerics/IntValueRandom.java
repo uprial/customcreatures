@@ -28,8 +28,8 @@ public class IntValueRandom extends AbstractValueRandom<Integer> {
     public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                int hardMin, int hardMax) throws InvalidConfigException {
         RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title);
-        Integer min = getInt(config, joinPaths(key, "min"), String.format("minimum of %s", title), hardMin, hardMax);
-        Integer max = getInt(config, joinPaths(key, "max"), String.format("maximum of %s", title), hardMin, hardMax);
+        Integer min = getInt(config, customLogger, joinPaths(key, "min"), String.format("minimum of %s", title), hardMin, hardMax);
+        Integer max = getInt(config, customLogger, joinPaths(key, "max"), String.format("maximum of %s", title), hardMin, hardMax);
 
         return new IntValueRandom(distributionType, min, max);
     }

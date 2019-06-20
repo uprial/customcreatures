@@ -28,11 +28,11 @@ public class ValueSimpleTest extends TestConfigBase {
 
     @Test
     public void testIntValue() throws Exception {
-        assertEquals(1, ValueSimple.getIntFromConfig(getPreparedConfig("v: 1"), "v", "v", 0, 100).getValue().intValue());
+        assertEquals(1, ValueSimple.getIntFromConfig(getPreparedConfig("v: 1"), getCustomLogger(), "v", "v", 0, 100).getValue().intValue());
     }
 
     @Test
     public void testDoubleValue() throws Exception {
-        assertEquals(1, Math.round(ValueSimple.getDoubleFromConfig(getPreparedConfig("v: 1.0"), "v", "v", 0, 100).getValue()));
+        assertEquals(1, Math.round(ValueSimple.getDoubleFromConfig(getPreparedConfig("v: 1.0"), getCustomLogger(), "v", "v", 0, 100).getValue()));
     }
 }

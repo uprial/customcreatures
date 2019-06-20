@@ -23,9 +23,9 @@ public final class ConfigReaderSimple {
         }
     }
 
-    public static int getInt(FileConfiguration config, String key, String title,
+    public static int getInt(FileConfiguration config, CustomLogger customLogger, String key, String title,
                              int min, int max) throws InvalidConfigException {
-        return getIntInternal(config, null, key, title, min, max, null);
+        return getIntInternal(config, customLogger, key, title, min, max, null);
     }
 
     public static int getInt(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -42,7 +42,7 @@ public final class ConfigReaderSimple {
         Integer value = defaultValue;
 
         if(config.getString(key) == null) {
-            if ((defaultValue == null) || (customLogger == null)) {
+            if (defaultValue == null) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %d", title, defaultValue));
@@ -64,9 +64,9 @@ public final class ConfigReaderSimple {
         return value;
     }
 
-    public static double getDouble(FileConfiguration config, String key, String title,
+    public static double getDouble(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                    double min, double max) throws InvalidConfigException {
-        return getDoubleInternal(config, null, key, title, min, max, null);
+        return getDoubleInternal(config, customLogger, key, title, min, max, null);
     }
 
     public static double getDouble(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -90,7 +90,7 @@ public final class ConfigReaderSimple {
         Double value = defaultValue;
 
         if(config.getString(key) == null) {
-            if ((defaultValue == null) || (customLogger == null)) {
+            if (defaultValue == null) {
                 throw new InvalidConfigException(String.format("Empty %s", title));
             } else {
                 customLogger.debug(String.format("Empty %s. Use default value %s", title, formatDoubleValue(defaultValue)));

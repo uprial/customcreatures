@@ -31,7 +31,7 @@ public class ConfigReaderSimpleTest extends TestConfigBase {
     @Test
     public void testInvalidBoolean() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Invalid 'value' flag. Use default value false");
+        e.expectMessage("Invalid 'value' flag");
         getBoolean(getPreparedConfig("f: x"), getParanoiacCustomLogger(), "f", "'value' flag", false);
     }
 
@@ -62,7 +62,7 @@ public class ConfigReaderSimpleTest extends TestConfigBase {
     public void testEmptyIntWithoutDefault() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty value number");
-        getInt(getPreparedConfig(""), "n", "value number", 0, 100);
+        getInt(getPreparedConfig(""), getCustomLogger(), "n", "value number", 0, 100);
     }
 
     @Test
@@ -132,7 +132,7 @@ public class ConfigReaderSimpleTest extends TestConfigBase {
     public void testEmptyDoubleWithoutDefault() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty double value");
-        getDouble(getPreparedConfig(""), "d", "double value", 0, 100);
+        getDouble(getPreparedConfig(""), getCustomLogger(), "d", "double value", 0, 100);
     }
 
     @Test
