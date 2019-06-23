@@ -27,7 +27,10 @@ public final class ConfigReaderSimple {
         String string = config.getString(key);
 
         if(string == null) {
-            throw new InvalidConfigException(String.format("Null or empty %s", title));
+            throw new InvalidConfigException(String.format("Null %s", title));
+        }
+        if(string.length() < 1) {
+            throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
         return string;
