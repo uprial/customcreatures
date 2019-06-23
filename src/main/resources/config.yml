@@ -20,14 +20,6 @@
 debug: false
 
 #
-# With this option Skeletons and other shooters fire projectiles into players with amazing precision.
-# Possible values: true | false (default = false)
-#
-# This option hugely affects game-play due to smart shoots.
-#
-fix-projectile-trajectory: true
-
-#
 # handlers:     ### List of handlers' paths.
 #               ### (* see description of <handler> below)
 # - <handler1>

@@ -26,17 +26,10 @@ public class CreaturesConfigTest extends TestConfigBase {
     }
 
     @Test
-    public void testEmptyFixProjectileTrajectory() throws Exception {
-        e.expect(RuntimeException.class);
-        e.expectMessage("Empty 'fix-projectile-trajectory' flag. Use default value true");
-        loadConfig(getDebugFearingCustomLogger(), "");
-    }
-
-    @Test
     public void testEmpty() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty 'handlers' list");
-        loadConfig(getDebugFearingCustomLogger(), "fix-projectile-trajectory: true");
+        loadConfig(getDebugFearingCustomLogger(), "");
     }
 
     @Test
@@ -109,8 +102,7 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testNormalConfig() throws Exception {
         assertEquals(
-                "fix-projectile-trajectory: true, " +
-                        "handlers: [[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99], " +
+                "handlers: [[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99], " +
                         "effects: null, attributes: [max-health-multiplier: 1.0, attack-damage-multiplier: null, " +
                         "base-armor: null, follow-range: null, knockback-resistance: null," +
                         " max-health: null, movement-speed-multiplier: null], equipment: null]]",
