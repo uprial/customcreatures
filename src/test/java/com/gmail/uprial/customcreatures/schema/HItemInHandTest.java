@@ -88,7 +88,7 @@ public class HItemInHandTest extends TestConfigBase {
     @Test
     public void testEmptyMaterial() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null or empty material of item in hand");
+        e.expectMessage("Null material of item in hand");
         getFromConfig(getPreparedConfig(
                 "i:",
                 " k: v"),

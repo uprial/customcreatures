@@ -86,7 +86,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     @Test
     public void testEmptyMaterialType() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null or empty material type of equipment cloth");
+        e.expectMessage("Null material type of equipment cloth");
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " k: v"),

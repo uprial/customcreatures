@@ -47,10 +47,17 @@ public class ConfigReaderSimpleTest extends TestConfigBase {
 
     // ==== getString ====
     @Test
+    public void testNullString() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Null string");
+        getString(getPreparedConfig("s:"), "s", "string");
+    }
+
+    @Test
     public void testEmptyString() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null or empty string");
-        getString(getPreparedConfig("s:"), "s", "string");
+        e.expectMessage("Empty string");
+        getString(getPreparedConfig("s: ''"), "s", "string");
     }
 
     @Test

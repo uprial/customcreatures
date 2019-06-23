@@ -35,7 +35,7 @@ public class HItemEnchantmentTest extends TestConfigBase {
     @Test
     public void testEmptyType() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null or empty enchantment type of enchantment");
+        e.expectMessage("Null enchantment type of enchantment");
         getFromConfig(getPreparedConfig(
                 "e:",
                 "  type:"),
