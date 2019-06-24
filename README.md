@@ -54,4 +54,4 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 ## Related projects
 * CustomNukes: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customnukes/), [GitHub](https://github.com/uprial/customnukes)
 * CustomDamage: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customdamage/), [GitHub](https://github.com/uprial/customdamage)
-* Take Aim: [Bukkit Dev](https://github.com/uprial/takeaim), [GitHub](https://dev.bukkit.org/projects/takeaim)
+* TakeAim: [Bukkit Dev](https://github.com/uprial/takeaim), [GitHub](https://dev.bukkit.org/projects/takeaim)
