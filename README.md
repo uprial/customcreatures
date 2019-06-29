@@ -49,7 +49,7 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 ## Useful links
 * [Project on GitHub](https://github.com/uprial/customcreatures/)
 * [Project on Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customcreatures/)
-* [Prject on Spigot](https://www.spigotmc.org/resources/customcreatures.68711/)
+* [Project on Spigot](https://www.spigotmc.org/resources/customcreatures.68711/)
 * [TODO list](TODO.md)
 
 ## Related projects
