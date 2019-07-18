@@ -9,6 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEventListener {
 
@@ -27,6 +28,11 @@ public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEv
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
+        for(ItemStack itemStack : event.getPlayer().getInventory().getContents()) {
+            if(itemStack != null) {
+                return;
+            }
+        }
         handleSpawn(event.getPlayer(), SpawnReason.DEFAULT);
     }
 
