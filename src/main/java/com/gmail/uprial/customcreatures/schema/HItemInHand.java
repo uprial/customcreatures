@@ -11,6 +11,7 @@ import com.gmail.uprial.customcreatures.schema.tasks.HItemInHandTask;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.inventory.ItemStack;
 
@@ -47,7 +48,7 @@ public final class HItemInHand {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
-            if((entity instanceof Skeleton) && (handType == MAIN_HAND)) {
+            if((entity instanceof Skeleton || entity instanceof PigZombie) && (handType == MAIN_HAND)) {
                 CustomCreatures.defer(new HItemInHandTask(this, customLogger, entity));
             } else {
                 applyImmediately(customLogger, entity);
