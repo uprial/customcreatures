@@ -116,6 +116,12 @@ handlers:
 #       ...
 #     - <type-setN>
 #
+#   worlds:  ### A list of worlds.
+#            ### By default, entities of all worlds will be processed.
+#     - <world1>
+#       ...
+#     - <worldN>
+#
 #   probability: <float:0..100> ### Probability in percents that this
 #                               ### handler will be applied after all
 #                               ### the filters.

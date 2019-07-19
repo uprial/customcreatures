@@ -25,7 +25,7 @@ public final class HItem {
     }
 
     public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
-        if (filter.isPassed(entity.getType(), spawnReason)) {
+        if (filter.isPassed(entity.getType(), spawnReason, entity.getWorld().getName())) {
             applyAttributes(plugin, customLogger, entity);
             applyEffects(customLogger, entity);
             applyEquipment(customLogger, entity);

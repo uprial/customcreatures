@@ -6,12 +6,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.List;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.*;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getString;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getStringList;
 import static org.junit.Assert.*;
 
 public class ConfigReaderEnumsTest extends TestConfigBase {
@@ -63,6 +60,46 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
         assertEquals(2, entities.size());
         assertTrue(entities.contains(TestEnum.A));
         assertTrue(entities.contains(TestEnum.B));
+    }
+
+    // ==== getStringSet ====
+
+    @Test
+    public void testEmptyStringSet() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty set. Use default value NULL");
+        getStringSet(getPreparedConfig(""), getDebugFearingCustomLogger(), "s", "set");
+    }
+
+    @Test
+    public void testEmptyStringSetValue() throws Exception {
+        assertNull(getStringSet(getPreparedConfig(""), getCustomLogger(), "s", "set"));
+    }
+
+    @Test
+    public void testNotUniqueStringSet() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("String 'A' in set is not unique");
+        getStringSet(getPreparedConfig("x:", "  entities:", "   - A", "   - A"),
+                getParanoiacCustomLogger(), "x.entities", "set");
+    }
+
+    @Test
+    public void testNormalStringSet() throws Exception {
+        Set<String> set = getStringSet(getPreparedConfig("entities:", " - A"),
+                getParanoiacCustomLogger(), "entities", "path");
+        assertNotNull(set);
+        assertEquals("[A]", set.toString());
+    }
+
+    @Test
+    public void testContentOfStringSet() throws Exception {
+        Set<String> entities = getStringSet(getPreparedConfig("entities:", " - A", " - B"),
+                getParanoiacCustomLogger(), "entities", "path");
+        assertNotNull(entities);
+        assertEquals(2, entities.size());
+        assertTrue(entities.contains("A"));
+        assertTrue(entities.contains("B"));
     }
 
     // ==== getEnum ====

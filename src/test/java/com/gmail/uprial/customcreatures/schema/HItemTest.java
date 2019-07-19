@@ -34,6 +34,8 @@ public class HItemTest extends TestConfigBase {
                 "     - ANIMALS",
                 "   reasons:",
                 "     - NATURAL",
+                "   worlds:",
+                "     - world",
                 "   probability: 100"), getDebugFearingCustomLogger(), "h");
     }
 
@@ -51,6 +53,8 @@ public class HItemTest extends TestConfigBase {
                 "     - ANIMALS",
                 "   reasons:",
                 "     - NATURAL",
+                "   worlds:",
+                "     - world",
                 "   probability: 100",
                 " effects:",
                 "  - e",
@@ -86,6 +90,8 @@ public class HItemTest extends TestConfigBase {
                 "     - ANIMALS",
                 "   reasons:",
                 "     - NATURAL",
+                "   worlds:",
+                "     - world",
                 "   probability: 100",
                 " effects:",
                 "  - e",

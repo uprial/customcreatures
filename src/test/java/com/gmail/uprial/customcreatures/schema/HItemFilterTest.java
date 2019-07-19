@@ -27,6 +27,8 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - ANIMALS",
                 "  reasons:",
                 "    - NATURAL",
+                "  worlds:",
+                "    - world",
                 "  probability: 50"),
                 getParanoiacCustomLogger(), "f", "filter");
         assertEquals("[types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], probability: 50]", itemFilter.toString());
@@ -88,9 +90,9 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     @Test
-    public void testEmptyProbabilityFilter() throws Exception {
+    public void testEmptyWorldsFilter() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty probability of filter. Use default value 100");
+        e.expectMessage("Empty worlds of filter. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "f:",
                 "  types:",
@@ -103,6 +105,23 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyProbabilityFilter() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty probability of filter. Use default value 100");
+        getFromConfig(getPreparedConfig(
+                "f:",
+                "  types:",
+                "    - ZOMBIE",
+                "  type-sets:",
+                "    - ANIMALS",
+                "  reasons:",
+                "    - NATURAL",
+                "  worlds:",
+                "    - world"),
+                getDebugFearingCustomLogger(), "f", "filter");
+    }
+
+    @Test
     public void testPassTypesAndReasons() throws Exception {
         HItemFilter filter = getFromConfig(getPreparedConfig(
                 "f:",
@@ -110,10 +129,10 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - ZOMBIE",
                 "  reasons:",
                 "    - NATURAL"), getCustomLogger(), "f", "filter");
-        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL));
-        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.INFECTION));
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL));
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.INFECTION));
+        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.INFECTION, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.INFECTION, ""));
     }
 
     @Test
@@ -124,10 +143,22 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - ZOMBIE",
                 "  type-sets:",
                 "    - ANIMALS"), getCustomLogger(), "f", "filter");
-        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL));
-        assertEquals(100, getPasses(10, filter, EntityType.CHICKEN, SpawnReason.NATURAL));
-        assertEquals(100, getPasses(10, filter, EntityType.COW, SpawnReason.NATURAL));
-        assertEquals(0, getPasses(10, filter, EntityType.IRON_GOLEM, SpawnReason.NATURAL));
+        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, ""));
+        assertEquals(100, getPasses(10, filter, EntityType.CHICKEN, SpawnReason.NATURAL, ""));
+        assertEquals(100, getPasses(10, filter, EntityType.COW, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.IRON_GOLEM, SpawnReason.NATURAL, ""));
+    }
+
+    @Test
+    public void testPassTypesAndWorlds() throws Exception {
+        HItemFilter filter = getFromConfig(getPreparedConfig(
+                "f:",
+                "  types:",
+                "    - ZOMBIE",
+                "  worlds:",
+                "    - world"), getCustomLogger(), "f", "filter");
+        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, ""));
+        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, "world"));
     }
 
     @Test
@@ -152,9 +183,9 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 50"), getCustomLogger(), "f", "filter");
-        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) > 20);
-        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) < 80);
-        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL));
+        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, "") > 20);
+        assertTrue(getPasses(100, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, "") < 80);
+        assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL, ""));
     }
 
     @Test
@@ -164,13 +195,13 @@ public class HItemFilterTest extends TestConfigBase {
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 1"), getCustomLogger(), "f", "filter");
-        assertTrue(getPasses(1000, filter, EntityType.ZOMBIE, SpawnReason.NATURAL) < 10);
+        assertTrue(getPasses(1000, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, "") < 10);
     }
 
-    private static int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason) {
+    private static int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason, String world) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
-            if (filter.isPassed(entityType, spawnReason)) {
+            if (filter.isPassed(entityType, spawnReason, world)) {
                 passes += 1;
             }
         }

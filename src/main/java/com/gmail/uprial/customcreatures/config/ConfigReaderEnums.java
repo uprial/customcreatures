@@ -28,6 +28,24 @@ public final class ConfigReaderEnums {
         return set;
     }
 
+    public static Set<String> getStringSet(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+        List<String> strings = getStringList(config, customLogger, key, title);
+        if (strings == null) {
+            return null;
+        }
+
+        Set<String> set = new HashSet<>();
+        int stringSize = strings.size();
+        for(int i = 0; i < stringSize; i++) {
+            String string = strings.get(i);
+            if (set.contains(string)) {
+                throw new InvalidConfigException(String.format("String '%s' in %s is not unique", string, title));
+            }
+            set.add(string);
+        }
+        return set;
+    }
+
     public static <T extends Enum> T getEnum(Class<T> enumType, FileConfiguration config, String key, String title) throws InvalidConfigException {
         String string = getString(config, key, title);
         return getEnumFromString(enumType, string, title, "");
