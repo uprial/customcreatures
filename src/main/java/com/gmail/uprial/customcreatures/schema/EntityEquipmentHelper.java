@@ -40,20 +40,9 @@ final class EntityEquipmentHelper {
     public static void setItem(EntityEquipment entityEquipment, HandType handType, ItemStack itemStack) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
         try {
             if (handType == MAIN_HAND) {
-                //noinspection ErrorNotRethrown,NestedTryStatement
-                try {
-                    entityEquipment.setItemInMainHand(itemStack);
-                } catch (NoSuchMethodError ignored) {
-                    //noinspection deprecation
-                    entityEquipment.setItemInHand(itemStack);
-                }
+                entityEquipment.setItemInMainHand(itemStack);
             } else if (handType == OFF_HAND) {
-                //noinspection ErrorNotRethrown,NestedTryStatement
-                try {
-                    entityEquipment.setItemInOffHand(itemStack);
-                } catch (NoSuchMethodError ignored) {
-                    throw new MethodIsNotSupportedException("setItemInOffHand");
-                }
+                entityEquipment.setItemInOffHand(itemStack);
             }
         } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
@@ -80,20 +69,9 @@ final class EntityEquipmentHelper {
     public static void setItemDropChance(EntityEquipment entityEquipment, HandType handType, float dropChance) throws MethodIsNotSupportedException, OperationIsNotSupportedException {
         try {
             if (handType == MAIN_HAND) {
-                //noinspection ErrorNotRethrown,NestedTryStatement
-                try {
-                    entityEquipment.setItemInMainHandDropChance(dropChance);
-                } catch (NoSuchMethodError ignored) {
-                    //noinspection deprecation
-                    entityEquipment.setItemInHandDropChance(dropChance);
-                }
+                entityEquipment.setItemInMainHandDropChance(dropChance);
             } else if (handType == OFF_HAND) {
-                //noinspection ErrorNotRethrown,NestedTryStatement
-                try {
-                    entityEquipment.setItemInOffHandDropChance(dropChance);
-                } catch (NoSuchMethodError ignored) {
-                    throw new MethodIsNotSupportedException("setItemInOffHandDropChance");
-                }
+                entityEquipment.setItemInOffHandDropChance(dropChance);
             }
         } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
