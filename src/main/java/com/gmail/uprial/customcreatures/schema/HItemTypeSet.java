@@ -9,44 +9,48 @@ import java.util.Set;
 import static org.bukkit.entity.EntityType.*;
 
 /*
-    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html (version 1.16.5)
 
-    AbstractHorse, AbstractVillager, Ageable, Ambient, Animals, ArmorStand, Bat, Blaze,
-    Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity, Cow, Creature,
-    Creeper, Dolphin, Donkey, Drowned, ElderGuardian, EnderDragon, Enderman, Endermite,
-    Evoker, Fish, Flying, Fox, Ghast, Giant, Golem, Guardian,
-    Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem, Llama, MagmaCube,
-    Mob, Monster, Mule, MushroomCow, NPC, Ocelot, Panda, Parrot,
-    Phantom, Pig, PigZombie, Pillager, Player, PolarBear, PufferFish, Rabbit,
-    Raider, Ravager, Salmon, Sheep, Shulker, Silverfish, Skeleton, SkeletonHorse,
-    Slime, Snowman, Spellcaster, Spider, Squid, Stray, TraderLlama, TropicalFish,
-    Turtle, Vex, Villager, Vindicator, WanderingTrader, WaterMob, Witch, Wither,
-    WitherSkeleton, Wolf, Zombie, ZombieHorse, ZombieVillager
+    AbstractHorse, AbstractVillager, Ageable, Ambient, Animals, ArmorStand, Bat, Bee,
+    Blaze, Breedable, Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity,
+    Cow, Creature, Creeper, Dolphin, Donkey, Drowned, ElderGuardian, EnderDragon,
+    Enderman, Endermite, Evoker, Fish, Flying, Fox, Ghast, Giant,
+    Golem, Guardian, Hoglin, Horse, HumanEntity, Husk, Illager, Illusioner,
+    IronGolem, Llama, MagmaCube, Mob, Monster, Mule, MushroomCow, NPC,
+    Ocelot, Panda, Parrot, Phantom, Pig, Piglin, PiglinAbstract, PiglinBrute,
+    PigZombie, Pillager, Player, PolarBear, PufferFish, Rabbit, Raider, Ravager,
+    Salmon, Sheep, Shulker, Silverfish, Skeleton, SkeletonHorse, Slime, Snowman,
+    Spellcaster, Spider, Squid, Steerable, Stray, Strider, Tameable, TraderLlama,
+    TropicalFish, Turtle, Vex, Villager, Vindicator, WanderingTrader, WaterMob, Witch,
+     Wither, WitherSkeleton, Wolf, Zoglin, Zombie, ZombieHorse, ZombieVillager
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(BAT, CHICKEN, CAT, COD, COW, DOLPHIN, DONKEY, FOX,
-                    HORSE, LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG,
-                    POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID, TROPICAL_FISH, TURTLE,
-                    WOLF, ZOMBIE_HORSE)),
+            Sets.newHashSet(BAT, BEE, CHICKEN, CAT, COD, COW, DOLPHIN, DONKEY,
+                    FOX, HOGLIN, HORSE, LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA,
+                    PARROT, PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID,
+                    STRIDER, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE)),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOWMAN)),
     MONSTERS(null,
-            Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ENDERMAN, ENDERMITE, EVOKER, ELDER_GUARDIAN,
-                    EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIG_ZOMBIE,
-                    PILLAGER, RAVAGER, SILVERFISH, SHULKER, SKELETON, SKELETON_HORSE, SLIME, SPIDER,
-                    STRAY, VEX, VINDICATOR, WITCH, WITHER, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER)),
+            Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE,
+                    EVOKER,  EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, MAGMA_CUBE,
+                    PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER, RAVAGER, SILVERFISH, SHULKER, SKELETON,
+                    SKELETON_HORSE, SLIME, SPIDER, STRAY, VEX, VINDICATOR, WITCH, WITHER,
+                    WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
+
+    // An unused set that underlines we didn't forget of some creatures.
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
-            Sets.newHashSet(VILLAGER, TRADER_LLAMA, WANDERING_TRADER)),
+            Sets.newHashSet(PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER)),
 
     // https://minecraft.gamepedia.com/Zombie_(disambiguation)
     ZOMBIES(null,
-            Sets.newHashSet(DROWNED, GIANT, HUSK, PIG_ZOMBIE, ZOMBIE, ZOMBIE_VILLAGER)),
+            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, ZOMBIE, ZOMBIE_VILLAGER)),
     // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
     SKELETONS(null,
             Sets.newHashSet(SKELETON, STRAY, WITHER_SKELETON)),
     FLYING_MOBS(null,
-            Sets.newHashSet(BAT, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER));
+            Sets.newHashSet(BAT, BEE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER));
 
     final Set<EntityType> entityTypes;
     final Set<HItemTypeSet> subSets;

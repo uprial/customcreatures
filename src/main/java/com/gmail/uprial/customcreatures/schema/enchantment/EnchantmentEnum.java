@@ -39,7 +39,8 @@ public enum EnchantmentEnum implements IEnchantmentEnum {
     QUICK_CHARGE(Enchantment.QUICK_CHARGE),
     PIERCING(Enchantment.PIERCING),
     MENDING(Enchantment.MENDING),
-    VANISHING_CURSE(Enchantment.VANISHING_CURSE);
+    VANISHING_CURSE(Enchantment.VANISHING_CURSE),
+    SOUL_SPEED(Enchantment.SOUL_SPEED);
 
     private final Enchantment type;
 
