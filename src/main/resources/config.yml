@@ -231,6 +231,7 @@ handlers:
 #                                  ###  - IRON
 #                                  ###  - DIAMOND
 #                                  ###  - GOLDEN
+#                                  ###  - NETHERITE
 #
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
