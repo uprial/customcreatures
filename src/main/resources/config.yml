@@ -513,7 +513,7 @@ iron-zombie:
         - enchantments.rand_thorns
     main-hand:
       probability: 100
-      drop-chance: 0.05
+      drop-chance: 0.1
       material: IRON_SWORD
       durability: 33
       enchantments:
@@ -522,6 +522,7 @@ iron-zombie:
         - enchantments.high_sword_knockback
         - enchantments.high_sword_fire_aspect
         - enchantments.high_sword_looting
+        - enchantments.high_sword_sweeping_edge
   attributes:
     movement-speed-multiplier: 1.5
 
@@ -708,6 +709,9 @@ enchantments:
     level: 2
   high_sword_looting:
     type: LOOT_BONUS_MOBS
+    level: 3
+  high_sword_sweeping_edge:
+    type: SWEEPING_EDGE
     level: 3
 
   # Bow
