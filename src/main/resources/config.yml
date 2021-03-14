@@ -38,6 +38,7 @@ handlers:
   - golden-zombie
   - iron-zombie
   - diamond-skeleton
+  - netherite-zombie
   - angry-ghast
 # Uncomment this line to play with test handler.
 #  - test-handler
@@ -533,7 +534,7 @@ diamond-skeleton:
     probability: 1
   effects:
     - jump
-    - glowing
+    - effects.glowing
     - effects.fire_resistance
     - effects.regeneration
   jump:
@@ -541,11 +542,6 @@ diamond-skeleton:
       - JUMP
     strength: 3
     duration: 99999
-  glowing:
-    types:
-      - GLOWING
-    strength: 1
-    duration: 300
   equipment:
     helmet:
       probability: 100
@@ -600,6 +596,80 @@ diamond-skeleton:
     max-health: 30.0
     movement-speed-multiplier: 2.0
 
+netherite-zombie:
+  filter:
+    type-sets:
+      - ZOMBIES
+    probability: 0.25
+  effects:
+    - jump
+    - effects.glowing
+    - effects.fire_resistance
+    - effects.regeneration
+  jump:
+    types:
+      - JUMP
+    strength: 4
+    duration: 99999
+  equipment:
+    helmet:
+      probability: 100
+      drop-chance: 0.05
+      material-type: NETHERITE
+      durability: 20
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.top_protection
+        - enchantments.high_oxygen_helmet
+        - enchantments.water_worker_helmet
+        - enchantments.high_thorns
+    boots:
+      probability: 50
+      drop-chance: 0.05
+      material-type: NETHERITE
+      durability: 20
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.top_protection
+        - enchantments.high_protection_fall_boots
+        - enchantments.high_depth_strider_boots
+        - enchantments.high_thorns
+    chest:
+      probability: 50
+      drop-chance: 0.05
+      material-type: NETHERITE
+      durability: 20
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.top_protection
+        - enchantments.high_thorns
+    leggings:
+      probability: 50
+      drop-chance: 0.05
+      material-type: NETHERITE
+      durability: 20
+      enchantments:
+        - enchantments.high_durability
+        - enchantments.top_protection
+        - enchantments.high_thorns
+    main-hand:
+      probability: 100
+      drop-chance: 0.05
+      material: NETHERITE_SWORD
+      durability: 20
+      enchantments:
+        - enchantments.top_durability
+        - enchantments.top_damage_all
+        - enchantments.top_sword_knockback
+        - enchantments.top_sword_fire_aspect
+        - enchantments.top_sword_looting
+        - enchantments.high_sword_sweeping_edge
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.5
+    max-health: 50.0
+    movement-speed-multiplier: 2.0
+
 angry-ghast:
   filter:
     types:
@@ -632,6 +702,11 @@ effects:
       - REGENERATION
     strength: 2
     duration: 99999
+  glowing:
+    types:
+      - GLOWING
+    strength: 1
+    duration: 300
 
 # Global templates of enchantments
 enchantments:
@@ -655,6 +730,9 @@ enchantments:
   high_durability:
     type: DURABILITY
     level: 3
+  top_durability:
+    type: DURABILITY
+    level: 5
 
   # Cloths
   rand_protection:
@@ -686,6 +764,9 @@ enchantments:
   high_depth_strider_boots:
     type: DEPTH_STRIDER
     level: 3
+  high_thorns:
+    type: THORNS
+    level: 3
   top_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 5
@@ -712,6 +793,18 @@ enchantments:
     level: 3
   high_sword_sweeping_edge:
     type: SWEEPING_EDGE
+    level: 3
+  top_damage_all:
+    type: DAMAGE_ALL
+    level: 10
+  top_sword_looting:
+    type: LOOT_BONUS_MOBS
+    level: 5
+  top_sword_knockback:
+    type: KNOCKBACK
+    level: 3
+  top_sword_fire_aspect:
+    type: FIRE_ASPECT
     level: 3
 
   # Bow
