@@ -16,7 +16,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 4% of zombie-like mobs spawn in gold equipment with some random enhancements and 10% drop chance.
 * 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment with a well-enchanted sword and medium enchanted cloths, with 10% drop chance.
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, with major jump and movement bonuses, in diamond equipment with the best enhancements and a 10th-power enchanted bow, with 5% drop chance.
-* 0.25% of  zombie-like mobs are all in netherite top-enchanted cloths, with a cheating-enchanted sword, with 5% drop chance.
+* 0.25% of zombie-like mobs are all in netherite top-enchanted cloths, with a cheating-enchanted sword, with 5% drop chance.
 * 10% of ghasts move twice as fast.
 
 #### You can configure:
