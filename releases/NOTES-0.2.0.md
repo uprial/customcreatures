@@ -1,4 +1,5 @@
 # Bugfixes
+* Random thorns on iron-zombie cloths are now actually random.
 
 # Improvements
 
