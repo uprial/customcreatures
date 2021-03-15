@@ -4,7 +4,6 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.listeners.CustomCreaturesAttackEventListener;
 import com.gmail.uprial.customcreatures.listeners.CustomCreaturesSpawnEventListener;
-import com.gmail.uprial.customcreatures.schema.HItemAttributes;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
@@ -26,8 +25,6 @@ public final class CustomCreatures extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        HItemAttributes.setBackwardCompatibility(true);
-
         saveDefaultConfig();
 
         cronTask = new CustomCreaturesCron(this).runTaskTimer();

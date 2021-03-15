@@ -24,12 +24,9 @@ import static com.gmail.uprial.customcreatures.common.MetadataHelper.getMetadata
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
-import static com.gmail.uprial.customcreatures.config.ConfigUtils.getParentPath;
 import static org.bukkit.attribute.Attribute.*;
 
 public final class HItemAttributes {
-    private static boolean backwardCompatibility = false;
-
     /*
      Because of rounding of float point variables we need to make sure that
      health of entity is lower than its max. health.
@@ -172,29 +169,13 @@ public final class HItemAttributes {
         return value;
     }
 
-    public static void setBackwardCompatibility(boolean value) {
-        backwardCompatibility = value;
-    }
-
     public static HItemAttributes getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
-        // All logic related to this variable is used only for backward compatibility.
-        //noinspection LocalVariableNamingConvention
-        String maxHealthMultKey = backwardCompatibility
-                ? joinPaths(getParentPath(key), "max-health")
-                : "/undefined/";
-
-        if ((config.get(key) == null) && (config.get(maxHealthMultKey) == null)) {
+        if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
 
-        if (config.get(maxHealthMultKey) == null) {
-            maxHealthMultKey = joinPaths(key, "max-health-multiplier");
-        } else {
-            customLogger.warning(String.format("Property '%s.max-health' of deprecated, please use '%s.max-health-multiplier'", key, key));
-        }
-
-        IValue<Double> maxHealthMultiplier = HValue.getDoubleFromConfig(config, customLogger, maxHealthMultKey,
+        IValue<Double> maxHealthMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health-multiplier"),
                 String.format("max. health multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
         //noinspection LocalVariableNamingConvention

@@ -67,40 +67,4 @@ public class HItemAttributesTest extends TestConfigBase {
         assertEquals("[max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, base-armor: 1.0," +
                 " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0, movement-speed-multiplier: 10.0]", attributes.toString());
     }
-
-    @Test
-    public void testAttributesBCWarning() throws Exception {
-        e.expect(RuntimeException.class);
-        e.expectMessage("[WARNING] Property 'h.a.max-health' of deprecated, please use 'h.a.max-health-multiplier");
-
-        HItemAttributes.setBackwardCompatibility(true);
-        try {
-            getFromConfig(getPreparedConfig(
-                    "h:",
-                    " a:",
-                    "  x, y",
-                    " max-health: 1.5"),
-                    getDebugFearingCustomLogger(), "h.a", "attributes");
-        } finally {
-            HItemAttributes.setBackwardCompatibility(false);
-        }
-    }
-
-    @Test
-    public void testAttributesBC() throws Exception {
-        HItemAttributes.setBackwardCompatibility(true);
-        try {
-            HItemAttributes attributes = getFromConfig(getPreparedConfig(
-                    "h:",
-                    " a:",
-                    "  x, y",
-                    " max-health: 1.5"),
-                    getIndifferentCustomLogger(), "h.a", "attributes");
-            assertNotNull(attributes);
-            assertEquals("[max-health-multiplier: 1.5, attack-damage-multiplier: null, base-armor: null," +
-                    " follow-range: null, knockback-resistance: null, max-health: null, movement-speed-multiplier: null]", attributes.toString());
-        } finally {
-            HItemAttributes.setBackwardCompatibility(false);
-        }
-    }
 }
