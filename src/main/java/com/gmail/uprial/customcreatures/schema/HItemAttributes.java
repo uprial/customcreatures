@@ -94,9 +94,6 @@ public final class HItemAttributes {
             double baseValue = attributeInstance.getBaseValue();
 
             switch (key) {
-                case "follow-range":
-                    attributeInstance.setBaseValue(value);
-                    break;
                 case "movement-speed-multiplier":
                     if (entity instanceof Player) {
                         Player player = (Player) entity;
