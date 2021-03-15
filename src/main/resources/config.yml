@@ -593,8 +593,15 @@ diamond-skeleton:
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
-    max-health: 30.0
     movement-speed-multiplier: 2.0
+#
+# The "max-health-multiplier" would work here better,
+# but this is the only suitable place where to use the existing "max-health" feature.
+# https://minecraft.gamepedia.com/Skeleton - 20
+# https://minecraft.gamepedia.com/Stray - 20
+# https://minecraft.gamepedia.com/Wither_Skeleton - 20
+#
+    max-health: 30.0
 
 netherite-zombie:
   filter:
@@ -667,8 +674,8 @@ netherite-zombie:
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
-    max-health: 50.0
     movement-speed-multiplier: 2.0
+    max-health-multiplier: 2.5
 
 angry-ghast:
   filter:
