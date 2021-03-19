@@ -71,8 +71,8 @@ public final class HItemAttributes {
         applyAttackDamageMultiplier(plugin, customLogger, entity);
     }
 
-    public static Double getAttackDamageMultiplier(LivingEntity entity) {
-        return getPersistentMetadata(entity, MK_ATTACK_DAMAGE_MULTIPLIER);
+    public static Double getAttackDamageMultiplier(CustomCreatures plugin, LivingEntity entity) {
+        return getPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
     private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {

@@ -11,34 +11,51 @@ import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata
 
 public class PersistenceHelper {
     private static String SCOREBOARD_TAGS_PREFIX = "ph_";
+    private static String STRING_NULL = "CACHED_NULL";
 
     public static void setPersistentMetadata(CustomCreatures plugin, LivingEntity entity, String key, Double value) {
         if(entity instanceof Player) {
             setMetadata(plugin, entity, key, value);
         } else {
-            //
+            /*
+                Only player entities can have persistent metadata, and for other entities metadata can only be a cache.
+                Two key are used for performance reasons: we use a set as a map.
+             */
             entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
             entity.addScoreboardTag(String.format("%s_%." + DoubleHelper.MAX_RIGHT_SIZE + "f",
                     getPersistentMetadataKeyPrefix(key), value));
+
+            setMetadata(plugin, entity, key, value);
         }
     }
 
-    public static Double getPersistentMetadata(LivingEntity entity, String key) {
+    public static Double getPersistentMetadata(CustomCreatures plugin, LivingEntity entity, String key) {
         if(entity instanceof Player) {
             return (Double)getMetadata(entity, key);
         } else {
+            Object metadata = getMetadata(entity, key);
+            if(metadata != null) {
+                if(STRING_NULL.equals(metadata)) {
+                    return null;
+                } else {
+                    return (Double)metadata;
+                }
+            }
+
+            Double value = null;
             Set<String> scoreboardTags = entity.getScoreboardTags();
             if(scoreboardTags.contains(getPersistentMetadataKeyPrefix(key))) {
                 String prefix = getPersistentMetadataKeyPrefix(key) + "_";
                 for(String tag : scoreboardTags) {
                     if(tag.startsWith(prefix)) {
-                        return Double.valueOf(tag.substring(prefix.length()));
+                        value = Double.valueOf(tag.substring(prefix.length()));
+                        break;
                     }
                 }
-                return null;
-            } else {
-                return null;
             }
+
+            setMetadata(plugin, entity, key, (value == null) ? STRING_NULL : value);
+            return value;
         }
     }
 
