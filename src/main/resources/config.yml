@@ -396,7 +396,7 @@ player:
       - SPEED
       - JUMP
     strength: 1
-    duration: 20
+    duration: 30
   equipment:
     main-hand:
       material: APPLE
@@ -452,6 +452,7 @@ golden-zombie:
       enchantments:
         - enchantments.rand_damage_all
         - enchantments.rand_dig_speed
+        - enchantments.rand_durability
   attributes:
     movement-speed-multiplier: 1.5
 
@@ -464,7 +465,6 @@ iron-zombie:
     - jump
     - damage
     - effects.fire_resistance
-    - effects.regeneration
   jump:
     types:
       - JUMP
@@ -625,10 +625,8 @@ netherite-zombie:
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
+        - enchantments.rand_durability
         - enchantments.top_protection
-        - enchantments.high_oxygen_helmet
-        - enchantments.water_worker_helmet
         - enchantments.high_thorns
     boots:
       probability: 50
@@ -636,10 +634,8 @@ netherite-zombie:
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
+        - enchantments.rand_durability
         - enchantments.top_protection
-        - enchantments.high_protection_fall_boots
-        - enchantments.high_depth_strider_boots
         - enchantments.high_thorns
     chest:
       probability: 50
@@ -647,7 +643,7 @@ netherite-zombie:
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
+        - enchantments.rand_durability
         - enchantments.top_protection
         - enchantments.high_thorns
     leggings:
@@ -656,7 +652,7 @@ netherite-zombie:
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
+        - enchantments.rand_durability
         - enchantments.top_protection
         - enchantments.high_thorns
     main-hand:
@@ -670,7 +666,7 @@ netherite-zombie:
         - enchantments.top_sword_knockback
         - enchantments.top_sword_fire_aspect
         - enchantments.top_sword_looting
-        - enchantments.high_sword_sweeping_edge
+        - enchantments.top_sword_sweeping_edge
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
@@ -813,6 +809,9 @@ enchantments:
   top_sword_fire_aspect:
     type: FIRE_ASPECT
     level: 3
+  top_sword_sweeping_edge:
+    type: SWEEPING_EDGE
+    level: 5
 
   # Bow
   top_bow_damage:
