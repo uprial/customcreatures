@@ -20,8 +20,9 @@ import java.util.Map.Entry;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
-import static com.gmail.uprial.customcreatures.common.MetadataHelper.getMetadata;
-import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata;
+import static com.gmail.uprial.customcreatures.common.MetadataHelper.*;
+import static com.gmail.uprial.customcreatures.common.PersistenceHelper.getPersistentMetadata;
+import static com.gmail.uprial.customcreatures.common.PersistenceHelper.setPersistentMetadata;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 import static org.bukkit.attribute.Attribute.*;
@@ -71,7 +72,7 @@ public final class HItemAttributes {
     }
 
     public static Double getAttackDamageMultiplier(LivingEntity entity) {
-        return getMetadata(entity, MK_ATTACK_DAMAGE_MULTIPLIER);
+        return getPersistentMetadata(entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
     private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
@@ -113,10 +114,10 @@ public final class HItemAttributes {
     }
 
     private void applyPlayerMovementSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, Player player, float multiplier) {
-        float oldWalkSpeed = getInitialValue(plugin, player, MK_INITIAL_WALK_SPEED, player.getWalkSpeed());
+        float oldWalkSpeed = getPlayerInitialValue(plugin, player, MK_INITIAL_WALK_SPEED, player.getWalkSpeed());
         float newWalkSpeed = oldWalkSpeed * multiplier;
 
-        float oldFlySpeed = getInitialValue(plugin, player, MK_INITIAL_FLY_SPEED, player.getFlySpeed());
+        float oldFlySpeed = getPlayerInitialValue(plugin, player, MK_INITIAL_FLY_SPEED, player.getFlySpeed());
         float newFlySpeed = oldFlySpeed * multiplier;
         player.setFlySpeed(newFlySpeed);
         player.setWalkSpeed(newWalkSpeed);
@@ -130,7 +131,7 @@ public final class HItemAttributes {
     private void applyAttackDamageMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (attackDamageMultiplier != null) {
             Double newValue = attackDamageMultiplier.getValue();
-            setMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
+            setPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: set attack damage multiplier of %s to %.2f",
                         title, format(entity), newValue));
@@ -142,7 +143,12 @@ public final class HItemAttributes {
         if (maxHealthMultiplier != null) {
             AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
             double maxHealth = (entity instanceof Player)
-                    ? getInitialValue(plugin, entity, MK_INITIAL_MAX_HEALTH, maxHealthAttributeInstance.getBaseValue())
+                    /*
+                        A player will be summoned many times after each death,
+                        so we need to keep its initial attribute in metadata.
+                        Other entities neither can have persistent metadata not can be respawned.
+                     */
+                    ? getPlayerInitialValue(plugin, (Player)entity, MK_INITIAL_MAX_HEALTH, maxHealthAttributeInstance.getBaseValue())
                     : maxHealthAttributeInstance.getBaseValue();
             double newMaxHealth = maxHealth * maxHealthMultiplier.getValue();
 
@@ -159,11 +165,11 @@ public final class HItemAttributes {
         The game stores all changes of player properties.
         To avoid cumulative changes after respawn we need to multiply initial values.
       */
-    private static <T> T getInitialValue(CustomCreatures plugin, LivingEntity entity, String key, T defaultValue) {
-        T value = getMetadata(entity, key);
+    private static <T> T getPlayerInitialValue(CustomCreatures plugin, Player player, String key, T defaultValue) {
+        T value = getMetadata(player, key);
         if (value == null) {
             value = defaultValue;
-            setMetadata(plugin, entity, key, value);
+            setMetadata(plugin, player, key, value);
         }
 
         return value;
