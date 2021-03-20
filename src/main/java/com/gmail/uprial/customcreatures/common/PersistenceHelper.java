@@ -42,7 +42,7 @@ public class PersistenceHelper {
             setMetadata(plugin, entity, key, value);
         } else {
             entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
-            entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER + "d" + formatDoubleValue(value));
+            entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER + formatDoubleValue(value));
 
             setMetadata(plugin, entity, key, value);
         }
