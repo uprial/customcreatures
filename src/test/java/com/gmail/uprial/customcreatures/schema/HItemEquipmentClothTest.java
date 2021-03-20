@@ -96,7 +96,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
     @Test
     public void testEmptyDropChance() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty drop chance of equipment cloth. Use default value 0");
+        e.expectMessage("Empty drop chance of equipment cloth. Use default value 0.085");
         getFromConfig(getPreparedConfig(
                 "eq:",
                 " probability: 50",

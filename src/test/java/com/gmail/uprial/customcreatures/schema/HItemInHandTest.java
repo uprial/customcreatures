@@ -109,7 +109,7 @@ public class HItemInHandTest extends TestConfigBase {
     @Test
     public void testEmptyDropChance() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty drop chance of item in hand. Use default value 0");
+        e.expectMessage("Empty drop chance of item in hand. Use default value 0.085");
         getFromConfig(getPreparedConfig(
                 "i:",
                 " probability: 50",
