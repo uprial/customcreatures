@@ -236,7 +236,7 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 0%.
+#                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
@@ -262,7 +262,7 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this item will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 0%.
+#                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
@@ -418,35 +418,30 @@ golden-zombie:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.1
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
     boots:
       probability: 50
-      drop-chance: 0.1
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
     chest:
       probability: 50
-      drop-chance: 0.1
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
     leggings:
       probability: 50
-      drop-chance: 0.1
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
     main-hand:
       probability: 100
-      drop-chance: 0.1
       material: GOLDEN_AXE
       durability: 50
       enchantments:
@@ -478,7 +473,6 @@ iron-zombie:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.1
       material-type: IRON
       durability: 33
       enchantments:
@@ -487,7 +481,6 @@ iron-zombie:
         - enchantments.rand_thorns
     boots:
       probability: 50
-      drop-chance: 0.1
       material-type: IRON
       durability: 33
       enchantments:
@@ -496,7 +489,6 @@ iron-zombie:
         - enchantments.rand_thorns
     chest:
       probability: 50
-      drop-chance: 0.1
       material-type: IRON
       durability: 33
       enchantments:
@@ -505,7 +497,6 @@ iron-zombie:
         - enchantments.rand_thorns
     leggings:
       probability: 50
-      drop-chance: 0.1
       material-type: IRON
       durability: 33
       enchantments:
@@ -514,7 +505,6 @@ iron-zombie:
         - enchantments.rand_thorns
     main-hand:
       probability: 100
-      drop-chance: 0.1
       material: IRON_SWORD
       durability: 33
       enchantments:

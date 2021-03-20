@@ -15,8 +15,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getString;
-import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItem;
-import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.setItemDropChance;
+import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.*;
 
 public final class HItemEquipmentCloth {
     private final String title;
@@ -105,7 +104,7 @@ public final class HItemEquipmentCloth {
         getMaterial(materialType, clothType, title);
 
         float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
-                String.format("drop chance of %s", title), 0, 1.0, 0);
+                String.format("drop chance of %s", title), 0, 1.0, getDefaultDropChance());
         HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,

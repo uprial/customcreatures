@@ -19,6 +19,12 @@ import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
 
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 final class EntityEquipmentHelper {
+    /*
+        https://minecraft.gamepedia.com/Drops
+        When killed by a player or a tamed wolf, a monster can drop equipment and armor that it spawned with.
+        Each piece of equipment the monster was spawned with is dropped with an 8.5% chance.
+     */
+    private static double DEFAULT_DROP_CHANCE = 0.085;
 
     public static void setItem(EntityEquipment entityEquipment, ClothType clothType, ItemStack itemStack) throws OperationIsNotSupportedException {
         try {
@@ -76,5 +82,9 @@ final class EntityEquipmentHelper {
         } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();
         }
+    }
+
+    public static double getDefaultDropChance() {
+        return DEFAULT_DROP_CHANCE;
     }
 }
