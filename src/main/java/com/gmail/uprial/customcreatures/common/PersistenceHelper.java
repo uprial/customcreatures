@@ -68,6 +68,7 @@ public class PersistenceHelper {
                 for(String tag : scoreboardTags) {
                     if(tag.startsWith(prefix)) {
                         value = Double.valueOf(tag.substring(prefix.length()));
+                        break;
                     }
                 }
             }
