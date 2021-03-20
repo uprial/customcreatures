@@ -6,6 +6,7 @@ import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupporte
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
@@ -69,16 +70,22 @@ public final class HItemEquipmentCloth {
             }
 
             if (dropChance > 0.0) {
-                if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
-                            title, material, format(entity), dropChance));
-                }
-                try {
-                    setItemDropChance(entity.getEquipment(), clothType, dropChance);
-                } catch (OperationIsNotSupportedException e) {
-                    customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
-                    //noinspection UnnecessaryReturnStatement
-                    return ;
+                if(entity instanceof Player) {
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Can't handle drop chance of %s: it's a player", title));
+                    }
+                } else {
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
+                                title, material, format(entity), dropChance));
+                    }
+                    try {
+                        setItemDropChance(entity.getEquipment(), clothType, dropChance);
+                    } catch (OperationIsNotSupportedException e) {
+                        customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                        //noinspection UnnecessaryReturnStatement
+                        return;
+                    }
                 }
             }
         }

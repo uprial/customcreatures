@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.inventory.ItemStack;
 
@@ -80,16 +81,22 @@ public final class HItemInHand {
         }
 
         if (dropChance > 0.0) {
-            if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
-                        title, material, format(entity), dropChance));
-            }
-            try {
-                setItemDropChance(entity.getEquipment(), handType, dropChance);
-            } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
-                customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
-                //noinspection UnnecessaryReturnStatement
-                return ;
+            if(entity instanceof Player) {
+                if (customLogger.isDebugMode()) {
+                    customLogger.debug(String.format("Can't handle drop chance of %s: it's a player", title));
+                }
+            } else {
+                if (customLogger.isDebugMode()) {
+                    customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
+                            title, material, format(entity), dropChance));
+                }
+                try {
+                    setItemDropChance(entity.getEquipment(), handType, dropChance);
+                } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+                    customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                    //noinspection UnnecessaryReturnStatement
+                    return;
+                }
             }
         }
     }
