@@ -1,2 +1,2 @@
 # Improvements
-* Improved performance
+* Fixed performance degradation after the last persistence fix
