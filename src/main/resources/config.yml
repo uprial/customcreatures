@@ -237,6 +237,7 @@ handlers:
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
 #                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
+#                             ### The Looting enchantment increases this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
@@ -263,6 +264,7 @@ handlers:
 #   drop-chance: <float:0..1> ### Chance that this item will be dropped
 #                             ### as an award for the killer.
 #                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
+#                             ### The Looting enchantment increases this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.

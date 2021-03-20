@@ -28,7 +28,7 @@ public final class HItem {
         if (filter.isPassed(entity.getType(), spawnReason, entity.getWorld().getName())) {
             applyAttributes(plugin, customLogger, entity);
             applyEffects(customLogger, entity);
-            applyEquipment(customLogger, entity);
+            applyEquipment(plugin, customLogger, entity);
         }
     }
 
@@ -44,9 +44,9 @@ public final class HItem {
         }
     }
 
-    private void applyEquipment(CustomLogger customLogger, LivingEntity entity) {
+    private void applyEquipment(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (equipment != null) {
-            equipment.apply(customLogger, entity);
+            equipment.apply(plugin, customLogger, entity);
         }
     }
 

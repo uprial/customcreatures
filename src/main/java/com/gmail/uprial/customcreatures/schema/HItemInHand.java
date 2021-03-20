@@ -46,17 +46,17 @@ public final class HItemInHand {
         this.durability = durability;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
             if((entity instanceof Skeleton || entity instanceof PigZombie) && (handType == MAIN_HAND)) {
-                CustomCreatures.defer(new HItemInHandTask(this, customLogger, entity));
+                CustomCreatures.defer(new HItemInHandTask(this, plugin, customLogger, entity));
             } else {
-                applyImmediately(customLogger, entity);
+                applyImmediately(plugin, customLogger, entity);
             }
         }
     }
 
-    public void applyImmediately(CustomLogger customLogger, LivingEntity entity) {
+    public void applyImmediately(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         int itemAmount = amount.getValue();
         if (customLogger.isDebugMode()) {
             customLogger.debug(String.format("Handle %s: add %d x %s to %s",
@@ -90,7 +90,7 @@ public final class HItemInHand {
                             title, material, format(entity), dropChance));
                 }
                 try {
-                    setItemDropChance(entity.getEquipment(), handType, dropChance);
+                    setItemDropChance(plugin, entity.getEquipment(), handType, dropChance);
                 } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
                     customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
                     //noinspection UnnecessaryReturnStatement
