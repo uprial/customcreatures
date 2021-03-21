@@ -13,7 +13,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 5% of animals spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 200%.
 * Once killed, a player respawn with an apple in hand and a little jump and movement bonus.
-* 4% of zombie-like mobs spawn in gold equipment with some random enhancements and 8.5% drop chance.
+* 4% of zombie-like mobs spawn in gold equipment with some random enhancements and 8.5% drop chance. Here and further, each level of looting adds 1% to the drop chance.
 * 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment with a well-enchanted sword and medium enchanted cloths, with 8.5% drop chance.
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, with major jump and movement bonuses, in diamond equipment with the best enhancements and a 10th-power enchanted bow, with 5% drop chance.
 * 0.25% of zombie-like mobs are all in netherite top-enchanted cloths, with a cheating-enchanted sword, with 5% drop chance.
