@@ -424,32 +424,37 @@ golden-zombie:
       durability: 50
       enchantments:
         - enchantments.rand_protection
+        - enchantments.rand_thorns
     boots:
       probability: 50
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
+        - enchantments.rand_thorns
     chest:
       probability: 50
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
+        - enchantments.rand_thorns
     leggings:
       probability: 50
       material-type: GOLDEN
       durability: 50
       enchantments:
         - enchantments.rand_protection
+        - enchantments.rand_thorns
     main-hand:
       probability: 100
+      drop-chance: 0.0425
       material: GOLDEN_AXE
       durability: 50
       enchantments:
+        - enchantments.rand_durability
         - enchantments.rand_damage_all
         - enchantments.rand_dig_speed
-        - enchantments.rand_durability
   attributes:
     movement-speed-multiplier: 1.5
 
@@ -480,7 +485,6 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
-        - enchantments.rand_thorns
     boots:
       probability: 50
       material-type: IRON
@@ -488,7 +492,6 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
-        - enchantments.rand_thorns
     chest:
       probability: 50
       material-type: IRON
@@ -496,7 +499,6 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
-        - enchantments.rand_thorns
     leggings:
       probability: 50
       material-type: IRON
@@ -504,18 +506,18 @@ iron-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.high_protection
-        - enchantments.rand_thorns
     main-hand:
       probability: 100
+      drop-chance: 0.0425
       material: IRON_SWORD
       durability: 33
       enchantments:
-        - enchantments.high_durability
-        - enchantments.high_damage_all
-        - enchantments.high_sword_knockback
-        - enchantments.high_sword_fire_aspect
-        - enchantments.high_sword_looting
-        - enchantments.high_sword_sweeping_edge
+        - enchantments.rand_durability
+        - enchantments.rand_damage_all
+        - enchantments.rand_sword_looting
+        - enchantments.rand_sword_knockback
+        - enchantments.rand_sword_fire_aspect
+        - enchantments.rand_sword_sweeping_edge
   attributes:
     movement-speed-multiplier: 1.5
 
@@ -537,7 +539,6 @@ diamond-skeleton:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.05
       material-type: DIAMOND
       durability: 25
       enchantments:
@@ -547,7 +548,6 @@ diamond-skeleton:
         - enchantments.water_worker_helmet
     boots:
       probability: 50
-      drop-chance: 0.05
       material-type: DIAMOND
       durability: 25
       enchantments:
@@ -557,7 +557,6 @@ diamond-skeleton:
         - enchantments.high_depth_strider_boots
     chest:
       probability: 50
-      drop-chance: 0.05
       material-type: DIAMOND
       durability: 25
       enchantments:
@@ -565,7 +564,6 @@ diamond-skeleton:
         - enchantments.top_protection
     leggings:
       probability: 50
-      drop-chance: 0.05
       material-type: DIAMOND
       durability: 25
       enchantments:
@@ -573,7 +571,7 @@ diamond-skeleton:
         - enchantments.top_protection
     main-hand:
       probability: 100
-      drop-chance: 0.05
+      drop-chance: 0.0425
       material: BOW
       durability: 25
       enchantments:
@@ -599,7 +597,7 @@ netherite-zombie:
   filter:
     type-sets:
       - ZOMBIES
-    probability: 0.25
+    probability: 0.5
   effects:
     - jump
     - effects.glowing
@@ -613,52 +611,52 @@ netherite-zombie:
   equipment:
     helmet:
       probability: 100
-      drop-chance: 0.05
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.high_durability
         - enchantments.top_protection
+        - enchantments.high_oxygen_helmet
+        - enchantments.water_worker_helmet
         - enchantments.high_thorns
     boots:
       probability: 50
-      drop-chance: 0.05
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.high_durability
         - enchantments.top_protection
+        - enchantments.high_protection_fall_boots
+        - enchantments.high_depth_strider_boots
         - enchantments.high_thorns
     chest:
       probability: 50
-      drop-chance: 0.05
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.high_durability
         - enchantments.top_protection
         - enchantments.high_thorns
     leggings:
       probability: 50
-      drop-chance: 0.05
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.high_durability
         - enchantments.top_protection
         - enchantments.high_thorns
     main-hand:
       probability: 100
-      drop-chance: 0.05
-      material: NETHERITE_SWORD
+      drop-chance: 0.0425
+      material: DIAMOND_SWORD
       durability: 20
       enchantments:
-        - enchantments.top_durability
-        - enchantments.top_damage_all
-        - enchantments.top_sword_knockback
-        - enchantments.top_sword_fire_aspect
+        - enchantments.high_durability
+        - enchantments.high_damage_all
         - enchantments.top_sword_looting
-        - enchantments.top_sword_sweeping_edge
+        - enchantments.high_sword_knockback
+        - enchantments.high_sword_fire_aspect
+        - enchantments.high_sword_sweeping_edge
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
@@ -725,9 +723,6 @@ enchantments:
   high_durability:
     type: DURABILITY
     level: 3
-  top_durability:
-    type: DURABILITY
-    level: 5
 
   # Cloths
   rand_protection:
@@ -747,21 +742,21 @@ enchantments:
   high_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 4
+  high_thorns:
+    type: THORNS
+    level: 3
   high_protection_fall_boots:
     type: PROTECTION_FALL
     level: 4
   high_oxygen_helmet:
     type: OXYGEN
     level: 3
-  water_worker_helmet:
-    type: WATER_WORKER
-    level: 1
   high_depth_strider_boots:
     type: DEPTH_STRIDER
     level: 3
-  high_thorns:
-    type: THORNS
-    level: 3
+  water_worker_helmet:
+    type: WATER_WORKER
+    level: 1
   top_protection:
     type: PROTECTION_ENVIRONMENTAL
     level: 5
@@ -774,6 +769,34 @@ enchantments:
       min: 1
       max: 5
       distribution: exp_down
+  rand_sword_knockback:
+    type: KNOCKBACK
+    level:
+      type: random
+      min: 1
+      max: 2
+      distribution: exp_down
+  rand_sword_fire_aspect:
+    type: FIRE_ASPECT
+    level:
+      type: random
+      min: 1
+      max: 2
+      distribution: exp_down
+  rand_sword_sweeping_edge:
+    type: SWEEPING_EDGE
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
+  rand_sword_looting:
+    type: LOOT_BONUS_MOBS
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
   high_damage_all:
     type: DAMAGE_ALL
     level: 5
@@ -783,26 +806,11 @@ enchantments:
   high_sword_fire_aspect:
     type: FIRE_ASPECT
     level: 2
-  high_sword_looting:
-    type: LOOT_BONUS_MOBS
-    level: 3
   high_sword_sweeping_edge:
     type: SWEEPING_EDGE
     level: 3
-  top_damage_all:
-    type: DAMAGE_ALL
-    level: 10
   top_sword_looting:
     type: LOOT_BONUS_MOBS
-    level: 5
-  top_sword_knockback:
-    type: KNOCKBACK
-    level: 3
-  top_sword_fire_aspect:
-    type: FIRE_ASPECT
-    level: 3
-  top_sword_sweeping_edge:
-    type: SWEEPING_EDGE
     level: 5
 
   # Bow
