@@ -23,18 +23,21 @@ public final class HItemDurability {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
-        Material material = itemStack.getType();
-
-        int itemDurability = durability.getValue();
-        if (customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
-                    title, material, format(entity), itemDurability));
-        }
-        int newItemDurability = (short)Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
-
         Damageable itemStackMeta = (Damageable)itemStack.getItemMeta();
-        itemStackMeta.setDamage(newItemDurability);
-        itemStack.setItemMeta((ItemMeta)itemStackMeta);
+
+        if(itemStackMeta != null) {
+            Material material = itemStack.getType();
+
+            int itemDurability = durability.getValue();
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
+                        title, material, format(entity), itemDurability));
+            }
+            int newItemDurability = (short) Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
+
+            itemStackMeta.setDamage(newItemDurability);
+            itemStack.setItemMeta((ItemMeta) itemStackMeta);
+        }
     }
 
     public static HItemDurability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
