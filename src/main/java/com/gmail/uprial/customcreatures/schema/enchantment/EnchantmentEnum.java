@@ -40,7 +40,8 @@ public enum EnchantmentEnum implements IEnchantmentEnum {
     PIERCING(Enchantment.PIERCING),
     MENDING(Enchantment.MENDING),
     VANISHING_CURSE(Enchantment.VANISHING_CURSE),
-    SOUL_SPEED(Enchantment.SOUL_SPEED);
+    SOUL_SPEED(Enchantment.SOUL_SPEED),
+    SWIFT_SNEAK(Enchantment.SWIFT_SNEAK);
 
     private final Enchantment type;
 

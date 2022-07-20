@@ -1,7 +1,7 @@
 name: CustomCreatures
 main: com.gmail.uprial.customcreatures.CustomCreatures
-version: 0.2.4
-api-version: 1.16
+version: 0.2.5
+api-version: 1.19
 commands:
    customcreatures:
       description: Reload CustomCreatures config

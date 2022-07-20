@@ -77,7 +77,8 @@ public class HItemTypeSetTest {
                 MINECART_CHEST, MINECART_FURNACE, MINECART_TNT, MINECART_HOPPER,
                 MINECART_MOB_SPAWNER, ENDER_CRYSTAL, SPLASH_POTION,
                 AREA_EFFECT_CLOUD, EGG, FISHING_HOOK, LIGHTNING,
-                LLAMA_SPIT, TRIDENT, UNKNOWN);
+                LLAMA_SPIT, TRIDENT, GLOW_ITEM_FRAME, MARKER,
+                CHEST_BOAT, UNKNOWN);
 
         for(EntityType entityType : EntityType.values()) {
             boolean isFound = aloneEntityTypes.contains(entityType) || deadEntityTypes.contains(entityType);
@@ -109,20 +110,21 @@ public class HItemTypeSetTest {
             }
             stringBuilder.append(String.format(": %s\n", getSortedList(itemTypeSet.entityTypes)));
         }
-        assertEquals("ANIMALS: [BAT, BEE, CAT, CHICKEN, COD, COW, DOLPHIN, DONKEY, " +
-                "FOX, HOGLIN, HORSE, LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, " +
-                "PARROT, PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID, " +
-                "STRIDER, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]\n" +
+        assertEquals("ANIMALS: [ALLAY, AXOLOTL, BAT, BEE, CAT, CHICKEN, COD, COW, " +
+                "DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HOGLIN, HORSE, " +
+                "LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, " +
+                "PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID, STRIDER, TADPOLE, TROPICAL_FISH, " +
+                "TURTLE, WOLF, ZOMBIE_HORSE]\n" +
                 "GOLEMS: [IRON_GOLEM, SNOWMAN]\n" +
                 "MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDERMAN, ENDERMITE, ENDER_DRAGON, " +
                 "EVOKER, EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, " +
                 "PIGLIN, PIGLIN_BRUTE, PILLAGER, RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, " +
-                "SLIME, SPIDER, STRAY, VEX, VINDICATOR, WITCH, WITHER, WITHER_SKELETON, " +
-                "ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]\n" +
+                "SLIME, SPIDER, STRAY, VEX, VINDICATOR, WARDEN, WITCH, WITHER, " +
+                "WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]\n" +
                 "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]\n" +
                 "ZOMBIES: [DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, ZOMBIE, ZOMBIE_VILLAGER]\n" +
                 "SKELETONS: [SKELETON, STRAY, WITHER_SKELETON]\n" +
-                "FLYING_MOBS: [BAT, BEE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER]\n", stringBuilder.toString());
+                "FLYING_MOBS: [ALLAY, BAT, BEE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER]\n", stringBuilder.toString());
     }
 
     private static <T> List<String> getSortedList(Set<T> list) {

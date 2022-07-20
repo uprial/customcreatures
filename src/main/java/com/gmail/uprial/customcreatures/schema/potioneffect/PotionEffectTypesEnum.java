@@ -34,7 +34,8 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     CONDUIT_POWER(PotionEffectType.CONDUIT_POWER),
     DOLPHINS_GRACE(PotionEffectType.DOLPHINS_GRACE),
     BAD_OMEN(PotionEffectType.BAD_OMEN),
-    HERO_OF_THE_VILLAGE(PotionEffectType.HERO_OF_THE_VILLAGE);
+    HERO_OF_THE_VILLAGE(PotionEffectType.HERO_OF_THE_VILLAGE),
+    DARKNESS(PotionEffectType.DARKNESS);
 
     private final PotionEffectType type;
 
