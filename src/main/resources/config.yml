@@ -454,7 +454,6 @@ golden-zombie:
       durability: 50
       enchantments:
         - enchantments.rand_durability
-        - enchantments.rand_damage_all
         - enchantments.rand_dig_speed
   attributes:
     movement-speed-multiplier: 1.25
@@ -466,16 +465,10 @@ iron-zombie:
     probability: 2
   effects:
     - jump
-    - damage
     - effects.fire_resistance
   jump:
     types:
       - JUMP
-    strength: 2
-    duration: 99999
-  damage:
-    types:
-      - INCREASE_DAMAGE
     strength: 2
     duration: 99999
   equipment:
