@@ -478,28 +478,28 @@ iron-zombie:
       durability: 33
       enchantments:
         - enchantments.rand_durability
-        - enchantments.high_protection
+        - enchantments.rand_protection
     boots:
       probability: 50
       material-type: IRON
       durability: 33
       enchantments:
         - enchantments.rand_durability
-        - enchantments.high_protection
+        - enchantments.rand_protection
     chest:
       probability: 50
       material-type: IRON
       durability: 33
       enchantments:
         - enchantments.rand_durability
-        - enchantments.high_protection
+        - enchantments.rand_protection
     leggings:
       probability: 50
       material-type: IRON
       durability: 33
       enchantments:
         - enchantments.rand_durability
-        - enchantments.high_protection
+        - enchantments.rand_protection
     main-hand:
       probability: 100
       drop-chance: 0.0425
@@ -536,42 +536,42 @@ diamond-skeleton:
       material-type: DIAMOND
       durability: 25
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_oxygen_helmet
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_oxygen_helmet
         - enchantments.water_worker_helmet
     boots:
       probability: 50
       material-type: DIAMOND
       durability: 25
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_protection_fall_boots
-        - enchantments.high_depth_strider_boots
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_protection_fall_boots
+        - enchantments.rand_depth_strider_boots
     chest:
       probability: 50
       material-type: DIAMOND
       durability: 25
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
     leggings:
       probability: 50
       material-type: DIAMOND
       durability: 25
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
     main-hand:
       probability: 100
       drop-chance: 0.0425
       material: BOW
       durability: 25
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_bow_damage
-        - enchantments.high_bow_knockback
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_bow_damage
+        - enchantments.rand_bow_knockback
         - enchantments.bow_fire
         - enchantments.bow_infinity
   attributes:
@@ -608,49 +608,49 @@ netherite-zombie:
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_oxygen_helmet
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_oxygen_helmet
         - enchantments.water_worker_helmet
-        - enchantments.high_thorns
+        - enchantments.rand_thorns
     boots:
       probability: 50
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_protection_fall_boots
-        - enchantments.high_depth_strider_boots
-        - enchantments.high_thorns
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_protection_fall_boots
+        - enchantments.rand_depth_strider_boots
+        - enchantments.rand_thorns
     chest:
       probability: 50
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_thorns
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_thorns
     leggings:
       probability: 50
       material-type: NETHERITE
       durability: 20
       enchantments:
-        - enchantments.high_durability
-        - enchantments.top_protection
-        - enchantments.high_thorns
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_thorns
     main-hand:
       probability: 100
       drop-chance: 0.0425
       material: DIAMOND_SWORD
       durability: 20
       enchantments:
-        - enchantments.high_durability
-        - enchantments.high_damage_all
-        - enchantments.top_sword_looting
-        - enchantments.high_sword_knockback
-        - enchantments.high_sword_fire_aspect
-        - enchantments.high_sword_sweeping_edge
+        - enchantments.rand_durability
+        - enchantments.rand_damage_all
+        - enchantments.rand_maybe_top_sword_looting
+        - enchantments.rand_sword_knockback
+        - enchantments.rand_sword_fire_aspect
+        - enchantments.rand_sword_sweeping_edge
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
@@ -714,9 +714,6 @@ enchantments:
       min: 1
       max: 3
       distribution: exp_down
-  high_durability:
-    type: DURABILITY
-    level: 3
 
   # Cloths
   rand_protection:
@@ -726,6 +723,13 @@ enchantments:
       min: 1
       max: 4
       distribution: exp_down
+  rand_maybe_top_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    level:
+      type: random
+      min: 1
+      max: 5
+      distribution: normal
   rand_thorns:
     type: THORNS
     level:
@@ -733,27 +737,30 @@ enchantments:
       min: 1
       max: 3
       distribution: exp_down
-  high_protection:
-    type: PROTECTION_ENVIRONMENTAL
-    level: 4
-  high_thorns:
-    type: THORNS
-    level: 3
-  high_protection_fall_boots:
+  rand_protection_fall_boots:
     type: PROTECTION_FALL
-    level: 4
-  high_oxygen_helmet:
+    level:
+      type: random
+      min: 1
+      max: 4
+      distribution: exp_down
+  rand_oxygen_helmet:
     type: OXYGEN
-    level: 3
-  high_depth_strider_boots:
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
+  rand_depth_strider_boots:
     type: DEPTH_STRIDER
-    level: 3
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
   water_worker_helmet:
     type: WATER_WORKER
     level: 1
-  top_protection:
-    type: PROTECTION_ENVIRONMENTAL
-    level: 5
 
   # Sword
   rand_damage_all:
@@ -791,29 +798,29 @@ enchantments:
       min: 1
       max: 3
       distribution: exp_down
-  high_damage_all:
-    type: DAMAGE_ALL
-    level: 5
-  high_sword_knockback:
-    type: KNOCKBACK
-    level: 2
-  high_sword_fire_aspect:
-    type: FIRE_ASPECT
-    level: 2
-  high_sword_sweeping_edge:
-    type: SWEEPING_EDGE
-    level: 3
-  top_sword_looting:
+  rand_maybe_top_sword_looting:
     type: LOOT_BONUS_MOBS
-    level: 5
+    level:
+      type: random
+      min: 1
+      max: 5
+      distribution: normal
 
   # Bow
-  top_bow_damage:
+  rand_maybe_top_bow_damage:
     type: ARROW_DAMAGE
-    level: 10
-  high_bow_knockback:
+    level:
+      type: random
+      min: 1
+      max: 10
+      distribution: normal
+  rand_bow_knockback:
     type: ARROW_KNOCKBACK
-    level: 2
+    level:
+      type: random
+      min: 1
+      max: 2
+      distribution: exp_down
   bow_fire:
     type: ARROW_FIRE
     level: 1
