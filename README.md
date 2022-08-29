@@ -12,7 +12,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 
 * 5% of animals spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
-* Once killed, a player respawn with an apple in hand and a little jump and movement bonus.
+* Once killed, a player respawns with an apple in hand and a little jump and movement bonus.
 * 4% of zombie-like mobs spawn with a little jump bonus, in gold equipment(*1) with random enhancements.
 * 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment(*1) with random enhancements, and a well-enchanted sword.
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in diamond equipment(*1) with random but maybe top enhancements, and a top-enchanted bow.
