@@ -34,7 +34,7 @@ public final class HItem {
 
     private void applyAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (attributes != null) {
-            attributes.handle(plugin, customLogger, entity);
+            attributes.handle(plugin, customLogger, entity, name);
         }
     }
 

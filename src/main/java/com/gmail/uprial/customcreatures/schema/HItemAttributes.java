@@ -46,9 +46,8 @@ public final class HItemAttributes {
             .put("movement-speed-multiplier", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed multiplier", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .build();
 
-    private static final String MK_INITIAL_MAX_HEALTH = "initial_max_health";
-    private static final String MK_INITIAL_FLY_SPEED = "initial_fly_speed";
-    private static final String MK_INITIAL_WALK_SPEED = "initial_walk_speed";
+    private static final String MK_MAX_HEALTH_MULTIPLIER_PREFIX = "max-health-multiplier-";
+    private static final String MK_MOVEMENT_SPEED_MULTIPLIER_PREFIX = "movement-speed-multiplier-";
 
     private final String title;
     private final IValue<Double> maxHealthMultiplier;
@@ -64,10 +63,10 @@ public final class HItemAttributes {
         this.genericAttributes = genericAttributes;
     }
 
-    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         // The order makes sense: multiple a max. health after absolute value
-        applyGenericAttributes(plugin, customLogger, entity);
-        applyMaxHealth(plugin, customLogger, entity);
+        applyGenericAttributes(plugin, customLogger, entity, handleName);
+        applyMaxHealth(plugin, customLogger, entity, handleName);
         applyAttackDamageMultiplier(plugin, customLogger, entity);
     }
 
@@ -75,34 +74,34 @@ public final class HItemAttributes {
         return getPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
-    private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         for (Entry<String,IValue<Double>> entry : genericAttributes.entrySet()) {
-            String key = entry.getKey();
+            final String key = entry.getKey();
 
             Double value = entry.getValue().getValue();
 
-            HItemGenericAttribute genericAttribute = KEY_2_GENERIC_ATTRIBUTE.get(key);
-            AttributeInstance attributeInstance = entity.getAttribute(genericAttribute.getAttribute());
+            final HItemGenericAttribute genericAttribute = KEY_2_GENERIC_ATTRIBUTE.get(key);
+            final AttributeInstance attributeInstance = entity.getAttribute(genericAttribute.getAttribute());
             if (attributeInstance == null) {
                 customLogger.error(String.format("Can't handle %s of %s of %s: not such attribute",
                         genericAttribute.getTitle(), title, format(entity)));
                 continue;
             }
 
-            double baseValue = attributeInstance.getBaseValue();
+            final double baseValue = attributeInstance.getBaseValue();
 
             switch (key) {
                 case "movement-speed-multiplier":
                     if (entity instanceof Player) {
-                        Player player = (Player) entity;
-                        applyPlayerMovementSpeedMultiplier(plugin, customLogger, player, value.floatValue());
-                        continue;
+                        final Player player = (Player) entity;
+                        applyPlayerMovementSpeedMultiplier(plugin, customLogger, player, handleName, value.floatValue());
                     } else {
                         value *= baseValue;
                         attributeInstance.setBaseValue(value);
                     }
                     break;
                 default:
+                    // Other values are absolute but not multipliers.
                     attributeInstance.setBaseValue(value);
                     break;
             }
@@ -113,24 +112,38 @@ public final class HItemAttributes {
         }
     }
 
-    private void applyPlayerMovementSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, Player player, float multiplier) {
-        float oldWalkSpeed = getPlayerInitialValue(plugin, player, MK_INITIAL_WALK_SPEED, player.getWalkSpeed());
-        float newWalkSpeed = oldWalkSpeed * multiplier;
+    private void applyPlayerMovementSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, Player player, String handleName, float newMovementSpeedMultiplier) {
+        final float oldMovementSpeedMultiplier = getOldAndReplacePlayerMetadataValue(
+                plugin,
+                player,
+                MK_MOVEMENT_SPEED_MULTIPLIER_PREFIX + handleName,
+                1.0F,
+                newMovementSpeedMultiplier);
 
-        float oldFlySpeed = getPlayerInitialValue(plugin, player, MK_INITIAL_FLY_SPEED, player.getFlySpeed());
-        float newFlySpeed = oldFlySpeed * multiplier;
-        player.setFlySpeed(newFlySpeed);
-        player.setWalkSpeed(newWalkSpeed);
+        if(player.isFlying()) {
+            final float oldFlySpeed = player.getFlySpeed();
+            final float newFlySpeed = oldFlySpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
 
-        if (customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s modification: change walk speed of %s from %.2f to %.2f and fly speed from %.2f to %.2f",
-                    title, format(player), oldWalkSpeed, newWalkSpeed, oldFlySpeed, newFlySpeed));
+            player.setFlySpeed(oldFlySpeed);
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s modification: change fly speed of %s from %.2f to %.2f",
+                        title, format(player), oldFlySpeed, newFlySpeed));
+            }
+        } else {
+            final float oldWalkSpeed = player.getWalkSpeed();
+            final float newWalkSpeed = oldWalkSpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
+
+            player.setWalkSpeed(newWalkSpeed);
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s modification: change walk speed of %s from %.2f to %.2f",
+                        title, format(player), oldWalkSpeed, newWalkSpeed));
+            }
         }
     }
 
     private void applyAttackDamageMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (attackDamageMultiplier != null) {
-            Double newValue = attackDamageMultiplier.getValue();
+            final Double newValue = attackDamageMultiplier.getValue();
             setPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: set attack damage multiplier of %s to %.2f",
@@ -139,24 +152,32 @@ public final class HItemAttributes {
         }
     }
 
-    private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         if (maxHealthMultiplier != null) {
-            AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-            double maxHealth = (entity instanceof Player)
-                    /*
-                        A player will be summoned many times after each death,
-                        so we need to keep its initial attribute in metadata.
-                        Other entities neither can have persistent metadata not can be respawned.
-                     */
-                    ? getPlayerInitialValue(plugin, (Player)entity, MK_INITIAL_MAX_HEALTH, maxHealthAttributeInstance.getBaseValue())
-                    : maxHealthAttributeInstance.getBaseValue();
-            double newMaxHealth = maxHealth * maxHealthMultiplier.getValue();
+            final AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+            final double oldMaxHealth = maxHealthAttributeInstance.getBaseValue();
+            double newMaxHealth;
+            if(entity instanceof Player) {
+                /*
+                    A player will be summoned many times after each death,
+                    so we need to keep its initial attribute in metadata.
+                    Other entities neither can have persistent metadata not can be respawned.
+                 */
+                newMaxHealth = oldMaxHealth / getOldAndReplacePlayerMetadataValue(
+                        plugin,
+                        (Player)entity,
+                        MK_MAX_HEALTH_MULTIPLIER_PREFIX + handleName,
+                        1.0,
+                        maxHealthMultiplier.getValue()) * maxHealthMultiplier.getValue();
+            } else {
+                newMaxHealth = oldMaxHealth * maxHealthMultiplier.getValue();
+            }
 
             maxHealthAttributeInstance.setBaseValue(newMaxHealth);
             entity.setHealth(newMaxHealth - HEALTH_REDUCTION);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: change max. health of %s from %.2f to %.2f",
-                        title, format(entity), maxHealth, newMaxHealth));
+                        title, format(entity), oldMaxHealth, newMaxHealth));
             }
         }
     }
@@ -165,14 +186,14 @@ public final class HItemAttributes {
         The game stores all changes of player properties.
         To avoid cumulative changes after respawn we need to multiply initial values.
       */
-    private static <T> T getPlayerInitialValue(CustomCreatures plugin, Player player, String key, T defaultValue) {
-        T value = getMetadata(player, key);
-        if (value == null) {
-            value = defaultValue;
-            setMetadata(plugin, player, key, value);
+    private static <T> T getOldAndReplacePlayerMetadataValue(CustomCreatures plugin, Player player, String key, T defaultValue, T newValue) {
+        T oldValue = getMetadata(player, key);
+        if (oldValue == null) {
+            oldValue = defaultValue;
         }
+        setMetadata(plugin, player, key, newValue);
 
-        return value;
+        return oldValue;
     }
 
     public static HItemAttributes getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
@@ -181,18 +202,18 @@ public final class HItemAttributes {
             return null;
         }
 
-        IValue<Double> maxHealthMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health-multiplier"),
+        final IValue<Double> maxHealthMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health-multiplier"),
                 String.format("max. health multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
         //noinspection LocalVariableNamingConvention
-        IValue<Double> attackDamageMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "attack-damage-multiplier"),
+        final IValue<Double> attackDamageMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "attack-damage-multiplier"),
                 String.format("attack damage multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
-        Map<String, IValue<Double>> genericAttributes = new HashMap<>();
+        final Map<String, IValue<Double>> genericAttributes = new HashMap<>();
         IValue<Double> item;
 
         for (Entry<String,HItemGenericAttribute> entry : KEY_2_GENERIC_ATTRIBUTE.entrySet()) {
-            HItemGenericAttribute genericAttribute = entry.getValue();
+            final HItemGenericAttribute genericAttribute = entry.getValue();
             item = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, entry.getKey()),
                     String.format("%s in %s", genericAttribute.getTitle(), title),
                     genericAttribute.getHardMin(), genericAttribute.getHardMax());
@@ -209,7 +230,7 @@ public final class HItemAttributes {
     }
 
     public String toString() {
-        List<String> items = new ArrayList<>();
+        final List<String> items = new ArrayList<>();
         items.add(String.format("max-health-multiplier: %s", maxHealthMultiplier));
         items.add(String.format("attack-damage-multiplier: %s", attackDamageMultiplier));
 
