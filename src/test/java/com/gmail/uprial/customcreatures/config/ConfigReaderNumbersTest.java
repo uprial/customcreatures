@@ -7,8 +7,7 @@ import org.junit.rules.ExpectedException;
 
 import java.util.List;
 
-import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getInt;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.*;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.*;
 import static org.junit.Assert.*;
 
@@ -110,34 +109,6 @@ public class ConfigReaderNumbersTest extends TestConfigBase {
     }
 
     @Test
-    public void testSmallDouble() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("A double value should be at least 0");
-        getDouble(getPreparedConfig("n: -1"), getParanoiacCustomLogger(), "n", "double value", 0, 100, 0);
-    }
-
-    @Test
-    public void testBigDouble() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("A double value should be at most 100");
-        getDouble(getPreparedConfig("n: 1000"), getParanoiacCustomLogger(), "n", "double value", 0, 100, 0);
-    }
-
-    @Test
-    public void testBigLeftPart() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("A left part of double value has too many digits");
-        getDouble(getPreparedConfig("n: 123456789012.0001"), getParanoiacCustomLogger(), "n", "double value", 0, 100, 0);
-    }
-
-    @Test
-    public void testBigRightPart() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("A right part of double value has too many digits");
-        getDouble(getPreparedConfig("n: 12345678901.00001"), getParanoiacCustomLogger(), "n", "double value", 0, 100, 0);
-    }
-
-    @Test
     public void testNormalDouble() throws Exception {
         assertEquals(50, getDouble(getPreparedConfig("n: 50"), getParanoiacCustomLogger(), "n", "double value", 0, 100, 0), Double.MIN_VALUE);
     }
@@ -152,5 +123,35 @@ public class ConfigReaderNumbersTest extends TestConfigBase {
         e.expect(InternalConfigurationError.class);
         e.expectMessage("Max value of value number is greater than max value");
         getDouble(getPreparedConfig(""), getParanoiacCustomLogger(), "n", "value number", 200, 100, 0);
+    }
+
+    // ==== checkDoubleValue ====
+
+    @Test
+    public void testSmallDouble() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A double value should be at least 0");
+        checkDoubleValue("double value", 0, 100, -1);
+    }
+
+    @Test
+    public void testBigDouble() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A double value should be at most 100");
+        checkDoubleValue("double value", 0, 100, 1000);
+    }
+
+    @Test
+    public void testBigLeftPart() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A left part of double value has too many digits");
+        checkDoubleValue("double value", 0, 100, 123456789012.0001);
+    }
+
+    @Test
+    public void testBigRightPart() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A right part of double value has too many digits");
+        checkDoubleValue("double value", 0, 100, 12345678901.00001);
     }
 }
