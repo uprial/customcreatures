@@ -1,14 +1,14 @@
 package com.gmail.uprial.customcreatures.common;
 
-import com.gmail.uprial.customcreatures.CustomCreatures;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
 public final class MetadataHelper {
-    public static void setMetadata(CustomCreatures plugin, LivingEntity entity, String key, Object value) {
+    public static void setMetadata(JavaPlugin plugin, LivingEntity entity, String key, Object value) {
         MetadataValue metadataValue = new FixedMetadataValue(plugin, value);
         entity.setMetadata(key, metadataValue);
     }

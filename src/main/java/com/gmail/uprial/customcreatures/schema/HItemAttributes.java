@@ -21,7 +21,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VA
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.*;
-import static com.gmail.uprial.customcreatures.common.PersistenceHelper.getPersistentMetadata;
+import static com.gmail.uprial.customcreatures.common.PersistenceHelper.getDoublePersistentMetadata;
 import static com.gmail.uprial.customcreatures.common.PersistenceHelper.setPersistentMetadata;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
@@ -71,7 +71,7 @@ public final class HItemAttributes {
     }
 
     public static Double getAttackDamageMultiplier(CustomCreatures plugin, LivingEntity entity) {
-        return getPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER);
+        return getDoublePersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
     private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {

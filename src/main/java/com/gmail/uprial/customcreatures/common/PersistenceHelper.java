@@ -1,17 +1,16 @@
 package com.gmail.uprial.customcreatures.common;
 
-import com.gmail.uprial.customcreatures.CustomCreatures;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Set;
+import java.util.function.Function;
 
-import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.getMetadata;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata;
 
 /*
-    Only player metadata is persistent. Metadata of other entities can only be a runtime cache.
+    Metadata of entities can only be a runtime cache.
 
     Good news: the scoreboard tags are persistent for all the entities.
     Bad news: the scoreboard tags are a set but not a map.
@@ -37,45 +36,53 @@ public class PersistenceHelper {
 
     private static String KV_DELIMITER = "_";
 
-    public static void setPersistentMetadata(CustomCreatures plugin, LivingEntity entity, String key, Double value) {
-        if(entity instanceof Player) {
-            setMetadata(plugin, entity, key, value);
-        } else {
-            entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
-            entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER + formatDoubleValue(value));
-
-            setMetadata(plugin, entity, key, value);
-        }
+    public static void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Double value) {
+        setPersistentMetadata(plugin, entity, key, value, DoubleHelper::formatDoubleValue);
     }
 
-    public static Double getPersistentMetadata(CustomCreatures plugin, LivingEntity entity, String key) {
-        if(entity instanceof Player) {
-            return (Double)getMetadata(entity, key);
-        } else {
-            Object metadata = getMetadata(entity, key);
-            if(metadata != null) {
-                if(CACHED_NULL_VALUE.equals(metadata)) {
-                    return null;
-                } else {
-                    return (Double)metadata;
-                }
-            }
+    public static void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Integer value) {
+        setPersistentMetadata(plugin, entity, key, value, String::valueOf);
+    }
 
-            Double value = null;
-            Set<String> scoreboardTags = entity.getScoreboardTags();
-            if(scoreboardTags.contains(getPersistentMetadataKeyPrefix(key))) {
-                String prefix = getPersistentMetadataKeyPrefix(key) + KV_DELIMITER;
-                for(String tag : scoreboardTags) {
-                    if(tag.startsWith(prefix)) {
-                        value = Double.valueOf(tag.substring(prefix.length()));
-                        break;
-                    }
-                }
-            }
+    public static Double getDoublePersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key) {
+        return getPersistentMetadata(plugin, entity, key, Double::valueOf);
+    }
 
-            setMetadata(plugin, entity, key, (value == null) ? CACHED_NULL_VALUE : value);
-            return value;
+    public static Integer getIntegerPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key) {
+        return getPersistentMetadata(plugin, entity, key, Integer::valueOf);
+    }
+
+    private static <T> void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, T value, Function<T,String> encoder) {
+        entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
+        entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER + encoder.apply(value));
+
+        setMetadata(plugin, entity, key, value);
+    }
+
+    private static <T> T getPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Function<String,T> decoder) {
+        Object metadata = getMetadata(entity, key);
+        if(metadata != null) {
+            if(CACHED_NULL_VALUE.equals(metadata)) {
+                return null;
+            } else {
+                return (T)metadata;
+            }
         }
+
+        T value = null;
+        Set<String> scoreboardTags = entity.getScoreboardTags();
+        if(scoreboardTags.contains(getPersistentMetadataKeyPrefix(key))) {
+            String prefix = getPersistentMetadataKeyPrefix(key) + KV_DELIMITER;
+            for(String tag : scoreboardTags) {
+                if(tag.startsWith(prefix)) {
+                    value = decoder.apply(tag.substring(prefix.length()));
+                    break;
+                }
+            }
+        }
+
+        setMetadata(plugin, entity, key, (value == null) ? CACHED_NULL_VALUE : value);
+        return value;
     }
 
     private static String getPersistentMetadataKeyPrefix(String key) {
