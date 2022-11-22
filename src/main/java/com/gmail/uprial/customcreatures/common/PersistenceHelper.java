@@ -36,11 +36,11 @@ public class PersistenceHelper {
 
     private static String KV_DELIMITER = "_";
 
-    public static void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Double value) {
+    public static void setDoublePersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Double value) {
         setPersistentMetadata(plugin, entity, key, value, DoubleHelper::formatDoubleValue);
     }
 
-    public static void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Integer value) {
+    public static void setIntegerPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Integer value) {
         setPersistentMetadata(plugin, entity, key, value, String::valueOf);
     }
 

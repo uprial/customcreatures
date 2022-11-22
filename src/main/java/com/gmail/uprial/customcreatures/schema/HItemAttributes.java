@@ -21,8 +21,7 @@ import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VA
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.MetadataHelper.*;
-import static com.gmail.uprial.customcreatures.common.PersistenceHelper.getDoublePersistentMetadata;
-import static com.gmail.uprial.customcreatures.common.PersistenceHelper.setPersistentMetadata;
+import static com.gmail.uprial.customcreatures.common.PersistenceHelper.*;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 import static org.bukkit.attribute.Attribute.*;
@@ -112,28 +111,28 @@ public final class HItemAttributes {
         }
     }
 
-    private void applyPlayerMovementSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, Player player, String handleName, float newMovementSpeedMultiplier) {
-        final float oldMovementSpeedMultiplier = getOldAndReplacePlayerMetadataValue(
+    private void applyPlayerMovementSpeedMultiplier(CustomCreatures plugin, CustomLogger customLogger, Player player, String handleName, double newMovementSpeedMultiplier) {
+        final double oldMovementSpeedMultiplier = getOldAndReplacePlayerMetadataValue(
                 plugin,
                 player,
                 MK_MOVEMENT_SPEED_MULTIPLIER_PREFIX + handleName,
-                1.0F,
+                1.0D,
                 newMovementSpeedMultiplier);
 
         if(player.isFlying()) {
-            final float oldFlySpeed = player.getFlySpeed();
-            final float newFlySpeed = oldFlySpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
+            final double oldFlySpeed = player.getFlySpeed();
+            final double newFlySpeed = oldFlySpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
 
-            player.setFlySpeed(oldFlySpeed);
+            player.setFlySpeed((float)oldFlySpeed);
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: change fly speed of %s from %.2f to %.2f",
                         title, format(player), oldFlySpeed, newFlySpeed));
             }
         } else {
-            final float oldWalkSpeed = player.getWalkSpeed();
-            final float newWalkSpeed = oldWalkSpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
+            final double oldWalkSpeed = player.getWalkSpeed();
+            final double newWalkSpeed = oldWalkSpeed / oldMovementSpeedMultiplier * newMovementSpeedMultiplier;
 
-            player.setWalkSpeed(newWalkSpeed);
+            player.setWalkSpeed((float)newWalkSpeed);
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: change walk speed of %s from %.2f to %.2f",
                         title, format(player), oldWalkSpeed, newWalkSpeed));
@@ -144,7 +143,7 @@ public final class HItemAttributes {
     private void applyAttackDamageMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if (attackDamageMultiplier != null) {
             final Double newValue = attackDamageMultiplier.getValue();
-            setPersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
+            setDoublePersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s modification: set attack damage multiplier of %s to %.2f",
                         title, format(entity), newValue));
@@ -186,12 +185,12 @@ public final class HItemAttributes {
         The game stores all changes of player properties.
         To avoid cumulative changes after respawn we need to multiply initial values.
       */
-    private static <T> T getOldAndReplacePlayerMetadataValue(CustomCreatures plugin, Player player, String key, T defaultValue, T newValue) {
-        T oldValue = getMetadata(player, key);
+    private static Double getOldAndReplacePlayerMetadataValue(CustomCreatures plugin, Player player, String key, Double defaultValue, Double newValue) {
+        Double oldValue = getDoublePersistentMetadata(plugin, player, key);
         if (oldValue == null) {
             oldValue = defaultValue;
         }
-        setMetadata(plugin, player, key, newValue);
+        setDoublePersistentMetadata(plugin, player, key, newValue);
 
         return oldValue;
     }
