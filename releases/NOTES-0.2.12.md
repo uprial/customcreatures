@@ -1,2 +1,2 @@
 # Bugfix
-* Fixed long-running effects that should continue affect entities after server restart
+* Fixed long-running effects that should continue to affect entities after server restart
