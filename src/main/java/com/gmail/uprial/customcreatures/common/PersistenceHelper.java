@@ -53,7 +53,15 @@ public class PersistenceHelper {
     }
 
     private static <T> void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, T value, Function<T,String> encoder) {
-        entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
+        Set<String> scoreboardTags = entity.getScoreboardTags();
+        if(scoreboardTags.contains(getPersistentMetadataKeyPrefix(key))) {
+            // Remove previous tags
+            scoreboardTags.removeIf(
+                    tag -> tag.startsWith(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER));
+        } else {
+            entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
+        }
+
         entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key) + KV_DELIMITER + encoder.apply(value));
 
         setMetadata(plugin, entity, key, value);
