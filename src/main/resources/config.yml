@@ -169,7 +169,7 @@ handlers:
 # A set of entity types. Some living entities do not belong to any groups:
 # [PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]
 #
-# <type-set>: ANIMALS | GOLEMS | MONSTERS | CREATURES | FLYING_MOBS
+# <type-set>: ANIMALS | GOLEMS | MONSTERS | ZOMBIES | SKELETONS | FLYING_MOBS
 #
 # ANIMALS: [ALLAY, AXOLOTL, BAT, BEE, CHICKEN, CAT, COD, COW,
 #           DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HOGLIN, HORSE,
