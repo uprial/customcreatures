@@ -38,8 +38,9 @@ handlers:
   - golden-zombie
   - iron-zombie
   - diamond-skeleton
-  - netherite-zombie
+  - chainmail-zombie
   - angry-ghast
+  - illusioner
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -587,7 +588,7 @@ diamond-skeleton:
 #
     max-health: 30.0
 
-netherite-zombie:
+chainmail-zombie:
   filter:
     type-sets:
       - ZOMBIES
@@ -605,8 +606,8 @@ netherite-zombie:
   equipment:
     helmet:
       probability: 100
-      material-type: NETHERITE
-      durability: 20
+      material-type: CHAINMAIL
+      durability: 50
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -614,9 +615,9 @@ netherite-zombie:
         - enchantments.water_worker_helmet
         - enchantments.rand_thorns
     boots:
-      probability: 50
-      material-type: NETHERITE
-      durability: 20
+      probability: 100
+      material-type: CHAINMAIL
+      durability: 50
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -624,17 +625,17 @@ netherite-zombie:
         - enchantments.rand_depth_strider_boots
         - enchantments.rand_thorns
     chest:
-      probability: 50
-      material-type: NETHERITE
-      durability: 20
+      probability: 100
+      material-type: CHAINMAIL
+      durability: 50
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_thorns
     leggings:
-      probability: 50
-      material-type: NETHERITE
-      durability: 20
+      probability: 100
+      material-type: CHAINMAIL
+      durability: 50
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -643,7 +644,7 @@ netherite-zombie:
       probability: 100
       drop-chance: 0.0425
       material: DIAMOND_SWORD
-      durability: 20
+      durability: 50
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_damage_all
@@ -655,7 +656,7 @@ netherite-zombie:
     follow-range: 50.0
     knockback-resistance: 0.5
     movement-speed-multiplier: 2.0
-    max-health-multiplier: 2.5
+    max-health-multiplier: 2.0
 
 angry-ghast:
   filter:
@@ -664,6 +665,37 @@ angry-ghast:
     probability: 10
   attributes:
     attack-damage-multiplier: 2.0
+
+illusioner:
+  filter:
+    types:
+      - ILLUSIONER
+    probability: 100
+  effects:
+    - jump
+    - effects.fire_resistance
+    - effects.regeneration
+  jump:
+    types:
+      - JUMP
+    strength: 5
+    duration: 99999
+  equipment:
+    main-hand:
+      probability: 100
+      material: BOW
+      durability: 25
+      enchantments:
+        - enchantments.rand_durability
+        - enchantments.rand_maybe_top_bow_damage
+        - enchantments.rand_bow_knockback
+        - enchantments.bow_fire
+        - enchantments.bow_infinity
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.75
+    movement-speed-multiplier: 2.5
+    max-health-multiplier: 2.5
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
@@ -687,7 +719,7 @@ effects:
   regeneration:
     types:
       - REGENERATION
-    strength: 2
+    strength: 1
     duration: 99999
   glowing:
     types:
