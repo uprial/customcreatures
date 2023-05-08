@@ -41,6 +41,8 @@ handlers:
   - chainmail-zombie
   - angry-ghast
   - illusioner
+  - better-crossbow
+  - better-trident
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -697,6 +699,40 @@ illusioner:
     movement-speed-multiplier: 2.5
     max-health-multiplier: 2.5
 
+better-crossbow:
+  filter:
+    types:
+      - PILLAGER
+      - PIGLIN
+    probability: 5
+  equipment:
+    main-hand:
+      probability: 100
+      drop-chance: 0.0425
+      material: CROSSBOW
+      durability: 50
+      enchantments:
+        - enchantments.rand_durability
+        - enchantments.rand_crossbow_quick_charge
+        - enchantments.rand_crossbow_multishot
+        - enchantments.rand_maybe_top_crossbow_piercing
+
+better-trident:
+  filter:
+    types:
+      - DROWNED
+    probability: 5
+  equipment:
+    main-hand:
+      probability: 100
+      drop-chance: 0.0425
+      material: TRIDENT
+      durability: 50
+      enchantments:
+        - enchantments.rand_durability
+        - enchantments.rand_trident_channeling
+        - enchantments.rand_maybe_top_trident_impaling
+
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
 test-handler:
@@ -859,3 +895,34 @@ enchantments:
   bow_infinity:
     type: ARROW_INFINITE
     level: 1
+
+  # Crossbow
+  rand_crossbow_quick_charge:
+    type: QUICK_CHARGE
+    level:
+      type: random
+      min: 1
+      max: 3
+      distribution: exp_down
+  rand_crossbow_multishot:
+    type: MULTISHOT
+    level: 1
+  rand_maybe_top_crossbow_piercing:
+    type: PIERCING
+    level:
+      type: random
+      min: 1
+      max: 5
+      distribution: normal
+
+  # Trident
+  rand_trident_channeling:
+    type: CHANNELING
+    level: 1
+  rand_maybe_top_trident_impaling:
+    type: IMPALING
+    level:
+      type: random
+      min: 1
+      max: 7
+      distribution: normal
