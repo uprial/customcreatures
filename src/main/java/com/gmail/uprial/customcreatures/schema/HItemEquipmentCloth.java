@@ -115,14 +115,7 @@ public final class HItemEquipmentCloth {
     }
 
     private static MaterialType getMaterialType(FileConfiguration config, String key, String title) throws InvalidConfigException {
-        String materialTypeString = getString(config, key, title);
-
-        // Backward compatibility for old configs
-        if (materialTypeString.equalsIgnoreCase("GOLD")) {
-            return MaterialType.GOLDEN;
-        } else {
-            return getEnum(MaterialType.class, config, key, title);
-        }
+        return getEnum(MaterialType.class, config, key, title);
     }
 
     private static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
@@ -130,17 +123,7 @@ public final class HItemEquipmentCloth {
         try {
             return Material.valueOf(itemName);
         } catch (IllegalArgumentException ignored1) {
-            // Backward compatibility for old configs
-            if (materialType.equals(MaterialType.GOLDEN)) {
-                itemName = String.format("GOLD_%s", clothType);
-                try {
-                    return Material.valueOf(itemName);
-                } catch (IllegalArgumentException ignored2) {
-                    throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
-                }
-            } else {
-                throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
-            }
+            throw new InvalidConfigException(String.format("Invalid item material type '%s' of %s", itemName, title));
         }
     }
 
