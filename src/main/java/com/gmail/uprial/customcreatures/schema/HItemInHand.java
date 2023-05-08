@@ -48,11 +48,11 @@ public final class HItemInHand {
 
     public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
-            if((entity instanceof Skeleton || entity instanceof PigZombie) && (handType == MAIN_HAND)) {
+            /*if((entity instanceof Skeleton || entity instanceof PigZombie) && (handType == MAIN_HAND)) {
                 CustomCreatures.defer(new HItemInHandTask(this, plugin, customLogger, entity));
-            } else {
-                applyImmediately(plugin, customLogger, entity);
-            }
+            } else {*/
+            applyImmediately(plugin, customLogger, entity);
+            //}
         }
     }
 
