@@ -27,19 +27,19 @@ import static org.bukkit.entity.EntityType.*;
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(ALLAY, AXOLOTL, BAT, BEE, CHICKEN, CAT, COD, COW,
-                    DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HOGLIN, HORSE,
-                    LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR,
-                    PUFFERFISH, RABBIT, SALMON, SHEEP, SQUID, STRIDER, TADPOLE, TROPICAL_FISH,
-                    TURTLE, WOLF, ZOMBIE_HORSE)),
+            Sets.newHashSet(ALLAY, AXOLOTL, BAT, BEE, CAT, CHICKEN, COD, COW,
+                    DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HORSE, LLAMA,
+                    MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, PUFFERFISH,
+                    RABBIT, SALMON, SHEEP, SQUID, STRIDER, TADPOLE, TROPICAL_FISH, TURTLE,
+                    WOLF, ZOMBIE_HORSE)),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOWMAN)),
     MONSTERS(null,
             Sets.newHashSet(BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE,
-                    EVOKER,  EVOKER_FANGS, GIANT, GUARDIAN, HUSK, ILLUSIONER, MAGMA_CUBE,
-                    PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER, RAVAGER, SILVERFISH, SHULKER, SKELETON,
-                    SKELETON_HORSE, SLIME, SPIDER, STRAY, VEX, VINDICATOR, WARDEN, WITCH,
-                    WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
+                    EVOKER, EVOKER_FANGS, GHAST, GIANT, GUARDIAN, HOGLIN, HUSK, ILLUSIONER,
+                    MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER, RAVAGER, SHULKER, SILVERFISH,
+                    SKELETON, SKELETON_HORSE, SLIME, SPIDER, STRAY, VEX, VINDICATOR, WARDEN,
+                    WITCH, WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
 
     // An unused set that underlines we didn't forget of some creatures.
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
@@ -47,10 +47,10 @@ public enum HItemTypeSet {
 
     // https://minecraft.gamepedia.com/Zombie_(disambiguation)
     ZOMBIES(null,
-            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, ZOMBIE, ZOMBIE_VILLAGER)),
+            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER)),
     // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
     SKELETONS(null,
-            Sets.newHashSet(SKELETON, STRAY, WITHER_SKELETON)),
+            Sets.newHashSet(SKELETON, STRAY)),
     FLYING_MOBS(null,
             Sets.newHashSet(ALLAY, BAT, BEE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, VEX, WITHER));
 
