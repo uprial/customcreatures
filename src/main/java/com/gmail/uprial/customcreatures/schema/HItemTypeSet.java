@@ -9,21 +9,22 @@ import java.util.Set;
 import static org.bukkit.entity.EntityType.*;
 
 /*
-    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html (version 1.16.5)
+    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html (version 1.19.4)
 
     AbstractHorse, AbstractSkeleton, AbstractVillager, Ageable, Allay, Ambient, Animals, ArmorStand,
-    Axolotl, Bat, Bee, Blaze, Breedable, Cat, CaveSpider, ChestedHorse,
-    Chicken, Cod, ComplexLivingEntity, Cow, Creature, Creeper, Dolphin, Donkey,
-    Drowned, ElderGuardian, EnderDragon, Enderman, Endermite, Evoker, Fish, Flying,
-    Fox, Frog, Ghast, Giant, GlowSquid, Goat, Golem, Guardian,
-    Hoglin, Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem, Llama,
-    MagmaCube, Mob, Monster, Mule, MushroomCow, NPC, Ocelot, Panda,
-    Parrot, Phantom, Pig, Piglin, PiglinAbstract, PiglinBrute, PigZombie, Pillager,
-    Player, PolarBear, PufferFish, Rabbit, Raider, Ravager, Salmon, Sheep,
-    Shulker, Silverfish, Skeleton, SkeletonHorse, Slime, Snowman, Spellcaster, Spider,
-    Squid, Steerable, Stray, Strider, Tadpole, Tameable, TraderLlama, TropicalFish,
-    Turtle, Vex, Villager, Vindicator, WanderingTrader, Warden, WaterMob, Witch,
-    Wither, WitherSkeleton, Wolf, Zoglin, Zombie, ZombieHorse, ZombieVillager
+    Axolotl, Bat, Bee, Blaze, Breedable, Camel, Cat, CaveSpider,
+    ChestedHorse, Chicken, Cod, ComplexLivingEntity, Cow, Creature, Creeper, Dolphin,
+    Donkey, Drowned, ElderGuardian, EnderDragon, Enderman, Endermite, Enemy, Evoker,
+    Fish, Flying, Fox, Frog, Ghast, Giant, GlowSquid, Goat,
+    Golem, Guardian, Hoglin, Horse, HumanEntity, Husk, Illager, Illusioner,
+    IronGolem, Llama, MagmaCube, Mob, Monster, Mule, MushroomCow, NPC,
+    Ocelot, Panda, Parrot, Phantom, Pig, Piglin, PiglinAbstract, PiglinBrute,
+    PigZombie, Pillager, Player, PolarBear, PufferFish, Rabbit, Raider, Ravager,
+    Salmon, Sheep, Shulker, Silverfish, Skeleton, SkeletonHorse, Slime, Sniffer,
+    Snowman, Spellcaster, Spider, Squid, Steerable, Stray, Strider, Tadpole,
+    Tameable, TraderLlama, TropicalFish, Turtle, Vex, Villager, Vindicator, WanderingTrader,
+    Warden, WaterMob, Witch, Wither, WitherSkeleton, Wolf, Zoglin, Zombie,
+    ZombieHorse, ZombieVillager
 */
 public enum HItemTypeSet {
     ANIMALS(null,

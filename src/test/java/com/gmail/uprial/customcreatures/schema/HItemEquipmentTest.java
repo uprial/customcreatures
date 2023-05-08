@@ -6,6 +6,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
+import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipment.getFromConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -112,6 +117,21 @@ public class HItemEquipmentTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "e:",
                 " k: v"),
+                getCustomLogger(), "e", "equipment");
+    }
+
+    @Test
+    public void testAllClothsAndMaterials() throws Exception {
+        List<String> config = new ArrayList<>();
+        config.add("e:");
+        for (final String cloth : new String[]{"helmet", "boots", "chest", "leggings"}) {
+            for (final String material : new String[]{"leather", "chainmail", "iron", "diamond", "golden", "netherite"}) {
+                config.add(String.format(" %s:", cloth));
+                config.add(String.format("  material-type: %s", material));
+            }
+        }
+
+        HItemEquipment itemEquipment = getFromConfig(getPreparedConfig(joinStrings("\n", config)),
                 getCustomLogger(), "e", "equipment");
     }
 }
