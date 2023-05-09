@@ -14,14 +14,15 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a little jump and movement bonus.
 * 4% of zombie-like mobs spawn with a little jump bonus, in gold equipment(*1) with random enhancements.
-* 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment(*1) with random enhancements, and a well-enchanted sword.
-* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in diamond equipment(*1) with random but maybe top enhancements, and a top-enchanted bow.
-* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in netherite equipment(*1) with random but maybe top enhancements, and a top-enchanted sword.
+* 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment(*1) with random enhancements, and a well-enchanted sword (*1).
+* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in diamond equipment(*1) with random but maybe top enhancements, and a top-enchanted bow (*2).
+* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in netherite equipment(*1) with random but maybe top enhancements, and a top-enchanted sword (*2).
 * 10% of ghasts attack twice as painful.
-* 5% of Drowned have enchanted tridents (*1), and 5% of Pillagers and Piglings have enchanted crossbows (*1).
-* 100% of Illusioners have fire resistance and an enchanted bow (*1).
+* 5% of Drowned have enchanted tridents (*2), and 5% of Pillagers and Piglings have enchanted crossbows (*2).
+* 100% of Illusioners have fire resistance and an enchanted bow (*2).
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
+(*2) Potentially top items have twice less drop chance
 
 ![CustomCreatures Promo](images/customcreatures-promo.png)
 
