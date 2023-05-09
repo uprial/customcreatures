@@ -23,7 +23,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
-(*2) Potentially top items have twice less drop chance
+(*2) Potentially top items have twice less default drop chance.
 
 ![CustomCreatures Promo](images/customcreatures-promo.png)
 
