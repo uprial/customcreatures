@@ -18,8 +18,8 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in diamond equipment(*1) with random but maybe top enhancements, and a top-enchanted bow.
 * 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in netherite equipment(*1) with random but maybe top enhancements, and a top-enchanted sword.
 * 10% of ghasts attack twice as painful.
-* 5% of drowned have enchanted tridents, and 5% of pillagers and piglings have enchanted crossbows.
-* 100% of illusioners are fully equipped with enchanted clothes.
+* 5% of Drowned have enchanted tridents (*1), and 5% of Pillagers and Piglings have enchanted crossbows (*1).
+* 100% of Illusioners are fire resistance and have an enchanted bow (*1).
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
