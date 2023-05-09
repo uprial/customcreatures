@@ -10,6 +10,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 
 ## Features
 
+* Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) and [NastyIllusioner](https://github.com/uprial/nastyillusioner) plugins
 * 5% of animals spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a little jump and movement bonus.
