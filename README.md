@@ -14,10 +14,10 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 5% of animals naturally spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a tiny jump and movement bonus for 30 seconds.
-* 4% of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in GOLDEN equipment(*1) with random protection and thorns, a slightly-enchanted golden axe (*1).
-* 2% of zombie-like mobs spawn with a small jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and durability, a well-enchanted sword (*1).
+* 4% of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in GOLDEN equipment(*1) with random protection and random thorns, a slightly-enchanted golden axe (*1).
+* 2% of zombie-like mobs spawn with a small jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and random durability, a well-enchanted sword (*1).
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted bow (*2).
-* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a large jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted sword (*2).
+* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a large jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements and top thorns, a top-enchanted sword (*2).
 * 10% of ghasts attack twice as painful.
 * 100% of Illusioners have a huge jump and movement bonus, fire resistance and regeneration, a top-enchanted bow (*2).
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.

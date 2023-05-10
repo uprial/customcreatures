@@ -618,7 +618,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_oxygen_helmet
         - enchantments.rand_water_worker_helmet
-        - enchantments.rand_thorns
+        - enchantments.top_thorns
     boots:
       probability: 100
       material-type: CHAINMAIL
@@ -628,7 +628,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_protection_fall_boots
         - enchantments.rand_depth_strider_boots
-        - enchantments.rand_thorns
+        - enchantments.top_thorns
     chest:
       probability: 100
       material-type: CHAINMAIL
@@ -636,7 +636,7 @@ chainmail-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_thorns
+        - enchantments.top_thorns
     leggings:
       probability: 100
       material-type: CHAINMAIL
@@ -644,7 +644,7 @@ chainmail-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_thorns
+        - enchantments.top_thorns
     main-hand:
       probability: 100
       drop-chance: 0.0425
@@ -808,6 +808,9 @@ enchantments:
       min: 1
       max: 3
       distribution: exp_down
+  top_thorns:
+    type: THORNS
+    level: 3
   rand_protection_fall_boots:
     type: PROTECTION_FALL
     level:
