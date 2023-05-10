@@ -399,13 +399,19 @@ player:
       - PLAYER
     probability: 100
   effects:
-    - jump
-  jump:
+    - jump_and_speed
+    - blindness
+  jump_and_speed:
     types:
       - SPEED
       - JUMP
+    strength: 2
+    duration: 60
+  blindness:
+    types:
+      - BLINDNESS
     strength: 1
-    duration: 30
+    duration: 3
   equipment:
     main-hand:
       material: APPLE

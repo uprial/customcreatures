@@ -3,3 +3,4 @@
 
 # Balance
 * Made the chainmail thorns top level.
+* Increased jump and speed effects after the player spawn, added a little blindness

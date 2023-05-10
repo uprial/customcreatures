@@ -1,5 +1,4 @@
 # New features
-- Increase jump and speed effects after the player spawn, a little blindness
 - Limit number of currently living entities by type
 - Modify Creeper's fuse ticks and its jump height.
 - Add a filter based on entity's location: location in the world,
