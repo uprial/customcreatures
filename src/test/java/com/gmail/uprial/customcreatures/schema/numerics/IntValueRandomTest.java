@@ -94,6 +94,19 @@ public class IntValueRandomTest extends TestConfigBase {
         assertFalse(distribution.containsKey(14));
     }
 
+    @Test
+    public void testExpDownDistribution_TwoValues() throws Exception {
+        IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 1, 2);
+
+        for(int i = 0; i < 100; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            assertTrue(distribution.get(1) > 720);
+            assertTrue(distribution.get(1) < 820);
+            assertTrue(distribution.get(2) > 180);
+            assertTrue(distribution.get(2) < 280);
+        }
+    }
+
     private static Map<Integer,Long> getDistribution(IntValueRandom valueRandom) {
         Map<Integer,Long> distribution = new HashMap<>();
         for (Integer i = 0; i < 1000; i++) {
