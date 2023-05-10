@@ -46,11 +46,14 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
             customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
                     title, format(entity), enchantment.getType().toString(), enchantmentLevel));
         }
-        try {
-            itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
-        } catch (IllegalArgumentException e) {
-            customLogger.error(String.format("Can't handle %s of %s: %s",
-                    title, format(entity), e.getMessage()));
+
+        if (enchantmentLevel > 0) {
+            try {
+                itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
+            } catch (IllegalArgumentException e) {
+                customLogger.error(String.format("Can't handle %s of %s: %s",
+                        title, format(entity), e.getMessage()));
+            }
         }
     }
 
@@ -61,7 +64,7 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
         Enum enchantment = getEnum(EnchantmentLoader.get(), config, joinPaths(key, "type"), String.format("enchantment type of %s", title));
         IValue<Integer> level = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "level"),
-                String.format("level of %s", title), 1, 10);
+                String.format("level of %s", title), 0, 100);
         if (level == null) {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }

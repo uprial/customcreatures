@@ -1,6 +1,5 @@
 # New features
 - Deeply test exponential distribution, specifically on two integer values.
-- Change binary flags like "infinity" to random.
 - Maximize thorns for items.
 - Increase jump and speed effects after the player spawn, a little blindness
 - Limit number of currently living entities by type
