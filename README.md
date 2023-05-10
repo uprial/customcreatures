@@ -11,20 +11,21 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 ## Features
 
 * Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) and [NastyIllusioner](https://github.com/uprial/nastyillusioner) plugins
-* 5% of animals spawn with up to 400% health increase.
+* 5% of animals naturally spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
-* Once killed, a player respawns with an apple in hand and a little jump and movement bonus.
-* 4% of zombie-like mobs spawn with a little jump bonus, in gold equipment(*1) with random enhancements.
-* 2% of zombie-like mobs spawn with a little jump and movement bonus, in iron equipment(*1) with random enhancements, and a well-enchanted sword (*1).
-* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in diamond equipment(*1) with random but maybe top enhancements, and a top-enchanted bow (*2).
-* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a major jump and movement bonus, fire resistance, in netherite equipment(*1) with random but maybe top enhancements, and a top-enchanted sword (*2).
+* Once killed, a player respawns with an apple in hand and a tiny jump and movement bonus for 30 seconds.
+* 4% of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in GOLDEN equipment(*1) with random protection and thorns, a slightly-enchanted golden axe (*1).
+* 2% of zombie-like mobs spawn with a small jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and durability, a well-enchanted sword (*1).
+* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted bow (*2).
+* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a large jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted sword (*2).
 * 10% of ghasts attack twice as painful.
-* 5% of Drowned have top-enchanted tridents (*2), and 5% of Pillagers and Piglings have top-enchanted crossbows (*2).
-* 100% of Illusioners have fire resistance and a top-enchanted bow (*2).
+* 100% of Illusioners have a huge jump and movement bonus, fire resistance and regeneration, a top-enchanted bow (*2).
+* 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
+* 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
-(*2) Potentially top items have twice less default drop chance.
+(*2) "Maybe top" items have twice less default drop chance (4.25%), looting still adds 1% to the drop chance.
 
 ![CustomCreatures Promo](images/customcreatures-promo.png)
 
