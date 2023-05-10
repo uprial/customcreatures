@@ -462,7 +462,7 @@ golden-zombie:
         - enchantments.rand_durability
         - enchantments.rand_dig_speed
   attributes:
-    movement-speed-multiplier: 1.25
+    movement-speed-multiplier: 1.2
 
 iron-zombie:
   filter:
@@ -519,7 +519,7 @@ iron-zombie:
         - enchantments.rand_sword_fire_aspect
         - enchantments.rand_sword_sweeping_edge
   attributes:
-    movement-speed-multiplier: 1.25
+    movement-speed-multiplier: 1.33
 
 diamond-skeleton:
   filter:
