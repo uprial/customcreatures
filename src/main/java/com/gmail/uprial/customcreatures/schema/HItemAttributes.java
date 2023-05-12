@@ -20,7 +20,6 @@ import java.util.Map.Entry;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
-import static com.gmail.uprial.customcreatures.common.MetadataHelper.*;
 import static com.gmail.uprial.customcreatures.common.PersistenceHelper.*;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;

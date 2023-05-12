@@ -6,8 +6,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
-
 public final class ConfigReaderSimple {
     public static String getKey(Object item, String title, int i) throws InvalidConfigException {
         if (item == null) {
