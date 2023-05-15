@@ -52,6 +52,24 @@ public class PersistenceHelper {
         return getPersistentMetadata(plugin, entity, key, Integer::valueOf);
     }
 
+    public static void addPersistentMetadataFlag(JavaPlugin plugin, LivingEntity entity, String key) {
+        entity.addScoreboardTag(getPersistentMetadataKeyPrefix(key));
+        setMetadata(plugin, entity, key, true);
+    }
+
+    public static boolean containsPersistentMetadataFlag(JavaPlugin plugin, LivingEntity entity, String key) {
+        final Object metadata = getMetadata(entity, key);
+        if(metadata != null) {
+            return (Boolean)metadata;
+        } else {
+            final boolean value = entity.getScoreboardTags()
+                    .contains(getPersistentMetadataKeyPrefix(key));
+
+            setMetadata(plugin, entity, key, value);
+            return value;
+        }
+    }
+
     private static <T> void setPersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, T value, Function<T,String> encoder) {
         Set<String> scoreboardTags = entity.getScoreboardTags();
         if(scoreboardTags.contains(getPersistentMetadataKeyPrefix(key))) {

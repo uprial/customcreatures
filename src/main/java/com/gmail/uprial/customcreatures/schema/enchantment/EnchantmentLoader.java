@@ -1,7 +1,4 @@
 package com.gmail.uprial.customcreatures.schema.enchantment;
-
-import org.bukkit.enchantments.Enchantment;
-
 /*
     This module supports backward compatibility of enchantments.
  */

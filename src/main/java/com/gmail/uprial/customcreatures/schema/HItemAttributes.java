@@ -61,7 +61,7 @@ public final class HItemAttributes {
         this.genericAttributes = genericAttributes;
     }
 
-    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
+    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         // The order makes sense: multiple a max. health after absolute value
         applyGenericAttributes(plugin, customLogger, entity, handleName);
         applyMaxHealth(plugin, customLogger, entity, handleName);

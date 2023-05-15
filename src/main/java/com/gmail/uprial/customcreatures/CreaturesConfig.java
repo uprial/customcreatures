@@ -7,6 +7,7 @@ import com.gmail.uprial.customcreatures.schema.HItem;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.*;
 
@@ -19,9 +20,15 @@ public final class CreaturesConfig {
         this.handlers = handlers;
     }
 
-    public void handle(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
+    public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         for (HItem handler : handlers) {
-            handler.handle(plugin, customLogger, entity, spawnReason);
+            handler.handleSpawn(plugin, customLogger, entity, spawnReason);
+        }
+    }
+
+    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event) {
+        for (HItem handler : handlers) {
+            handler.handleDeath(plugin, customLogger, event);
         }
     }
 

@@ -74,7 +74,31 @@ handlers:
 #   equipment: <equipment>    ### Modifications of entity's equipment.
 #                             ### (* see description of <equipment> below)
 #
+#   drops:                    ### Modifications of entity's drops.
+#     - <drop-path-rel>       ### Relative path.
+#     - <drop-path-abs>       ### Absolute path.
+#       ...
+#     - <drop-pathN>
+
+#   drop-path-rel: <effect>   ### Drop described in handler's namespace.
+#                             ### (* see description of <drop> below)
+#
+#   drop-exp: <int-value:0..32767> ### Modifications of entity's drop exp.
+#                                  ### https://minecraft.fandom.com/wiki/Experience
+#                                  ### Level Total XP
+#                                  ### 1     7
+#                                  ### 5     55
+#                                  ### 10    160
+#                                  ### 15    315
+#                                  ### 20    550
+#                                  ### 25    910
+#                                  ### 30    1395
+#
 # effect-path-abs: <effect>   ### Effect described anywhere else.
+#                             ### (* see description of <effect> below)
+#
+# drop-path-abs: <drop>   ### Drop described anywhere else.
+#                         ### (* see description of <drop> below)
 #
 # #### Filter ####
 #
@@ -240,8 +264,11 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
-#                             ### The Looting enchantment increases this chance by 1% per level.
+#                             ### By default the probability is 8.5% (0.085):
+#                             ### https://minecraft.gamepedia.com/Drops.
+#                             ###
+#                             ### The Looting enchantment increases
+#                             ### this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default the durability is 100%.
@@ -250,7 +277,7 @@ handlers:
 #                                 ### to this cloth.
 #                                 ### By default, no enchantments will
 #                                 ### be applied.
-#                                 ### (* see description of 
+#                                 ### (* see description of
 #                                 ### <enchantments> below)
 #
 # #### Item in hand ####
@@ -267,8 +294,11 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this item will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 8.5% (0.085): https://minecraft.gamepedia.com/Drops.
-#                             ### The Looting enchantment increases this chance by 1% per level.
+#                             ### By default the probability is 8.5% (0.085):
+#                             ### https://minecraft.gamepedia.com/Drops.
+#                             ###
+#                             ### The Looting enchantment increases
+#                             ### this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
@@ -277,7 +307,29 @@ handlers:
 #                                 ### to this item.
 #                                 ### By default, no enchantments will
 #                                 ### be applied.
-#                                 ### (* see description of 
+#                                 ### (* see description of
+#                                 ### <enchantments> below)
+#
+# #### Item drop ####
+#
+# <item-drop>:
+#   probability: <0..100>   ### Probability in percents that this item will
+#                           ### drop after the entity death.
+#                           ### By default the probability is 100%.
+#
+#   material: <material>    ### Material of the item, see:
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+#
+#   amount: <int-value:1..64> ### Amount of items.
+#
+#   durability: <int-value:0..100>  ### Durability in percents of this item.
+#                                   ### By default the durability is 100%.
+#
+#   enchantments <enchantments>:  ### List of enchantments will be applied
+#                                 ### to this item.
+#                                 ### By default, no enchantments will
+#                                 ### be applied.
+#                                 ### (* see description of
 #                                 ### <enchantments> below)
 #
 # #### Enchantments ####
@@ -598,6 +650,9 @@ diamond-skeleton:
 # https://minecraft.gamepedia.com/Wither_Skeleton - 20
 #
     max-health: 30.0
+  drops:
+    - drops.golden_apple
+  drop-exp: 55
 
 chainmail-zombie:
   filter:
@@ -668,6 +723,9 @@ chainmail-zombie:
     knockback-resistance: 0.5
     movement-speed-multiplier: 2.0
     max-health-multiplier: 2.0
+  drops:
+    - drops.golden_apple
+  drop-exp: 55
 
 angry-ghast:
   filter:
@@ -707,6 +765,11 @@ illusioner:
     knockback-resistance: 0.75
     movement-speed-multiplier: 2.5
     max-health-multiplier: 2.5
+  drops:
+    - enchanted_golden_apple
+  enchanted_golden_apple:
+    material: ENCHANTED_GOLDEN_APPLE
+  drop-exp: 160
 
 better-crossbow:
   filter:
@@ -722,9 +785,32 @@ better-crossbow:
       durability: 50
       enchantments:
         - enchantments.rand_durability
-        - enchantments.rand_crossbow_quick_charge
-        - enchantments.rand_crossbow_multishot
-        - enchantments.rand_maybe_top_crossbow_piercing
+        - rand_crossbow_quick_charge
+        - rand_crossbow_multishot
+        - rand_maybe_top_crossbow_piercing
+
+      # Crossbow enchantments
+      rand_crossbow_quick_charge:
+        type: QUICK_CHARGE
+        level:
+          type: random
+          min: 1
+          max: 3
+          distribution: exp_down
+      rand_crossbow_multishot:
+        type: MULTISHOT
+        level:
+          type: random
+          min: 0
+          max: 1
+          distribution: exp_down
+      rand_maybe_top_crossbow_piercing:
+        type: PIERCING
+        level:
+          type: random
+          min: 1
+          max: 5
+          distribution: normal
 
 better-trident:
   filter:
@@ -739,8 +825,24 @@ better-trident:
       durability: 50
       enchantments:
         - enchantments.rand_durability
-        - enchantments.rand_trident_channeling
-        - enchantments.rand_maybe_top_trident_impaling
+        - rand_trident_channeling
+        - rand_maybe_top_trident_impaling
+
+      # Trident enchantments
+      rand_maybe_top_trident_impaling:
+        type: IMPALING
+        level:
+          type: random
+          min: 1
+          max: 10
+          distribution: normal
+      rand_trident_channeling:
+        type: CHANNELING
+        level:
+          type: random
+          min: 0
+          max: 1
+          distribution: exp_down
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
@@ -920,41 +1022,7 @@ enchantments:
       max: 1
       distribution: exp_down
 
-  # Crossbow
-  rand_crossbow_quick_charge:
-    type: QUICK_CHARGE
-    level:
-      type: random
-      min: 1
-      max: 3
-      distribution: exp_down
-  rand_crossbow_multishot:
-    type: MULTISHOT
-    level:
-      type: random
-      min: 0
-      max: 1
-      distribution: exp_down
-  rand_maybe_top_crossbow_piercing:
-    type: PIERCING
-    level:
-      type: random
-      min: 1
-      max: 5
-      distribution: normal
-
-  # Trident
-  rand_trident_channeling:
-    type: CHANNELING
-    level:
-      type: random
-      min: 0
-      max: 1
-      distribution: exp_down
-  rand_maybe_top_trident_impaling:
-    type: IMPALING
-    level:
-      type: random
-      min: 1
-      max: 7
-      distribution: normal
+# Global templates of drops
+drops:
+  golden_apple:
+    material: GOLDEN_APPLE

@@ -35,6 +35,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * Templates of effects and enchantments
 * Random distributions for the majority of numeric values
 * Entities' following range
+* Drop items and drop exp
 
 #### You can solve the following problems:
 * Increase the velocity of specific entities, thus make some enemies more dangerous naturally

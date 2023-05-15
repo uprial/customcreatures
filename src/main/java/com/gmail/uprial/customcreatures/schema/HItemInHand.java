@@ -7,13 +7,10 @@ import com.gmail.uprial.customcreatures.schema.exceptions.MethodIsNotSupportedEx
 import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import com.gmail.uprial.customcreatures.schema.numerics.ValueConst;
-import com.gmail.uprial.customcreatures.schema.tasks.HItemInHandTask;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Skeleton;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
@@ -22,7 +19,6 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 import static com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper.*;
-import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 
 public final class HItemInHand {
     private final String title;
@@ -48,53 +44,45 @@ public final class HItemInHand {
 
     public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
-            /*if((entity instanceof Skeleton || entity instanceof PigZombie) && (handType == MAIN_HAND)) {
-                CustomCreatures.defer(new HItemInHandTask(this, plugin, customLogger, entity));
-            } else {*/
-            applyImmediately(plugin, customLogger, entity);
-            //}
-        }
-    }
+            int itemAmount = amount.getValue();
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s: add %d x %s to %s",
+                        title, itemAmount, material, format(entity)));
+            }
+            ItemStack itemStack = new ItemStack(material, itemAmount);
 
-    public void applyImmediately(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
-        int itemAmount = amount.getValue();
-        if (customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s: add %d x %s to %s",
-                    title, itemAmount, material, format(entity)));
-        }
-        ItemStack itemStack = new ItemStack(material, itemAmount);
+            if (enchantments != null) {
+                enchantments.apply(customLogger, entity, itemStack);
+            }
 
-        if (enchantments != null) {
-            enchantments.apply(customLogger, entity, itemStack);
-        }
+            if (durability != null) {
+                durability.apply(customLogger, entity, itemStack);
+            }
 
-        if (durability != null) {
-            durability.apply(customLogger, entity, itemStack);
-        }
+            try {
+                setItem(entity.getEquipment(), handType, itemStack);
+            } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+                customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
+                return;
+            }
 
-        try {
-            setItem(entity.getEquipment(), handType, itemStack);
-        } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
-            customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
-            return ;
-        }
-
-        if (dropChance > 0.0) {
-            if(entity instanceof Player) {
-                if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Can't handle drop chance of %s: it's a player", title));
-                }
-            } else {
-                if (customLogger.isDebugMode()) {
-                    customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
-                            title, material, format(entity), dropChance));
-                }
-                try {
-                    setItemDropChance(plugin, entity.getEquipment(), handType, dropChance);
-                } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
-                    customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
-                    //noinspection UnnecessaryReturnStatement
-                    return;
+            if (dropChance > 0.0) {
+                if (entity instanceof Player) {
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Can't handle drop chance of %s: it's a player", title));
+                    }
+                } else {
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
+                                title, material, format(entity), dropChance));
+                    }
+                    try {
+                        setItemDropChance(plugin, entity.getEquipment(), handType, dropChance);
+                    } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+                        customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
+                        //noinspection UnnecessaryReturnStatement
+                        return;
+                    }
                 }
             }
         }

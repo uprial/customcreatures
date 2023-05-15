@@ -108,25 +108,24 @@ final public class EntityEquipmentHelper {
         return DEFAULT_DROP_CHANCE;
     }
 
-    public static void handleLootBonusMobs(CustomCreatures plugin, EntityEquipment entityEquipment, int lootBonusMobs) {
+    public static void handleDeathLootBonusMobs(CustomCreatures plugin, EntityEquipment entityEquipment, int lootBonusMobs) {
         if(lootBonusMobs > 0) {
-            handleLootBonusMobs(plugin, entityEquipment.getHelmet(), entityEquipment::setHelmetDropChance, lootBonusMobs);
-            handleLootBonusMobs(plugin, entityEquipment.getBoots(), entityEquipment::setBootsDropChance, lootBonusMobs);
-            handleLootBonusMobs(plugin, entityEquipment.getChestplate(), entityEquipment::setChestplateDropChance, lootBonusMobs);
-            handleLootBonusMobs(plugin, entityEquipment.getLeggings(), entityEquipment::setLeggingsDropChance, lootBonusMobs);
-            handleLootBonusMobs(plugin, entityEquipment.getItemInMainHand(), entityEquipment::setItemInMainHandDropChance, lootBonusMobs);
-            handleLootBonusMobs(plugin, entityEquipment.getItemInOffHand(), entityEquipment::setItemInOffHandDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getHelmet(), entityEquipment::setHelmetDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getBoots(), entityEquipment::setBootsDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getChestplate(), entityEquipment::setChestplateDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getLeggings(), entityEquipment::setLeggingsDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getItemInMainHand(), entityEquipment::setItemInMainHandDropChance, lootBonusMobs);
+            handleDeathLootBonusMobs(plugin, entityEquipment.getItemInOffHand(), entityEquipment::setItemInOffHandDropChance, lootBonusMobs);
         }
     }
 
-    private static void handleLootBonusMobs(CustomCreatures plugin, ItemStack itemStack, Consumer<Float> dropChanceSetter, int lootBonusMobs) {
+    private static void handleDeathLootBonusMobs(CustomCreatures plugin, ItemStack itemStack, Consumer<Float> dropChanceSetter, int lootBonusMobs) {
         if(itemStack != null) {
             Float initialDropChance = getInitialDropChance(plugin, itemStack);
             if(initialDropChance != null) {
                 dropChanceSetter.accept(initialDropChance + (float)(DROP_CHANCE_PER_LOOTING_LEVEL * lootBonusMobs));
             }
         }
-
     }
 
     private static ItemStack setInitialDropChance(CustomCreatures plugin, ItemStack itemStack, float dropChance) {

@@ -1,5 +1,6 @@
 package com.gmail.uprial.customcreatures.listeners;
 
+import com.gmail.uprial.customcreatures.CreaturesConfig;
 import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper;
@@ -30,10 +31,17 @@ public class CustomCreaturesDeathEventListener extends AbstractCustomCreaturesEv
                 if (killerEquipment != null) {
                     Map<Enchantment, Integer> enchantments = killerEquipment.getItemInMainHand().getEnchantments();
                     if (enchantments.containsKey(LOOT_BONUS_MOBS)) {
-                        EntityEquipmentHelper.handleLootBonusMobs(plugin, equipment, enchantments.get(LOOT_BONUS_MOBS));
+                        EntityEquipmentHelper.handleDeathLootBonusMobs(plugin, equipment, enchantments.get(LOOT_BONUS_MOBS));
                     }
                 }
             }
         }
+
+        CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
+        // Don't try to handle an entity if there was error in loading of config.
+        if (creaturesConfig != null) {
+            creaturesConfig.handleDeath(plugin, customLogger, event);
+        }
+
     }
 }

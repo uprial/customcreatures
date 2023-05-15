@@ -40,7 +40,7 @@ public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEv
         CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
         // Don't try to handle an entity if there was error in loading of config.
         if (creaturesConfig != null) {
-            creaturesConfig.handle(plugin, customLogger, entity, spawnReason);
+            creaturesConfig.handleSpawn(plugin, customLogger, entity, spawnReason);
         }
     }
 }
