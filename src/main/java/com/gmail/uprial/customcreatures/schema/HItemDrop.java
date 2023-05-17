@@ -79,7 +79,7 @@ public final class HItemDrop {
     }
 
     public String toString() {
-        return String.format("[probability: %s, material: %s, amount: %s, enchantments: %s, durability: %s]",
+        return String.format("{probability: %s, material: %s, amount: %s, enchantments: %s, durability: %s}",
                 probability, material, amount, enchantments, durability);
     }
 

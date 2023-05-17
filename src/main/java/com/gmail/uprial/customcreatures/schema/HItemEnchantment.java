@@ -74,6 +74,6 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
     }
 
     public String toString() {
-        return String.format("[type: %s, level: %s]", enchantment, level);
+        return String.format("{type: %s, level: %s}", enchantment, level);
     }
 }

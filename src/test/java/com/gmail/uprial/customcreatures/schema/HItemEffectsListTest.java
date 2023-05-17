@@ -26,7 +26,7 @@ public class HItemEffectsListTest extends TestConfigBase {
                 "  duration: 1"),
                 getParanoiacCustomLogger(), "ee", "effects list");
         assertNotNull(itemEffectsList);
-        assertEquals("{[types: [SPEED], strength: 1, duration: 1]}", itemEffectsList.toString());
+        assertEquals("[{types: [SPEED], strength: 1, duration: 1}]", itemEffectsList.toString());
     }
 
     @Test

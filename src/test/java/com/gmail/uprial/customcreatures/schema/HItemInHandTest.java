@@ -32,9 +32,9 @@ public class HItemInHandTest extends TestConfigBase {
                 " level: 2"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
-        assertEquals("[probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 2]}," +
-                " drop-chance: 1, durability: 100]",
+        assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
+                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
+                " drop-chance: 1, durability: 100}",
                 itemInHand.toString());
     }
 
@@ -54,8 +54,9 @@ public class HItemInHandTest extends TestConfigBase {
                 "  durability: 40"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
-        assertEquals("[probability: 50, material: DIAMOND_SWORD, amount: 10, enchantments: {[type: THORNS, level: 1]}," +
-                        " drop-chance: 0.5, durability: 40]",
+        assertEquals("{probability: 50, material: DIAMOND_SWORD, amount: 10, " +
+                        "enchantments: [{type: THORNS, level: 1}]," +
+                        " drop-chance: 0.5, durability: 40}",
                 itemInHand.toString());
     }
 

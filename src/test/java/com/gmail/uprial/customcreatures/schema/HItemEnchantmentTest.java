@@ -20,7 +20,7 @@ public class HItemEnchantmentTest extends TestConfigBase {
                 "  type: THORNS",
                 "  level: 1"),
                 getParanoiacCustomLogger(), "e", "enchantment");
-        assertEquals("[type: THORNS, level: 1]", itemEnchantment.toString());
+        assertEquals("{type: THORNS, level: 1}", itemEnchantment.toString());
     }
 
     @Test

@@ -11,7 +11,7 @@ public final class Formatter {
             return "null";
         }
         Location location = entity.getLocation();
-        return String.format("%s[world: %s, x: %.0f, y: %.0f, z: %.0f]",
+        return String.format("%s{world: %s, x: %.0f, y: %.0f, z: %.0f}",
                 entity.getType().toString(),
                 (location.getWorld() != null) ? location.getWorld().getName() : "empty",
                 location.getX(), location.getY(), location.getZ());
@@ -21,7 +21,7 @@ public final class Formatter {
         if(effect == null) {
             return "null";
         }
-        return String.format("%s[strength:%d, duration:%d]",
+        return String.format("%s{strength:%d, duration:%d}",
                 effect.getType().getName(), effect.getAmplifier(), effect.getDuration());
     }
 
@@ -29,7 +29,7 @@ public final class Formatter {
         if(vector == null) {
             return "null";
         }
-        return String.format("[x: %.2f, y: %.2f, z: %.2f, len: %.2f]",
+        return String.format("{x: %.2f, y: %.2f, z: %.2f, len: %.2f}",
                 vector.getX(), vector.getY(), vector.getZ(), vector.length());
     }
 }

@@ -31,7 +31,7 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - world",
                 "  probability: 50"),
                 getParanoiacCustomLogger(), "f", "filter");
-        assertEquals("[types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], probability: 50]", itemFilter.toString());
+        assertEquals("{types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], probability: 50}", itemFilter.toString());
     }
 
     @Test

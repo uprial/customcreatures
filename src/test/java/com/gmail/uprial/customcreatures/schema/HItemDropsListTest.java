@@ -30,9 +30,9 @@ public class HItemDropsListTest extends TestConfigBase {
                 " level: 2"),
                 getParanoiacCustomLogger(), "dd", "drops list");
         assertNotNull(itemDropsList);
-        assertEquals("{[probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: {[type: PROTECTION_ENVIRONMENTAL, level: 2]}," +
-                " durability: 100]}", itemDropsList.toString());
+        assertEquals("[{probability: null, material: DIAMOND_SWORD, amount: 1," +
+                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
+                " durability: 100}]", itemDropsList.toString());
     }
 
     @Test

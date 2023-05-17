@@ -111,8 +111,8 @@ public final class HItem {
     }
 
     public String toString() {
-        return String.format("[name: %s, filter: %s, effects: %s, " +
-                        "attributes: %s, equipment: %s, drops: %s, drop-exp: %s]",
+        return String.format("{name: %s, filter: %s, effects: %s, " +
+                        "attributes: %s, equipment: %s, drops: %s, drop-exp: %s}",
                 name, filter, effects,
                 attributes, equipment, drops, dropExp);
     }

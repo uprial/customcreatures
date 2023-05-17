@@ -85,6 +85,7 @@ public final class HItemEquipment {
         for (String key : KEY_2_HAND_TYPE.keySet()) {
             items.add(String.format("%s: %s", key, tools.get(key)));
         }
-        return String.format("[%s]", joinStrings(", ", items));
+        // Though a list is being joined, it's a set of attributes
+        return String.format("{%s}", joinStrings(", ", items));
     }
 }

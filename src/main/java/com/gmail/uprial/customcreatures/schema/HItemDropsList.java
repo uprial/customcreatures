@@ -42,6 +42,6 @@ public final class HItemDropsList {
     }
 
     public String toString() {
-        return String.format("{%s}", joinStrings(", ", itemDrops));
+        return String.format("[%s]", joinStrings(", ", itemDrops));
     }
 }

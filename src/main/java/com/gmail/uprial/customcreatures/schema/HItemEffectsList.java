@@ -53,6 +53,6 @@ public final class HItemEffectsList {
     }
 
     public String toString() {
-        return String.format("{%s}", joinStrings(", ", itemEffects));
+        return String.format("[%s]", joinStrings(", ", itemEffects));
     }
 }

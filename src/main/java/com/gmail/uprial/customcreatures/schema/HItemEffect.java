@@ -65,7 +65,7 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     }
 
     public String toString() {
-        return String.format("[types: %s, strength: %s, duration: %s]",
+        return String.format("{types: %s, strength: %s, duration: %s}",
                 effectTypes, strength, duration);
     }
 

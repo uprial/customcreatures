@@ -241,6 +241,7 @@ public final class HItemAttributes {
             item = genericAttributes.containsKey(key) ? genericAttributes.get(key) : null;
             items.add(String.format("%s: %s", key, item));
         }
-        return String.format("[%s]", joinStrings(", ", items));
+        // Though a list is being joined, it's a set of attributes
+        return String.format("{%s}", joinStrings(", ", items));
     }
 }

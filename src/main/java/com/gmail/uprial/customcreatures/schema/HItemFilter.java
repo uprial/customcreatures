@@ -87,7 +87,7 @@ public final class HItemFilter {
     }
 
     public String toString() {
-        return String.format("[types: %s, type-sets: %s, reasons: %s, probability: %s]",
+        return String.format("{types: %s, type-sets: %s, reasons: %s, probability: %s}",
                 entityTypes, entityTypeSets, spawnReasons, probability);
     }
 }

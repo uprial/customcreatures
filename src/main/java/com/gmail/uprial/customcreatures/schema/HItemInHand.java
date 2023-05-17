@@ -116,7 +116,7 @@ public final class HItemInHand {
     }
 
     public String toString() {
-        return String.format("[probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %s, durability: %s]",
+        return String.format("{probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %s, durability: %s}",
                 probability, material, amount, enchantments, formatDoubleValue(dropChance), durability);
     }
 

@@ -43,6 +43,6 @@ public final class HItemEnchantmentsList {
     }
 
     public String toString() {
-        return String.format("{%s}", joinStrings(", ", itemEnchantments));
+        return String.format("[%s]", joinStrings(", ", itemEnchantments));
     }
 }

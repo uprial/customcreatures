@@ -127,7 +127,7 @@ public final class HItemEquipmentCloth {
     }
 
     public String toString() {
-        return String.format("[probability: %s, material-type: %s, enchantments: %s, drop-chance: %s, durability: %s]",
+        return String.format("{probability: %s, material-type: %s, enchantments: %s, drop-chance: %s, durability: %s}",
                 probability, materialType, enchantments, formatDoubleValue(dropChance), durability);
     }
 

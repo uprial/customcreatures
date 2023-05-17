@@ -32,8 +32,8 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
-        assertEquals("[probability: null, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
-                " drop-chance: 0.5, durability: 100]",
+        assertEquals("{probability: null, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
+                " drop-chance: 0.5, durability: 100}",
                 itemEquipmentCloth.toString());
     }
 
@@ -52,8 +52,8 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
-        assertEquals("[probability: 77, material-type: IRON, enchantments: {[type: THORNS, level: 1]}," +
-                " drop-chance: 0.5, durability: 50]",
+        assertEquals("{probability: 77, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
+                " drop-chance: 0.5, durability: 50}",
                 itemEquipmentCloth.toString());
     }
 

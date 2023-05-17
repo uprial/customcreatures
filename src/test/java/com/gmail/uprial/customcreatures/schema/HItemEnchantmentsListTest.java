@@ -28,7 +28,7 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
                 "  level: 1"),
                 getParanoiacCustomLogger(), "ee", "enchantments list");
         assertNotNull(itemEnchantmentsList);
-        assertEquals("{[type: THORNS, level: 1], [type: LUCK, level: 1]}", itemEnchantmentsList.toString());
+        assertEquals("[{type: THORNS, level: 1}, {type: LUCK, level: 1}]", itemEnchantmentsList.toString());
     }
 
     @Test

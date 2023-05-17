@@ -102,11 +102,11 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testNormalConfig() throws Exception {
         assertEquals(
-                "handlers: [[name: x, filter: [types: null, type-sets: null, reasons: null, probability: 99]," +
-                        " effects: null, attributes: [max-health-multiplier: 1.0, attack-damage-multiplier: null," +
+                "handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99}," +
+                        " effects: null, attributes: {max-health-multiplier: 1.0, attack-damage-multiplier: null," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +
-                        " max-health: null, movement-speed-multiplier: null], equipment: null," +
-                        " drops: null, drop-exp: null]]",
+                        " max-health: null, movement-speed-multiplier: null}, equipment: null," +
+                        " drops: null, drop-exp: null}]",
                 loadConfig("handlers:",
                         " - x",
                         "x:",
