@@ -1,6 +1,6 @@
 name: CustomCreatures
 main: com.gmail.uprial.customcreatures.CustomCreatures
-version: 0.4.1
+version: 0.4.2
 api-version: 1.19
 commands:
    customcreatures:
