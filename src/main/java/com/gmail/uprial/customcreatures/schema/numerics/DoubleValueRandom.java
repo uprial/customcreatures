@@ -9,7 +9,7 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDou
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_DOWN;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_UP;
 
-public class DoubleValueRandom extends AbstractValueRandom<Double> {
+public class DoubleValueRandom extends NumericValueRandom<Double> {
     DoubleValueRandom(RandomDistributionType distributionType, Double min, Double max) {
         super(distributionType, min, max);
     }
@@ -35,8 +35,8 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
     }
 
     private Double getExpRandom(Double max) {
-        Double average = max / 2.0;
-        Double value = -average * Math.log(random.nextDouble());
+        double average = max / 2.0;
+        double value = -average * Math.log(random.nextDouble());
         if (value > max) {
             value = 0.0;
         }
@@ -45,6 +45,6 @@ public class DoubleValueRandom extends AbstractValueRandom<Double> {
     }
 
     public String toString() {
-        return String.format("DoubleValueRandom[distribution: %s, min: %.2f, max: %.2f]", distributionType, min, max);
+        return String.format("DoubleValueRandom{distribution: %s, min: %.2f, max: %.2f}", distributionType, min, max);
     }
 }

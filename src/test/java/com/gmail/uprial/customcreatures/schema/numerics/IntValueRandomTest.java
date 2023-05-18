@@ -45,73 +45,80 @@ public class IntValueRandomTest extends TestConfigBase {
                 "i: ",
                 " min: 0",
                 " max: 1"), getCustomLogger(), "i", "i", 0, 100);
-        assertEquals("IntValueRandom[distribution: NORMAL, min: 0, max: 1]", valueRandom.toString());
+        assertEquals("IntValueRandom{distribution: NORMAL, min: 0, max: 1}", valueRandom.toString());
     }
 
     @Test
     public void testNormalDistribution() throws Exception {
-        IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
+        final IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
 
-        Map<Integer,Long> distribution = getDistribution(valueRandom);
-        for (Integer i = 10; i < 20; i++) {
-            assertTrue(distribution.get(i) > 50);
+        for(int i = 0; i < 100; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            for (int j = 10; j <= 20; j++) {
+                assertTrue(distribution.get(j) > 1_000/11-40);
+                assertTrue(distribution.get(j) < 1_000/11+40);
+            }
+            assertFalse(distribution.containsKey(9));
+            assertFalse(distribution.containsKey(21));
         }
-        assertFalse(distribution.containsKey(9));
-        assertFalse(distribution.containsKey(21));
     }
 
     @Test
     public void testExpDownDistribution() throws Exception {
-        IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
+        final IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
 
-        Map<Integer, Long> distribution = getDistribution(valueRandom);
-        assertTrue(distribution.get(10) > 400);
-        assertTrue(distribution.get(10) < 1000);
-        assertTrue(distribution.get(11) > 150);
-        assertTrue(distribution.get(11) < 500);
-        assertTrue(distribution.get(12) > 100);
-        assertTrue(distribution.get(12) < 250);
-        assertTrue(distribution.get(13) > 50);
-        assertTrue(distribution.get(13) < 150);
-        assertFalse(distribution.containsKey(9));
-        assertFalse(distribution.containsKey(14));
+        for(int i = 0; i < 1000; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            assertTrue(distribution.get(10) > 460);
+            assertTrue(distribution.get(10) < 590);
+            assertTrue(distribution.get(11) > 180);
+            assertTrue(distribution.get(11) < 330);
+            assertTrue(distribution.get(12) > 100);
+            assertTrue(distribution.get(12) < 190);
+            assertTrue(distribution.get(13) > 50);
+            assertTrue(distribution.get(13) < 130);
+            assertFalse(distribution.containsKey(9));
+            assertFalse(distribution.containsKey(14));
+        }
     }
 
     @Test
     public void testExpUpDistribution() throws Exception {
-        IntValueRandom valueRandom = new IntValueRandom(EXP_UP, 10, 13);
+        final IntValueRandom valueRandom = new IntValueRandom(EXP_UP, 10, 13);
 
-        Map<Integer, Long> distribution = getDistribution(valueRandom);
-        assertTrue(distribution.get(10) > 50);
-        assertTrue(distribution.get(10) < 150);
-        assertTrue(distribution.get(11) > 100);
-        assertTrue(distribution.get(11) < 250);
-        assertTrue(distribution.get(12) > 150);
-        assertTrue(distribution.get(12) < 400);
-        assertTrue(distribution.get(13) > 400);
-        assertTrue(distribution.get(13) < 1000);
-        assertFalse(distribution.containsKey(9));
-        assertFalse(distribution.containsKey(14));
+        for(int i = 0; i < 1000; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            assertTrue(distribution.get(10) > 50);
+            assertTrue(distribution.get(10) < 130);
+            assertTrue(distribution.get(11) > 100);
+            assertTrue(distribution.get(11) < 190);
+            assertTrue(distribution.get(12) > 180);
+            assertTrue(distribution.get(12) < 330);
+            assertTrue(distribution.get(13) > 460);
+            assertTrue(distribution.get(13) < 590);
+            assertFalse(distribution.containsKey(9));
+            assertFalse(distribution.containsKey(14));
+        }
     }
 
     @Test
     public void testExpDownDistribution_TwoValues() throws Exception {
-        IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 1, 2);
+        final IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 1, 2);
 
-        for(int i = 0; i < 100; i++) {
+        for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
-            assertTrue(distribution.get(1) > 720);
-            assertTrue(distribution.get(1) < 820);
+            assertTrue(distribution.get(1) > 710);
+            assertTrue(distribution.get(1) < 830);
             assertTrue(distribution.get(2) > 180);
-            assertTrue(distribution.get(2) < 280);
+            assertTrue(distribution.get(2) < 290);
         }
     }
 
     private static Map<Integer,Long> getDistribution(IntValueRandom valueRandom) {
-        Map<Integer,Long> distribution = new HashMap<>();
-        for (Integer i = 0; i < 1000; i++) {
-            Integer value = valueRandom.getValue();
-            Long prev = distribution.containsKey(value) ? distribution.get(value) : 0;
+        final Map<Integer,Long> distribution = new HashMap<>();
+        for (int i = 0; i < 1000; i++) {
+            final Integer value = valueRandom.getValue();
+            final long prev = distribution.containsKey(value) ? distribution.get(value) : 0;
             distribution.put(value, prev + 1);
         }
 

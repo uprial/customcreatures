@@ -17,6 +17,11 @@ public class ValueSimpleTest extends TestConfigBase {
     }
 
     @Test
+    public void testBooleanIsValue() throws Exception {
+        assertTrue(ValueSimple.is(getPreparedConfig("v: true"), "v"));
+    }
+
+    @Test
     public void testIsNotValue() throws Exception {
         assertFalse(ValueSimple.is(getPreparedConfig("v: 1z.0"), "v"));
     }
@@ -34,5 +39,10 @@ public class ValueSimpleTest extends TestConfigBase {
     @Test
     public void testDoubleValue() throws Exception {
         assertEquals(1, Math.round(ValueSimple.getDoubleFromConfig(getPreparedConfig("v: 1.0"), getCustomLogger(), "v", "v", 0, 100).getValue()));
+    }
+
+    @Test
+    public void testBooleanValue() throws Exception {
+        assertEquals(true, ValueSimple.getBooleanFromConfig(getPreparedConfig("v: true"), getCustomLogger(), "v", "v").getValue());
     }
 }

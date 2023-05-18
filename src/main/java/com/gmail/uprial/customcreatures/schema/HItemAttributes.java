@@ -55,14 +55,17 @@ public final class HItemAttributes {
     private final IValue<Double> maxHealthMultiplier;
     private final IValue<Double> attackDamageMultiplier;
     private final Map<String, IValue<Double>> genericAttributes;
+    private final IValue<Boolean> removeWhenFarAway;
 
     private HItemAttributes(String title, IValue<Double> maxHealthMultiplier,
                             @SuppressWarnings("MethodParameterNamingConvention") IValue<Double> attackDamageMultiplier,
-                            Map<String, IValue<Double>> genericAttributes) {
+                            Map<String, IValue<Double>> genericAttributes,
+                            IValue<Boolean> removeWhenFarAway) {
         this.title = title;
         this.maxHealthMultiplier = maxHealthMultiplier;
         this.attackDamageMultiplier = attackDamageMultiplier;
         this.genericAttributes = genericAttributes;
+        this.removeWhenFarAway = removeWhenFarAway;
     }
 
     public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
@@ -70,6 +73,7 @@ public final class HItemAttributes {
         applyGenericAttributes(plugin, customLogger, entity, handleName);
         applyMaxHealth(plugin, customLogger, entity, handleName);
         applyAttackDamageMultiplier(plugin, customLogger, entity);
+        applyRemoveWhenFarAway(customLogger, entity);
     }
 
     public static Double getAttackDamageMultiplier(CustomCreatures plugin, LivingEntity entity) {
@@ -184,6 +188,17 @@ public final class HItemAttributes {
         }
     }
 
+    private void applyRemoveWhenFarAway(CustomLogger customLogger, LivingEntity entity) {
+        if (removeWhenFarAway != null) {
+            final Boolean newValue = removeWhenFarAway.getValue();
+            entity.setRemoveWhenFarAway(newValue);
+            if(customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s modification: set 'remove when far away' flag of %s to %b",
+                        title, format(entity), newValue));
+            }
+        }
+    }
+
     /*
         The game stores all changes of player properties.
         To avoid cumulative changes after respawn we need to multiply initial values.
@@ -224,11 +239,21 @@ public final class HItemAttributes {
             }
         }
 
-        if ((maxHealthMultiplier == null) && (attackDamageMultiplier == null) && (genericAttributes.isEmpty())) {
+        final IValue<Boolean> removeWhenFarAway = HValue.getBoolFromConfig(config, customLogger, joinPaths(key, "remove-when-far-away"),
+                String.format("'remove when far away' flag of %s", title));
+
+        if ((maxHealthMultiplier == null)
+                && (attackDamageMultiplier == null)
+                && (genericAttributes.isEmpty())
+                && (removeWhenFarAway == null)) {
             throw new InvalidConfigException(String.format("No modifications found in %s", title));
         }
 
-        return new HItemAttributes(key, maxHealthMultiplier, attackDamageMultiplier, genericAttributes);
+        return new HItemAttributes(key,
+                maxHealthMultiplier,
+                attackDamageMultiplier,
+                genericAttributes,
+                removeWhenFarAway);
     }
 
     public String toString() {
@@ -241,6 +266,9 @@ public final class HItemAttributes {
             item = genericAttributes.containsKey(key) ? genericAttributes.get(key) : null;
             items.add(String.format("%s: %s", key, item));
         }
+
+        items.add(String.format("remove-when-far-away: %s", removeWhenFarAway));
+
         // Though a list is being joined, it's a set of attributes
         return String.format("{%s}", joinStrings(", ", items));
     }

@@ -107,7 +107,8 @@ public class HItemTest extends TestConfigBase {
                 "  follow-range: 50.1",
                 "  knockback-resistance: 1.0",
                 "  max-health: 10.0",
-                "  movement-speed-multiplier: 10.0"), getDebugFearingCustomLogger(), "h");
+                "  movement-speed-multiplier: 10.0",
+                "  remove-when-far-away: true"), getDebugFearingCustomLogger(), "h");
     }
 
     @Test

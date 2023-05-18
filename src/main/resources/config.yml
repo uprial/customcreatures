@@ -191,6 +191,9 @@ handlers:
 #                              ### Multiplier of base movement speed
 #                              ### of an entity.
 #
+#   remove-when-far-away: <double-value> ### Sets whether or not the living entity
+#                                        ### despawns when away from players or not.
+#
 # #### Type set ####
 #
 # A set of entity types. Some living entities do not belong to any groups:
@@ -409,6 +412,16 @@ handlers:
 #                             ### only 'random' type is supported.
 #   min: <int>                ### Minumum value.
 #   max: <int>                ### Maximum value.
+#   distribution: <rnd-distr> ### Type of random distribution.
+#                             ### (* see description of <rnd-distr> below)
+
+# #### Boolean value ####
+#
+# <boolean-value>: true | false
+# ||
+# <boolean-value>:
+#   type: random              ### Random boolean value. Currently
+#                             ### only 'random' type is supported.
 #   distribution: <rnd-distr> ### Type of random distribution.
 #                             ### (* see description of <rnd-distr> below)
 #
@@ -786,6 +799,7 @@ illusioner:
     knockback-resistance: 0.75
     movement-speed-multiplier: 2.5
     max-health-multiplier: 2.5
+    remove-when-far-away: false
   drops:
     - enchanted_golden_apple
   enchanted_golden_apple:

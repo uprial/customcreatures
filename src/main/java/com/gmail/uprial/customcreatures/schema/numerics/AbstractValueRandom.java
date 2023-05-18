@@ -14,14 +14,10 @@ public abstract class AbstractValueRandom<T> implements IValue<T> {
     private static final RandomDistributionType DEFAULT_DISTRIBUTION_TYPE = NORMAL;
 
     final RandomDistributionType distributionType;
-    final T min;
-    final T max;
     final Random random = new Random();
 
-    AbstractValueRandom(RandomDistributionType distributionType, T min, T max) {
+    AbstractValueRandom(RandomDistributionType distributionType) {
         this.distributionType = distributionType;
-        this.min = min;
-        this.max = max;
     }
 
     public static RandomDistributionType getDistributionTypeFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {

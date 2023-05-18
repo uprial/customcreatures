@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getInt;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getBoolean;
 
 public final class ValueSimple<T> implements IValue<T> {
     private final T value;
@@ -20,7 +21,7 @@ public final class ValueSimple<T> implements IValue<T> {
     }
 
     public static boolean is(FileConfiguration config, String key) {
-        return config.isInt(key) || config.isDouble(key);
+        return config.isInt(key) || config.isDouble(key) || config.isBoolean(key);
     }
 
     public static ValueSimple<Integer> getIntFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -31,6 +32,10 @@ public final class ValueSimple<T> implements IValue<T> {
     public static ValueSimple<Double> getDoubleFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                           double hardMin, double hardMax) throws InvalidConfigException {
         return new ValueSimple<>(getDouble(config, customLogger, key, title, hardMin, hardMax));
+    }
+
+    public static ValueSimple<Boolean> getBooleanFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+        return new ValueSimple<>(getBoolean(config, customLogger, key, title));
     }
 
     public String toString() {

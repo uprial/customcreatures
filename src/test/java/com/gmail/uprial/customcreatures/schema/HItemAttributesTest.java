@@ -61,10 +61,12 @@ public class HItemAttributesTest extends TestConfigBase {
                 " follow-range: 50.1",
                 " knockback-resistance: 1.0",
                 " max-health: 10.0",
-                " movement-speed-multiplier: 10.0"),
+                " movement-speed-multiplier: 10.0",
+                " remove-when-far-away: true"),
                 getParanoiacCustomLogger(), "a", "attributes");
         assertNotNull(attributes);
         assertEquals("{max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, base-armor: 1.0," +
-                " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0, movement-speed-multiplier: 10.0}", attributes.toString());
+                " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0," +
+                " movement-speed-multiplier: 10.0, remove-when-far-away: true}", attributes.toString());
     }
 }
