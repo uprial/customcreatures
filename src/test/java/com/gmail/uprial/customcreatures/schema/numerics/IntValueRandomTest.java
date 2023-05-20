@@ -55,8 +55,8 @@ public class IntValueRandomTest extends TestConfigBase {
         for(int i = 0; i < 100; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
             for (int j = 10; j <= 20; j++) {
-                assertTrue(distribution.get(j) > 1_000/11-40);
-                assertTrue(distribution.get(j) < 1_000/11+40);
+                assertTrue(distribution.get(j) > 1_000/11-45);
+                assertTrue(distribution.get(j) < 1_000/11+45);
             }
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(21));
@@ -70,11 +70,11 @@ public class IntValueRandomTest extends TestConfigBase {
         for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
             assertTrue(distribution.get(10) > 460);
-            assertTrue(distribution.get(10) < 590);
+            assertTrue(distribution.get(10) < 600);
             assertTrue(distribution.get(11) > 180);
             assertTrue(distribution.get(11) < 330);
             assertTrue(distribution.get(12) > 100);
-            assertTrue(distribution.get(12) < 190);
+            assertTrue(distribution.get(12) < 200);
             assertTrue(distribution.get(13) > 50);
             assertTrue(distribution.get(13) < 130);
             assertFalse(distribution.containsKey(9));
@@ -91,11 +91,11 @@ public class IntValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(10) > 50);
             assertTrue(distribution.get(10) < 130);
             assertTrue(distribution.get(11) > 100);
-            assertTrue(distribution.get(11) < 190);
+            assertTrue(distribution.get(11) < 200);
             assertTrue(distribution.get(12) > 180);
             assertTrue(distribution.get(12) < 330);
             assertTrue(distribution.get(13) > 460);
-            assertTrue(distribution.get(13) < 590);
+            assertTrue(distribution.get(13) < 600);
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(14));
         }

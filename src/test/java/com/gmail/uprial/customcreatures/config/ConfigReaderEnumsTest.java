@@ -115,6 +115,29 @@ public class ConfigReaderEnumsTest extends TestConfigBase {
         getEnum(TestEnum.class, getPreparedConfig("e: T"), "e", "enum");
     }
 
+    // ==== getEnumOrDefault ====
+    @Test
+    public void testNormalEnumOrDefault() throws Exception {
+        assertEquals(TestEnum.A, getEnumOrDefault(TestEnum.class, getPreparedConfig("e: A"),
+                getDebugFearingCustomLogger(), "e", "enum", null));
+    }
+
+    @Test
+    public void testWrongEnumOrDefault() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Invalid com.gmail.uprial.customcreatures.helpers.TestEnum 'T' in enum");
+        getEnumOrDefault(TestEnum.class, getPreparedConfig("e: T"),
+                getDebugFearingCustomLogger(), "e", "enum", null);
+    }
+
+    @Test
+    public void testEmptyEnumOrDefault() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty enum. Use default value NULL");
+        getEnumOrDefault(TestEnum.class, getPreparedConfig("?:"),
+                getDebugFearingCustomLogger(), "e", "enum", null);
+    }
+
     // ==== getEnumFromString ====
     @Test
     public void testWrongEnumString() throws Exception {

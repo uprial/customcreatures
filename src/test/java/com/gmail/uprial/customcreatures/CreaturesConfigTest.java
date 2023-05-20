@@ -106,7 +106,7 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " effects: null, attributes: {max-health-multiplier: 1.0, attack-damage-multiplier: null," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +
                         " max-health: null, movement-speed-multiplier: null, remove-when-far-away: null}," +
-                        " equipment: null, drops: null, drop-exp: null}]",
+                        " equipment: null, drops: null, drop-exp: null, entity-specific-attributes: null}]",
                 loadConfig("handlers:",
                         " - x",
                         "x:",

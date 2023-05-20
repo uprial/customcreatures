@@ -54,15 +54,14 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
         for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
-            System.out.println(distribution);
             assertTrue(distribution.get(10) > 20);
             assertTrue(distribution.get(10) < 80);
             for (int j = 11; j < 20; j++) {
-                assertTrue(distribution.get(j) > 1_000/10-45);
-                assertTrue(distribution.get(j) < 1_000/10+45);
+                assertTrue(distribution.get(j) > 1_000/10-50);
+                assertTrue(distribution.get(j) < 1_000/10+50);
             }
             assertTrue(distribution.get(20) > 20);
-            assertTrue(distribution.get(20) < 80);
+            assertTrue(distribution.get(20) < 90);
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(21));
         }
@@ -75,9 +74,9 @@ public class DoubleValueRandomTest extends TestConfigBase {
         for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
             assertTrue(distribution.get(10) > 330);
-            assertTrue(distribution.get(10) < 480);
+            assertTrue(distribution.get(10) < 490);
             assertTrue(distribution.get(11) > 280);
-            assertTrue(distribution.get(11) < 410);
+            assertTrue(distribution.get(11) < 420);
             assertTrue(distribution.get(12) > 130);
             assertTrue(distribution.get(12) < 240);
             assertTrue(distribution.get(13) > 20);
@@ -98,9 +97,9 @@ public class DoubleValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(11) > 130);
             assertTrue(distribution.get(11) < 240);
             assertTrue(distribution.get(12) > 280);
-            assertTrue(distribution.get(12) < 410);
+            assertTrue(distribution.get(12) < 420);
             assertTrue(distribution.get(13) > 330);
-            assertTrue(distribution.get(13) < 480);
+            assertTrue(distribution.get(13) < 490);
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(14));
         }

@@ -6,6 +6,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
@@ -18,6 +21,8 @@ public final class HItemFilter {
     private final Set<SpawnReason> spawnReasons;
     private final Set<String> worlds;
     private final Probability probability;
+
+    private Set<EntityType> possibleEntityTypesCache = null;
 
     private HItemFilter(Set<EntityType> entityTypes, Set<HItemTypeSet> entityTypeSets, Set<SpawnReason> spawnReasons, Set<String> worlds, Probability probability) {
         this.entityTypes = entityTypes;
@@ -63,6 +68,23 @@ public final class HItemFilter {
         }
 
         return true;
+    }
+
+    public Set<EntityType> getPossibleEntityTypes() {
+        if (possibleEntityTypesCache == null) {
+
+            possibleEntityTypesCache = new HashSet<>();
+            if (entityTypes != null) {
+                possibleEntityTypesCache.addAll(entityTypes);
+            }
+            if (entityTypeSets != null) {
+                for(HItemTypeSet typeSet : entityTypeSets) {
+                    possibleEntityTypesCache.addAll(typeSet.getAllEntityTypes());
+                }
+            }
+        }
+
+        return possibleEntityTypesCache;
     }
 
     public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {

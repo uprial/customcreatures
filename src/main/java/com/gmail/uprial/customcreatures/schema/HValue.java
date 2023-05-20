@@ -39,7 +39,7 @@ final class HValue {
         }
     }
 
-    public static IValue<Boolean> getBoolFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+    public static IValue<Boolean> getBooleanFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         if (config.get(key) == null) {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;

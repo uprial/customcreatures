@@ -43,6 +43,9 @@ handlers:
   - illusioner
   - better-crossbow
   - better-trident
+  - insane-creeper
+  - cool-horse
+  - rabbit-killer
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -93,6 +96,8 @@ handlers:
 #                                  ### 20    550
 #                                  ### 25    910
 #                                  ### 30    1395
+#
+#   entity-specific-attributes: <entity-specific-attributes> ### (* see description below)
 #
 # effect-path-abs: <effect>   ### Effect described anywhere else.
 #                             ### (* see description of <effect> below)
@@ -191,8 +196,59 @@ handlers:
 #                              ### Multiplier of base movement speed
 #                              ### of an entity.
 #
-#   remove-when-far-away: <double-value> ### Sets whether or not the living entity
-#                                        ### despawns when away from players or not.
+#   remove-when-far-away: <boolean-value> ### Sets whether or not the living entity
+#                                         ### despawns when away from players or not.
+#
+# #### Entity-specific attributes ####
+# By default, all of the following attributes won't be modified.
+#
+# Warning: <filter> MUST filter only the appropriate entity types by types or by type-sets.
+#
+# <entity-specific-attributes>:
+#   creeper:
+#     max-fuse-ticks: <int-value:1..?>    ### Set the maximum fuse ticks for this Creeper,
+#                                         ### where the maximum ticks is the amount of time
+#                                         ### in which a creeper is allowed to be in the primed state
+#                                         ### before exploding.
+#                                         ###
+#                                         ### 0 leads to an immediate explosion, so starts from 1.
+#                                         ### Default is 30.
+#
+#     explosion-radius: <int-value:0..16> ### Explosion radius in which explosion will affect.
+#                                         ###
+#                                         ### 17 and more doesn't work due to griefing limitation.
+#                                         ### Default is 3, 6 for powered.
+#
+#     powered: <boolean-value>            ### https://minecraft.fandom.com/wiki/Creeper#Charged_creeper
+#                                         ### Charged creepers are distinguished from normal creepers
+#                                         ### by their blue aura surrounding them.
+#                                         ### The have higher explosion radius and explosion power.
+#
+#   horse:
+#     color:  ### Possible colors, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Horse.Color.html
+#
+#     style:  ### Possible styles, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Horse.Style.html
+#
+#     max-domestication: <int-value:1..?> ### Setting a higher max domestication
+#                                         ### will increase the amount of domesticating (feeding, riding, etc.)
+#                                         ### necessary in order to tame it,
+#                                         ### while setting a lower max value will have the opposite effect.
+#                                         ###
+#                                         ### Default is 100.
+#                                         ### Maximum domestication must be greater than zero.
+#
+#     jump-strength: <float-value:0.0..2.0> ### https://minecraft.fandom.com/wiki/Horse#Jump_strength
+#                                           ### Horse's jump strength ranges from 0.4–1.0, with an average of 0.7.
+#                                           ###
+#                                           ### A jump strength of 0.5 is enough to clear 1 9⁄16 blocks,
+#                                           ### while 1.0 is enough to clear 5 1⁄4 blocks.
+#                                           ###
+#                                           ### You cannot set a jump strength to a value below 0 or above 2.
+#   rabbit:
+#     type: ### Possible types, see
+#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/Rabbit.Type.html
 #
 # #### Type set ####
 #
@@ -668,14 +724,7 @@ diamond-skeleton:
     follow-range: 50.0
     knockback-resistance: 0.5
     movement-speed-multiplier: 1.5
-#
-# The "max-health-multiplier" would work here better,
-# but this is the only suitable place where to use the existing "max-health" feature.
-# https://minecraft.gamepedia.com/Skeleton - 20
-# https://minecraft.gamepedia.com/Stray - 20
-# https://minecraft.gamepedia.com/Wither_Skeleton - 20
-#
-    max-health: 30.0
+    max-health-multiplier: 1.5
   drops:
     - golden_carrot
   golden_carrot:
@@ -764,10 +813,6 @@ angry-ghast:
     probability: 10
   attributes:
     attack-damage-multiplier: 2.0
-  drops:
-    - end_crystal
-  end_crystal:
-    material: END_CRYSTAL
 
 illusioner:
   filter:
@@ -887,6 +932,67 @@ better-trident:
           min: 0
           max: 1
           distribution: exp_down
+
+insane-creeper:
+  filter:
+    types:
+      - CREEPER
+    probability: 1
+  effects:
+    - jump
+    - effects.regeneration
+  jump:
+    types:
+      - JUMP
+    strength: 6
+    duration: 99999
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.99
+    movement-speed-multiplier: 2.0
+    max-health-multiplier: 2.0
+  drops:
+    - end_crystal
+  end_crystal:
+    material: END_CRYSTAL
+  drop-exp: 315
+  entity-specific-attributes:
+    creeper:
+      max-fuse-ticks: 1
+      explosion-radius: 16
+      powered: true
+
+cool-horse:
+  filter:
+    types:
+      - HORSE
+    probability: 5
+  attributes:
+    movement-speed-multiplier: 2.0
+    knockback-resistance: 0.5
+    # The "max-health-multiplier" would not work here,
+    # Because the Horse has random max health between 15 and 30:
+    # https://minecraft.fandom.com/wiki/Horse
+    max-health: 30.0
+  entity-specific-attributes:
+    horse:
+      color: WHITE
+      style: WHITEFIELD
+      max-domestication: 1000
+      jump-strength: 2.0
+
+rabbit-killer:
+  filter:
+    types:
+      - RABBIT
+    probability: 1
+  attributes:
+    follow-range: 50.0
+    movement-speed-multiplier: 2.0
+    max-health-multiplier: 4.0
+  entity-specific-attributes:
+    rabbit:
+      type: THE_KILLER_BUNNY
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.

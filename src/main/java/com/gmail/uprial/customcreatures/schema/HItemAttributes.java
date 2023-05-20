@@ -105,15 +105,19 @@ public final class HItemAttributes {
                         value *= baseValue;
                         attributeInstance.setBaseValue(value);
                     }
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Handle %s modification: apply %s, change movement speed of %s from %.2f to %.2f",
+                                title, genericAttribute.getTitle(), format(entity), baseValue, value));
+                    }
                     break;
                 default:
                     // Other values are absolute but not multipliers.
                     attributeInstance.setBaseValue(value);
+                    if (customLogger.isDebugMode()) {
+                        customLogger.debug(String.format("Handle %s modification: change %s of %s from %.2f to %.2f",
+                                title, genericAttribute.getTitle(), format(entity), baseValue, value));
+                    }
                     break;
-            }
-            if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: change %s of %s from %.2f to %.2f",
-                        title, genericAttribute.getTitle(), format(entity), baseValue, value));
             }
         }
     }
@@ -239,7 +243,7 @@ public final class HItemAttributes {
             }
         }
 
-        final IValue<Boolean> removeWhenFarAway = HValue.getBoolFromConfig(config, customLogger, joinPaths(key, "remove-when-far-away"),
+        final IValue<Boolean> removeWhenFarAway = HValue.getBooleanFromConfig(config, customLogger, joinPaths(key, "remove-when-far-away"),
                 String.format("'remove when far away' flag of %s", title));
 
         if ((maxHealthMultiplier == null)

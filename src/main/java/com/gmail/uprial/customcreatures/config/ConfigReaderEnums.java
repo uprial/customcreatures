@@ -51,6 +51,14 @@ public final class ConfigReaderEnums {
         return getEnumFromString(enumType, string, title, "");
     }
 
+    public static <T extends Enum> T getEnumOrDefault(Class<T> enumType, FileConfiguration config, CustomLogger customLogger, String key, String title, T defaultValue) throws InvalidConfigException {
+        if (config.get(key) == null) {
+            customLogger.debug(String.format("Empty %s. Use default value NULL", title));
+            return defaultValue;
+        }
+        return getEnum(enumType, config, key, title);
+    }
+
     static <T extends Enum> T getEnumFromString(Class<T> enumType, String string, String title, String desc) throws InvalidConfigException {
         try {
             //noinspection unchecked,RedundantCast
