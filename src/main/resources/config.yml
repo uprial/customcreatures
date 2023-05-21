@@ -199,6 +199,8 @@ handlers:
 #   remove-when-far-away: <boolean-value> ### Sets whether or not the living entity
 #                                         ### despawns when away from players or not.
 #
+#   movement-speed: <float-value:0.0001..?> ### Base movement speed of an entity.
+#
 # #### Entity-specific attributes ####
 # By default, all of the following attributes won't be modified.
 #
@@ -206,10 +208,8 @@ handlers:
 #
 # <entity-specific-attributes>:
 #   creeper:
-#     max-fuse-ticks: <int-value:1..?>    ### Set the maximum fuse ticks for this Creeper,
-#                                         ### where the maximum ticks is the amount of time
-#                                         ### in which a creeper is allowed to be in the primed state
-#                                         ### before exploding.
+#     max-fuse-ticks: <int-value:1..?>    ### The amount of time in sticks in which a creeper
+#                                         ### is allowed to be in the primed state before exploding.
 #                                         ###
 #                                         ### 0 leads to an immediate explosion, so starts from 1.
 #                                         ### Default is 30.
@@ -948,7 +948,7 @@ insane-creeper:
     duration: 99999
   attributes:
     follow-range: 50.0
-    knockback-resistance: 0.99
+    knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
     max-health-multiplier: 2.0
   drops:
@@ -974,6 +974,11 @@ cool-horse:
     # Because the Horse has random max health between 15 and 30:
     # https://minecraft.fandom.com/wiki/Horse
     max-health: 30.0
+    # The "movement-speed-multiplier" would not work here,
+    # Because horse's movement speed ranges from 0.1125–0.3375 in internal units
+    # with an average of 0.225
+    # https://minecraft.fandom.com/wiki/Horse
+    movement-speed: 0.5
   entity-specific-attributes:
     horse:
       color: WHITE

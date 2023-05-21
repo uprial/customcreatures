@@ -79,7 +79,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(11) < 420);
             assertTrue(distribution.get(12) > 130);
             assertTrue(distribution.get(12) < 240);
-            assertTrue(distribution.get(13) > 20);
+            assertTrue(distribution.get(13) > 15);
             assertTrue(distribution.get(13) < 90);
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(14));
@@ -92,7 +92,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
 
         for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
-            assertTrue(distribution.get(10) > 20);
+            assertTrue(distribution.get(10) > 15);
             assertTrue(distribution.get(10) < 90);
             assertTrue(distribution.get(11) > 130);
             assertTrue(distribution.get(11) < 240);

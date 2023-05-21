@@ -46,6 +46,7 @@ public final class HItemAttributes {
                 so only the GENERIC_MOVEMENT_SPEED property is managed.
              */
             .put("movement-speed-multiplier", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed multiplier", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
+            .put("movement-speed", new HItemGenericAttribute(GENERIC_MOVEMENT_SPEED, "movement speed", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .build();
 
     private static final String MK_MAX_HEALTH_MULTIPLIER_PREFIX = "max-health-multiplier-";
