@@ -78,7 +78,8 @@ public class HItemTypeSetTest {
                 MINECART_MOB_SPAWNER, ENDER_CRYSTAL, SPLASH_POTION,
                 AREA_EFFECT_CLOUD, EGG, FISHING_HOOK, LIGHTNING,
                 LLAMA_SPIT, TRIDENT, GLOW_ITEM_FRAME, MARKER,
-                CHEST_BOAT, UNKNOWN);
+                CHEST_BOAT, BLOCK_DISPLAY, INTERACTION, ITEM_DISPLAY,
+                TEXT_DISPLAY, UNKNOWN);
 
         for(EntityType entityType : EntityType.values()) {
             boolean isFound = aloneEntityTypes.contains(entityType) || deadEntityTypes.contains(entityType);
@@ -110,11 +111,11 @@ public class HItemTypeSetTest {
             }
             stringBuilder.append(String.format(": %s\n", getSortedList(itemTypeSet.entityTypes)));
         }
-        assertEquals("ANIMALS: [ALLAY, AXOLOTL, BAT, BEE, CAT, CHICKEN, COD, COW, " +
-                "DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HORSE, LLAMA, " +
-                "MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, PUFFERFISH, " +
-                "RABBIT, SALMON, SHEEP, SQUID, STRIDER, TADPOLE, TROPICAL_FISH, TURTLE, " +
-                "WOLF, ZOMBIE_HORSE]\n" +
+        assertEquals("ANIMALS: [ALLAY, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN, COD, " +
+                "COW, DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HORSE, " +
+                "LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, " +
+                "PUFFERFISH, RABBIT, SALMON, SHEEP, SNIFFER, SQUID, STRIDER, TADPOLE, " +
+                "TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]\n" +
                 "GOLEMS: [IRON_GOLEM, SNOWMAN]\n" +
                 "MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, DROWNED, ELDER_GUARDIAN, ENDERMAN, ENDERMITE, ENDER_DRAGON, " +
                 "EVOKER, EVOKER_FANGS, GHAST, GIANT, GUARDIAN, HOGLIN, HUSK, ILLUSIONER, " +

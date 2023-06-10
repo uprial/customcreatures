@@ -28,11 +28,11 @@ import static org.bukkit.entity.EntityType.*;
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(ALLAY, AXOLOTL, BAT, BEE, CAT, CHICKEN, COD, COW,
-                    DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HORSE, LLAMA,
-                    MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR, PUFFERFISH,
-                    RABBIT, SALMON, SHEEP, SQUID, STRIDER, TADPOLE, TROPICAL_FISH, TURTLE,
-                    WOLF, ZOMBIE_HORSE)),
+            Sets.newHashSet(ALLAY, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN, COD,
+                    COW, DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, HORSE,
+                    LLAMA, MULE, MUSHROOM_COW, OCELOT, PANDA, PARROT, PIG, POLAR_BEAR,
+                    PUFFERFISH, RABBIT, SALMON, SHEEP, SNIFFER, SQUID, STRIDER, TADPOLE,
+                    TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE)),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOWMAN)),
     MONSTERS(null,

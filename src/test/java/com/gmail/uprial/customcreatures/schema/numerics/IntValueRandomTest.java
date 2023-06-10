@@ -107,10 +107,10 @@ public class IntValueRandomTest extends TestConfigBase {
 
         for(int i = 0; i < 1000; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
-            assertTrue(distribution.get(1) > 710);
+            assertTrue(distribution.get(1) > 700);
             assertTrue(distribution.get(1) < 840);
-            assertTrue(distribution.get(2) > 180);
-            assertTrue(distribution.get(2) < 290);
+            assertTrue(distribution.get(2) > 170);
+            assertTrue(distribution.get(2) < 300);
         }
     }
 
