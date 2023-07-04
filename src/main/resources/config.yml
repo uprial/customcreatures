@@ -595,9 +595,11 @@ golden-zombie:
         - enchantments.rand_thorns
     main-hand:
       probability: 100
-      drop-chance: 0.0425
       material: GOLDEN_AXE
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_dig_speed
@@ -648,9 +650,11 @@ iron-zombie:
         - enchantments.rand_protection
     main-hand:
       probability: 100
-      drop-chance: 0.0425
       material: IRON_SWORD
-      durability: 33
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_damage_all
@@ -680,32 +684,44 @@ diamond-skeleton:
     helmet:
       probability: 100
       material-type: DIAMOND
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_oxygen_helmet
         - enchantments.rand_water_worker_helmet
     boots:
-      probability: 50
+      probability: 100
       material-type: DIAMOND
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_protection_fall_boots
         - enchantments.rand_depth_strider_boots
     chest:
-      probability: 50
+      probability: 100
       material-type: DIAMOND
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
     leggings:
-      probability: 50
+      probability: 100
       material-type: DIAMOND
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -713,7 +729,10 @@ diamond-skeleton:
       probability: 100
       drop-chance: 0.0425
       material: BOW
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_bow_damage
@@ -750,7 +769,7 @@ chainmail-zombie:
     helmet:
       probability: 100
       material-type: CHAINMAIL
-      durability: 50
+      durability: 75
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -760,7 +779,7 @@ chainmail-zombie:
     boots:
       probability: 100
       material-type: CHAINMAIL
-      durability: 50
+      durability: 75
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -770,7 +789,7 @@ chainmail-zombie:
     chest:
       probability: 100
       material-type: CHAINMAIL
-      durability: 50
+      durability: 75
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -778,7 +797,7 @@ chainmail-zombie:
     leggings:
       probability: 100
       material-type: CHAINMAIL
-      durability: 50
+      durability: 75
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -787,7 +806,10 @@ chainmail-zombie:
       probability: 100
       drop-chance: 0.0425
       material: DIAMOND_SWORD
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_damage_all
@@ -798,8 +820,8 @@ chainmail-zombie:
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.5
-    movement-speed-multiplier: 2.0
-    max-health-multiplier: 2.0
+    movement-speed-multiplier: 1.5
+    max-health-multiplier: 1.5
   drops:
     - golden_apple
   golden_apple:
@@ -832,7 +854,10 @@ illusioner:
     main-hand:
       probability: 100
       material: BOW
-      durability: 25
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_bow_damage
@@ -842,8 +867,8 @@ illusioner:
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.75
-    movement-speed-multiplier: 2.5
-    max-health-multiplier: 2.5
+    movement-speed-multiplier: 2.0
+    max-health-multiplier: 2.0
     remove-when-far-away: false
   drops:
     - enchanted_golden_apple
@@ -860,9 +885,11 @@ better-crossbow:
   equipment:
     main-hand:
       probability: 100
-      drop-chance: 0.0425
       material: CROSSBOW
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - rand_crossbow_quick_charge
@@ -877,14 +904,12 @@ better-crossbow:
           type: random
           min: 1
           max: 3
-          distribution: exp_down
       rand_crossbow_multishot:
         type: MULTISHOT
         level:
           type: random
           min: 0
           max: 1
-          distribution: exp_down
       rand_maybe_top_crossbow_piercing:
         type: PIERCING
         #
@@ -897,7 +922,6 @@ better-crossbow:
           type: random
           min: 1
           max: 7
-          distribution: normal
 
 better-trident:
   filter:
@@ -907,9 +931,11 @@ better-trident:
   equipment:
     main-hand:
       probability: 100
-      drop-chance: 0.0425
       material: TRIDENT
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - rand_trident_channeling
@@ -924,14 +950,12 @@ better-trident:
           type: random
           min: 1
           max: 10
-          distribution: normal
       rand_trident_channeling:
         type: CHANNELING
         level:
           type: random
           min: 0
           max: 1
-          distribution: exp_down
 
 insane-creeper:
   filter:
@@ -1038,7 +1062,6 @@ enchantments:
       type: random
       min: 1
       max: 5
-      distribution: exp_down
 
   # Cloths and weapon
   rand_durability:
@@ -1047,7 +1070,6 @@ enchantments:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
 
   # Cloths
   rand_protection:
@@ -1056,7 +1078,6 @@ enchantments:
       type: random
       min: 1
       max: 4
-      distribution: exp_down
   rand_maybe_top_protection:
     type: PROTECTION_ENVIRONMENTAL
     #
@@ -1071,14 +1092,12 @@ enchantments:
       type: random
       min: 1
       max: 7
-      distribution: normal
   rand_thorns:
     type: THORNS
     level:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
   rand_maybe_top_thorns:
     type: THORNS
     # Survival maximum level is 3, here it's 5
@@ -1086,35 +1105,30 @@ enchantments:
       type: random
       min: 1
       max: 5
-      distribution: normal
   rand_protection_fall_boots:
     type: PROTECTION_FALL
     level:
       type: random
       min: 1
       max: 4
-      distribution: exp_down
   rand_oxygen_helmet:
     type: OXYGEN
     level:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
   rand_depth_strider_boots:
     type: DEPTH_STRIDER
     level:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
   rand_water_worker_helmet:
     type: WATER_WORKER
     level:
       type: random
       min: 0
       max: 1
-      distribution: exp_down
 
   # Sword
   rand_damage_all:
@@ -1123,35 +1137,30 @@ enchantments:
       type: random
       min: 1
       max: 5
-      distribution: exp_down
   rand_sword_knockback:
     type: KNOCKBACK
     level:
       type: random
       min: 1
       max: 2
-      distribution: exp_down
   rand_sword_fire_aspect:
     type: FIRE_ASPECT
     level:
       type: random
       min: 1
       max: 2
-      distribution: exp_down
   rand_sword_sweeping_edge:
     type: SWEEPING_EDGE
     level:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
   rand_sword_looting:
     type: LOOT_BONUS_MOBS
     level:
       type: random
       min: 1
       max: 3
-      distribution: exp_down
   rand_maybe_top_sword_looting:
     type: LOOT_BONUS_MOBS
     # Survival maximum level is 3, here it's 5
@@ -1159,7 +1168,6 @@ enchantments:
       type: random
       min: 1
       max: 5
-      distribution: normal
 
   # Bow
   rand_maybe_top_bow_damage:
@@ -1169,28 +1177,24 @@ enchantments:
       type: random
       min: 1
       max: 10
-      distribution: normal
   rand_bow_knockback:
     type: ARROW_KNOCKBACK
     level:
       type: random
       min: 1
       max: 2
-      distribution: exp_down
   rand_bow_fire:
     type: ARROW_FIRE
     level:
       type: random
       min: 0
       max: 1
-      distribution: exp_down
   rand_bow_infinity:
     type: ARROW_INFINITE
     level:
       type: random
       min: 0
       max: 1
-      distribution: exp_down
 
 # Global templates of drops
 drops:

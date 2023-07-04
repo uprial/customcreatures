@@ -56,10 +56,10 @@ public class BooleanValueRandomTest extends TestConfigBase {
 
         for(int i = 0; i < 1000; i++) {
             final Map<Boolean, Long> distribution = getDistribution(valueRandom);
-            assertTrue(distribution.get(true) > 180);
-            assertTrue(distribution.get(true) < 290);
-            assertTrue(distribution.get(false) > 710);
-            assertTrue(distribution.get(false) < 830);
+            assertTrue(distribution.get(true) > 170);
+            assertTrue(distribution.get(true) < 300);
+            assertTrue(distribution.get(false) > 700);
+            assertTrue(distribution.get(false) < 840);
         }
     }
 

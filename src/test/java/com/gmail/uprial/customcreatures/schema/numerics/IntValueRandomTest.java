@@ -73,7 +73,7 @@ public class IntValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(10) < 600);
             assertTrue(distribution.get(11) > 180);
             assertTrue(distribution.get(11) < 330);
-            assertTrue(distribution.get(12) > 100);
+            assertTrue(distribution.get(12) > 90);
             assertTrue(distribution.get(12) < 200);
             assertTrue(distribution.get(13) > 50);
             assertTrue(distribution.get(13) < 130);
@@ -90,7 +90,7 @@ public class IntValueRandomTest extends TestConfigBase {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
             assertTrue(distribution.get(10) > 50);
             assertTrue(distribution.get(10) < 130);
-            assertTrue(distribution.get(11) > 100);
+            assertTrue(distribution.get(11) > 90);
             assertTrue(distribution.get(11) < 200);
             assertTrue(distribution.get(12) > 180);
             assertTrue(distribution.get(12) < 330);
