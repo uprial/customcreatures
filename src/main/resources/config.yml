@@ -694,7 +694,7 @@ diamond-skeleton:
         - enchantments.rand_oxygen_helmet
         - enchantments.rand_water_worker_helmet
     boots:
-      probability: 100
+      probability: 50
       material-type: DIAMOND
       durability:
         type: random
@@ -706,7 +706,7 @@ diamond-skeleton:
         - enchantments.rand_protection_fall_boots
         - enchantments.rand_depth_strider_boots
     chest:
-      probability: 100
+      probability: 50
       material-type: DIAMOND
       durability:
         type: random
@@ -716,7 +716,7 @@ diamond-skeleton:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
     leggings:
-      probability: 100
+      probability: 50
       material-type: DIAMOND
       durability:
         type: random
@@ -777,7 +777,7 @@ chainmail-zombie:
         - enchantments.rand_water_worker_helmet
         - enchantments.rand_maybe_top_thorns
     boots:
-      probability: 100
+      probability: 50
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -787,7 +787,7 @@ chainmail-zombie:
         - enchantments.rand_depth_strider_boots
         - enchantments.rand_maybe_top_thorns
     chest:
-      probability: 100
+      probability: 50
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -795,7 +795,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
-      probability: 100
+      probability: 50
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -1081,17 +1081,18 @@ enchantments:
   rand_maybe_top_protection:
     type: PROTECTION_ENVIRONMENTAL
     #
-    # Survival maximum level is 4, here it's 7.
+    # Survival maximum level is 4, here it's 10.
     #
     # According to https://minecraft.fandom.com/wiki/Protection
     # the total protection level above 20 doesn't make sense.
     #
-    # (1-7) x 4 on average gives (1+7) / 2 * 4 = 16.
+    # Mobs have 100% for helmet and 50% for other body parts, so
+    # (1-10) x (1 + (0-3)) on average gives (1+11) / 2 * (1 + 3/2) = 15.
     #
     level:
       type: random
       min: 1
-      max: 7
+      max: 10
   rand_thorns:
     type: THORNS
     level:
