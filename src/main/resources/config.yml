@@ -1086,7 +1086,7 @@ enchantments:
     # According to https://minecraft.fandom.com/wiki/Protection
     # the total protection level above 20 doesn't make sense.
     #
-    # (1-7) x 4 on average gives 3.5 * 4 = 14.
+    # (1-7) x 4 on average gives (1+7) / 2 * 4 = 16.
     #
     level:
       type: random
@@ -1100,7 +1100,14 @@ enchantments:
       max: 3
   rand_maybe_top_thorns:
     type: THORNS
+    #
     # Survival maximum level is 3, here it's 5
+    #
+    # According to https://minecraft.fandom.com/wiki/Thorns
+    # probability of max. damage of 4 (♥♥) with 4 items with Thorns III is 61.18%.
+    #
+    # (1-5) on average gives (1+5) / 2, which equals the above 3.
+    #
     level:
       type: random
       min: 1
