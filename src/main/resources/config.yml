@@ -83,13 +83,14 @@ handlers:
 #       ...
 #     - <drop-pathN>
 
-#   drop-path-rel: <effect>   ### Drop described in handler's namespace.
-#                             ### (* see description of <drop> below)
+#   drop-path-rel: <item-drop> ### Item drop described in handler's namespace.
+#                               ### (* see description of <item-drop> below)
 #
 #   drop-exp: <int-value:0..32767> ### Modifications of entity's drop exp.
 #                                  ### https://minecraft.fandom.com/wiki/Experience
 #                                  ### Level Total XP
 #                                  ### 1     7
+#                                  ### 3     27
 #                                  ### 5     55
 #                                  ### 10    160
 #                                  ### 15    315
@@ -102,8 +103,8 @@ handlers:
 # effect-path-abs: <effect>   ### Effect described anywhere else.
 #                             ### (* see description of <effect> below)
 #
-# drop-path-abs: <drop>   ### Drop described anywhere else.
-#                         ### (* see description of <drop> below)
+# drop-path-abs: <item-drop>   ### Item drop described anywhere else.
+#                              ### (* see description of <item-drop> below)
 #
 # #### Filter ####
 #
@@ -605,6 +606,13 @@ golden-zombie:
         - enchantments.rand_dig_speed
   attributes:
     movement-speed-multiplier: 1.2
+  drops:
+    - gold_ingot
+  gold_ingot:
+    material: GOLD_INGOT
+    probability: 50
+  # 3 levels from 0
+  drop-exp: 27
 
 iron-zombie:
   filter:
@@ -664,6 +672,13 @@ iron-zombie:
         - enchantments.rand_sword_sweeping_edge
   attributes:
     movement-speed-multiplier: 1.33
+  drops:
+    - iron_ingot
+  iron_ingot:
+    material: IRON_INGOT
+    probability: 50
+  # 3 levels from 0
+  drop-exp: 27
 
 diamond-skeleton:
   filter:
@@ -748,6 +763,7 @@ diamond-skeleton:
     - golden_carrot
   golden_carrot:
     material: GOLDEN_CARROT
+  # 5 levels from 0
   drop-exp: 55
 
 chainmail-zombie:
@@ -826,6 +842,7 @@ chainmail-zombie:
     - golden_apple
   golden_apple:
     material: GOLDEN_APPLE
+  # 5 levels from 0
   drop-exp: 55
 
 angry-ghast:
@@ -874,6 +891,7 @@ illusioner:
     - enchanted_golden_apple
   enchanted_golden_apple:
     material: ENCHANTED_GOLDEN_APPLE
+  # 10 levels from 0
   drop-exp: 160
 
 better-crossbow:
@@ -979,6 +997,7 @@ insane-creeper:
     - end_crystal
   end_crystal:
     material: END_CRYSTAL
+  # 15 levels from 0
   drop-exp: 315
   entity-specific-attributes:
     creeper:
