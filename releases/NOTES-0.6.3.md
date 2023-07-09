@@ -1,3 +1,3 @@
 # Balance
-* Golden zombie may drop a Gold Ingot
-* Iron zombie may drop an Iron Ingot
+* Golden zombie drops a Gold Ingot
+* Iron zombie drops an Iron Ingot

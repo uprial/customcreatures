@@ -610,7 +610,6 @@ golden-zombie:
     - gold_ingot
   gold_ingot:
     material: GOLD_INGOT
-    probability: 50
   # 3 levels from 0
   drop-exp: 27
 
@@ -676,7 +675,6 @@ iron-zombie:
     - iron_ingot
   iron_ingot:
     material: IRON_INGOT
-    probability: 50
   # 3 levels from 0
   drop-exp: 27
 
