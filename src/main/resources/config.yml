@@ -84,7 +84,7 @@ handlers:
 #     - <drop-pathN>
 
 #   drop-path-rel: <item-drop> ### Item drop described in handler's namespace.
-#                               ### (* see description of <item-drop> below)
+#                              ### (* see description of <item-drop> below)
 #
 #   drop-exp: <int-value:0..32767> ### Modifications of entity's drop exp.
 #                                  ### https://minecraft.fandom.com/wiki/Experience
@@ -672,10 +672,13 @@ iron-zombie:
   attributes:
     movement-speed-multiplier: 1.33
   drops:
-    - iron_ingot
-  iron_ingot:
-    material: IRON_INGOT
-  # 3 levels from 0
+    - lapis_lazuli
+  lapis_lazuli:
+    material: LAPIS_LAZULI
+    amount:
+      type: random
+      min: 1
+      max: 3
   drop-exp: 27
 
 diamond-skeleton:
@@ -758,9 +761,9 @@ diamond-skeleton:
     movement-speed-multiplier: 1.5
     max-health-multiplier: 1.5
   drops:
-    - golden_carrot
-  golden_carrot:
-    material: GOLDEN_CARROT
+    - golden_apple
+  golden_apple:
+    material: GOLDEN_APPLE
   # 5 levels from 0
   drop-exp: 55
 
@@ -791,7 +794,7 @@ chainmail-zombie:
         - enchantments.rand_water_worker_helmet
         - enchantments.rand_maybe_top_thorns
     boots:
-      probability: 50
+      probability: 100
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -801,7 +804,7 @@ chainmail-zombie:
         - enchantments.rand_depth_strider_boots
         - enchantments.rand_maybe_top_thorns
     chest:
-      probability: 50
+      probability: 100
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -809,7 +812,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
-      probability: 50
+      probability: 100
       material-type: CHAINMAIL
       durability: 75
       enchantments:
@@ -837,9 +840,9 @@ chainmail-zombie:
     movement-speed-multiplier: 1.5
     max-health-multiplier: 1.5
   drops:
-    - golden_apple
-  golden_apple:
-    material: GOLDEN_APPLE
+    - diamond
+  diamond:
+    material: DIAMOND
   # 5 levels from 0
   drop-exp: 55
 
