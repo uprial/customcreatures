@@ -76,7 +76,7 @@ public class ProbabilityTest extends TestConfigBase {
         assertEquals(0, getPasses(1000, new Probability(0.1)));
     }
 
-    private static int getPasses(int tries, Probability probability) {
+    private static long getPasses(int tries, Probability probability) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {
             if (probability.isPassed()) {
@@ -84,7 +84,7 @@ public class ProbabilityTest extends TestConfigBase {
             }
         }
 
-        return Math.round((passes * MAX_PERCENT) / tries);
+        return Math.round((double)passes / tries * MAX_PERCENT);
     }
 
 }

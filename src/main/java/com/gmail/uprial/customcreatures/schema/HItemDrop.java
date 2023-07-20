@@ -2,8 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.schema.numerics.IValue;
-import com.gmail.uprial.customcreatures.schema.numerics.ValueConst;
+import com.gmail.uprial.customcreatures.schema.numerics.*;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -13,16 +12,17 @@ import org.bukkit.inventory.ItemStack;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
+import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
 public final class HItemDrop {
     private final String title;
     private final Probability probability;
     private final Material material;
-    private final IValue<Integer> amount;
+    private final IntValueRandom amount;
     private final HItemEnchantmentsList enchantments;
     private final HItemDurability durability;
 
-    private HItemDrop(String title, Probability probability, Material material, IValue<Integer> amount,
+    private HItemDrop(String title, Probability probability, Material material, IntValueRandom amount,
                       HItemEnchantmentsList enchantments, HItemDurability durability) {
         this.title = title;
         this.probability = probability;
@@ -32,10 +32,11 @@ public final class HItemDrop {
         this.durability = durability;
     }
 
-    public void apply(CustomLogger customLogger, EntityDeathEvent event) {
+    public void apply(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         if ((probability == null) || (probability.isPassed())) {
             final LivingEntity entity = event.getEntity();
-            final int itemAmount = amount.getValue();
+            final int itemAmount = amount.getValueWithInc(0, lootBonusMobs);
+
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %d x %s to %s",
                         title, itemAmount, material, format(entity)));
@@ -64,10 +65,17 @@ public final class HItemDrop {
 
         Material material = getEnum(Material.class, config,
                 joinPaths(key, "material"), String.format("material of %s", title));
-        IValue<Integer> amount = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount"),
+
+        IValue<Integer> configuredAmount = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount"),
                 String.format("amount of %s", title), 1, 64);
-        if (amount == null) {
-            amount = new ValueConst<>(1);
+
+        final IntValueRandom amount;
+        if (configuredAmount == null) {
+            amount = new IntValueRandom(NORMAL, 1, 1);
+        } else if (configuredAmount instanceof ValueSimple) {
+            amount = new IntValueRandom(NORMAL, configuredAmount.getValue(), configuredAmount.getValue());
+        } else {
+            amount = (IntValueRandom)configuredAmount;
         }
 
         HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),

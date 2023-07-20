@@ -20,9 +20,9 @@ public final class HItemDropsList {
         this.itemDrops = itemDrops;
     }
 
-    public void apply(CustomLogger customLogger, EntityDeathEvent event) {
+    public void apply(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         for (HItemDrop itemDrop : itemDrops) {
-            itemDrop.apply(customLogger, event);
+            itemDrop.apply(customLogger, event, lootBonusMobs);
         }
     }
 

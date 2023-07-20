@@ -52,9 +52,9 @@ public final class HItem {
         }
     }
 
-    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event) {
+    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         if (containsPersistentMetadataFlag(plugin, event.getEntity(), getHandlerMetadataKey())) {
-            applyDrops(customLogger, event);
+            applyDrops(customLogger, event, lootBonusMobs);
             applyDropExp(customLogger, event);
         }
     }
@@ -77,9 +77,9 @@ public final class HItem {
         }
     }
 
-    private void applyDrops(CustomLogger customLogger, EntityDeathEvent event) {
+    private void applyDrops(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         if (drops != null) {
-            drops.apply(customLogger, event);
+            drops.apply(customLogger, event, lootBonusMobs);
         }
     }
 

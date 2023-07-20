@@ -49,6 +49,15 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
+    public void testNormalValue_MaxLessThanMin() throws Exception {
+        IntValueRandom valueRandom = getFromConfig(getPreparedConfig(
+                "i: ",
+                " min: 0",
+                " max: -1"), getCustomLogger(), "i", "i", -1, 100);
+        assertEquals("IntValueRandom{distribution: NORMAL, min: 0, max: -1}", valueRandom.toString());
+    }
+
+    @Test
     public void testNormalDistribution() throws Exception {
         final IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
 
@@ -63,6 +72,20 @@ public class IntValueRandomTest extends TestConfigBase {
         }
     }
 
+    @Test
+    public void testNormalDistribution_MaxLessThanMin() throws Exception {
+        final IntValueRandom valueRandom = new IntValueRandom(NORMAL, -10, -20);
+
+        for(int i = 0; i < 100; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            for (int j = -10; j >= -20; j--) {
+                assertTrue(distribution.get(j) > 1_000/11-45);
+                assertTrue(distribution.get(j) < 1_000/11+45);
+            }
+            assertFalse(distribution.containsKey(-9));
+            assertFalse(distribution.containsKey(-21));
+        }
+    }
     @Test
     public void testExpDownDistribution() throws Exception {
         final IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
@@ -111,6 +134,27 @@ public class IntValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(1) < 840);
             assertTrue(distribution.get(2) > 170);
             assertTrue(distribution.get(2) < 300);
+        }
+    }
+
+    @Test
+    public void testNormalDistribution_WithIncrements() throws Exception {
+        final IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
+        final int INC = 1_000;
+
+        for(int i = 0; i < 100; i++) {
+            final Map<Integer,Long> distribution = new HashMap<>();
+            for (int j = 0; j < 1000; j++) {
+                final Integer value = valueRandom.getValueWithInc(INC, INC);
+                final long prev = distribution.containsKey(value) ? distribution.get(value) : 0;
+                distribution.put(value, prev + 1);
+            }
+            for (int j = 10 + INC; j <= 20 + INC; j++) {
+                assertTrue(distribution.get(j) > 1_000/11-45);
+                assertTrue(distribution.get(j) < 1_000/11+45);
+            }
+            assertFalse(distribution.containsKey(9 + INC));
+            assertFalse(distribution.containsKey(21 + INC));
         }
     }
 

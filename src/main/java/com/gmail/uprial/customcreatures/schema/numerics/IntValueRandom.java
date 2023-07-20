@@ -10,19 +10,17 @@ import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributio
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.EXP_UP;
 
 public class IntValueRandom extends NumericValueRandom<Integer> {
-    IntValueRandom(RandomDistributionType distributionType, Integer min, Integer max) {
+    public IntValueRandom(RandomDistributionType distributionType, Integer min, Integer max) {
         super(distributionType, min, max);
     }
 
     @Override
     public Integer getValue() {
-        if (distributionType == EXP_DOWN) {
-            return getExpRandom(max - min) + min;
-        } else if (distributionType == EXP_UP) {
-            return max - getExpRandom(max - min);
-        } else {
-            return random.nextInt((max - min) + 1) + min;
-        }
+        return getRandom(min, max);
+    }
+
+    public Integer getValueWithInc(Integer incMin, Integer incMax) {
+        return getRandom(min + incMin, max + incMax);
     }
 
     public static IntValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
@@ -34,8 +32,18 @@ public class IntValueRandom extends NumericValueRandom<Integer> {
         return new IntValueRandom(distributionType, min, max);
     }
 
-    private Integer getExpRandom(Integer max) {
-        double average = (max.doubleValue() + 1.0)/ 2.0;
+    private Integer getRandom(Integer min, Integer max) {
+        if (distributionType == EXP_DOWN) {
+            return getExpRandom(max - min) + min;
+        } else if (distributionType == EXP_UP) {
+            return max - getExpRandom(max - min);
+        } else {
+            return random.nextInt(Math.abs(max - min) + 1) * Integer.signum(max - min) + min;
+        }
+    }
+
+    private Integer getExpRandom(final Integer max) {
+        double average = (max.doubleValue() + 1.0) / 2.0;
         double doubleValue = -average * Math.log(random.nextDouble());
         int value = (int)Math.round(Math.floor(doubleValue));
         if (value > max) {

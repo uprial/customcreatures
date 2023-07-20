@@ -394,6 +394,14 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 #
 #   amount: <int-value:1..64> ### Amount of items.
+#                             ### The Looting enchantment increases
+#                             ### the max random value by 1 per level.
+#                             ###
+#                             ### The default value is
+#                             ### a normally distributed int in range 1-1.
+#                             ###
+#                             ### The <int> value is considered as
+#                             ### a normally distributed int in range <int>-<int>.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
@@ -452,7 +460,7 @@ handlers:
 # <float-value>:
 #   type: random              ### Type of floating point value. Currently
 #                             ### only 'random' type is supported.
-#   min: <float>              ### Minumum value.
+#   min: <float>              ### Minimum value.
 #   max: <float>              ### Maximum value.
 #   distribution: <rnd-distr> ### Type of random distribution.
 #                             ### (* see description of <rnd-distr> below)
@@ -467,7 +475,7 @@ handlers:
 # <int-value>:
 #   type: random              ### Random integer value. Currently
 #                             ### only 'random' type is supported.
-#   min: <int>                ### Minumum value.
+#   min: <int>                ### Minimum value.
 #   max: <int>                ### Maximum value.
 #   distribution: <rnd-distr> ### Type of random distribution.
 #                             ### (* see description of <rnd-distr> below)
@@ -569,33 +577,47 @@ golden-zombie:
     helmet:
       probability: 100
       material-type: GOLDEN
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_protection
         - enchantments.rand_thorns
     boots:
       probability: 50
       material-type: GOLDEN
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_protection
         - enchantments.rand_thorns
     chest:
       probability: 50
       material-type: GOLDEN
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_protection
         - enchantments.rand_thorns
     leggings:
       probability: 50
       material-type: GOLDEN
-      durability: 50
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_protection
         - enchantments.rand_thorns
     main-hand:
       probability: 100
+      # x2
+      drop-chance: 0.17
       material: GOLDEN_AXE
       durability:
         type: random
@@ -630,28 +652,40 @@ iron-zombie:
     helmet:
       probability: 100
       material-type: IRON
-      durability: 33
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_protection
     boots:
       probability: 50
       material-type: IRON
-      durability: 33
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_protection
     chest:
       probability: 50
       material-type: IRON
-      durability: 33
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_protection
     leggings:
       probability: 50
       material-type: IRON
-      durability: 33
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_protection
@@ -675,6 +709,7 @@ iron-zombie:
     - lapis_lazuli
   lapis_lazuli:
     material: LAPIS_LAZULI
+    # (1 + 3) / 2 = 2 on average
     amount:
       type: random
       min: 1
@@ -743,6 +778,7 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
     main-hand:
       probability: 100
+      # x0.5
       drop-chance: 0.0425
       material: BOW
       durability:
@@ -752,7 +788,7 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_bow_damage
-        - enchantments.rand_bow_knockback
+        - enchantments.rand_maybe_top_bow_knockback
         - enchantments.rand_bow_fire
         - enchantments.rand_bow_infinity
   attributes:
@@ -786,7 +822,10 @@ chainmail-zombie:
     helmet:
       probability: 100
       material-type: CHAINMAIL
-      durability: 75
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -796,7 +835,10 @@ chainmail-zombie:
     boots:
       probability: 100
       material-type: CHAINMAIL
-      durability: 75
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -806,7 +848,10 @@ chainmail-zombie:
     chest:
       probability: 100
       material-type: CHAINMAIL
-      durability: 75
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
@@ -814,13 +859,17 @@ chainmail-zombie:
     leggings:
       probability: 100
       material-type: CHAINMAIL
-      durability: 75
+      durability:
+        type: random
+        min: 25
+        max: 100
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
+      # x0.5
       drop-chance: 0.0425
       material: DIAMOND_SWORD
       durability:
@@ -829,7 +878,7 @@ chainmail-zombie:
         max: 100
       enchantments:
         - enchantments.rand_durability
-        - enchantments.rand_damage_all
+        - enchantments.rand_maybe_top_damage_all
         - enchantments.rand_maybe_top_sword_looting
         - enchantments.rand_sword_knockback
         - enchantments.rand_sword_fire_aspect
@@ -879,7 +928,7 @@ illusioner:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_bow_damage
-        - enchantments.rand_bow_knockback
+        - enchantments.rand_maybe_top_bow_knockback
         - enchantments.rand_bow_fire
         - enchantments.rand_bow_infinity
   attributes:
@@ -1165,6 +1214,13 @@ enchantments:
       type: random
       min: 1
       max: 5
+  rand_maybe_top_damage_all:
+    type: DAMAGE_ALL
+    # Survival maximum level is 5, here it's 10
+    level:
+      type: random
+      min: 1
+      max: 10
   rand_sword_knockback:
     type: KNOCKBACK
     level:
@@ -1205,12 +1261,13 @@ enchantments:
       type: random
       min: 1
       max: 10
-  rand_bow_knockback:
+  rand_maybe_top_bow_knockback:
     type: ARROW_KNOCKBACK
+    # Survival maximum level is 2, here it's 3
     level:
       type: random
       min: 1
-      max: 2
+      max: 3
   rand_bow_fire:
     type: ARROW_FIRE
     level:

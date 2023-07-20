@@ -26,9 +26,9 @@ public final class CreaturesConfig {
         }
     }
 
-    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event) {
+    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         for (HItem handler : handlers) {
-            handler.handleDeath(plugin, customLogger, event);
+            handler.handleDeath(plugin, customLogger, event, lootBonusMobs);
         }
     }
 

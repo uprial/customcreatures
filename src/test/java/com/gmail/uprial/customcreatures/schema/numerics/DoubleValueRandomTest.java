@@ -49,6 +49,15 @@ public class DoubleValueRandomTest extends TestConfigBase {
     }
 
     @Test
+    public void testNormalValue_MaxLessThanMin() throws Exception {
+        DoubleValueRandom valueRandom = getFromConfig(getPreparedConfig(
+                "i: ",
+                " min: 0",
+                " max: -1"), getCustomLogger(), "i", "i", -1, 100);
+        assertEquals("DoubleValueRandom{distribution: NORMAL, min: 0.00, max: -1.00}", valueRandom.toString());
+    }
+
+    @Test
     public void testNormalDistribution() throws Exception {
         final DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, 10.0, 20.0);
 
@@ -64,6 +73,25 @@ public class DoubleValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(20) < 90);
             assertFalse(distribution.containsKey(9));
             assertFalse(distribution.containsKey(21));
+        }
+    }
+
+    @Test
+    public void testNormalDistribution_MaxLessThanMin() throws Exception {
+        final DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, -10.0, -20.0);
+
+        for(int i = 0; i < 1000; i++) {
+            final Map<Integer, Long> distribution = getDistribution(valueRandom);
+            assertTrue(distribution.get(-10) > 20);
+            assertTrue(distribution.get(-10) < 90);
+            for (int j = -11; j > -20; j--) {
+                assertTrue(distribution.get(j) > 1_000/10-50);
+                assertTrue(distribution.get(j) < 1_000/10+60);
+            }
+            assertTrue(distribution.get(-20) > 20);
+            assertTrue(distribution.get(-20) < 90);
+            assertFalse(distribution.containsKey(-9));
+            assertFalse(distribution.containsKey(-21));
         }
     }
 

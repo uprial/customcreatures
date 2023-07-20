@@ -20,7 +20,11 @@ public class HItemDropTest extends TestConfigBase {
                 "  probability: 100",
                 "  durability: 100",
                 "  material: DIAMOND_SWORD",
-                "  amount: 1",
+                "  amount:",
+                "    type: random",
+                "    distribution: NORMAL",
+                "    min: 1",
+                "    max: 2",
                 "  enchantments:",
                 "   - e1",
                 "e1:",
@@ -28,9 +32,10 @@ public class HItemDropTest extends TestConfigBase {
                 " level: 2"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
-                " durability: 100}",
+        assertEquals("{probability: null, material: DIAMOND_SWORD," +
+                        " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}," +
+                        " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
+                        " durability: 100}",
                 itemDrop.toString());
     }
 
@@ -49,7 +54,8 @@ public class HItemDropTest extends TestConfigBase {
                 "  durability: 40"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: 50, material: DIAMOND_SWORD, amount: 10," +
+        assertEquals("{probability: 50, material: DIAMOND_SWORD," +
+                        " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}," +
                         " enchantments: [{type: THORNS, level: 1}]," +
                         " durability: 40}",
                 itemDrop.toString());
