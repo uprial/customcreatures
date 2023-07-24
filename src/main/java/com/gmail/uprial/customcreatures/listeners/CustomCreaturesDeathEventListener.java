@@ -3,7 +3,6 @@ package com.gmail.uprial.customcreatures.listeners;
 import com.gmail.uprial.customcreatures.CreaturesConfig;
 import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
-import com.gmail.uprial.customcreatures.schema.EntityEquipmentHelper;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,8 +36,6 @@ public class CustomCreaturesDeathEventListener extends AbstractCustomCreaturesEv
                 }
             }
         }
-
-        EntityEquipmentHelper.handleDeathLootBonusMobs(plugin, event.getEntity().getEquipment(), lootBonusMobs);
 
         CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
         // Don't try to handle an entity if there was error in loading of config.

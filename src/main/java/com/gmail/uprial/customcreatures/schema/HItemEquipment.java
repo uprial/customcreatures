@@ -1,6 +1,5 @@
 package com.gmail.uprial.customcreatures.schema;
 
-import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.google.common.collect.ImmutableMap;
@@ -39,12 +38,12 @@ public final class HItemEquipment {
         this.tools = tools;
     }
 
-    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, LivingEntity entity) {
         for (HItemEquipmentCloth cloth : cloths.values()) {
-            cloth.apply(plugin, customLogger, entity);
+            cloth.apply(customLogger, entity);
         }
         for (HItemInHand tool : tools.values()) {
-            tool.apply(plugin, customLogger, entity);
+            tool.apply(customLogger, entity);
         }
     }
 

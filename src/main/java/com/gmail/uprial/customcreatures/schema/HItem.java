@@ -47,7 +47,7 @@ public final class HItem {
 
             applyAttributes(plugin, customLogger, entity);
             applyEffects(customLogger, entity);
-            applyEquipment(plugin, customLogger, entity);
+            applyEquipment(customLogger, entity);
             applyEntitySpecificAttributes(customLogger, entity);
         }
     }
@@ -71,9 +71,9 @@ public final class HItem {
         }
     }
 
-    private void applyEquipment(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    private void applyEquipment(CustomLogger customLogger, LivingEntity entity) {
         if (equipment != null) {
-            equipment.apply(plugin, customLogger, entity);
+            equipment.apply(customLogger, entity);
         }
     }
 

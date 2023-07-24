@@ -1,6 +1,5 @@
 package com.gmail.uprial.customcreatures.schema;
 
-import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
@@ -37,7 +36,7 @@ public final class HItemEquipmentCloth {
         this.durability = durability;
     }
 
-    public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
             Material material;
             try {
@@ -75,11 +74,12 @@ public final class HItemEquipmentCloth {
                     }
                 } else {
                     if (customLogger.isDebugMode()) {
-                        customLogger.debug(String.format("Handle drop chance of %s: set drop chance of %s of %s to %.2f",
+                        customLogger.debug(String.format("Handle drop chance of %s:" +
+                                        " set drop chance of %s of %s to %.2f",
                                 title, material, format(entity), dropChance));
                     }
                     try {
-                        setItemDropChance(plugin, entity.getEquipment(), clothType, dropChance);
+                        setItemDropChance(entity.getEquipment(), clothType, dropChance);
                     } catch (OperationIsNotSupportedException e) {
                         customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
                         //noinspection UnnecessaryReturnStatement

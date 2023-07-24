@@ -92,6 +92,10 @@ public class DoubleHelperTest {
         assertEquals("1.2", formatDoubleValue(1.2));
         assertEquals("1.2345", formatDoubleValue(1.2345));
         assertEquals("1.2346", formatDoubleValue(1.23456));
+        assertEquals("0.1", formatDoubleValue(0.1));
+        assertEquals("0.01", formatDoubleValue(0.01));
+        assertEquals("0.5", formatDoubleValue(0.5));
+        assertEquals("0.05", formatDoubleValue(0.05));
     }
 
     @Test
