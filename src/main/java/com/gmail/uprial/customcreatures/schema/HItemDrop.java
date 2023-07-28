@@ -9,33 +9,41 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
+import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
+import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 
 public final class HItemDrop {
     private final String title;
     private final Probability probability;
+    private final double probabilityPerLootingLevel;
     private final Material material;
     private final IntValueRandom amount;
     private final HItemEnchantmentsList enchantments;
     private final HItemDurability durability;
+    private final IValue<Integer> amountMaxPerLootingLevel;
 
-    private HItemDrop(String title, Probability probability, Material material, IntValueRandom amount,
+    private HItemDrop(String title, Probability probability, double probabilityPerLootingLevel,
+                      Material material, IntValueRandom amount, IValue<Integer> amountMaxPerLootingLevel,
                       HItemEnchantmentsList enchantments, HItemDurability durability) {
         this.title = title;
         this.probability = probability;
+        this.probabilityPerLootingLevel = probabilityPerLootingLevel;
         this.material = material;
         this.amount = amount;
+        this.amountMaxPerLootingLevel = amountMaxPerLootingLevel;
         this.enchantments = enchantments;
         this.durability = durability;
     }
 
     public void apply(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
-        if ((probability == null) || (probability.isPassed())) {
+        if ((probability == null) || (probability.isPassedWithInc(lootBonusMobs * probabilityPerLootingLevel))) {
             final LivingEntity entity = event.getEntity();
-            final int itemAmount = amount.getValueWithInc(0, lootBonusMobs);
+            final int itemAmount = amount.getValueWithInc(0, lootBonusMobs * amountMaxPerLootingLevel.getValue());
 
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %d x %s to %s",
@@ -63,6 +71,9 @@ public final class HItemDrop {
         Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
                 String.format("probability of %s", title));
 
+        double probabilityPerLootingLevel = getDouble(config, customLogger, joinPaths(key, "probability-per-looting-level"),
+                String.format("probability per looting level of %s", title), 0, MAX_PERCENT, 0);
+
         Material material = getEnum(Material.class, config,
                 joinPaths(key, "material"), String.format("material of %s", title));
 
@@ -78,17 +89,23 @@ public final class HItemDrop {
             amount = (IntValueRandom)configuredAmount;
         }
 
+        IValue<Integer> amountMaxPerLootingLevel = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount-max-per-looting-level"),
+                String.format("amount max per looting level of %s", title), 0, 64);
+        if (amountMaxPerLootingLevel == null) {
+            amountMaxPerLootingLevel = new ValueConst<>(1);
+        }
+
         HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
         HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
-        return new HItemDrop(title, probability, material, amount, enchantments, durability);
+        return new HItemDrop(title, probability, probabilityPerLootingLevel, material, amount, amountMaxPerLootingLevel, enchantments, durability);
     }
 
     public String toString() {
-        return String.format("{probability: %s, material: %s, amount: %s, enchantments: %s, durability: %s}",
-                probability, material, amount, enchantments, durability);
+        return String.format("{probability: %s, probability-per-looting-level: %s, material: %s, amount: %s, amount-max-per-looting-level: %s, enchantments: %s, durability: %s}",
+                probability, formatDoubleValue(probabilityPerLootingLevel), material, amount, amountMaxPerLootingLevel, enchantments, durability);
     }
 
 }

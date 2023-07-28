@@ -18,6 +18,7 @@ public class HItemDropTest extends TestConfigBase {
         HItemDrop itemDrop = getFromConfig(getPreparedConfig(
                 "d:",
                 "  probability: 100",
+                "  probability-per-looting-level: 1",
                 "  durability: 100",
                 "  material: DIAMOND_SWORD",
                 "  amount:",
@@ -25,6 +26,7 @@ public class HItemDropTest extends TestConfigBase {
                 "    distribution: NORMAL",
                 "    min: 1",
                 "    max: 2",
+                "  amount-max-per-looting-level: 1",
                 "  enchantments:",
                 "   - e1",
                 "e1:",
@@ -32,8 +34,8 @@ public class HItemDropTest extends TestConfigBase {
                 " level: 2"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: null, material: DIAMOND_SWORD," +
-                        " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}," +
+        assertEquals("{probability: null, probability-per-looting-level: 1, material: DIAMOND_SWORD," +
+                        " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
                         " durability: 100}",
                 itemDrop.toString());
@@ -44,8 +46,10 @@ public class HItemDropTest extends TestConfigBase {
         HItemDrop itemDrop = getFromConfig(getPreparedConfig(
                 "d:",
                 "  probability: 50",
+                "  probability-per-looting-level: 1",
                 "  material: DIAMOND_SWORD",
                 "  amount: 10",
+                "  amount-max-per-looting-level: 1",
                 "  enchantments:",
                 "   - e",
                 "  e:",
@@ -54,8 +58,8 @@ public class HItemDropTest extends TestConfigBase {
                 "  durability: 40"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: 50, material: DIAMOND_SWORD," +
-                        " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}," +
+        assertEquals("{probability: 50, probability-per-looting-level: 1, material: DIAMOND_SWORD," +
+                        " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: THORNS, level: 1}]," +
                         " durability: 40}",
                 itemDrop.toString());
@@ -91,13 +95,36 @@ public class HItemDropTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyProbabilityPerLootingLevel() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty probability per looting level of item drop. Use default value 0");
+        getFromConfig(getPreparedConfig(
+                        "d:",
+                        " probability: 50"),
+                getDebugFearingCustomLogger(), "d", "item drop");
+    }
+    @Test
     public void testEmptyAmount() throws Exception {
         e.expect(RuntimeException.class);
         e.expectMessage("Empty amount of item drop. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "d:",
                 " probability: 50",
+                " probability-per-looting-level: 1",
                 " material: DIAMOND_SWORD"),
+                getDebugFearingCustomLogger(), "d", "item drop");
+    }
+
+    @Test
+    public void testEmptyAmountMaxPerLootingLevel() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty amount max per looting level of item drop. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "d:",
+                        " probability: 50",
+                        " probability-per-looting-level: 1",
+                        " material: DIAMOND_SWORD",
+                        " amount: 1"),
                 getDebugFearingCustomLogger(), "d", "item drop");
     }
 
@@ -108,8 +135,10 @@ public class HItemDropTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "d:",
                 " probability: 77",
+                " probability-per-looting-level: 1",
                 " material: DIAMOND_SWORD",
-                " amount: 1"),
+                " amount: 1",
+                " amount-max-per-looting-level: 1"),
                 getDebugFearingCustomLogger(), "d", "item drop");
     }
 
@@ -120,9 +149,11 @@ public class HItemDropTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "d:",
                 " probability: 77",
-                " durability: 77",
+                " probability-per-looting-level: 1",
                 " material: DIAMOND_SWORD",
-                " amount: 1"),
+                " amount: 1",
+                " amount-max-per-looting-level: 1",
+                " durability: 77"),
                 getDebugFearingCustomLogger(), "d", "item drop");
     }
 }

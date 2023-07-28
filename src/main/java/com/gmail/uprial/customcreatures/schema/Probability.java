@@ -21,7 +21,11 @@ public class Probability {
     }
 
     public boolean isPassed() {
-        return (probability >= MAX_PERCENT) || ((random.nextDouble() * MAX_PERCENT) < probability);
+        return isPassed(probability);
+    }
+
+    public boolean isPassedWithInc(double inc) {
+        return isPassed(probability + inc);
     }
 
     public static Probability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
@@ -31,6 +35,10 @@ public class Probability {
         }
 
         return new Probability(probability);
+    }
+
+    private boolean isPassed(double probability) {
+        return (probability >= MAX_PERCENT) || ((random.nextDouble() * MAX_PERCENT) < probability);
     }
 
     public String toString() {

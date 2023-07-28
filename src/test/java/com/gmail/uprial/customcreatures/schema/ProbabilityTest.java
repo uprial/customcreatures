@@ -57,23 +57,50 @@ public class ProbabilityTest extends TestConfigBase {
 
     @Test
     public void testPassNormalProbability() throws Exception {
-        assertTrue(getPasses(100, new Probability(50)) > 20);
-        assertTrue(getPasses(100, new Probability(50)) < 80);
+        assertTrue(getPasses(1000, new Probability(50)) > 40);
+        assertTrue(getPasses(1000, new Probability(50)) < 60);
+    }
+
+    @Test
+    public void testPassZeroProbability() throws Exception {
+        assertEquals(0, getPasses(1000, new Probability(0)));
     }
 
     @Test
     public void testPassSmallProbability() throws Exception {
-        assertEquals(0, getPasses(10, new Probability(0)));
+        assertEquals(0, getPasses(1000, new Probability(0.1)));
     }
 
     @Test
     public void testPassBigProbability() throws Exception {
-        assertEquals(100, getPasses(10, new Probability(100)));
+        assertEquals(100, getPasses(1000, new Probability(100)));
     }
 
     @Test
-    public void testSmallProbability() throws Exception {
-        assertEquals(0, getPasses(1000, new Probability(0.1)));
+    public void testProbabilityDistribution() throws Exception {
+        for(int i = 0; i <= 100; i++) {
+            assertTrue(getPasses(1000, new Probability(i)) > i - 10);
+            assertTrue(getPasses(1000, new Probability(i)) < i + 10);
+        }
+    }
+
+    @Test
+    public void testProbabilityDistribution_WithInc() throws Exception {
+        final int INC = 11;
+        for(int i = INC; i <= 100 - INC; i++) {
+            final Probability probability = new Probability(i);
+            int passes = 0;
+            for (int j = 0; j < 1000; j++) {
+                if (probability.isPassedWithInc(INC)) {
+                    passes += 1;
+                }
+            }
+
+            long lPasses = Math.round((double)passes / 1000 * MAX_PERCENT);
+
+            assertTrue(lPasses > i - 10 + INC);
+            assertTrue(lPasses < i + 10 + INC);
+        }
     }
 
     private static long getPasses(int tries, Probability probability) {

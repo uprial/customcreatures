@@ -390,18 +390,25 @@ handlers:
 #                           ### drop after the entity death.
 #                           ### By default the probability is 100%.
 #
+#   probability-per-looting-level: <0..100>  ### The Looting enchantment increases
+#                                            ### probability by that percent per level.
+#                                            ### Default value is 0%.
+#
 #   material: <material>    ### Material of the item, see:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 #
 #   amount: <int-value:1..64> ### Amount of items.
-#                             ### The Looting enchantment increases
-#                             ### the max random value by 1 per level.
 #                             ###
 #                             ### The default value is
 #                             ### a normally distributed int in range 1-1.
 #                             ###
 #                             ### The <int> value is considered as
 #                             ### a normally distributed int in range <int>-<int>.
+#
+#   amount-max-per-looting-level: <int-value:0..64> ### The Looting enchantment increases
+#                                                   ### the max random value
+#                                                   ### by that number per level.
+#                                                   ### Default value is 1.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default the durability is 100%.
@@ -704,14 +711,15 @@ iron-zombie:
   attributes:
     movement-speed-multiplier: 1.33
   drops:
-    - lapis_lazuli
-  lapis_lazuli:
-    material: LAPIS_LAZULI
+    - iron_ingot
+  iron_ingot:
+    material: IRON_INGOT
     # (1 + 3) / 2 = 2 on average
     amount:
       type: random
       min: 1
       max: 3
+    amount-max-per-looting-level: 2
   drop-exp: 27
 
 diamond-skeleton:
@@ -732,8 +740,6 @@ diamond-skeleton:
   equipment:
     helmet:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material-type: DIAMOND
       durability:
         type: random
@@ -744,10 +750,9 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_oxygen_helmet
         - enchantments.rand_water_worker_helmet
+        - enchantments.rand_maybe_top_thorns
     boots:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material-type: DIAMOND
       durability:
         type: random
@@ -758,10 +763,9 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_protection_fall_boots
         - enchantments.rand_depth_strider_boots
+        - enchantments.rand_maybe_top_thorns
     chest:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material-type: DIAMOND
       durability:
         type: random
@@ -770,10 +774,9 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
+        - enchantments.rand_maybe_top_thorns
     leggings:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material-type: DIAMOND
       durability:
         type: random
@@ -782,10 +785,9 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
+        - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material: BOW
       durability:
         type: random
@@ -803,9 +805,50 @@ diamond-skeleton:
     movement-speed-multiplier: 1.5
     max-health-multiplier: 1.5
   drops:
-    - golden_apple
-  golden_apple:
-    material: GOLDEN_APPLE
+    - diamond
+    - top_diamond_helmet
+    - top_diamond_boots
+    - top_diamond_chest
+    - top_diamond_leggings
+    - drops.top_bow
+  diamond:
+    material: DIAMOND
+  top_diamond_helmet:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: DIAMOND_HELMET
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+      - enchantments.best_oxygen_helmet
+      - enchantments.best_water_worker_helmet
+  top_diamond_boots:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: DIAMOND_BOOTS
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+      - enchantments.best_protection_fall_boots
+      - enchantments.best_depth_strider_boots
+  top_diamond_chest:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: DIAMOND_CHESTPLATE
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+  top_diamond_leggings:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: DIAMOND_LEGGINGS
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
   # 5 levels from 0
   drop-exp: 55
 
@@ -883,8 +926,6 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material: DIAMOND_SWORD
       durability:
         type: random
@@ -903,9 +944,90 @@ chainmail-zombie:
     movement-speed-multiplier: 1.5
     max-health-multiplier: 1.5
   drops:
-    - diamond
-  diamond:
-    material: DIAMOND
+    - lapis_lazuli
+    - redstone
+    - top_chainmail_helmet
+    - top_chainmail_boots
+    - top_chainmail_chest
+    - top_chainmail_leggings
+    - top_iron_sword
+    - top_diamond_sword
+  lapis_lazuli:
+    material: LAPIS_LAZULI
+    # (1 + 3) / 2 = 2 on average
+    amount:
+      type: random
+      min: 1
+      max: 3
+    amount-max-per-looting-level: 2
+  redstone:
+    material: REDSTONE
+    # (1 + 3) / 2 = 2 on average
+    amount:
+      type: random
+      min: 1
+      max: 3
+    amount-max-per-looting-level: 2
+  top_chainmail_helmet:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: CHAINMAIL_HELMET
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+      - enchantments.best_oxygen_helmet
+      - enchantments.best_water_worker_helmet
+  top_chainmail_boots:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: CHAINMAIL_BOOTS
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+      - enchantments.best_protection_fall_boots
+      - enchantments.best_depth_strider_boots
+  top_chainmail_chest:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: CHAINMAIL_CHESTPLATE
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+  top_chainmail_leggings:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: CHAINMAIL_LEGGINGS
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_protection
+  top_iron_sword:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: IRON_SWORD
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_damage_all
+      - enchantments.top_sword_looting
+      - enchantments.best_sword_knockback
+      - enchantments.best_sword_fire_aspect
+      - enchantments.best_sword_sweeping_edge
+  top_diamond_sword:
+    probability: 4.25
+    probability-per-looting-level: 2.0625
+    material: DIAMOND_SWORD
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_damage_all
+      - enchantments.top_sword_looting
+      - enchantments.best_sword_knockback
+      - enchantments.best_sword_fire_aspect
+      - enchantments.best_sword_sweeping_edge
   # 5 levels from 0
   drop-exp: 55
 
@@ -934,8 +1056,6 @@ illusioner:
   equipment:
     main-hand:
       probability: 100
-      # x2
-      drop-chance: 0.17
       material: BOW
       durability:
         type: random
@@ -956,6 +1076,7 @@ illusioner:
     remove-when-far-away: false
   drops:
     - enchanted_golden_apple
+    - drops.top_bow
   enchanted_golden_apple:
     material: ENCHANTED_GOLDEN_APPLE
   # 10 levels from 0
@@ -1145,6 +1266,20 @@ effects:
     strength: 1
     duration: 300
 
+# Global templates of drops
+drops:
+  top_bow:
+    probability: 4.25
+    probability-per-looting-level: 2
+    material: BOW
+    amount-max-per-looting-level: 0
+    enchantments:
+      - enchantments.best_durability
+      - enchantments.top_bow_damage
+      - enchantments.top_bow_knockback
+      - enchantments.best_bow_fire
+      - enchantments.best_bow_infinity
+
 # Global templates of enchantments
 enchantments:
   # Tools
@@ -1152,7 +1287,7 @@ enchantments:
     type: DIG_SPEED
     level:
       type: random
-      min: 1
+      min: 0
       max: 5
 
   # Cloths and weapon
@@ -1160,15 +1295,18 @@ enchantments:
     type: DURABILITY
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
+  best_durability:
+    type: DURABILITY
+    level: 3
 
   # Cloths
   rand_protection:
     type: PROTECTION_ENVIRONMENTAL
     level:
       type: random
-      min: 1
+      min: 0
       max: 4
   rand_maybe_top_protection:
     type: PROTECTION_ENVIRONMENTAL
@@ -1185,11 +1323,15 @@ enchantments:
       type: random
       min: 1
       max: 10
+  top_protection:
+    type: PROTECTION_ENVIRONMENTAL
+    # Survival maximum level is 4, here it's 10.
+    level: 10
   rand_thorns:
     type: THORNS
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
   rand_maybe_top_thorns:
     type: THORNS
@@ -1209,33 +1351,45 @@ enchantments:
     type: PROTECTION_FALL
     level:
       type: random
-      min: 1
+      min: 0
       max: 4
+  best_protection_fall_boots:
+    type: PROTECTION_FALL
+    level: 4
   rand_oxygen_helmet:
     type: OXYGEN
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
+  best_oxygen_helmet:
+    type: OXYGEN
+    level: 3
   rand_depth_strider_boots:
     type: DEPTH_STRIDER
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
+  best_depth_strider_boots:
+    type: DEPTH_STRIDER
+    level: 3
   rand_water_worker_helmet:
     type: WATER_WORKER
     level:
       type: random
       min: 0
       max: 1
+  best_water_worker_helmet:
+    type: WATER_WORKER
+    level: 1
 
   # Sword
   rand_damage_all:
     type: DAMAGE_ALL
     level:
       type: random
-      min: 1
+      min: 0
       max: 5
   rand_maybe_top_damage_all:
     type: DAMAGE_ALL
@@ -1244,29 +1398,42 @@ enchantments:
       type: random
       min: 1
       max: 10
+  top_damage_all:
+    type: DAMAGE_ALL
+    # Survival maximum level is 5, here it's 10
+    level: 10
   rand_sword_knockback:
     type: KNOCKBACK
     level:
       type: random
-      min: 1
+      min: 0
       max: 2
+  best_sword_knockback:
+    type: KNOCKBACK
+    level: 2
   rand_sword_fire_aspect:
     type: FIRE_ASPECT
     level:
       type: random
-      min: 1
+      min: 0
       max: 2
+  best_sword_fire_aspect:
+    type: FIRE_ASPECT
+    level: 2
   rand_sword_sweeping_edge:
     type: SWEEPING_EDGE
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
+  best_sword_sweeping_edge:
+    type: SWEEPING_EDGE
+    level: 3
   rand_sword_looting:
     type: LOOT_BONUS_MOBS
     level:
       type: random
-      min: 1
+      min: 0
       max: 3
   rand_maybe_top_sword_looting:
     type: LOOT_BONUS_MOBS
@@ -1275,6 +1442,10 @@ enchantments:
       type: random
       min: 1
       max: 5
+  top_sword_looting:
+    type: LOOT_BONUS_MOBS
+    # Survival maximum level is 3, here it's 5
+    level: 5
 
   # Bow
   rand_maybe_top_bow_damage:
@@ -1284,6 +1455,10 @@ enchantments:
       type: random
       min: 1
       max: 10
+  top_bow_damage:
+    type: ARROW_DAMAGE
+    # Survival maximum level is 5, here it's 10
+    level: 10
   rand_maybe_top_bow_knockback:
     type: ARROW_KNOCKBACK
     # Survival maximum level is 2, here it's 3
@@ -1291,18 +1466,25 @@ enchantments:
       type: random
       min: 1
       max: 3
+  top_bow_knockback:
+    type: ARROW_KNOCKBACK
+    # Survival maximum level is 2, here it's 3
+    level: 3
   rand_bow_fire:
     type: ARROW_FIRE
     level:
       type: random
       min: 0
       max: 1
+  best_bow_fire:
+    type: ARROW_FIRE
+    level: 1
   rand_bow_infinity:
     type: ARROW_INFINITE
     level:
       type: random
       min: 0
       max: 1
-
-# Global templates of drops
-drops:
+  best_bow_infinity:
+    type: ARROW_INFINITE
+    level: 1
