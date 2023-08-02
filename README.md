@@ -15,11 +15,11 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a small jump and movement bonus for a minute.
 * 4% of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in GOLDEN equipment(*1) with random protection and random thorns, a slightly-enchanted golden axe (*1). Drops a gold ignot. (*3)
-* 2% of zombie-like mobs spawn with a small jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and random durability, a well-enchanted sword (*1). Drops a lapis lazuli. (*3)
-* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted bow (*2). Drops a golden apple. (*3)
-* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a large jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements and top thorns, a top-enchanted sword (*2). Drops a diamond. (*3)
+* 2% of zombie-like mobs spawn with a small jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and random durability, a well-enchanted sword (*1). Drops an iron ignot. (*3)
+* 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted bow (*2). Drops a diamond. (*3)
+* 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a large jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements and top thorns, a top-enchanted sword (*2). Drops a lapiz lazuli and a redstone. (*3)
 * 10% of ghasts attack twice as painful.
-* 100% of Illusioners have a huge jump and movement bonus, fire resistance and regeneration, a top-enchanted bow (*2) and don't despawn when the player is far away. Drops an enchanted golden apple. (*3)
+* 100% of Illusioners have a huge jump and movement bonus, fire resistance and regeneration, a top-enchanted bow (*2) and don't despawn when the player is far away. Drops an enchanted golden apple and a netherite scrap. (*3)
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 1% of Creepers are powered, have higher movement speed and max health and explosion radius, explode immediately on the player contact. Drops an end crystal. (*3)

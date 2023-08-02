@@ -34,7 +34,7 @@ public class HItemDropTest extends TestConfigBase {
                 " level: 2"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: null, probability-per-looting-level: 1, material: DIAMOND_SWORD," +
+        assertEquals("{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
                         " durability: 100}",
@@ -58,7 +58,7 @@ public class HItemDropTest extends TestConfigBase {
                 "  durability: 40"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
-        assertEquals("{probability: 50, probability-per-looting-level: 1, material: DIAMOND_SWORD," +
+        assertEquals("{probability: 50, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: THORNS, level: 1}]," +
                         " durability: 40}",
@@ -97,7 +97,7 @@ public class HItemDropTest extends TestConfigBase {
     @Test
     public void testEmptyProbabilityPerLootingLevel() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty probability per looting level of item drop. Use default value 0");
+        e.expectMessage("Empty probability per looting level of item drop. Use default value NULL");
         getFromConfig(getPreparedConfig(
                         "d:",
                         " probability: 50"),
