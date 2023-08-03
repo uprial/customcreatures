@@ -44,42 +44,46 @@ public final class HCustomHorse implements ICustomEntity {
 
     public void applyColor(CustomLogger customLogger, Horse horse) {
         if (color != null) {
+            final Horse.Color oldValue = horse.getColor();
             horse.setColor(color);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set color of %s to %s",
-                        title, format(horse), color));
+                customLogger.debug(String.format("Handle %s modification: set color of %s from %s to %s",
+                        title, format(horse), oldValue, color));
             }
         }
     }
 
     public void applyStyle(CustomLogger customLogger, Horse horse) {
         if (style != null) {
+            final Horse.Style oldValue = horse.getStyle();
             horse.setStyle(style);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set style of %s to %s",
-                        title, format(horse), style));
+                customLogger.debug(String.format("Handle %s modification: set style of %s from %s to %s",
+                        title, format(horse), oldValue, style));
             }
         }
     }
 
     public void applyMaxDomestication(CustomLogger customLogger, Horse horse) {
         if (maxDomestication != null) {
+            final Integer oldValue = horse.getDomestication();
             final Integer newValue = maxDomestication.getValue();
             horse.setMaxDomestication(newValue);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set max. domestication of %s to %d",
-                        title, format(horse), newValue));
+                customLogger.debug(String.format("Handle %s modification: set max. domestication of %s from %d to %d",
+                        title, format(horse), oldValue, newValue));
             }
         }
     }
 
     public void applyJumpStrength(CustomLogger customLogger, Horse horse) {
         if (jumpStrength != null) {
+            final Double oldValue = horse.getJumpStrength();
             final Double newValue = jumpStrength.getValue();
             horse.setJumpStrength(newValue);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set jump strength of %s to %.2f",
-                        title, format(horse), newValue));
+                customLogger.debug(String.format("Handle %s modification: set jump strength of %s from %.2f to %.2f",
+                        title, format(horse), oldValue, newValue));
             }
         }
     }

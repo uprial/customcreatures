@@ -33,10 +33,11 @@ public final class HCustomRabbit implements ICustomEntity {
 
     public void applyType(CustomLogger customLogger, Rabbit rabbit) {
         if (type != null) {
+            final Rabbit.Type oldValue = rabbit.getRabbitType();
             rabbit.setRabbitType(type);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set type of %s to %s",
-                        title, format(rabbit), type));
+                customLogger.debug(String.format("Handle %s modification: set type of %s from %s to %s",
+                        title, format(rabbit), oldValue, type));
             }
         }
     }

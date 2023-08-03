@@ -39,33 +39,36 @@ public final class HCustomCreeper implements ICustomEntity {
 
     public void applyMaxFuseTicks(CustomLogger customLogger, Creeper creeper) {
         if (maxFuseTicks != null) {
+            final Integer oldValue = creeper.getMaxFuseTicks();
             final Integer newValue = maxFuseTicks.getValue();
             creeper.setMaxFuseTicks(newValue);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set max. fuse ticks of %s to %d",
-                        title, format(creeper), newValue));
+                customLogger.debug(String.format("Handle %s modification: set max. fuse ticks of %s from %d to %d",
+                        title, format(creeper), oldValue, newValue));
             }
         }
     }
 
     public void applyExplosionRadius(CustomLogger customLogger, Creeper creeper) {
         if (explosionRadius != null) {
+            final Integer oldValue = creeper.getExplosionRadius();
             final Integer newValue = explosionRadius.getValue();
             creeper.setExplosionRadius(newValue);
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set explosion radius of %s to %d",
-                        title, format(creeper), newValue));
+                customLogger.debug(String.format("Handle %s modification: set explosion radius of %s from %d to %d",
+                        title, format(creeper), oldValue, newValue));
             }
         }
     }
 
     public void applyPowered(CustomLogger customLogger, Creeper creeper) {
         if (powered != null) {
+            final Boolean oldValue = creeper.isPowered();
             final Boolean newValue = powered.getValue();
             creeper.setPowered(newValue);
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set 'powered' flag of %s to %b",
-                        title, format(creeper), newValue));
+                customLogger.debug(String.format("Handle %s modification: set 'powered' flag of %s from %b to %b",
+                        title, format(creeper), oldValue, newValue));
             }
         }
     }

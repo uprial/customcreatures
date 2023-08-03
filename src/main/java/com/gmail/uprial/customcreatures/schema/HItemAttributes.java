@@ -195,11 +195,12 @@ public final class HItemAttributes {
 
     private void applyRemoveWhenFarAway(CustomLogger customLogger, LivingEntity entity) {
         if (removeWhenFarAway != null) {
+            final Boolean oldValue = entity.getRemoveWhenFarAway();
             final Boolean newValue = removeWhenFarAway.getValue();
             entity.setRemoveWhenFarAway(newValue);
             if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set 'remove when far away' flag of %s to %b",
-                        title, format(entity), newValue));
+                customLogger.debug(String.format("Handle %s modification: set 'remove when far away' flag of %s from %b to %b",
+                        title, format(entity), oldValue, newValue));
             }
         }
     }
