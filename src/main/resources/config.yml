@@ -40,12 +40,13 @@ handlers:
   - diamond-skeleton
   - chainmail-zombie
   - angry-ghast
-  - illusioner
-  - better-crossbow
-  - better-trident
+  - insane-illusioner
+  - better-crossbows
+  - better-tridents
   - insane-creeper
   - cool-horse
   - rabbit-killer
+  - better-wither
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -247,6 +248,7 @@ handlers:
 #                                           ### while 1.0 is enough to clear 5 1⁄4 blocks.
 #                                           ###
 #                                           ### You cannot set a jump strength to a value below 0 or above 2.
+#
 #   rabbit:
 #     type: ### Possible types, see
 #https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/Rabbit.Type.html
@@ -549,9 +551,9 @@ player:
       - PLAYER
     probability: 100
   effects:
-    - jump_and_speed
+    - jump_and_speed_2
     - blindness
-  jump_and_speed:
+  jump_and_speed_2:
     types:
       - SPEED
       - JUMP
@@ -572,14 +574,8 @@ golden-zombie:
       - ZOMBIES
     probability: 4
   effects:
-    - jump
+    - effects.jump_1
     - effects.fire_resistance
-  jump:
-    types:
-      - JUMP
-    strength: 1
-    duration: 99999
-
   equipment:
     helmet:
       probability: 100
@@ -647,13 +643,8 @@ iron-zombie:
       - ZOMBIES
     probability: 2
   effects:
-    - jump
+    - effects.jump_1
     - effects.fire_resistance
-  jump:
-    types:
-      - JUMP
-    strength: 2
-    duration: 99999
   equipment:
     helmet:
       probability: 100
@@ -728,15 +719,10 @@ diamond-skeleton:
       - SKELETONS
     probability: 1
   effects:
-    - jump
+    - effects.jump_3
     - effects.glowing
     - effects.fire_resistance
     - effects.regeneration
-  jump:
-    types:
-      - JUMP
-    strength: 3
-    duration: 99999
   equipment:
     helmet:
       probability: 100
@@ -855,15 +841,10 @@ chainmail-zombie:
       - ZOMBIES
     probability: 0.5
   effects:
-    - jump
+    - effects.jump_3
     - effects.glowing
     - effects.fire_resistance
     - effects.regeneration
-  jump:
-    types:
-      - JUMP
-    strength: 4
-    duration: 99999
   equipment:
     helmet:
       probability: 100
@@ -939,7 +920,6 @@ chainmail-zombie:
     - top_chainmail_boots
     - top_chainmail_chest
     - top_chainmail_leggings
-    - top_iron_sword
     - top_diamond_sword
   lapis_lazuli:
     material: LAPIS_LAZULI
@@ -989,17 +969,6 @@ chainmail-zombie:
     enchantments:
       - enchantments.best_durability
       - enchantments.top_protection
-  top_iron_sword:
-    probability: 1
-    probability-per-looting-level: 1
-    material: IRON_SWORD
-    enchantments:
-      - enchantments.best_durability
-      - enchantments.top_damage_all
-      - enchantments.top_sword_looting
-      - enchantments.best_sword_knockback
-      - enchantments.best_sword_fire_aspect
-      - enchantments.best_sword_sweeping_edge
   top_diamond_sword:
     probability: 1
     probability-per-looting-level: 1
@@ -1022,20 +991,15 @@ angry-ghast:
   attributes:
     attack-damage-multiplier: 2.0
 
-illusioner:
+insane-illusioner:
   filter:
     types:
       - ILLUSIONER
     probability: 100
   effects:
-    - jump
+    - effects.jump_5
     - effects.fire_resistance
     - effects.regeneration
-  jump:
-    types:
-      - JUMP
-    strength: 5
-    duration: 99999
   equipment:
     helmet:
       probability: 100
@@ -1102,8 +1066,8 @@ illusioner:
     follow-range: 50.0
     knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
-    # 16(♥) > 32(♥)
-    max-health-multiplier: 2.0
+    # 16(♥) > 20(♥)
+    max-health-multiplier: 1.25
     remove-when-far-away: false
   drops:
     - enchanted_golden_apple
@@ -1120,7 +1084,7 @@ illusioner:
   # 10 levels from 0
   drop-exp: 160
 
-better-crossbow:
+better-crossbows:
   filter:
     types:
       - PILLAGER
@@ -1169,7 +1133,7 @@ better-crossbow:
           min: 1
           max: 7
 
-better-trident:
+better-tridents:
   filter:
     types:
       - DROWNED
@@ -1211,13 +1175,8 @@ insane-creeper:
       - CREEPER
     probability: 1
   effects:
-    - jump
+    - effects.jump_5
     - effects.regeneration
-  jump:
-    types:
-      - JUMP
-    strength: 6
-    duration: 99999
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.75
@@ -1275,6 +1234,20 @@ rabbit-killer:
     rabbit:
       type: THE_KILLER_BUNNY
 
+better-wither:
+  filter:
+    types:
+      - WITHER
+    probability: 100
+  attributes:
+    follow-range: 100.0
+    knockback-resistance: 0.75
+    # Warning: the speed modification doesn't work in practice for withers
+    # movement-speed-multiplier
+    # 300(♥) > 600(♥)
+    max-health-multiplier: 2.0
+    base-armor: 20.0
+
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
 test-handler:
@@ -1304,6 +1277,21 @@ effects:
       - GLOWING
     strength: 1
     duration: 300
+  jump_1:
+    types:
+      - JUMP
+    strength: 1
+    duration: 99999
+  jump_3:
+    types:
+      - JUMP
+    strength: 3
+    duration: 99999
+  jump_5:
+    types:
+      - JUMP
+    strength: 5
+    duration: 99999
 
 # Global templates of drops
 drops:
