@@ -2,11 +2,9 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Horse;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Rabbit;
 
 import java.util.HashSet;
@@ -28,7 +26,7 @@ public final class HCustomRabbit implements ICustomEntity {
     }
 
     @Override
-    public void apply(CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, Entity entity) {
         final Rabbit rabbit = (Rabbit)entity;
         applyType(customLogger, rabbit);
     }

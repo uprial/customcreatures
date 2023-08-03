@@ -1,8 +1,8 @@
 package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 
 import java.util.Set;
 
@@ -10,5 +10,6 @@ import java.util.Set;
 interface ICustomEntity {
     Set<EntityType> getPossibleEntityTypes();
 
-    void apply(CustomLogger customLogger, LivingEntity entity);
+    void apply(CustomLogger customLogger, Entity entity);
+
 }

@@ -20,7 +20,7 @@ public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEv
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
-        if (! event.isCancelled()) {
+        if (!event.isCancelled()) {
             handleSpawn(event.getEntity(), event.getSpawnReason());
         }
     }
@@ -28,6 +28,7 @@ public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEv
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
+        // Skip respawns after The End
         for(ItemStack itemStack : event.getPlayer().getInventory().getContents()) {
             if(itemStack != null) {
                 return;

@@ -3,19 +3,16 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
-import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
-import org.bukkit.entity.LivingEntity;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnumOrDefault;
 
 public final class HCustomHorse implements ICustomEntity {
@@ -37,7 +34,7 @@ public final class HCustomHorse implements ICustomEntity {
     }
 
     @Override
-    public void apply(CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, Entity entity) {
         final Horse horse = (Horse)entity;
         applyColor(customLogger, horse);
         applyStyle(customLogger, horse);

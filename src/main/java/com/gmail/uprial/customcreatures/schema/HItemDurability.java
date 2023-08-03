@@ -5,7 +5,7 @@ import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,7 +22,7 @@ public final class HItemDurability {
         this.durability = durability;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
+    public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
         Damageable itemStackMeta = (Damageable)itemStack.getItemMeta();
 
         if(itemStackMeta != null) {

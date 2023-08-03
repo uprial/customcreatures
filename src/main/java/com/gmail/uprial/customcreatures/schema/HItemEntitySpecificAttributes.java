@@ -2,14 +2,11 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
@@ -25,7 +22,7 @@ public final class HItemEntitySpecificAttributes {
         this.customEntity = customEntity;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity) {
+    public void apply(CustomLogger customLogger, Entity entity) {
         if (!customEntity.getPossibleEntityTypes().contains(entity.getType())) {
             customLogger.error(String.format("Can't handle %s of %s: not a possible entity type", title, format(entity)));
             return;

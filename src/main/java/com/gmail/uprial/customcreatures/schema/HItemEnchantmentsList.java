@@ -3,7 +3,7 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public final class HItemEnchantmentsList {
         this.itemEnchantments = itemEnchantments;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
+    public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
         for (HItemEnchantment itemEnchantment : itemEnchantments) {
             itemEnchantment.apply(customLogger, entity, itemStack);
         }

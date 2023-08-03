@@ -7,7 +7,7 @@ import com.gmail.uprial.customcreatures.schema.enchantment.IEnchantmentEnum;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
@@ -25,13 +25,13 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
         this.level = level;
     }
 
-    public void apply(CustomLogger customLogger, LivingEntity entity, ItemStack itemStack) {
+    public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
         if(customLogger.isDebugMode()) {
             for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
                 if (enchantment.getType().conflictsWith(existsEnchantment)) {
                     customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
                             title, format(entity), enchantment.getType().toString(),
-                            existsEnchantment.toString()));
+                            existsEnchantment));
                 }
             }
         }

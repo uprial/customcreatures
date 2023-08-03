@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -89,7 +90,7 @@ public final class HItem {
         }
     }
 
-    private void applyEntitySpecificAttributes(CustomLogger customLogger, LivingEntity entity) {
+    private void applyEntitySpecificAttributes(CustomLogger customLogger, Entity entity) {
         if (entitySpecificAttributes != null) {
             entitySpecificAttributes.apply(customLogger, entity);
         }

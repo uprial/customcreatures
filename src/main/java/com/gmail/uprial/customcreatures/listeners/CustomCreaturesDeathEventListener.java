@@ -42,6 +42,5 @@ public class CustomCreaturesDeathEventListener extends AbstractCustomCreaturesEv
         if (creaturesConfig != null) {
             creaturesConfig.handleDeath(plugin, customLogger, event, lootBonusMobs);
         }
-
     }
 }
