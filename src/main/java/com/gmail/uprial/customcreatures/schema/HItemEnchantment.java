@@ -9,6 +9,9 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
+
+import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
@@ -27,7 +30,14 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
     public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
         if(customLogger.isDebugMode()) {
-            for (Enchantment existsEnchantment : itemStack.getEnchantments().keySet()) {
+            final Set<Enchantment> existsEnchantments;
+            if(itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
+                final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta)itemStack.getItemMeta();
+                existsEnchantments = itemMeta.getStoredEnchants().keySet();
+            } else {
+                existsEnchantments = itemStack.getEnchantments().keySet();
+            }
+            for (Enchantment existsEnchantment : existsEnchantments) {
                 if (enchantment.getType().conflictsWith(existsEnchantment)) {
                     customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
                             title, format(entity), enchantment.getType().toString(),
@@ -35,10 +45,14 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
                 }
             }
         }
-        if (! enchantment.getType().canEnchantItem(itemStack)) {
-            customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
-            return ;
+
+        if(!(itemStack.getItemMeta() instanceof EnchantmentStorageMeta)) {
+            if(!enchantment.getType().canEnchantItem(itemStack)) {
+                customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
+                return;
+            }
         }
+
 
         int enchantmentLevel = level.getValue();
 
@@ -49,7 +63,13 @@ public final class HItemEnchantment<T extends Enum & IEnchantmentEnum> {
 
         if (enchantmentLevel > 0) {
             try {
-                itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
+                if(itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
+                    final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta)itemStack.getItemMeta();
+                    itemMeta.addStoredEnchant(enchantment.getType(), enchantmentLevel, true);
+                    itemStack.setItemMeta(itemMeta);
+                } else {
+                    itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
+                }
             } catch (IllegalArgumentException e) {
                 customLogger.error(String.format("Can't handle %s of %s: %s",
                         title, format(entity), e.getMessage()));
