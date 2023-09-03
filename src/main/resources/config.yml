@@ -779,6 +779,7 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
+        - enchantments.rand_swift_sneak
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
@@ -909,6 +910,7 @@ chainmail-zombie:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
+        - enchantments.rand_swift_sneak
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
@@ -1067,6 +1069,7 @@ insane-illusioner:
       enchantments:
         - enchantments.rand_durability
         - enchantments.rand_maybe_top_protection
+        - enchantments.rand_swift_sneak
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
@@ -1279,13 +1282,46 @@ better-wither:
     types:
       - WITHER
     probability: 100
+  equipment:
+    helmet:
+      probability: 100
+      drop-chance: 0
+      material-type: IRON
+      durability: 100
+      enchantments:
+        - enchantments.best_durability
+        - enchantments.top_thorns
+    boots:
+      probability: 100
+      drop-chance: 0
+      material-type: IRON
+      durability: 100
+      enchantments:
+        - enchantments.best_durability
+        - enchantments.top_thorns
+    chest:
+      probability: 100
+      drop-chance: 0
+      material-type: IRON
+      durability: 100
+      enchantments:
+        - enchantments.best_durability
+        - enchantments.top_thorns
+    leggings:
+      probability: 100
+      drop-chance: 0
+      material-type: IRON
+      durability: 100
+      enchantments:
+        - enchantments.best_durability
+        - enchantments.top_thorns
   attributes:
     follow-range: 100.0
     knockback-resistance: 0.75
     # Warning: the speed modification doesn't work in practice for withers
     # movement-speed-multiplier
-    # 300(♥) > 600(♥)
-    max-health-multiplier: 2.0
+    # 300(♥) > 75(♥)
+    max-health-multiplier: 0.25
     base-armor: 20.0
 
 # This handler isn’t listed in handlers’ list and can be used
@@ -1426,6 +1462,10 @@ enchantments:
       type: random
       min: 1
       max: 5
+  top_thorns:
+    type: THORNS
+    # Survival maximum level is 3, here it's 5
+    level: 10
   rand_protection_fall_boots:
     type: PROTECTION_FALL
     level:
@@ -1471,6 +1511,12 @@ enchantments:
     # the swift sneak level above 5 doesn't make sense.
     #
     level: 5
+  rand_swift_sneak:
+    type: SWIFT_SNEAK
+    level:
+      type: random
+      min: 0
+      max: 3
 
 
   # Sword
