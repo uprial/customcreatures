@@ -1,2 +1,2 @@
 # New features
-* Increased changes of bunny-killer
+* Increased chances of bunny-killer
