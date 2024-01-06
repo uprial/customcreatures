@@ -1267,7 +1267,7 @@ rabbit-killer:
   filter:
     types:
       - RABBIT
-    probability: 1
+    probability: 5
   attributes:
     follow-range: 50.0
     movement-speed-multiplier: 2.0

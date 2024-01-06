@@ -24,7 +24,7 @@ This is a fully customizable Minecraft (Bukkit) plugin that allows you to contro
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 1% of Creepers are powered, have higher movement speed and max health and explosion radius, explode immediately on the player contact. Drops an end crystal. (*3)
 * 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
-* 1% of Rabbits are the killer bunnies.
+* 5% of Rabbits are the killer bunnies.
 * 100% of Withers have more health and armor.
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
