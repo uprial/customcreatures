@@ -617,6 +617,7 @@ golden-zombie:
       enchantments:
         - enchantments.rand_protection
         - enchantments.rand_thorns
+    # Damage in "hard": 6.75(♥)
     main-hand:
       probability: 100
       material: GOLDEN_AXE
@@ -690,6 +691,7 @@ iron-zombie:
         - enchantments.rand_durability
         - enchantments.rand_protection
         - enchantments.rand_thorns
+    # Damage in "hard": 6.00(♥) - 8.25(♥)
     main-hand:
       probability: 100
       material: IRON_SWORD
@@ -781,6 +783,7 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_swift_sneak
         - enchantments.rand_maybe_top_thorns
+    # Damage in "hard": 3.00(♥) - 5.25(♥)
     main-hand:
       probability: 100
       material: BOW
@@ -912,6 +915,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_swift_sneak
         - enchantments.rand_maybe_top_thorns
+    # Damage in "hard": 6.75(♥) - 9.75(♥)
     main-hand:
       probability: 100
       # x0.5
@@ -1528,11 +1532,12 @@ enchantments:
       max: 5
   rand_maybe_top_damage_all:
     type: DAMAGE_ALL
-    # Survival maximum level is 5, here it's 10
+    # Survival maximum level is 5, here it's 7
+    # which leads to damage in "hard": 6.75(♥) - 9.75(♥)
     level:
       type: random
       min: 1
-      max: 10
+      max: 7
   top_damage_all:
     type: DAMAGE_ALL
     # Survival maximum level is 5, here it's 10
