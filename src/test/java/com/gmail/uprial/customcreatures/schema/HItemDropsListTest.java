@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static com.gmail.uprial.customcreatures.schema.HItemDropsList.getFromConfig;
-import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static org.junit.Assert.*;
 
 public class HItemDropsListTest extends TestConfigBase {

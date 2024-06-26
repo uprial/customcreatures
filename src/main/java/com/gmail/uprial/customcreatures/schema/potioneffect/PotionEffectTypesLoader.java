@@ -1,7 +1,5 @@
 package com.gmail.uprial.customcreatures.schema.potioneffect;
 
-import org.bukkit.potion.PotionEffectType;
-
 /*
     This module supports backward compatibility of potion effects.
  */

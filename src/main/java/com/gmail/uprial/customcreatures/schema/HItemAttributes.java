@@ -31,7 +31,7 @@ public final class HItemAttributes {
      health of entity is lower than its max. health.
      So, we reduce an entity's health by this value.
       */
-    private static double HEALTH_REDUCTION = 0.000001;
+    private static final double HEALTH_REDUCTION = 0.000001;
 
     private static final String MK_ATTACK_DAMAGE_MULTIPLIER = "attack-damage-multiplier";
 

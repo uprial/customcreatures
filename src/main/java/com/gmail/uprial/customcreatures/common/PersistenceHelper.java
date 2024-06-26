@@ -23,7 +23,7 @@ import static com.gmail.uprial.customcreatures.common.MetadataHelper.setMetadata
  */
 public class PersistenceHelper {
     // Since we're in the global scope of scoreboard tags, the prefix makes our tags unique.
-    private static String SCOREBOARD_TAGS_PREFIX = "ph_";
+    private static final String SCOREBOARD_TAGS_PREFIX = "ph_";
 
     /*
         Persistent data in the scoreboard is only needed for the server restarts. Then it's cached into metadata.
@@ -32,9 +32,9 @@ public class PersistenceHelper {
             a) when there is no cache in metadata at all
             b) and when there is on data in the scoreboard but this absence needs to be cached too.
      */
-    private static String CACHED_NULL_VALUE = "CACHED_NULL";
+    private static final String CACHED_NULL_VALUE = "CACHED_NULL";
 
-    private static String KV_DELIMITER = "_";
+    private static final String KV_DELIMITER = "_";
 
     public static void setDoublePersistentMetadata(JavaPlugin plugin, LivingEntity entity, String key, Double value) {
         setPersistentMetadata(plugin, entity, key, value, DoubleHelper::formatDoubleValue);
@@ -91,6 +91,7 @@ public class PersistenceHelper {
             if(CACHED_NULL_VALUE.equals(metadata)) {
                 return null;
             } else {
+                //noinspection unchecked
                 return (T)metadata;
             }
         }

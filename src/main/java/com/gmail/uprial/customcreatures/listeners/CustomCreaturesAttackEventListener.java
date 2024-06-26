@@ -18,7 +18,6 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
         super(plugin, customLogger);
     }
 
-    @SuppressWarnings({"unused", "MethodMayBeStatic"})
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
         if (! event.isCancelled()) {

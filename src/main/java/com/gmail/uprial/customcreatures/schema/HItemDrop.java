@@ -9,11 +9,9 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
-import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 import static com.gmail.uprial.customcreatures.schema.numerics.RandomDistributionType.NORMAL;
 

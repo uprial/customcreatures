@@ -29,11 +29,9 @@ class CustomCreaturesCron extends BukkitRunnable {
     @Override
     public void run() {
         Runnable task;
-        //noinspection NestedAssignment,MethodCallInLoopCondition
         while((task = ACTIVE_TASKS.poll()) != null) {
             task.run();
         }
-        //noinspection NestedAssignment,MethodCallInLoopCondition
         while((task = DEFERRED_TASKS.poll()) != null) {
             ACTIVE_TASKS.add(task);
         }

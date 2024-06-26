@@ -5,13 +5,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.List;
-
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.*;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.*;
 import static org.junit.Assert.*;
 
-@SuppressWarnings("ClassWithTooManyMethods")
 public class ConfigReaderNumbersTest extends TestConfigBase {
     @Rule
     public final ExpectedException e = ExpectedException.none();

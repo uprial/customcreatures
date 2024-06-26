@@ -57,7 +57,6 @@ public final class ConfigReaderSimple {
         return getBooleanInternal(config, customLogger, key, title, null);
     }
 
-        @SuppressWarnings({"BooleanParameter", "BooleanMethodNameMustStartWithQuestion"})
     private static boolean getBooleanInternal(FileConfiguration config, CustomLogger customLogger, String key, String title, Boolean defaultValue) throws InvalidConfigException {
         String strValue = config.getString(key);
 

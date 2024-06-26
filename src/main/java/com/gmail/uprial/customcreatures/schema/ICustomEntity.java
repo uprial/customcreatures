@@ -6,7 +6,6 @@ import org.bukkit.entity.EntityType;
 
 import java.util.Set;
 
-@SuppressWarnings("MarkerInterface")
 interface ICustomEntity {
     Set<EntityType> getPossibleEntityTypes();
 

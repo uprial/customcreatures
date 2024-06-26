@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
-import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipment.getFromConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

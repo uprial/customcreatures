@@ -8,7 +8,6 @@ import org.junit.rules.ExpectedException;
 import java.util.Set;
 
 import static com.gmail.uprial.customcreatures.config.ConfigReaderLists.getItemsList;
-import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

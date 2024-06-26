@@ -55,7 +55,7 @@ public final class HItemEntitySpecificAttributes {
 
         final Set<EntityType> nonPossibleEntityTypes = new HashSet<>(filter.getPossibleEntityTypes());
         nonPossibleEntityTypes.removeAll(customEntity.getPossibleEntityTypes());
-                ;
+
         if(!nonPossibleEntityTypes.isEmpty()) {
             throw new InvalidConfigException(String.format(
                     "Possible entity types of filter of %s (%s) are wider than of %s (%s): %s",
