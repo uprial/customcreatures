@@ -28,12 +28,12 @@ public class HItemInHandTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "e1:",
-                " type: PROTECTION_ENVIRONMENTAL",
+                " type: PROTECTION",
                 " level: 2"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
         assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
+                " enchantments: [{type: PROTECTION, level: 2}]," +
                 " drop-chance: 1, durability: 100}",
                 itemInHand.toString());
     }

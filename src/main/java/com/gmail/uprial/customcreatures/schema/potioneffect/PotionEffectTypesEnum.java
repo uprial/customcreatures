@@ -4,16 +4,16 @@ import org.bukkit.potion.PotionEffectType;
 
 public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     SPEED(PotionEffectType.SPEED),
-    SLOW(PotionEffectType.SLOW),
-    FAST_DIGGING(PotionEffectType.FAST_DIGGING),
-    SLOW_DIGGING(PotionEffectType.SLOW_DIGGING),
-    INCREASE_DAMAGE(PotionEffectType.INCREASE_DAMAGE),
-    HEAL(PotionEffectType.HEAL),
-    HARM(PotionEffectType.HARM),
-    JUMP(PotionEffectType.JUMP),
-    CONFUSION(PotionEffectType.CONFUSION),
+    SLOWNESS(PotionEffectType.SLOWNESS),
+    HASTE(PotionEffectType.HASTE),
+    MINING_FATIGUE(PotionEffectType.MINING_FATIGUE),
+    STRENGTH(PotionEffectType.STRENGTH),
+    INSTANT_HEALTH(PotionEffectType.INSTANT_HEALTH),
+    INSTANT_DAMAGE(PotionEffectType.INSTANT_DAMAGE),
+    JUMP_BOOST(PotionEffectType.JUMP_BOOST),
+    NAUSEA(PotionEffectType.NAUSEA),
     REGENERATION(PotionEffectType.REGENERATION),
-    DAMAGE_RESISTANCE(PotionEffectType.DAMAGE_RESISTANCE),
+    RESISTANCE(PotionEffectType.RESISTANCE),
     FIRE_RESISTANCE(PotionEffectType.FIRE_RESISTANCE),
     WATER_BREATHING(PotionEffectType.WATER_BREATHING),
     INVISIBILITY(PotionEffectType.INVISIBILITY),
@@ -35,7 +35,13 @@ public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
     DOLPHINS_GRACE(PotionEffectType.DOLPHINS_GRACE),
     BAD_OMEN(PotionEffectType.BAD_OMEN),
     HERO_OF_THE_VILLAGE(PotionEffectType.HERO_OF_THE_VILLAGE),
-    DARKNESS(PotionEffectType.DARKNESS);
+    DARKNESS(PotionEffectType.DARKNESS),
+    TRIAL_OMEN(PotionEffectType.TRIAL_OMEN),
+    RAID_OMEN(PotionEffectType.RAID_OMEN),
+    WIND_CHARGED(PotionEffectType.WIND_CHARGED),
+    WEAVING(PotionEffectType.WEAVING),
+    OOZING(PotionEffectType.OOZING),
+    INFESTED(PotionEffectType.INFESTED);
 
     private final PotionEffectType type;
 

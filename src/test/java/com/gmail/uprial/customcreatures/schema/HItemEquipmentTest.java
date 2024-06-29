@@ -68,27 +68,27 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  material: DIAMOND_SWORD",
                 "  amount: 1",
                 "e1:",
-                " type: PROTECTION_ENVIRONMENTAL",
+                " type: PROTECTION",
                 " level: 1"),
                 getParanoiacCustomLogger(), "e", "equipment");
         assertNotNull(itemEquipment);
         assertEquals("{helmet: {probability: null, material-type: IRON," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}," +
                 " boots: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}," +
                 " chest: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}," +
                 " leggings: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}," +
                 " main-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}," +
                 " off-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1}]," +
                 " drop-chance: 1, durability: 100}}",
                 itemEquipment.toString());
     }

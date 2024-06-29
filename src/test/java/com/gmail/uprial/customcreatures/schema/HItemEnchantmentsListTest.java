@@ -24,11 +24,11 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
                 "  type: THORNS",
                 "  level: 1",
                 "e2:",
-                "  type: LUCK",
+                "  type: LUCK_OF_THE_SEA",
                 "  level: 1"),
                 getParanoiacCustomLogger(), "ee", "enchantments list");
         assertNotNull(itemEnchantmentsList);
-        assertEquals("[{type: THORNS, level: 1}, {type: LUCK, level: 1}]", itemEnchantmentsList.toString());
+        assertEquals("[{type: THORNS, level: 1}, {type: LUCK_OF_THE_SEA, level: 1}]", itemEnchantmentsList.toString());
     }
 
     @Test

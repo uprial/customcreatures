@@ -27,13 +27,13 @@ public class HItemDropsListTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "e1:",
-                " type: PROTECTION_ENVIRONMENTAL",
+                " type: PROTECTION",
                 " level: 2"),
                 getParanoiacCustomLogger(), "dd", "drops list");
         assertNotNull(itemDropsList);
         assertEquals("[{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                 " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 1," +
-                " enchantments: [{type: PROTECTION_ENVIRONMENTAL, level: 2}]," +
+                " enchantments: [{type: PROTECTION, level: 2}]," +
                 " durability: 100}]", itemDropsList.toString());
     }
 

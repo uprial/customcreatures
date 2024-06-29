@@ -1,16 +1,17 @@
 package com.gmail.uprial.customcreatures.schema.potioneffect;
 
+import com.gmail.uprial.customcreatures.helpers.TestServerBase;
 import org.bukkit.potion.PotionEffectType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PotionEffectTypesEnumTest {
+public class PotionEffectTypesEnumTest extends TestServerBase {
     @Test
-    public void testSequence() throws Exception {
+    public void testDeprecatedSequence() throws Exception {
         int i = 1;
         for(PotionEffectTypesEnum potionEffectType : PotionEffectTypesEnum.values()) {
-            assertEquals(i, potionEffectType.getType().hashCode());
+            assertEquals(potionEffectType.getType(), PotionEffectType.getById(i));
             i += 1;
         }
     }

@@ -260,33 +260,35 @@ handlers:
 #
 # <type-set>: ANIMALS | GOLEMS | MONSTERS | ZOMBIES | SKELETONS | FLYING_MOBS
 #
-# ANIMALS: [ALLAY, AXOLOTL, BAT, BEE,
-#           CAMEL, CAT, CHICKEN, COD,
-#           COW, DOLPHIN, DONKEY, FOX,
-#           FROG, GLOW_SQUID, GOAT, HORSE,
-#           LLAMA, MULE, MUSHROOM_COW, OCELOT,
-#           PANDA, PARROT, PIG, POLAR_BEAR,
-#           PUFFERFISH, RABBIT, SALMON, SHEEP,
-#           SNIFFER, SQUID, STRIDER, TADPOLE,
-#           TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]
-# GOLEMS: [IRON_GOLEM, SNOWMAN]
-# MONSTERS: [BLAZE, CAVE_SPIDER, CREEPER, DROWNED,
-#           ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE,
-#            EVOKER,  EVOKER_FANGS, GHAST, GIANT,
-#           GUARDIAN, HOGLIN, HUSK, ILLUSIONER,
-#            MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE,
-#           PILLAGER, RAVAGER, SHULKER, SILVERFISH,
-#            SKELETON, SKELETON_HORSE, SLIME, SPIDER,
-#           STRAY, VEX, VINDICATOR, WARDEN,
-#            WITCH, WITHER, WITHER_SKELETON, ZOGLIN,
-#           ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]
-# ZOMBIES: [DROWNED, GIANT, HUSK, PIGLIN,
-#           PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER
-#           ZOMBIFIED_PIGLIN]
+# ANIMALS: [ALLAY, ARMADILLO, AXOLOTL, BAT,
+#           BEE, CAMEL, CAT, CHICKEN,
+#           COD, COW, DOLPHIN, DONKEY, FOX,
+#           FROG, GLOW_SQUID, GOAT,
+#           HORSE, LLAMA, MOOSHROOM, MULE,
+#           OCELOT, PANDA, PARROT, PIG,
+#           POLAR_BEAR, PUFFERFISH, RABBIT, SALMON,
+#           SHEEP, SNIFFER, SQUID, STRIDER,
+#           TADPOLE, TROPICAL_FISH, TURTLE, WOLF,
+#           ZOMBIE_HORSE]
+# GOLEMS: [IRON_GOLEM, SNOW_GOLEM]
+# MONSTERS: [BLAZE, BOGGED, BREEZE, CAVE_SPIDER,
+#            CREEPER, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON,
+#            ENDERMAN, ENDERMITE, EVOKER, EVOKER_FANGS,
+#            GHAST, GIANT, GUARDIAN, HOGLIN,
+#            HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM,
+#            PIGLIN, PIGLIN_BRUTE, PILLAGER, RAVAGER,
+#            SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE,
+#            SLIME, SPIDER, STRAY, VEX,
+#            VINDICATOR, WARDEN, WITCH, WITHER,
+#            WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER,
+#            ZOMBIFIED_PIGLIN]
+# ZOMBIES: [BOGGED, DROWNED, GIANT, HUSK,
+#           PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE,
+#           ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]
 # SKELETONS: [SKELETON, STRAY, WITHER_SKELETON]
-# FLYING_MOBS: [ALLAY, BAT, BEE, ENDER_DRAGON,
-#               GHAST, PARROT, PHANTOM, VEX,
-#               WITHER]
+# FLYING_MOBS: [ALLAY, BAT, BEE, BREEZE,
+#               ENDER_DRAGON, GHAST, PARROT, PHANTOM,
+#               VEX, WITHER]
 #
 # #### Effect ####
 #
@@ -450,7 +452,7 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/enchantments/Enchantment.html
 #                             ###
 #                             ### Hint: common protection's enchantment
-#                             ### is "PROTECTION_ENVIRONMENTAL".
+#                             ### is "PROTECTION".
 #
 #   level: <int-value:0..100>  ### Level of enchantment.
 #                              ###
@@ -556,7 +558,7 @@ player:
   _jump_and_speed_2:
     types:
       - SPEED
-      - JUMP
+      - JUMP_BOOST
     strength: 2
     duration: 60
   _blindness:
@@ -626,8 +628,8 @@ golden-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
-        - enchantments.rand_dig_speed
+        - enchantments.rand_unbreaking
+        - enchantments.rand_efficiency
   attributes:
     movement-speed-multiplier: 1.2
   drops:
@@ -655,7 +657,7 @@ iron-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_protection
         - enchantments.rand_thorns
     boots:
@@ -666,7 +668,7 @@ iron-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_protection
         - enchantments.rand_thorns
     chest:
@@ -677,7 +679,7 @@ iron-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_protection
         - enchantments.rand_thorns
     leggings:
@@ -688,7 +690,7 @@ iron-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_protection
         - enchantments.rand_thorns
     # Damage in "hard": 6.00(♥) - 8.25(♥)
@@ -700,8 +702,8 @@ iron-zombie:
         min: 25
         max: 50
       enchantments:
-        - enchantments.rand_durability
-        - enchantments.rand_damage_all
+        - enchantments.rand_unbreaking
+        - enchantments.rand_sword_sharpness
         - enchantments.rand_sword_looting
         - enchantments.rand_sword_knockback
         - enchantments.rand_sword_fire_aspect
@@ -736,10 +738,10 @@ diamond-skeleton:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_oxygen_helmet
-        - enchantments.rand_water_worker_helmet
+        - enchantments.rand_helmet_respiration
+        - enchantments.rand_helmet_aqua_affinity
         - enchantments.rand_maybe_top_thorns
     boots:
       probability: 100
@@ -751,10 +753,10 @@ diamond-skeleton:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_protection_fall_boots
-        - enchantments.rand_depth_strider_boots
+        - enchantments.rand_boots_feather_falling
+        - enchantments.rand_boots_depth_strider
         - enchantments.rand_maybe_top_thorns
     chest:
       probability: 100
@@ -766,7 +768,7 @@ diamond-skeleton:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
@@ -779,9 +781,9 @@ diamond-skeleton:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_swift_sneak
+        - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
     # Damage in "hard": 3.00(♥) - 5.25(♥)
     main-hand:
@@ -792,10 +794,10 @@ diamond-skeleton:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
-        - enchantments.rand_maybe_top_bow_damage
-        - enchantments.rand_maybe_top_bow_knockback
-        - enchantments.rand_bow_fire
+        - enchantments.rand_unbreaking
+        - enchantments.rand_maybe_top_bow_power
+        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_flame
         - enchantments.rand_bow_infinity
   attributes:
     follow-range: 50.0
@@ -817,20 +819,20 @@ diamond-skeleton:
     probability-per-looting-level: 0.5
     material: DIAMOND_HELMET
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.top_protection
-      - enchantments.best_oxygen_helmet
-      - enchantments.best_water_worker_helmet
+      - enchantments.best_helmet_respiration
+      - enchantments.best_helmet_aqua_affinity
       - enchantments.best_mending
   _top_diamond_boots:
     probability: 0.5
     probability-per-looting-level: 0.5
     material: DIAMOND_BOOTS
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.top_protection
-      - enchantments.best_protection_fall_boots
-      - enchantments.best_depth_strider_boots
+      - enchantments.best_boots_feather_falling
+      - enchantments.best_boots_depth_strider
       - enchantments.best_mending
       # No soul speed enchantments for boots, because
       # according to https://minecraft.fandom.com/wiki/Soul_Speed
@@ -840,7 +842,7 @@ diamond-skeleton:
     probability-per-looting-level: 0.5
     material: DIAMOND_CHESTPLATE
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.top_protection
       - enchantments.best_mending
   _top_diamond_leggings:
@@ -848,9 +850,9 @@ diamond-skeleton:
     probability-per-looting-level: 0.5
     material: DIAMOND_LEGGINGS
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.top_protection
-      - enchantments.top_swift_sneak
+      - enchantments.top_leggings_swift_sneak
       - enchantments.best_mending
   # 5 levels from 0
   drop-exp: 55
@@ -874,10 +876,10 @@ chainmail-zombie:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_oxygen_helmet
-        - enchantments.rand_water_worker_helmet
+        - enchantments.rand_helmet_respiration
+        - enchantments.rand_helmet_aqua_affinity
         - enchantments.rand_maybe_top_thorns
     boots:
       probability: 100
@@ -887,10 +889,10 @@ chainmail-zombie:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_protection_fall_boots
-        - enchantments.rand_depth_strider_boots
+        - enchantments.rand_boots_feather_falling
+        - enchantments.rand_boots_depth_strider
         - enchantments.rand_maybe_top_thorns
     chest:
       probability: 100
@@ -900,7 +902,7 @@ chainmail-zombie:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
@@ -911,9 +913,9 @@ chainmail-zombie:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_swift_sneak
+        - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
     # Damage in "hard": 6.75(♥) - 9.75(♥)
     main-hand:
@@ -926,8 +928,8 @@ chainmail-zombie:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
-        - enchantments.rand_maybe_top_damage_all
+        - enchantments.rand_unbreaking
+        - enchantments.rand_maybe_top_sword_sharpness
         - enchantments.rand_maybe_top_sword_looting
         - enchantments.rand_sword_knockback
         - enchantments.rand_sword_fire_aspect
@@ -966,40 +968,40 @@ chainmail-zombie:
     probability-per-looting-level: 1
     material: CHAINMAIL_HELMET
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.best_protection
-      - enchantments.best_oxygen_helmet
-      - enchantments.best_water_worker_helmet
+      - enchantments.best_helmet_respiration
+      - enchantments.best_helmet_aqua_affinity
   _top_chainmail_boots:
     probability: 1
     probability-per-looting-level: 1
     material: CHAINMAIL_BOOTS
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.best_protection
-      - enchantments.best_protection_fall_boots
-      - enchantments.best_depth_strider_boots
+      - enchantments.best_boots_feather_falling
+      - enchantments.best_boots_depth_strider
   _top_chainmail_chest:
     probability: 1
     probability-per-looting-level: 1
     material: CHAINMAIL_CHESTPLATE
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.best_protection
   _top_chainmail_leggings:
     probability: 1
     probability-per-looting-level: 1
     material: CHAINMAIL_LEGGINGS
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.best_protection
   _top_diamond_sword:
     probability: 0.5
     probability-per-looting-level: 0.5
     material: DIAMOND_SWORD
     enchantments:
-      - enchantments.best_durability
-      - enchantments.top_damage_all
+      - enchantments.best_unbreaking
+      - enchantments.top_sword_sharpness
       - enchantments.top_sword_looting
       - enchantments.best_sword_knockback
       - enchantments.best_sword_fire_aspect
@@ -1034,10 +1036,10 @@ insane-illusioner:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_oxygen_helmet
-        - enchantments.rand_water_worker_helmet
+        - enchantments.rand_helmet_respiration
+        - enchantments.rand_helmet_aqua_affinity
         - enchantments.rand_maybe_top_thorns
     boots:
       probability: 100
@@ -1047,10 +1049,10 @@ insane-illusioner:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_protection_fall_boots
-        - enchantments.rand_depth_strider_boots
+        - enchantments.rand_boots_feather_falling
+        - enchantments.rand_boots_depth_strider
         - enchantments.rand_maybe_top_thorns
     chest:
       probability: 100
@@ -1060,7 +1062,7 @@ insane-illusioner:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
@@ -1071,9 +1073,9 @@ insane-illusioner:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_swift_sneak
+        - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
     main-hand:
       probability: 100
@@ -1083,10 +1085,10 @@ insane-illusioner:
         min: 10
         max: 25
       enchantments:
-        - enchantments.rand_durability
-        - enchantments.rand_maybe_top_bow_damage
-        - enchantments.rand_maybe_top_bow_knockback
-        - enchantments.rand_bow_fire
+        - enchantments.rand_unbreaking
+        - enchantments.rand_maybe_top_bow_power
+        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_flame
         - enchantments.rand_bow_infinity
   attributes:
     follow-range: 50.0
@@ -1124,9 +1126,9 @@ insane-illusioner:
     probability-per-looting-level: 5
     material: DIAMOND_PICKAXE
     enchantments:
-      - enchantments.best_durability
+      - enchantments.best_unbreaking
       - enchantments.best_silk_touch
-      - enchantments.top_dig_speed
+      - enchantments.top_efficiency
       - enchantments.best_mending
   # 10 levels from 0
   drop-exp: 160
@@ -1148,7 +1150,7 @@ better-crossbows:
         min: 25
         max: 100
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - rand_crossbow_quick_charge
         - rand_crossbow_multishot
         - rand_maybe_top_crossbow_piercing
@@ -1196,7 +1198,7 @@ better-tridents:
         min: 25
         max: 100
       enchantments:
-        - enchantments.rand_durability
+        - enchantments.rand_unbreaking
         - rand_trident_channeling
         - rand_maybe_top_trident_impaling
 
@@ -1293,7 +1295,7 @@ better-wither:
       material-type: IRON
       durability: 100
       enchantments:
-        - enchantments.best_durability
+        - enchantments.best_unbreaking
         - enchantments.top_thorns
     boots:
       probability: 100
@@ -1301,7 +1303,7 @@ better-wither:
       material-type: IRON
       durability: 100
       enchantments:
-        - enchantments.best_durability
+        - enchantments.best_unbreaking
         - enchantments.top_thorns
     chest:
       probability: 100
@@ -1309,7 +1311,7 @@ better-wither:
       material-type: IRON
       durability: 100
       enchantments:
-        - enchantments.best_durability
+        - enchantments.best_unbreaking
         - enchantments.top_thorns
     leggings:
       probability: 100
@@ -1317,7 +1319,7 @@ better-wither:
       material-type: IRON
       durability: 100
       enchantments:
-        - enchantments.best_durability
+        - enchantments.best_unbreaking
         - enchantments.top_thorns
   attributes:
     follow-range: 100.0
@@ -1359,17 +1361,17 @@ effects:
     duration: 300
   jump_1:
     types:
-      - JUMP
+      - JUMP_BOOST
     strength: 1
     duration: 99999
   jump_3:
     types:
-      - JUMP
+      - JUMP_BOOST
     strength: 3
     duration: 99999
   jump_5:
     types:
-      - JUMP
+      - JUMP_BOOST
     strength: 5
     duration: 99999
 
@@ -1380,23 +1382,23 @@ drops:
     probability-per-looting-level: 1
     material: BOW
     enchantments:
-      - enchantments.best_durability
-      - enchantments.top_bow_damage
-      - enchantments.top_bow_knockback
-      - enchantments.best_bow_fire
+      - enchantments.best_unbreaking
+      - enchantments.top_bow_power
+      - enchantments.top_bow_punch
+      - enchantments.best_bow_flame
       - enchantments.best_bow_infinity
 
 # Global templates of enchantments
 enchantments:
   # Tools
-  rand_dig_speed:
-    type: DIG_SPEED
+  rand_efficiency:
+    type: EFFICIENCY
     level:
       type: random
       min: 0
       max: 5
-  top_dig_speed:
-    type: DIG_SPEED
+  top_efficiency:
+    type: EFFICIENCY
     # Survival maximum level is 5, here it's 10.
     level: 10
   best_silk_touch:
@@ -1404,14 +1406,14 @@ enchantments:
     level: 1
 
   # Cloths and weapon
-  rand_durability:
-    type: DURABILITY
+  rand_unbreaking:
+    type: UNBREAKING
     level:
       type: random
       min: 0
       max: 3
-  best_durability:
-    type: DURABILITY
+  best_unbreaking:
+    type: UNBREAKING
     level: 3
   best_mending:
     type: MENDING
@@ -1419,13 +1421,13 @@ enchantments:
 
   # Cloths
   rand_protection:
-    type: PROTECTION_ENVIRONMENTAL
+    type: PROTECTION
     level:
       type: random
       min: 0
       max: 4
   rand_maybe_top_protection:
-    type: PROTECTION_ENVIRONMENTAL
+    type: PROTECTION
     #
     # Survival maximum level is 4, here it's 10.
     #
@@ -1440,10 +1442,10 @@ enchantments:
       min: 1
       max: 10
   best_protection:
-    type: PROTECTION_ENVIRONMENTAL
+    type: PROTECTION
     level: 4
   top_protection:
-    type: PROTECTION_ENVIRONMENTAL
+    type: PROTECTION
     # Survival maximum level is 4, here it's 10.
     level: 10
   rand_thorns:
@@ -1470,43 +1472,43 @@ enchantments:
     type: THORNS
     # Survival maximum level is 3, here it's 5
     level: 10
-  rand_protection_fall_boots:
-    type: PROTECTION_FALL
+  rand_boots_feather_falling:
+    type: FEATHER_FALLING
     level:
       type: random
       min: 0
       max: 4
-  best_protection_fall_boots:
-    type: PROTECTION_FALL
+  best_boots_feather_falling:
+    type: FEATHER_FALLING
     level: 4
-  rand_oxygen_helmet:
-    type: OXYGEN
+  rand_helmet_respiration:
+    type: RESPIRATION
     level:
       type: random
       min: 0
       max: 3
-  best_oxygen_helmet:
-    type: OXYGEN
+  best_helmet_respiration:
+    type: RESPIRATION
     level: 3
-  rand_depth_strider_boots:
+  rand_boots_depth_strider:
     type: DEPTH_STRIDER
     level:
       type: random
       min: 0
       max: 3
-  best_depth_strider_boots:
+  best_boots_depth_strider:
     type: DEPTH_STRIDER
     level: 3
-  rand_water_worker_helmet:
-    type: WATER_WORKER
+  rand_helmet_aqua_affinity:
+    type: AQUA_AFFINITY
     level:
       type: random
       min: 0
       max: 1
-  best_water_worker_helmet:
-    type: WATER_WORKER
+  best_helmet_aqua_affinity:
+    type: AQUA_AFFINITY
     level: 1
-  top_swift_sneak:
+  top_leggings_swift_sneak:
     type: SWIFT_SNEAK
     #
     # Survival maximum level is 3, here it's 5
@@ -1515,7 +1517,7 @@ enchantments:
     # the swift sneak level above 5 doesn't make sense.
     #
     level: 5
-  rand_swift_sneak:
+  rand_leggings_swift_sneak:
     type: SWIFT_SNEAK
     level:
       type: random
@@ -1524,22 +1526,22 @@ enchantments:
 
 
   # Sword
-  rand_damage_all:
-    type: DAMAGE_ALL
+  rand_sword_sharpness:
+    type: SHARPNESS
     level:
       type: random
       min: 0
       max: 5
-  rand_maybe_top_damage_all:
-    type: DAMAGE_ALL
+  rand_maybe_top_sword_sharpness:
+    type: SHARPNESS
     # Survival maximum level is 5, here it's 7
     # which leads to damage in "hard": 6.75(♥) - 9.75(♥)
     level:
       type: random
       min: 1
       max: 7
-  top_damage_all:
-    type: DAMAGE_ALL
+  top_sword_sharpness:
+    type: SHARPNESS
     # Survival maximum level is 5, here it's 10
     level: 10
   rand_sword_knockback:
@@ -1570,61 +1572,61 @@ enchantments:
     type: SWEEPING_EDGE
     level: 3
   rand_sword_looting:
-    type: LOOT_BONUS_MOBS
+    type: LOOTING
     level:
       type: random
       min: 0
       max: 3
   rand_maybe_top_sword_looting:
-    type: LOOT_BONUS_MOBS
+    type: LOOTING
     # Survival maximum level is 3, here it's 5
     level:
       type: random
       min: 1
       max: 5
   top_sword_looting:
-    type: LOOT_BONUS_MOBS
+    type: LOOTING
     # Survival maximum level is 3, here it's 5
     level: 5
 
   # Bow
-  rand_maybe_top_bow_damage:
-    type: ARROW_DAMAGE
+  rand_maybe_top_bow_power:
+    type: POWER
     # Survival maximum level is 5, here it's 10
     level:
       type: random
       min: 1
       max: 10
-  top_bow_damage:
-    type: ARROW_DAMAGE
+  top_bow_power:
+    type: POWER
     # Survival maximum level is 5, here it's 10
     level: 10
-  rand_maybe_top_bow_knockback:
-    type: ARROW_KNOCKBACK
+  rand_maybe_top_bow_punch:
+    type: PUNCH
     # Survival maximum level is 2, here it's 3
     level:
       type: random
       min: 1
       max: 3
-  top_bow_knockback:
-    type: ARROW_KNOCKBACK
+  top_bow_punch:
+    type: PUNCH
     # Survival maximum level is 2, here it's 3
     level: 3
-  rand_bow_fire:
-    type: ARROW_FIRE
+  rand_bow_flame:
+    type: FLAME
     level:
       type: random
       min: 0
       max: 1
-  best_bow_fire:
-    type: ARROW_FIRE
+  best_bow_flame:
+    type: FLAME
     level: 1
   rand_bow_infinity:
-    type: ARROW_INFINITE
+    type: INFINITY
     level:
       type: random
       min: 0
       max: 1
   best_bow_infinity:
-    type: ARROW_INFINITE
+    type: INFINITY
     level: 1

@@ -12,8 +12,6 @@ import org.bukkit.inventory.EntityEquipment;
 
 import java.util.Map;
 
-import static org.bukkit.enchantments.Enchantment.LOOT_BONUS_MOBS;
-
 public class CustomCreaturesDeathEventListener extends AbstractCustomCreaturesEventListener {
     public CustomCreaturesDeathEventListener(CustomCreatures plugin, CustomLogger customLogger) {
         super(plugin, customLogger);
@@ -30,8 +28,8 @@ public class CustomCreaturesDeathEventListener extends AbstractCustomCreaturesEv
                 EntityEquipment killerEquipment = killer.getEquipment();
                 if (killerEquipment != null) {
                     Map<Enchantment, Integer> enchantments = killerEquipment.getItemInMainHand().getEnchantments();
-                    if (enchantments.containsKey(LOOT_BONUS_MOBS)) {
-                        lootBonusMobs = enchantments.get(LOOT_BONUS_MOBS);
+                    if (enchantments.containsKey(Enchantment.LOOTING)) {
+                        lootBonusMobs = enchantments.get(Enchantment.LOOTING);
                     }
                 }
             }
