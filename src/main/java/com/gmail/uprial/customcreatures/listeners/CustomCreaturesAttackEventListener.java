@@ -25,8 +25,8 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
             LivingEntity livingSource = null;
 
             if (source instanceof Projectile) {
-                Projectile projectile = (Projectile) source;
-                ProjectileSource projectileShooter = projectile.getShooter();
+                final Projectile projectile = (Projectile) source;
+                final ProjectileSource projectileShooter = projectile.getShooter();
                 if (projectileShooter instanceof LivingEntity) {
                     livingSource = (LivingEntity) projectileShooter;
                 }
@@ -36,10 +36,10 @@ public class CustomCreaturesAttackEventListener extends AbstractCustomCreaturesE
 
             if (livingSource != null) {
                 //noinspection LocalVariableNamingConvention
-                Double attackDamageMultiplier = getAttackDamageMultiplier(plugin, livingSource);
+                final Double attackDamageMultiplier = getAttackDamageMultiplier(plugin, livingSource);
                 if (attackDamageMultiplier != null) {
-                    double damage = event.getDamage();
-                    double newDamage = damage * attackDamageMultiplier;
+                    final double damage = event.getDamage();
+                    final double newDamage = damage * attackDamageMultiplier;
                     if(customLogger.isDebugMode()) {
                         customLogger.debug(String.format("Handle attack damage multiplier: change damage of %s on %s from %.2f to %.2f",
                                 format(livingSource), format(event.getEntity()), damage, newDamage));
