@@ -56,7 +56,6 @@ public class HItemAttributesTest extends TestConfigBase {
         HItemAttributes attributes = getFromConfig(getPreparedConfig(
                 "a:",
                 " max-health-multiplier: 0.1",
-                " attack-damage-multiplier: 10.0",
                 " base-armor: 1.0",
                 " follow-range: 50.1",
                 " knockback-resistance: 1.0",
@@ -66,7 +65,7 @@ public class HItemAttributesTest extends TestConfigBase {
                 " remove-when-far-away: true"),
                 getParanoiacCustomLogger(), "a", "attributes");
         assertNotNull(attributes);
-        assertEquals("{max-health-multiplier: 0.1, attack-damage-multiplier: 10.0, base-armor: 1.0," +
+        assertEquals("{max-health-multiplier: 0.1, base-armor: 1.0," +
                 " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0," +
                 " movement-speed-multiplier: 10.0, movement-speed: 0.5, remove-when-far-away: true}", attributes.toString());
     }

@@ -39,7 +39,6 @@ handlers:
   - iron-zombie
   - diamond-skeleton
   - chainmail-zombie
-  - angry-ghast
   - insane-illusioner
   - better-crossbows
   - better-tridents
@@ -171,12 +170,6 @@ handlers:
 #                          ###
 #                          ### A multiplier for max. health of an entity.
 #                          ### (* see description of <float-value> below)
-#
-#   attack-damage-multiplier: <float-value:0.0001..?>
-#                             ### Multiplier of damage that will
-#                             ### be dealt by entity or its projectile.
-#                             ### Warning: in case of a server reload,
-#                             ### the entity will lose this buff.
 #
 #   base-armor: <float-value:0..?> ### Entity's base armor before all
 #                                  ### the other modifiers, see
@@ -553,19 +546,25 @@ player:
       - PLAYER
     probability: 100
   effects:
-    - _jump_and_speed_2
     - _blindness
+    - _darkness
+    - _jump_and_speed_2
+  _blindness:
+    types:
+      - BLINDNESS
+    strength: 1
+    duration: 5
+  _darkness:
+    types:
+      - DARKNESS
+    strength: 1
+    duration: 15
   _jump_and_speed_2:
     types:
       - SPEED
       - JUMP_BOOST
     strength: 2
     duration: 60
-  _blindness:
-    types:
-      - BLINDNESS
-    strength: 1
-    duration: 3
   equipment:
     main-hand:
       material: APPLE
@@ -727,7 +726,9 @@ diamond-skeleton:
     - effects.jump_3
     - effects.glowing
     - effects.fire_resistance
-    - effects.regeneration
+    # According to https://minecraft.fandom.com/wiki/Skeleton,
+    # Skeletons are unaffected by Regeneration.
+    # - effects.regeneration
   equipment:
     helmet:
       probability: 100
@@ -867,7 +868,9 @@ chainmail-zombie:
     - effects.jump_3
     - effects.glowing
     - effects.fire_resistance
-    - effects.regeneration
+    # According to https://minecraft.fandom.com/wiki/Zombie,
+    # Zombies are unaffected by Regeneration.
+    # - effects.regeneration
   equipment:
     helmet:
       probability: 100
@@ -1012,14 +1015,6 @@ chainmail-zombie:
   # 5 levels from 0
   drop-exp: 55
 
-angry-ghast:
-  filter:
-    types:
-      - GHAST
-    probability: 10
-  attributes:
-    attack-damage-multiplier: 2.0
-
 insane-illusioner:
   filter:
     types:
@@ -1033,12 +1028,20 @@ insane-illusioner:
     helmet:
       probability: 100
       material-type: NETHERITE
-      durability:
-        type: random
-        min: 10
-        max: 25
+      #
+      # According https://minecraft.fandom.com/wiki/Durability,
+      # the weakest cloth is a Helmet,
+      # 10% of the Netherite Helmet has 408 * 10% = 41 durability,
+      # it protects from 41 * 2(♥) = 82(♥) of damage,
+      # and with the top protection enchantments it gives 82(♥) / 20% = 410(♥).
+      #
+      # So, practically, the insane-illusioner has 410(♥) of quickly regenerated health,
+      # and then it quickly gives up.
+      #
+      # This model protects from any quick kill.
+      #
+      durability: 10
       enchantments:
-        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
@@ -1046,12 +1049,8 @@ insane-illusioner:
     boots:
       probability: 100
       material-type: NETHERITE
-      durability:
-        type: random
-        min: 10
-        max: 25
+      durability: 10
       enchantments:
-        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
@@ -1059,23 +1058,15 @@ insane-illusioner:
     chest:
       probability: 100
       material-type: NETHERITE
-      durability:
-        type: random
-        min: 10
-        max: 25
+      durability: 10
       enchantments:
-        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
     leggings:
       probability: 100
       material-type: NETHERITE
-      durability:
-        type: random
-        min: 10
-        max: 25
+      durability: 10
       enchantments:
-        - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
@@ -1103,6 +1094,7 @@ insane-illusioner:
     - _enchanted_golden_apple
     - _netherite_scrap
     - _book_of_mending
+    - _totem_of_undying
     - _diamond_pickaxe_silk_touch
     - _diamond_pickaxe_fortune
     - drops.top_bow
@@ -1124,6 +1116,10 @@ insane-illusioner:
     material: ENCHANTED_BOOK
     enchantments:
       - enchantments.best_mending
+  _totem_of_undying:
+    probability: 10
+    probability-per-looting-level: 5
+    material: TOTEM_OF_UNDYING
   _diamond_pickaxe_silk_touch:
     probability: 5
     probability-per-looting-level: 2.5

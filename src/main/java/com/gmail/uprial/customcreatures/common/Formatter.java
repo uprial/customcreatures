@@ -2,6 +2,7 @@ package com.gmail.uprial.customcreatures.common;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
@@ -11,10 +12,12 @@ public final class Formatter {
             return "null";
         }
         Location location = entity.getLocation();
-        return String.format("%s{world: %s, x: %.0f, y: %.0f, z: %.0f}",
-                entity.getType().toString(),
+        return String.format("%s[w: %s, x: %.0f, y: %.0f, z: %.0f, hp: %.2f, id: %s]",
+                entity.getType(),
                 (location.getWorld() != null) ? location.getWorld().getName() : "empty",
-                location.getX(), location.getY(), location.getZ());
+                location.getX(), location.getY(), location.getZ(),
+                (entity instanceof LivingEntity) ? ((LivingEntity)entity).getHealth() : -1,
+                entity.getUniqueId());
     }
 
     public static String format(PotionEffect effect) {

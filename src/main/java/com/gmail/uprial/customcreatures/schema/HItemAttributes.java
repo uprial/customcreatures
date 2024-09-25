@@ -33,8 +33,6 @@ public final class HItemAttributes {
       */
     private static final double HEALTH_REDUCTION = 0.000001;
 
-    private static final String MK_ATTACK_DAMAGE_MULTIPLIER = "attack-damage-multiplier";
-
     private static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
             = ImmutableMap.<String, HItemGenericAttribute>builder()
             .put("base-armor", new HItemGenericAttribute(GENERIC_ARMOR, "base armor", 0.0, MAX_DOUBLE_VALUE))
@@ -54,17 +52,14 @@ public final class HItemAttributes {
 
     private final String title;
     private final IValue<Double> maxHealthMultiplier;
-    private final IValue<Double> attackDamageMultiplier;
     private final Map<String, IValue<Double>> genericAttributes;
     private final IValue<Boolean> removeWhenFarAway;
 
     private HItemAttributes(String title, IValue<Double> maxHealthMultiplier,
-                            @SuppressWarnings("MethodParameterNamingConvention") IValue<Double> attackDamageMultiplier,
                             Map<String, IValue<Double>> genericAttributes,
                             IValue<Boolean> removeWhenFarAway) {
         this.title = title;
         this.maxHealthMultiplier = maxHealthMultiplier;
-        this.attackDamageMultiplier = attackDamageMultiplier;
         this.genericAttributes = genericAttributes;
         this.removeWhenFarAway = removeWhenFarAway;
     }
@@ -73,12 +68,7 @@ public final class HItemAttributes {
         // The order makes sense: multiple a max. health after absolute value
         applyGenericAttributes(plugin, customLogger, entity, handleName);
         applyMaxHealth(plugin, customLogger, entity, handleName);
-        applyAttackDamageMultiplier(plugin, customLogger, entity);
         applyRemoveWhenFarAway(customLogger, entity);
-    }
-
-    public static Double getAttackDamageMultiplier(CustomCreatures plugin, LivingEntity entity) {
-        return getDoublePersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER);
     }
 
     private void applyGenericAttributes(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
@@ -152,17 +142,6 @@ public final class HItemAttributes {
         }
     }
 
-    private void applyAttackDamageMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity) {
-        if (attackDamageMultiplier != null) {
-            final Double newValue = attackDamageMultiplier.getValue();
-            setDoublePersistentMetadata(plugin, entity, MK_ATTACK_DAMAGE_MULTIPLIER, newValue);
-            if(customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s modification: set attack damage multiplier of %s to %.2f",
-                        title, format(entity), newValue));
-            }
-        }
-    }
-
     private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         if (maxHealthMultiplier != null) {
             final AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
@@ -228,10 +207,6 @@ public final class HItemAttributes {
         final IValue<Double> maxHealthMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "max-health-multiplier"),
                 String.format("max. health multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
-        //noinspection LocalVariableNamingConvention
-        final IValue<Double> attackDamageMultiplier = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "attack-damage-multiplier"),
-                String.format("attack damage multiplier in %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
-
         final Map<String, IValue<Double>> genericAttributes = new HashMap<>();
         IValue<Double> item;
 
@@ -249,7 +224,6 @@ public final class HItemAttributes {
                 String.format("'remove when far away' flag of %s", title));
 
         if ((maxHealthMultiplier == null)
-                && (attackDamageMultiplier == null)
                 && (genericAttributes.isEmpty())
                 && (removeWhenFarAway == null)) {
             throw new InvalidConfigException(String.format("No modifications found in %s", title));
@@ -257,7 +231,6 @@ public final class HItemAttributes {
 
         return new HItemAttributes(key,
                 maxHealthMultiplier,
-                attackDamageMultiplier,
                 genericAttributes,
                 removeWhenFarAway);
     }
@@ -265,7 +238,6 @@ public final class HItemAttributes {
     public String toString() {
         final List<String> items = new ArrayList<>();
         items.add(String.format("max-health-multiplier: %s", maxHealthMultiplier));
-        items.add(String.format("attack-damage-multiplier: %s", attackDamageMultiplier));
 
         IValue<Double> item;
         for (String key : KEY_2_GENERIC_ATTRIBUTE.keySet()) {

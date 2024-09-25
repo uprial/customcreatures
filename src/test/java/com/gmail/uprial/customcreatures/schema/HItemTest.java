@@ -102,7 +102,6 @@ public class HItemTest extends TestConfigBase {
                 "  duration: 1",
                 " attributes:",
                 "  max-health-multiplier: 0.1",
-                "  attack-damage-multiplier: 10.0",
                 "  base-armor: 1.0",
                 "  follow-range: 50.1",
                 "  knockback-resistance: 1.0",
