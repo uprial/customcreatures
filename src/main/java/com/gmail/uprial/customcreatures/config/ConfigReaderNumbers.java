@@ -4,7 +4,6 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.*;
-import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 
 public final class ConfigReaderNumbers {
 
