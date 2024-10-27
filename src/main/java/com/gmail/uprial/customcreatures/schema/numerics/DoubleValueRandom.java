@@ -34,11 +34,11 @@ public class DoubleValueRandom extends NumericValueRandom<Double> {
         return new DoubleValueRandom(distributionType, min, max);
     }
 
-    private Double getExpRandom(Double max) {
-        double average = max / 2.0;
+    private Double getExpRandom(final Double max) {
+        final double average = max / 2.0D;
         double value = -average * Math.log(random.nextDouble());
         if (value > max) {
-            value = 0.0;
+            value = 0.0D;
         }
 
         return value;

@@ -35,9 +35,9 @@ public final class HItemAttributes {
 
     private static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
             = ImmutableMap.<String, HItemGenericAttribute>builder()
-            .put("base-armor", new HItemGenericAttribute(GENERIC_ARMOR, "base armor", 0.0, MAX_DOUBLE_VALUE))
-            .put("follow-range", new HItemGenericAttribute(GENERIC_FOLLOW_RANGE, "follow range", 1.0, 100.0))
-            .put("knockback-resistance", new HItemGenericAttribute(GENERIC_KNOCKBACK_RESISTANCE, "knockback resistance", 0.0, 1.0))
+            .put("base-armor", new HItemGenericAttribute(GENERIC_ARMOR, "base armor", 0.0D, MAX_DOUBLE_VALUE))
+            .put("follow-range", new HItemGenericAttribute(GENERIC_FOLLOW_RANGE, "follow range", 1.0D, 100.0D))
+            .put("knockback-resistance", new HItemGenericAttribute(GENERIC_KNOCKBACK_RESISTANCE, "knockback resistance", 0.0D, 1.0D))
             .put("max-health", new HItemGenericAttribute(GENERIC_MAX_HEALTH, "max. health", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             /*
                 Even Ghast doesn't have the GENERIC_FLYING_SPEED property,
