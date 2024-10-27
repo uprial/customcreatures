@@ -27,9 +27,9 @@ public class DoubleValueRandom extends NumericValueRandom<Double> {
 
     public static DoubleValueRandom getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                   double hardMin, double hardMax) throws InvalidConfigException {
-        RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title);
-        Double min = getDouble(config, customLogger, joinPaths(key, "min"), String.format("minimum of %s", title), hardMin, hardMax);
-        Double max = getDouble(config, customLogger, joinPaths(key, "max"), String.format("maximum of %s", title), hardMin, hardMax);
+        final RandomDistributionType distributionType = getDistributionTypeFromConfig(config, customLogger, key, title);
+        final Double min = getDouble(config, customLogger, joinPaths(key, "min"), String.format("minimum of %s", title), hardMin, hardMax);
+        final Double max = getDouble(config, customLogger, joinPaths(key, "max"), String.format("maximum of %s", title), hardMin, hardMax);
 
         return new DoubleValueRandom(distributionType, min, max);
     }

@@ -44,12 +44,12 @@ public final class HItemInHand {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
-            int itemAmount = amount.getValue();
+            final int itemAmount = amount.getValue();
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: add %d x %s to %s",
                         title, itemAmount, material, format(entity)));
             }
-            ItemStack itemStack = new ItemStack(material, itemAmount);
+            final ItemStack itemStack = new ItemStack(material, itemAmount);
 
             if (enchantments != null) {
                 enchantments.apply(customLogger, entity, itemStack);
@@ -95,10 +95,10 @@ public final class HItemInHand {
             return null;
         }
 
-        Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
+        final Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
                 String.format("probability of %s", title));
 
-        Material material = getEnum(Material.class, config,
+        final Material material = getEnum(Material.class, config,
                 joinPaths(key, "material"), String.format("material of %s", title));
         IValue<Integer> amount = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "amount"),
                 String.format("amount of %s", title), 1, 64);
@@ -106,11 +106,11 @@ public final class HItemInHand {
             amount = new ValueConst<>(1);
         }
 
-        float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
+        final float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, 1.0, getDefaultDropChance());
-        HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
+        final HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
-        HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
+        final HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
         return new HItemInHand(title, probability, material, amount, handType, enchantments, dropChance, durability);

@@ -39,7 +39,7 @@ public final class HItemEquipmentCloth {
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
         if ((probability == null) || (probability.isPassed())) {
-            Material material;
+            final Material material;
             try {
                 material = getMaterial(materialType, clothType, title);
             } catch (InvalidConfigException e) {
@@ -51,7 +51,7 @@ public final class HItemEquipmentCloth {
                 customLogger.debug(String.format("Handle %s: add %s to %s",
                         title, material, format(entity)));
             }
-            ItemStack itemStack = new ItemStack(material);
+            final ItemStack itemStack = new ItemStack(material);
 
             if (enchantments != null) {
                 enchantments.apply(customLogger, entity, itemStack);
@@ -97,18 +97,18 @@ public final class HItemEquipmentCloth {
             return null;
         }
 
-        Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
+        final Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
                 String.format("probability of %s", title));
 
-        MaterialType materialType = getMaterialType(config,
+        final MaterialType materialType = getMaterialType(config,
                 joinPaths(key, "material-type"), String.format("material type of %s", title));
         getMaterial(materialType, clothType, title);
 
-        float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
+        final float dropChance = (float)getDouble(config, customLogger, joinPaths(key, "drop-chance"),
                 String.format("drop chance of %s", title), 0, 1.0, getDefaultDropChance());
-        HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
+        final HItemDurability durability = HItemDurability.getFromConfig(config, customLogger, joinPaths(key, "durability"),
                 String.format("durability of %s", title));
-        HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
+        final HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
 
         return new HItemEquipmentCloth(title, probability, materialType, clothType, enchantments, dropChance, durability);
@@ -119,7 +119,7 @@ public final class HItemEquipmentCloth {
     }
 
     private static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
-        String itemName = String.format("%s_%s", materialType, clothType);
+        final String itemName = String.format("%s_%s", materialType, clothType);
         try {
             return Material.valueOf(itemName);
         } catch (IllegalArgumentException ignored1) {
