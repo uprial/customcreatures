@@ -5,6 +5,7 @@ import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupporte
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.schema.ClothType.*;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
@@ -86,5 +87,9 @@ final public class EntityEquipmentHelper {
 
     public static double getDefaultDropChance() {
         return DEFAULT_DROP_CHANCE;
+    }
+
+    public static boolean isDropChanceNotEmpty(final float dropChance) {
+        return dropChance >= MIN_DOUBLE_VALUE / 10.D;
     }
 }

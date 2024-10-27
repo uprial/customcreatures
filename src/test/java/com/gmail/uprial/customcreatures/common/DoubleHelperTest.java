@@ -134,6 +134,12 @@ public class DoubleHelperTest {
         assertFalse(isLengthOfDoubleGood(MIN_DOUBLE_VALUE * 0.9));
     }
 
+    @Test
+    public void testFloatPreciseness() throws Exception {
+        assertTrue((float)(MIN_DOUBLE_VALUE * 1.0000001D) > MIN_DOUBLE_VALUE);
+        assertFalse((float)(MIN_DOUBLE_VALUE * 1.00000001D) > MIN_DOUBLE_VALUE);
+    }
+
     // This version is slow because of potential loop with 1k iterations.
     private static int getRightDigitsSlowly(double value) {
         return getRightDigits(value, -Double.MIN_EXPONENT);
