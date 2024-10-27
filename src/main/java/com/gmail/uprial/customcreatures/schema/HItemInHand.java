@@ -12,6 +12,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
 import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
@@ -65,7 +66,7 @@ public final class HItemInHand {
                 return;
             }
 
-            if (dropChance > 0.0) {
+            if (dropChance > MIN_DOUBLE_VALUE) {
                 if (entity instanceof Player) {
                     if (customLogger.isDebugMode()) {
                         customLogger.debug(String.format("Can't handle drop chance of %s: it's a player", title));
