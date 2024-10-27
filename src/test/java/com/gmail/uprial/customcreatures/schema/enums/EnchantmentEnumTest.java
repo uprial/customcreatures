@@ -1,4 +1,4 @@
-package com.gmail.uprial.customcreatures.schema.enchantment;
+package com.gmail.uprial.customcreatures.schema.enums;
 
 import com.gmail.uprial.customcreatures.helpers.TestServerBase;
 import org.bukkit.enchantments.Enchantment;

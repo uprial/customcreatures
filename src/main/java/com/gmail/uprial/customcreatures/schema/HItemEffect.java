@@ -3,8 +3,7 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
-import com.gmail.uprial.customcreatures.schema.potioneffect.IPotionEffectTypesEnum;
-import com.gmail.uprial.customcreatures.schema.potioneffect.PotionEffectTypesLoader;
+import com.gmail.uprial.customcreatures.schema.enums.PotionEffectTypesEnum;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
@@ -16,14 +15,14 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
-public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
+public final class HItemEffect {
 
     private final String title;
-    private final Set<T> effectTypes;
+    private final Set<PotionEffectTypesEnum> effectTypes;
     private final IValue<Integer> strength;
     private final IValue<Integer> duration;
 
-    private HItemEffect(String title, Set<T> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
+    private HItemEffect(String title, Set<PotionEffectTypesEnum> effectTypes, IValue<Integer> strength, IValue<Integer> duration) {
         this.title = title;
         this.effectTypes = effectTypes;
         this.strength = strength;
@@ -31,9 +30,9 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
-        for (IPotionEffectTypesEnum effectType : effectTypes) {
+        for (final PotionEffectTypesEnum effectType : effectTypes) {
             // The 1st level of effect mean 0 in these numbers.
-            int amplifier = strength.getValue() - 1;
+            final int amplifier = strength.getValue() - 1;
             addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), amplifier));
         }
     }
@@ -43,11 +42,11 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
             throw new InvalidConfigException(String.format("Empty %s", title));
         }
 
-        Set<? extends Enum> effectTypes;
-        IValue<Integer> strength;
-        IValue<Integer> duration;
+        final Set<PotionEffectTypesEnum> effectTypes;
+        final IValue<Integer> strength;
+        final IValue<Integer> duration;
         //noinspection NestedAssignment
-        if ((effectTypes = getSet(PotionEffectTypesLoader.get(),
+        if ((effectTypes = getSet(PotionEffectTypesEnum.class,
                 config, customLogger, joinPaths(key, "types"), String.format("effect types of %s", title))) == null) {
             throw new InvalidConfigException(String.format("Empty effect types of %s", title));
         } else //noinspection NestedAssignment
@@ -72,7 +71,7 @@ public final class HItemEffect<T extends Enum & IPotionEffectTypesEnum> {
     private void addEffect(CustomLogger customLogger, LivingEntity entity, PotionEffect effect) {
         //noinspection LocalVariableNamingConvention
         boolean notAffectedOrAffectedMoreWeakly = true;
-        for (PotionEffect currentEffect : entity.getActivePotionEffects()) {
+        for (final PotionEffect currentEffect : entity.getActivePotionEffects()) {
             if(currentEffect.getType() == effect.getType()) {
                 if(currentEffect.getAmplifier() > effect.getAmplifier()) {
                     notAffectedOrAffectedMoreWeakly = false;

@@ -1,8 +1,8 @@
-package com.gmail.uprial.customcreatures.schema.enchantment;
+package com.gmail.uprial.customcreatures.schema.enums;
 
 import org.bukkit.enchantments.Enchantment;
 
-public enum EnchantmentEnum implements IEnchantmentEnum {
+public enum EnchantmentEnum implements ITypedEnum<Enchantment> {
     PROTECTION(Enchantment.PROTECTION),
     FIRE_PROTECTION(Enchantment.FIRE_PROTECTION),
     FEATHER_FALLING(Enchantment.FEATHER_FALLING),

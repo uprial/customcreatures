@@ -1,8 +1,8 @@
-package com.gmail.uprial.customcreatures.schema.potioneffect;
+package com.gmail.uprial.customcreatures.schema.enums;
 
 import org.bukkit.potion.PotionEffectType;
 
-public enum PotionEffectTypesEnum implements IPotionEffectTypesEnum {
+public enum PotionEffectTypesEnum implements ITypedEnum<PotionEffectType> {
     SPEED(PotionEffectType.SPEED),
     SLOWNESS(PotionEffectType.SLOWNESS),
     HASTE(PotionEffectType.HASTE),
