@@ -30,6 +30,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "  material-type: IRON",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 " boots:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -37,6 +40,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLDEN",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 " chest:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -44,6 +50,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLDEN",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 " leggings:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -51,6 +60,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  enchantments:",
                 "   - e1",
                 "  material-type: GOLDEN",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 " main-hand:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -59,6 +71,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "   - e1",
                 "  material: DIAMOND_SWORD",
                 "  amount: 1",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 " off-hand:",
                 "  probability: 100",
                 "  drop-chance: 1",
@@ -67,6 +82,9 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "   - e1",
                 "  material: DIAMOND_SWORD",
                 "  amount: 1",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
                 " level: 1"),
@@ -74,22 +92,22 @@ public class HItemEquipmentTest extends TestConfigBase {
         assertNotNull(itemEquipment);
         assertEquals("{helmet: {probability: null, material-type: IRON," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}," +
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " boots: {probability: null, material-type: GOLDEN," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}," +
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " chest: {probability: null, material-type: GOLDEN," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}," +
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " leggings: {probability: null, material-type: GOLDEN," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}," +
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " main-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}," +
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " off-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: [{type: PROTECTION, level: 1}]," +
-                " drop-chance: 1, durability: 100}}",
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}}",
                 itemEquipment.toString());
     }
 

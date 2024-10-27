@@ -77,7 +77,7 @@ public class HCustomHorseTest extends TestConfigBase {
 
 
     @Test
-    public void testWholeCreeper() throws Exception {
+    public void testWholeHorse() throws Exception {
         HCustomHorse customHorse = getFromConfig(getPreparedConfig(
                         "h: ",
                         "  color: WHITE",

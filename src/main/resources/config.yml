@@ -350,6 +350,8 @@ handlers:
 #                                 ### (* see description of
 #                                 ### <enchantments> below)
 #
+#   trim: <trim> ### Armor trim, empty by default, shown only on players.
+#
 # #### Item in hand ####
 #
 # <item-in-hand>:
@@ -379,6 +381,8 @@ handlers:
 #                                 ### be applied.
 #                                 ### (* see description of
 #                                 ### <enchantments> below)
+#
+#   trim: <trim> ### Armor trim, empty by default, shown only on players.
 #
 # #### Item drop ####
 #
@@ -417,6 +421,8 @@ handlers:
 #                                 ### (* see description of
 #                                 ### <enchantments> below)
 #
+#   trim: <trim> ### Armor trim, empty by default, shown only on players.
+#
 # #### Enchantments ####
 #
 # <relative-path>:
@@ -451,6 +457,16 @@ handlers:
 #                              ###
 #                              ### If 0 is provided, the enchantment will be skipped:
 #                              ### use this to randomly skip the enchantment.
+#
+# #### ArmorTrim ####
+# <trim>:
+#   material:  ### Possible materials, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/trim/TrimMaterial.html
+#
+#   pattern:  ### Possible patterns, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/trim/TrimPattern.html
+#
+# Warning: armor trim works only on players.
 #
 # #### Floating point value ####
 # High-level restrictions:
@@ -826,6 +842,9 @@ diamond-skeleton:
       - enchantments.best_helmet_respiration
       - enchantments.best_helmet_aqua_affinity
       - enchantments.best_mending
+    trim:
+      material: EMERALD
+      pattern: SILENCE
   _top_diamond_boots:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -839,6 +858,9 @@ diamond-skeleton:
       # No soul speed enchantments for boots, because
       # according to https://minecraft.fandom.com/wiki/Soul_Speed
       # it reduces durability.
+    trim:
+      material: EMERALD
+      pattern: SILENCE
   _top_diamond_chest:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -847,6 +869,9 @@ diamond-skeleton:
       - enchantments.best_unbreaking
       - enchantments.top_protection
       - enchantments.best_mending
+    trim:
+      material: EMERALD
+      pattern: SILENCE
   _top_diamond_leggings:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -856,6 +881,9 @@ diamond-skeleton:
       - enchantments.top_protection
       - enchantments.top_leggings_swift_sneak
       - enchantments.best_mending
+    trim:
+      material: EMERALD
+      pattern: SILENCE
   # 5 levels from 0
   drop-exp: 55
 
@@ -976,6 +1004,9 @@ chainmail-zombie:
       - enchantments.best_protection
       - enchantments.best_helmet_respiration
       - enchantments.best_helmet_aqua_affinity
+    trim:
+      material: REDSTONE
+      pattern: VEX
   _top_chainmail_boots:
     probability: 1
     probability-per-looting-level: 1
@@ -985,6 +1016,9 @@ chainmail-zombie:
       - enchantments.best_protection
       - enchantments.best_boots_feather_falling
       - enchantments.best_boots_depth_strider
+    trim:
+      material: REDSTONE
+      pattern: VEX
   _top_chainmail_chest:
     probability: 1
     probability-per-looting-level: 1
@@ -992,6 +1026,9 @@ chainmail-zombie:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.best_protection
+    trim:
+      material: REDSTONE
+      pattern: VEX
   _top_chainmail_leggings:
     probability: 1
     probability-per-looting-level: 1
@@ -1000,6 +1037,9 @@ chainmail-zombie:
       - enchantments.best_unbreaking
       - enchantments.best_protection
       - enchantments.top_leggings_swift_sneak
+    trim:
+      material: REDSTONE
+      pattern: VEX
   _top_diamond_sword:
     probability: 0.5
     probability-per-looting-level: 0.5

@@ -28,9 +28,10 @@ public final class HItemInHand {
     private final HItemEnchantmentsList enchantments;
     private final float dropChance;
     private final HItemDurability durability;
+    private final HItemArmorTrim trim;
 
     private HItemInHand(String title, Probability probability, Material material, IValue<Integer> amount, HandType handType,
-                        HItemEnchantmentsList enchantments, float dropChance, HItemDurability durability) {
+                        HItemEnchantmentsList enchantments, float dropChance, HItemDurability durability, HItemArmorTrim trim) {
         this.title = title;
         this.probability = probability;
         this.material = material;
@@ -39,6 +40,7 @@ public final class HItemInHand {
         this.enchantments = enchantments;
         this.dropChance = dropChance;
         this.durability = durability;
+        this.trim = trim;
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
@@ -84,6 +86,10 @@ public final class HItemInHand {
                         return;
                     }
                 }
+
+                if (trim != null) {
+                    trim.apply(customLogger, entity, itemStack);
+                }
             }
         }
     }
@@ -111,13 +117,15 @@ public final class HItemInHand {
                 String.format("durability of %s", title));
         final HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
+        final HItemArmorTrim trim = HItemArmorTrim.getFromConfig(config, customLogger,
+                joinPaths(key, "trim"), String.format("trim of %s", title));
 
-        return new HItemInHand(title, probability, material, amount, handType, enchantments, dropChance, durability);
+        return new HItemInHand(title, probability, material, amount, handType, enchantments, dropChance, durability, trim);
     }
 
     public String toString() {
-        return String.format("{probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %s, durability: %s}",
-                probability, material, amount, enchantments, formatDoubleValue(dropChance), durability);
+        return String.format("{probability: %s, material: %s, amount: %s, enchantments: %s, drop-chance: %s, durability: %s, trim: %s}",
+                probability, material, amount, enchantments, formatDoubleValue(dropChance), durability, trim);
     }
 
 }

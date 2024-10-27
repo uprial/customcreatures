@@ -27,13 +27,16 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "  durability: 100",
                 "  enchantments:",
                 "   - e",
-                "  e:",
-                "    type: THORNS",
-                "    level: 1"),
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
+                "e:",
+                "  type: THORNS",
+                "  level: 1"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
         assertEquals("{probability: null, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
-                " drop-chance: 1, durability: 100}",
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemEquipmentCloth.toString());
     }
 
@@ -47,13 +50,28 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "  material-type: IRON",
                 "  enchantments:",
                 "   - e",
-                "  e:",
-                "    type: THORNS",
-                "    level: 1"),
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
+                "e:",
+                "  type: THORNS",
+                "  level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
         assertEquals("{probability: 77, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
-                " drop-chance: 1, durability: 50}",
+                " drop-chance: 1, durability: 50, trim: Trim{material: EMERALD, pattern: SILENCE}}",
+                itemEquipmentCloth.toString());
+    }
+
+    @Test
+    public void testWholeEquipmentClothWithDefaults() throws Exception {
+        HItemEquipmentCloth itemEquipmentCloth = getFromConfig(getPreparedConfig(
+                        "eq:",
+                        "  material-type: IRON"),
+                getCustomLogger(), HELMET, "eq", "equipment cloth");
+        assertNotNull(itemEquipmentCloth);
+        assertEquals("{probability: null, material-type: IRON, enchantments: null," +
+                        " drop-chance: 0.0850, durability: null, trim: null}",
                 itemEquipmentCloth.toString());
     }
 
@@ -126,6 +144,24 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 " drop-chance: 0.77",
                 " durability: 77",
                 " material-type: IRON"),
+                getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
+    }
+
+    @Test
+    public void testEmptyArmorTrim() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty trim of equipment cloth. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "eq:",
+                        " probability: 77",
+                        " drop-chance: 0.77",
+                        " durability: 77",
+                        " material-type: IRON",
+                        " enchantments:",
+                        "  - e",
+                        "e:",
+                        " type: THORNS",
+                        " level: 1"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 

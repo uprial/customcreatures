@@ -26,6 +26,9 @@ public class HItemDropsListTest extends TestConfigBase {
                 "  amount-max-per-looting-level: 1",
                 "  enchantments:",
                 "   - e1",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
                 " level: 2"),
@@ -34,7 +37,7 @@ public class HItemDropsListTest extends TestConfigBase {
         assertEquals("[{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                 " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 1," +
                 " enchantments: [{type: PROTECTION, level: 2}]," +
-                " durability: 100}]", itemDropsList.toString());
+                " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}]", itemDropsList.toString());
     }
 
     @Test

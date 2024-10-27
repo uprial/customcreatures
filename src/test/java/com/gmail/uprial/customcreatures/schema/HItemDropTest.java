@@ -29,6 +29,9 @@ public class HItemDropTest extends TestConfigBase {
                 "  amount-max-per-looting-level: 1",
                 "  enchantments:",
                 "   - e1",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
                 " level: 2"),
@@ -37,7 +40,7 @@ public class HItemDropTest extends TestConfigBase {
         assertEquals("{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: PROTECTION, level: 2}]," +
-                        " durability: 100}",
+                        " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemDrop.toString());
     }
 
@@ -52,6 +55,9 @@ public class HItemDropTest extends TestConfigBase {
                 "  amount-max-per-looting-level: 1",
                 "  enchantments:",
                 "   - e",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 "  e:",
                 "    type: THORNS",
                 "    level: 1",
@@ -61,7 +67,20 @@ public class HItemDropTest extends TestConfigBase {
         assertEquals("{probability: 50, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}, amount-max-per-looting-level: 1," +
                         " enchantments: [{type: THORNS, level: 1}]," +
-                        " durability: 40}",
+                        " durability: 40, trim: Trim{material: EMERALD, pattern: SILENCE}}",
+                itemDrop.toString());
+    }
+
+    @Test
+    public void testWholeItemDropWithDefaults() throws Exception {
+        HItemDrop itemDrop = getFromConfig(getPreparedConfig(
+                        "d:",
+                        "  material: DIAMOND_SWORD"),
+                getCustomLogger(), "d", "item drop");
+        assertNotNull(itemDrop);
+        assertEquals("{probability: null, probability-per-looting-level: 0.0, material: DIAMOND_SWORD," +
+                        " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 0," +
+                        " enchantments: null, durability: null, trim: null}",
                 itemDrop.toString());
     }
 
@@ -154,6 +173,26 @@ public class HItemDropTest extends TestConfigBase {
                 " amount: 1",
                 " amount-max-per-looting-level: 1",
                 " durability: 77"),
+                getDebugFearingCustomLogger(), "d", "item drop");
+    }
+
+    @Test
+    public void testEmptyArmorTrim() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty trim of item drop. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "d:",
+                        " probability: 77",
+                        " probability-per-looting-level: 1",
+                        " material: DIAMOND_SWORD",
+                        " amount: 1",
+                        " amount-max-per-looting-level: 1",
+                        " durability: 77",
+                        " enchantments:",
+                        "  - e1",
+                        "e1:",
+                        " type: PROTECTION",
+                        " level: 2"),
                 getDebugFearingCustomLogger(), "d", "item drop");
     }
 }

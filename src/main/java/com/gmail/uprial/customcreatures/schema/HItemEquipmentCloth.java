@@ -24,9 +24,10 @@ public final class HItemEquipmentCloth {
     private final HItemEnchantmentsList enchantments;
     private final float dropChance;
     private final HItemDurability durability;
+    private final HItemArmorTrim trim;
 
     private HItemEquipmentCloth(String title, Probability probability, MaterialType materialType,
-                                ClothType clothType, HItemEnchantmentsList enchantments, float dropChance, HItemDurability durability) {
+                                ClothType clothType, HItemEnchantmentsList enchantments, float dropChance, HItemDurability durability, HItemArmorTrim trim) {
         this.title = title;
         this.probability = probability;
         this.materialType = materialType;
@@ -34,6 +35,7 @@ public final class HItemEquipmentCloth {
         this.enchantments = enchantments;
         this.dropChance = dropChance;
         this.durability = durability;
+        this.trim = trim;
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
@@ -86,6 +88,10 @@ public final class HItemEquipmentCloth {
                         return;
                     }
                 }
+
+                if (trim != null) {
+                    trim.apply(customLogger, entity, itemStack);
+                }
             }
         }
     }
@@ -109,8 +115,10 @@ public final class HItemEquipmentCloth {
                 String.format("durability of %s", title));
         final HItemEnchantmentsList enchantments = HItemEnchantmentsList.getFromConfig(config, customLogger,
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
+        final HItemArmorTrim trim = HItemArmorTrim.getFromConfig(config, customLogger,
+                joinPaths(key, "trim"), String.format("trim of %s", title));
 
-        return new HItemEquipmentCloth(title, probability, materialType, clothType, enchantments, dropChance, durability);
+        return new HItemEquipmentCloth(title, probability, materialType, clothType, enchantments, dropChance, durability, trim);
     }
 
     private static MaterialType getMaterialType(FileConfiguration config, String key, String title) throws InvalidConfigException {
@@ -127,8 +135,8 @@ public final class HItemEquipmentCloth {
     }
 
     public String toString() {
-        return String.format("{probability: %s, material-type: %s, enchantments: %s, drop-chance: %s, durability: %s}",
-                probability, materialType, enchantments, formatDoubleValue(dropChance), durability);
+        return String.format("{probability: %s, material-type: %s, enchantments: %s, drop-chance: %s, durability: %s, trim: %s}",
+                probability, materialType, enchantments, formatDoubleValue(dropChance), durability, trim);
     }
 
 }

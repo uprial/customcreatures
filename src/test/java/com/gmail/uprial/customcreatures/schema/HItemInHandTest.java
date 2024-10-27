@@ -22,11 +22,14 @@ public class HItemInHandTest extends TestConfigBase {
                 "i:",
                 "  probability: 100",
                 "  drop-chance: 1",
-                "  durability: 100",
                 "  material: DIAMOND_SWORD",
+                "  durability: 100",
                 "  amount: 1",
                 "  enchantments:",
                 "   - e1",
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
                 " level: 2"),
@@ -34,7 +37,8 @@ public class HItemInHandTest extends TestConfigBase {
         assertNotNull(itemInHand);
         assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: [{type: PROTECTION, level: 2}]," +
-                " drop-chance: 1, durability: 100}",
+                " drop-chance: 1, durability: 100," +
+                " trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemInHand.toString());
     }
 
@@ -43,20 +47,36 @@ public class HItemInHandTest extends TestConfigBase {
         HItemInHand itemInHand = getFromConfig(getPreparedConfig(
                 "i:",
                 "  probability: 50",
+                "  drop-chance: 1",
                 "  material: DIAMOND_SWORD",
+                "  durability: 40",
                 "  amount: 10",
                 "  enchantments:",
                 "   - e",
-                "  e:",
-                "    type: THORNS",
-                "    level: 1",
-                "  drop-chance: 1",
-                "  durability: 40"),
+                "  trim:",
+                "    material: EMERALD",
+                "    pattern: SILENCE",
+                "e:",
+                "  type: THORNS",
+                "  level: 1"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
-        assertEquals("{probability: 50, material: DIAMOND_SWORD, amount: 10, " +
-                        "enchantments: [{type: THORNS, level: 1}]," +
-                        " drop-chance: 1, durability: 40}",
+        assertEquals("{probability: 50, material: DIAMOND_SWORD, amount: 10," +
+                        " enchantments: [{type: THORNS, level: 1}]," +
+                        " drop-chance: 1, durability: 40," +
+                        " trim: Trim{material: EMERALD, pattern: SILENCE}}",
+                itemInHand.toString());
+    }
+
+    @Test
+    public void testWholeItemInHandWithDefaults() throws Exception {
+        HItemInHand itemInHand = getFromConfig(getPreparedConfig(
+                        "eq:",
+                        "  material: DIAMOND_SWORD"),
+                getCustomLogger(), MAIN_HAND, "eq", "equipment cloth");
+        assertNotNull(itemInHand);
+        assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
+                        " enchantments: null, drop-chance: 0.0850, durability: null, trim: null}",
                 itemInHand.toString());
     }
 
@@ -145,4 +165,22 @@ public class HItemInHandTest extends TestConfigBase {
                 " durability: 77"),
                 getDebugFearingCustomLogger(), MAIN_HAND, "i", "item in hand");
     }
-}
+
+    @Test
+    public void testEmptyArmorTrim() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty trim of item in hand. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "i:",
+                        " probability: 77",
+                        " material: DIAMOND_SWORD",
+                        " amount: 1",
+                        " drop-chance: 0.77",
+                        " durability: 77",
+                        " enchantments:",
+                        "  - e1",
+                        "e1:",
+                        " type: PROTECTION",
+                        " level: 2"),
+                getDebugFearingCustomLogger(), MAIN_HAND,"i", "item in hand");
+    }}

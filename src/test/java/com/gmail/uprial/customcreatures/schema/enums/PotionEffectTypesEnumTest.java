@@ -1,7 +1,6 @@
-package com.gmail.uprial.customcreatures.schema.potioneffect;
+package com.gmail.uprial.customcreatures.schema.enums;
 
 import com.gmail.uprial.customcreatures.helpers.TestServerBase;
-import com.gmail.uprial.customcreatures.schema.enums.PotionEffectTypesEnum;
 import org.bukkit.potion.PotionEffectType;
 import org.junit.Test;
 
