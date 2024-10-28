@@ -265,7 +265,10 @@ handlers:
 #           ZOMBIE_HORSE]
 # GOLEMS: [IRON_GOLEM, SNOW_GOLEM]
 # MONSTERS: [BLAZE, BOGGED, BREEZE, CAVE_SPIDER,
-#            CREAKING, CREAKING_TRANSIENT, CREEPER, DROWNED,
+#            CREAKING, CREAKING_TRANSIENT,  ### Only when Winter Drop experimental data pack
+#                                           ### introduced in 1.21.2 is enabled.
+#                                           ### For more details, check https://minecraft.wiki/w/Experiments.
+#                                          CREEPER, DROWNED,
 #            ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE,
 #            EVOKER, EVOKER_FANGS, GHAST, GIANT,
 #            GUARDIAN, HOGLIN, HUSK, ILLUSIONER,
