@@ -1,6 +1,7 @@
 package com.gmail.uprial.customcreatures.schema;
 
 import com.google.common.collect.Sets;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 
 import java.util.HashSet;
@@ -36,12 +37,12 @@ public enum HItemTypeSet {
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM)),
     MONSTERS(null,
-            Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER, CREAKING, CREAKING_TRANSIENT, CREEPER, DROWNED,
+            addExperimentalEntities(Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER, /*CREAKING, CREAKING_TRANSIENT, */CREEPER, DROWNED,
                     ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER, EVOKER_FANGS, GHAST, GIANT,
                     GUARDIAN, HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE,
                     PILLAGER, RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SPIDER,
                     STRAY, VEX, VINDICATOR, WARDEN, WITCH, WITHER, WITHER_SKELETON, ZOGLIN,
-                    ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
+                    ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN))),
 
     // An unused set that underlines we didn't forget of some creatures.
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
@@ -57,6 +58,21 @@ public enum HItemTypeSet {
     FLYING_MOBS(null,
             Sets.newHashSet(ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM,
                     VEX, WITHER));
+
+    private static Set<EntityType> addExperimentalEntities(final Set<EntityType> entityTypes) {
+        try {
+            //noinspection UnstableApiUsage
+            entityTypes.add(CREAKING);
+            //noinspection UnstableApiUsage
+            entityTypes.add(CREAKING_TRANSIENT);
+        } catch (NoSuchFieldError ignored) {
+            Bukkit.getServer().getLogger().info(
+                    "Winter Drop experimental data pack introduced in 1.21.2 isn't enabled. " +
+                        "For more details, check https://minecraft.wiki/w/Experiments");
+        }
+
+        return entityTypes;
+    }
 
     final Set<EntityType> entityTypes;
     final Set<HItemTypeSet> subSets;
