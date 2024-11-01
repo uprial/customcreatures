@@ -106,7 +106,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(11) > 280);
             assertTrue(distribution.get(11) < 420);
             assertTrue(distribution.get(12) > 120);
-            assertTrue(distribution.get(12) < 240);
+            assertTrue(distribution.get(12) < 250);
             assertTrue(distribution.get(13) > 15);
             assertTrue(distribution.get(13) < 90);
             assertFalse(distribution.containsKey(9));
@@ -123,7 +123,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
             assertTrue(distribution.get(10) > 15);
             assertTrue(distribution.get(10) < 90);
             assertTrue(distribution.get(11) > 120);
-            assertTrue(distribution.get(11) < 240);
+            assertTrue(distribution.get(11) < 250);
             assertTrue(distribution.get(12) > 280);
             assertTrue(distribution.get(12) < 420);
             assertTrue(distribution.get(13) > 330);

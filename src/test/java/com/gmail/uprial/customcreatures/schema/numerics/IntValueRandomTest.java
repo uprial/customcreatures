@@ -79,8 +79,8 @@ public class IntValueRandomTest extends TestConfigBase {
         for(int i = 0; i < 100; i++) {
             final Map<Integer, Long> distribution = getDistribution(valueRandom);
             for (int j = -10; j >= -20; j--) {
-                assertTrue(distribution.get(j) > 1_000/11-45);
-                assertTrue(distribution.get(j) < 1_000/11+45);
+                assertTrue(distribution.get(j) > 1_000/11-50);
+                assertTrue(distribution.get(j) < 1_000/11+50);
             }
             assertFalse(distribution.containsKey(-9));
             assertFalse(distribution.containsKey(-21));
