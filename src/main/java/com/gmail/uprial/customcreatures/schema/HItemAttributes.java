@@ -45,6 +45,7 @@ public final class HItemAttributes {
              */
             .put("movement-speed-multiplier", new HItemGenericAttribute(MOVEMENT_SPEED, "movement speed multiplier", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .put("movement-speed", new HItemGenericAttribute(MOVEMENT_SPEED, "movement speed", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
+            .put("scale", new HItemGenericAttribute(SCALE, "scale", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             .build();
 
     private static final String MK_MAX_HEALTH_MULTIPLIER_PREFIX = "max-health-multiplier-";
@@ -67,7 +68,7 @@ public final class HItemAttributes {
     public void apply(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         // The order makes sense: multiple a max. health after absolute value
         applyGenericAttributes(plugin, customLogger, entity, handleName);
-        applyMaxHealth(plugin, customLogger, entity, handleName);
+        applyMaxHealthMultiplier(plugin, customLogger, entity, handleName);
         applyRemoveWhenFarAway(customLogger, entity);
     }
 
@@ -142,7 +143,7 @@ public final class HItemAttributes {
         }
     }
 
-    private void applyMaxHealth(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
+    private void applyMaxHealthMultiplier(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, String handleName) {
         if (maxHealthMultiplier != null) {
             final AttributeInstance maxHealthAttributeInstance = entity.getAttribute(Attribute.MAX_HEALTH);
             final double oldMaxHealth = maxHealthAttributeInstance.getBaseValue();
@@ -221,7 +222,7 @@ public final class HItemAttributes {
         }
 
         final IValue<Boolean> removeWhenFarAway = HValue.getBooleanFromConfig(config, customLogger, joinPaths(key, "remove-when-far-away"),
-                String.format("'remove when far away' flag of %s", title));
+                String.format("'remove when far away' flag in %s", title));
 
         if ((maxHealthMultiplier == null)
                 && (genericAttributes.isEmpty())

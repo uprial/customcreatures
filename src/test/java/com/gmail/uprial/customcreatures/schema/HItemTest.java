@@ -108,6 +108,7 @@ public class HItemTest extends TestConfigBase {
                 "  max-health: 10.0",
                 "  movement-speed-multiplier: 10.0",
                 "  movement-speed: 0.5",
+                "  scale: 1.0",
                 "  remove-when-far-away: true"), getDebugFearingCustomLogger(), "h");
     }
 

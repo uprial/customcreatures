@@ -52,6 +52,114 @@ public class HItemAttributesTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyBaseArmor() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty base armor in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyFollowRange() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty follow range in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyKnockbackResistance() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty knockback resistance in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyMaxHealth() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty max. health in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 1.0"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyMovementSpeedMultiplier() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty movement speed multiplier in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 1.0",
+                " max-health: 10.0"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyMovementSpeed() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty movement speed in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 1.0",
+                " max-health: 10.0",
+                " movement-speed-multiplier: 10.0"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyScale() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty scale in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 1.0",
+                " max-health: 10.0",
+                " movement-speed-multiplier: 10.0",
+                " movement-speed: 0.5"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
+    public void testEmptyRemoveWhenFarAway() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'remove when far away' flag in attributes. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "a: ",
+                " max-health-multiplier: 0.1",
+                " base-armor: 1.0",
+                " follow-range: 50.1",
+                " knockback-resistance: 1.0",
+                " max-health: 10.0",
+                " movement-speed-multiplier: 10.0",
+                " movement-speed: 0.5",
+                " scale: 1.0"), getDebugFearingCustomLogger(), "a", "attributes");
+    }
+
+    @Test
     public void testWholeAttributes() throws Exception {
         HItemAttributes attributes = getFromConfig(getPreparedConfig(
                 "a:",
@@ -62,11 +170,13 @@ public class HItemAttributesTest extends TestConfigBase {
                 " max-health: 10.0",
                 " movement-speed-multiplier: 10.0",
                 " movement-speed: 0.5",
+                " scale: 1.0",
                 " remove-when-far-away: true"),
                 getParanoiacCustomLogger(), "a", "attributes");
         assertNotNull(attributes);
         assertEquals("{max-health-multiplier: 0.1, base-armor: 1.0," +
                 " follow-range: 50.1, knockback-resistance: 1.0, max-health: 10.0," +
-                " movement-speed-multiplier: 10.0, movement-speed: 0.5, remove-when-far-away: true}", attributes.toString());
+                " movement-speed-multiplier: 10.0, movement-speed: 0.5, scale: 1.0," +
+                " remove-when-far-away: true}", attributes.toString());
     }
 }

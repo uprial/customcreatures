@@ -159,11 +159,11 @@ handlers:
 #   probability: <float:0..100> ### Probability in percents that this
 #                               ### handler will be applied after all
 #                               ### the filters.
-#                               ### By default the probability is 100%.
+#                               ### By default, the probability is 100%.
 #                               ### (* see description of <float> below)
 #
 # #### Attributes ####
-# By default, all of the following attributes won't be modified.
+# By default, all the following attributes won't be modified.
 #
 # <attributes>:
 #   max-health-multiplier: <float-value:0.0001..?>
@@ -191,13 +191,15 @@ handlers:
 #                              ### Multiplier of base movement speed
 #                              ### of an entity.
 #
-#   remove-when-far-away: <boolean-value> ### Sets whether or not the living entity
+#   remove-when-far-away: <boolean-value> ### Sets whether the living entity
 #                                         ### despawns when away from players or not.
 #
 #   movement-speed: <float-value:0.0001..?> ### Base movement speed of an entity.
 #
+#   scale: <float-value:0.0001..?> ### Entity scale
+#
 # #### Entity-specific attributes ####
-# By default, all of the following attributes won't be modified.
+# By default, all the following attributes won't be modified.
 #
 # Warning: <filter> MUST filter only the appropriate entity types by types or by type-sets.
 #
@@ -217,7 +219,7 @@ handlers:
 #     powered: <boolean-value>            ### https://minecraft.fandom.com/wiki/Creeper#Charged_creeper
 #                                         ### Charged creepers are distinguished from normal creepers
 #                                         ### by their blue aura surrounding them.
-#                                         ### The have higher explosion radius and explosion power.
+#                                         ### They have higher explosion radius and explosion power.
 #
 #   horse:
 #     color:  ### Possible colors, see
@@ -325,7 +327,7 @@ handlers:
 # <equipment-cloth>:
 #   probability: <0..100>   ### Probability in percents that this cloth will
 #                           ### be dressed on the entity.
-#                           ### By default the probability is 100%.
+#                           ### By default, the probability is 100%.
 #
 #   material-type: <material-type> ### Material of the cloth. Values:
 #                                  ###  - LEATHER
@@ -337,14 +339,14 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this cloth will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 8.5% (0.085):
+#                             ### By default, the probability is 8.5% (0.085):
 #                             ### https://minecraft.gamepedia.com/Drops.
 #                             ###
 #                             ### The Looting enchantment increases
 #                             ### this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
-#                                   ### By default the durability is 100%.
+#                                   ### By default, the durability is 100%.
 #
 #   enchantments <enchantments>:  ### List of enchantments will be applied
 #                                 ### to this cloth.
@@ -360,7 +362,7 @@ handlers:
 # <item-in-hand>:
 #   probability: <double:0..100>   ### Probability in percents that this item will
 #                                  ### be in hand of the entity.
-#                                  ### By default the probability is 100%.
+#                                  ### By default, the probability is 100%.
 #
 #   material: <material>    ### Material of the item, see:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
@@ -369,14 +371,14 @@ handlers:
 #
 #   drop-chance: <float:0..1> ### Chance that this item will be dropped
 #                             ### as an award for the killer.
-#                             ### By default the probability is 8.5% (0.085):
+#                             ### By default, the probability is 8.5% (0.085):
 #                             ### https://minecraft.gamepedia.com/Drops.
 #                             ###
 #                             ### The Looting enchantment increases
 #                             ### this chance by 1% per level.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
-#                                   ### By default the durability is 100%.
+#                                   ### By default, the durability is 100%.
 #
 #   enchantments <enchantments>:  ### List of enchantments will be applied
 #                                 ### to this item.
@@ -392,7 +394,7 @@ handlers:
 # <item-drop>:
 #   probability: <double:0..100>   ### Probability in percents that this item will
 #                                  ### drop after the entity death.
-#                                  ### By default the probability is 100%.
+#                                  ### By default, the probability is 100%.
 #
 #   probability-per-looting-level: <double-value:0..100>  ### The Looting enchantment increases
 #                                                         ### probability by that percent per level.
@@ -415,7 +417,7 @@ handlers:
 #                                                   ### Default value is 0.
 #
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
-#                                   ### By default the durability is 100%.
+#                                   ### By default, the durability is 100%.
 #
 #   enchantments <enchantments>:  ### List of enchantments will be applied
 #                                 ### to this item.
@@ -1336,6 +1338,7 @@ rabbit-killer:
     movement-speed-multiplier: 2.0
     # 1.5(♥) > 6(♥)
     max-health-multiplier: 4.0
+    scale: 2.0
   entity-specific-attributes:
     rabbit:
       type: THE_KILLER_BUNNY
