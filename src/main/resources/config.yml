@@ -536,6 +536,11 @@ fat-animal:
       - ANIMALS
     probability: 5
   attributes:
+    scale:
+      type: random
+      min: 1.05
+      max: 1.25
+      distribution: exp_down
     max-health-multiplier:
       type: random
       min: 1.0
@@ -844,7 +849,7 @@ diamond-skeleton:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.top_protection
-      - enchantments.best_helmet_respiration
+      - enchantments.top_helmet_respiration
       - enchantments.best_helmet_aqua_affinity
       - enchantments.best_mending
     trim:
@@ -1041,7 +1046,7 @@ chainmail-zombie:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.best_protection
-      - enchantments.top_leggings_swift_sneak
+      - enchantments.best_leggings_swift_sneak
     trim:
       material: REDSTONE
       pattern: VEX
@@ -1552,6 +1557,10 @@ enchantments:
   best_helmet_respiration:
     type: RESPIRATION
     level: 3
+  top_helmet_respiration:
+    type: RESPIRATION
+    # Survival maximum level is 3, here it's 5
+    level: 5
   rand_boots_depth_strider:
     type: DEPTH_STRIDER
     level:
@@ -1570,6 +1579,9 @@ enchantments:
   best_helmet_aqua_affinity:
     type: AQUA_AFFINITY
     level: 1
+  best_leggings_swift_sneak:
+    type: SWIFT_SNEAK
+    level: 3
   top_leggings_swift_sneak:
     type: SWIFT_SNEAK
     #
