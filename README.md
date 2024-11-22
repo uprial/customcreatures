@@ -10,7 +10,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 
 ## Features
 
-* Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) and [NastyIllusioner](https://github.com/uprial/nastyillusioner) plugins
+* Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) plugin
 * 5% of animals naturally spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a small jump and movement bonus for a minute.
@@ -18,7 +18,6 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 2% of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and random durability, a well-enchanted sword (*1). Drops an iron block. (*3)
 * 1% of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and random durability and random support enhancements, a top-enchanted bow (*2). Drops a diamond. (*3)
 * 0.5% of zombie-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and random durability and random support enhancements and top thorns, a top-enchanted sword (*2). Drops lapiz lazuli and redstone. (*3)
-* 100% of Illusioners have a large jump and movement bonus, fire resistance and regeneration, in NETHERITE equipment(*1) with maybe top protection and thorns and random support enhancements, a top-enchanted bow (*2) and don't despawn when the player is far away. May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and a diamond pickaxe. (*3)
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 1% of Creepers are powered, have higher movement speed and max health and explosion radius, explode immediately on the player contact. Drops an end crystal. (*3)
@@ -72,5 +71,4 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 * CustomNukes: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customnukes/), [GitHub](https://github.com/uprial/customnukes), [Spigot](https://www.spigotmc.org/resources/customnukes.68710/)
 * CustomRecipes: [Bukkit Dev](https://dev.bukkit.org/projects/custom-recipes), [GitHub](https://github.com/uprial/customrecipes/), [Spigot](https://www.spigotmc.org/resources/customrecipes.89435/)
 * CustomVillage: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customvillage/), [GitHub](https://github.com/uprial/customvillage/), [Spigot](https://www.spigotmc.org/resources/customvillage.69170/)
-* NastyIllusioner: [Bukkit Dev](https://legacy.curseforge.com/minecraft/bukkit-plugins/nastyillusioner), [GitHub](https://github.com/uprial/nastyillusioner), [Spigot](https://www.spigotmc.org/resources/nastyillusioner.109715/)
 * TakeAim: [Bukkit Dev](https://dev.bukkit.org/projects/takeaim), [GitHub](https://github.com/uprial/takeaim), [Spigot](https://www.spigotmc.org/resources/takeaim.68713/)
