@@ -192,6 +192,9 @@ handlers:
 #
 #   remove-when-far-away: <boolean-value> ### Sets whether the living entity
 #                                         ### despawns when away from players or not.
+#                                         ###
+#                                         ### Please check https://minecraft.fandom.com/wiki/Spawn#Despawning
+#                                         ### to ensure living entity can despawn
 #
 #   movement-speed: <float-value:0.0001..?> ### Base movement speed of an entity.
 #
@@ -1153,7 +1156,7 @@ insane-creeper:
   filter:
     types:
       - CREEPER
-    probability: 1
+    probability: 0.1
   effects:
     - effects.jump_5
     - effects.regeneration
@@ -1173,7 +1176,8 @@ insane-creeper:
   drop-exp: 315
   entity-specific-attributes:
     creeper:
-      max-fuse-ticks: 1
+      # Survival default is 30
+      max-fuse-ticks: 10
       explosion-radius: 16
       powered: true
 
