@@ -41,7 +41,7 @@ handlers:
   - chainmail-zombie
   - better-crossbows
   - better-tridents
-  - insane-creeper
+  - secret-creeper
   - cool-horse
   - rabbit-killer
   - better-wither
@@ -1152,34 +1152,27 @@ better-tridents:
           min: 0
           max: 1
 
-insane-creeper:
+secret-creeper:
   filter:
     types:
       - CREEPER
     probability: 0.1
-  effects:
-    - effects.jump_5
-    - effects.regeneration
   attributes:
-    follow-range: 50.0
-    knockback-resistance: 0.75
-    movement-speed-multiplier: 2.0
-    # 10(♥) > 20(♥)
-    max-health-multiplier: 2.0
+    # Survival default is 16
+    follow-range: 64.0
+    knockback-resistance: 0.2
+    movement-speed-multiplier: 1.2
     remove-when-far-away: false
-  drops:
-    - _end_crystal
-  _end_crystal:
-    material: END_CRYSTAL
-    amount-max-per-looting-level: 1
-  # 15 levels from 0
-  drop-exp: 315
+  # 10 levels from 0
+  drop-exp: 160
   entity-specific-attributes:
     creeper:
       # Survival default is 30
-      max-fuse-ticks: 10
-      explosion-radius: 16
-      powered: true
+      max-fuse-ticks: 20
+      # Survival default is 3, for powered it's 6
+      explosion-radius: 4
+      # Default value, for transparency
+      powered: false
 
 cool-horse:
   filter:
@@ -1310,11 +1303,6 @@ effects:
     types:
       - JUMP_BOOST
     strength: 3
-    duration: 99999
-  jump_5:
-    types:
-      - JUMP_BOOST
-    strength: 5
     duration: 99999
 
 # Global templates of drops
