@@ -1020,6 +1020,7 @@ chainmail-zombie:
       - enchantments.best_protection
       - enchantments.best_helmet_respiration
       - enchantments.best_helmet_aqua_affinity
+      - enchantments.best_vanishing_curse
     trim:
       material: REDSTONE
       pattern: VEX
@@ -1032,6 +1033,7 @@ chainmail-zombie:
       - enchantments.best_protection
       - enchantments.best_boots_feather_falling
       - enchantments.best_boots_depth_strider
+      - enchantments.best_vanishing_curse
     trim:
       material: REDSTONE
       pattern: VEX
@@ -1042,6 +1044,7 @@ chainmail-zombie:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.best_protection
+      - enchantments.best_vanishing_curse
     trim:
       material: REDSTONE
       pattern: VEX
@@ -1053,6 +1056,7 @@ chainmail-zombie:
       - enchantments.best_unbreaking
       - enchantments.best_protection
       - enchantments.best_leggings_swift_sneak
+      - enchantments.best_vanishing_curse
     trim:
       material: REDSTONE
       pattern: VEX
@@ -1322,6 +1326,7 @@ drops:
       - enchantments.top_bow_punch
       - enchantments.best_bow_flame
       - enchantments.best_bow_infinity
+      - enchantments.best_vanishing_curse
 
 # Global templates of enchantments
 enchantments:
