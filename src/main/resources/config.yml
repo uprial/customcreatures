@@ -854,6 +854,7 @@ diamond-skeleton:
       - enchantments.top_helmet_respiration
       - enchantments.best_helmet_aqua_affinity
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
     trim:
       material: EMERALD
       pattern: SILENCE
@@ -867,6 +868,7 @@ diamond-skeleton:
       - enchantments.best_boots_feather_falling
       - enchantments.best_boots_depth_strider
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
       # No soul speed enchantments for boots, because
       # according to https://minecraft.fandom.com/wiki/Soul_Speed
       # it reduces durability.
@@ -881,6 +883,7 @@ diamond-skeleton:
       - enchantments.best_unbreaking
       - enchantments.top_protection
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
     trim:
       material: EMERALD
       pattern: SILENCE
@@ -893,6 +896,7 @@ diamond-skeleton:
       - enchantments.top_protection
       - enchantments.top_leggings_swift_sneak
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
     trim:
       material: EMERALD
       pattern: SILENCE
@@ -1064,6 +1068,7 @@ chainmail-zombie:
       - enchantments.best_sword_fire_aspect
       - enchantments.best_sword_sweeping_edge
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
   # 5 levels from 0
   drop-exp: 55
 
@@ -1340,6 +1345,9 @@ enchantments:
     level: 3
   best_mending:
     type: MENDING
+    level: 1
+  best_vanishing_curse:
+    type: VANISHING_CURSE
     level: 1
 
   # Cloths
