@@ -22,7 +22,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
 * 5% of Rabbits are the killer bunnies.
-* 100% of Withers have more health and armor.
+* 100% of Withers have thorns.
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
