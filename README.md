@@ -23,6 +23,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
 * 5% of Rabbits are the killer bunnies.
 * 100% of Withers have thorns.
+* 0.1% of creepers are a little more dangerous in most attributes.
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
