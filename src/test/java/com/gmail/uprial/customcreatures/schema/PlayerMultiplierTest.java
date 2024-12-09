@@ -13,7 +13,6 @@ import org.junit.rules.ExpectedException;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.UUID;
 
 import static com.gmail.uprial.customcreatures.schema.PlayerMultiplier.getFromConfig;

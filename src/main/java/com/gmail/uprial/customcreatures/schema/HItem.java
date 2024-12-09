@@ -21,6 +21,7 @@ public final class HItem {
     private final HItemDropsList drops;
     private final HItemDropExp dropExp;
     private final HItemEntitySpecificAttributes entitySpecificAttributes;
+    private final HItemSpawn spawn;
 
     private static final String MK_HANDLER_PREFIX = "handler-";
 
@@ -31,7 +32,8 @@ public final class HItem {
                   HItemEquipment equipment,
                   HItemDropsList drops,
                   HItemDropExp dropExp,
-                  HItemEntitySpecificAttributes entitySpecificAttributes) {
+                  HItemEntitySpecificAttributes entitySpecificAttributes,
+                  HItemSpawn spawn) {
         this.name = name;
         this.filter = filter;
         this.effects = effects;
@@ -40,6 +42,7 @@ public final class HItem {
         this.drops = drops;
         this.dropExp = dropExp;
         this.entitySpecificAttributes = entitySpecificAttributes;
+        this.spawn = spawn;
     }
 
     public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
@@ -50,6 +53,7 @@ public final class HItem {
             applyEffects(customLogger, entity);
             applyEquipment(customLogger, entity);
             applyEntitySpecificAttributes(customLogger, entity);
+            applySpawn(customLogger, entity);
         }
     }
 
@@ -96,6 +100,12 @@ public final class HItem {
         }
     }
 
+    private void applySpawn(CustomLogger customLogger, LivingEntity entity) {
+        if (spawn != null) {
+            spawn.apply(customLogger, entity);
+        }
+    }
+
     public static HItem getFromConfig(FileConfiguration config, CustomLogger customLogger, String key) throws InvalidConfigException {
         HItemFilter filter = HItemFilter.getFromConfig(config, customLogger, joinPaths(key, "filter"),
                 String.format("filter of handler '%s'", key));
@@ -113,26 +123,31 @@ public final class HItem {
                 filter,
                 joinPaths(key, "entity-specific-attributes"),
                 String.format("entity-specific attributes of handler '%s'", key));
+        HItemSpawn spawn = HItemSpawn.getFromConfig(config, customLogger, joinPaths(key, "spawn"),
+                String.format("spawn of handler '%s'", key));
 
         if ((attributes == null)
                 && (effectsList == null)
                 && (equipment == null)
                 && (drops == null)
                 && (dropExp == null)
-                && (entitySpecificAttributes == null)) {
+                && (entitySpecificAttributes == null)
+                && (spawn == null)) {
             throw new InvalidConfigException(String.format("No modifications found for handler '%s'", key));
         }
 
-        return new HItem(key, filter, effectsList, attributes, equipment, drops, dropExp, entitySpecificAttributes);
+        return new HItem(key, filter, effectsList, attributes, equipment, drops, dropExp, entitySpecificAttributes, spawn);
     }
 
     public String toString() {
         return String.format("{name: %s, filter: %s, effects: %s, " +
                         "attributes: %s, equipment: %s, drops: %s, " +
-                        "drop-exp: %s, entity-specific-attributes: %s}",
+                        "drop-exp: %s, entity-specific-attributes: %s, " +
+                        "spawn: %s}",
                 name, filter, effects,
                 attributes, equipment, drops,
-                dropExp, entitySpecificAttributes);
+                dropExp, entitySpecificAttributes,
+                spawn);
     }
 
     private String getHandlerMetadataKey() {

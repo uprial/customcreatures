@@ -45,6 +45,8 @@ handlers:
   - cool-horse
   - rabbit-killer
   - better-wither
+  - vex-spawns-an-illusioner
+  - insane-illusioner
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -81,7 +83,7 @@ handlers:
 #     - <drop-path-abs>       ### Absolute path.
 #       ...
 #     - <drop-pathN>
-
+#
 #   drop-path-rel: <item-drop> ### Item drop described in handler's namespace.
 #                              ### (* see description of <item-drop> below)
 #
@@ -98,6 +100,8 @@ handlers:
 #                                  ### 30    1395
 #
 #   entity-specific-attributes: <entity-specific-attributes> ### (* see description below)
+#
+#   spawn: <spawn> ### (* see description below)
 #
 # effect-path-abs: <effect>   ### Effect described anywhere else.
 #                             ### (* see description of <effect> below)
@@ -258,6 +262,16 @@ handlers:
 #   rabbit:
 #     type: ### Possible types, see
 #https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/Rabbit.Type.html
+#
+# #### Spawn ####
+#
+# <spawn>:
+#   type:  ### Possible entity types, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+#          ### An entity should be a subinterface of LivingEntity, see
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+#
+#   amount: <int-value:1..?>
 #
 # #### Type set ####
 #
@@ -1311,6 +1325,145 @@ better-wither:
     #
     max-health-multiplier: 0.4
 
+vex-spawns-an-illusioner:
+  filter:
+    types:
+      - VEX
+    probability: 25
+  spawn:
+    type: ILLUSIONER
+
+insane-illusioner:
+  filter:
+    types:
+      - ILLUSIONER
+    probability: 10
+  effects:
+    - effects.jump_3
+    - effects.fire_resistance
+    - effects.regeneration
+  equipment:
+    helmet:
+      probability: 100
+      material-type: NETHERITE
+      #
+      # According https://minecraft.fandom.com/wiki/Durability,
+      # the weakest cloth is a Helmet,
+      # 10% of the Netherite Helmet has 408 * 2% = 8 durability,
+      # it protects from 8 * 2(♥) = 16(♥) of damage,
+      # and with the top protection enchantments it gives 16(♥) / 20% = 80(♥).
+      #
+      # So, practically, the insane-illusioner has 80(♥) of quickly regenerated health,
+      # and then it quickly gives up.
+      #
+      # This model protects from any quick kill.
+      #
+      durability: 2
+      enchantments:
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_helmet_respiration
+        - enchantments.rand_helmet_aqua_affinity
+        - enchantments.rand_maybe_top_thorns
+    boots:
+      probability: 100
+      material-type: NETHERITE
+      durability: 2
+      enchantments:
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_boots_feather_falling
+        - enchantments.rand_boots_depth_strider
+        - enchantments.rand_maybe_top_thorns
+    chest:
+      probability: 100
+      material-type: NETHERITE
+      durability: 2
+      enchantments:
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_maybe_top_thorns
+    leggings:
+      probability: 100
+      material-type: NETHERITE
+      durability: 2
+      enchantments:
+        - enchantments.rand_maybe_top_protection
+        - enchantments.rand_leggings_swift_sneak
+        - enchantments.rand_maybe_top_thorns
+    main-hand:
+      probability: 100
+      material: BOW
+      durability:
+        type: random
+        min: 10
+        max: 25
+      enchantments:
+        - enchantments.rand_unbreaking
+        - enchantments.rand_maybe_top_bow_power
+        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_flame
+        - enchantments.rand_bow_infinity
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.75
+    movement-speed-multiplier: 2.0
+    # 16(♥) > 20(♥)
+    max-health-multiplier: 1.25
+  drops:
+    - _enchanted_golden_apple
+    - _netherite_scrap
+    - _book_of_mending
+    - _totem_of_undying
+    - _diamond_pickaxe_silk_touch
+    - _diamond_pickaxe_fortune
+    - drops.top_bow
+    #
+    # No netherite treasury clothes in drops
+    # to challenge the player in finding of netherite.
+    #
+  _enchanted_golden_apple:
+    probability: 10
+    probability-per-looting-level: 5
+    material: ENCHANTED_GOLDEN_APPLE
+  _netherite_scrap:
+    probability: 10
+    probability-per-looting-level: 5
+    material: NETHERITE_SCRAP
+  _book_of_mending:
+    probability: 10
+    probability-per-looting-level: 5
+    material: ENCHANTED_BOOK
+    enchantments:
+      - enchantments.best_mending
+  _totem_of_undying:
+    probability: 10
+    probability-per-looting-level: 5
+    material: TOTEM_OF_UNDYING
+  _diamond_pickaxe_silk_touch:
+    probability: 5
+    probability-per-looting-level: 2.5
+    material: DIAMOND_PICKAXE
+    enchantments:
+      - enchantments.best_unbreaking
+      - _best_silk_touch
+      - enchantments.top_efficiency
+      - enchantments.best_mending
+    _best_silk_touch:
+      type: SILK_TOUCH
+      level: 1
+  _diamond_pickaxe_fortune:
+    probability: 5
+    probability-per-looting-level: 2.5
+    material: DIAMOND_PICKAXE
+    enchantments:
+      - enchantments.best_unbreaking
+      - _best_fortune
+      - enchantments.top_efficiency
+      - enchantments.best_mending
+    _best_fortune:
+      type: FORTUNE
+      level: 3
+  # 10 levels from 0
+  drop-exp: 160
+
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
 test-handler:
@@ -1374,6 +1527,10 @@ enchantments:
       type: random
       min: 0
       max: 5
+  top_efficiency:
+    type: EFFICIENCY
+    # Survival maximum level is 5, here it's 10.
+    level: 10
 
   # Cloths and weapon
   rand_unbreaking:
