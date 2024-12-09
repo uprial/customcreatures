@@ -28,6 +28,10 @@ public class Probability {
         return isPassed(probability + inc);
     }
 
+    public boolean isPassedWithMult(double mult) {
+        return isPassed(probability * mult);
+    }
+
     public static Probability getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
         double probability = getDouble(config, customLogger, key, title, MIN_DOUBLE_VALUE, MAX_PERCENT, MAX_PERCENT);
         if (probability >= MAX_PERCENT) {

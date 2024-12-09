@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 import java.util.HashSet;
@@ -19,27 +20,29 @@ public final class HItemFilter {
     private final Set<SpawnReason> spawnReasons;
     private final Set<String> worlds;
     private final Probability probability;
+    private final PlayerMultiplier probabilityPlayerMultiplier;
 
     private Set<EntityType> possibleEntityTypesCache = null;
 
-    private HItemFilter(Set<EntityType> entityTypes, Set<HItemTypeSet> entityTypeSets, Set<SpawnReason> spawnReasons, Set<String> worlds, Probability probability) {
+    private HItemFilter(Set<EntityType> entityTypes, Set<HItemTypeSet> entityTypeSets, Set<SpawnReason> spawnReasons, Set<String> worlds, Probability probability, PlayerMultiplier probabilityPlayerMultiplier) {
         this.entityTypes = entityTypes;
         this.entityTypeSets = entityTypeSets;
         this.spawnReasons = spawnReasons;
         this.worlds = worlds;
         this.probability = probability;
+        this.probabilityPlayerMultiplier = probabilityPlayerMultiplier;
     }
 
-    public boolean isPassed(EntityType entityType, SpawnReason spawnReason, String world) {
+    public boolean isPassed(LivingEntity entity, SpawnReason spawnReason, String world) {
         boolean typeNotFound = true;
         if (entityTypes != null) {
-            if (entityTypes.contains(entityType)) {
+            if (entityTypes.contains(entity.getType())) {
                 typeNotFound = false;
             }
         }
         if (entityTypeSets != null) {
             for(HItemTypeSet typeSet : entityTypeSets) {
-                if(typeSet.isContains(entityType)) {
+                if(typeSet.isContains(entity.getType())) {
                     typeNotFound = false;
                     break;
                 }
@@ -60,7 +63,7 @@ public final class HItemFilter {
             }
         }
         if (probability != null) {
-            if (! probability.isPassed()) {
+            if (! probability.isPassedWithMult(probabilityPlayerMultiplier.get(entity))) {
                 return false;
             }
         }
@@ -98,16 +101,21 @@ public final class HItemFilter {
                 joinPaths(key, "reasons"), String.format("reasons of %s", title));
         Set<String> worlds = getStringSet(config, customLogger,
                 joinPaths(key, "worlds"), String.format("worlds of %s", title));
-        Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"), String.format("probability of %s", title));
+        Probability probability = Probability.getFromConfig(config, customLogger,
+                joinPaths(key, "probability"), String.format("probability of %s", title));
+
         if ((entityTypes == null) && (entityTypeSets == null) && (spawnReasons == null) && (worlds == null) && (probability == null)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }
 
-        return new HItemFilter(entityTypes, entityTypeSets, spawnReasons, worlds, probability);
+        PlayerMultiplier probabilityPlayerMultiplier = PlayerMultiplier.getFromConfig(config, customLogger,
+                joinPaths(key, "probability-player-multiplier"), String.format("probability player multiplier of %s", title));
+
+        return new HItemFilter(entityTypes, entityTypeSets, spawnReasons, worlds, probability, probabilityPlayerMultiplier);
     }
 
     public String toString() {
-        return String.format("{types: %s, type-sets: %s, reasons: %s, probability: %s}",
-                entityTypes, entityTypeSets, spawnReasons, probability);
+        return String.format("{types: %s, type-sets: %s, reasons: %s, probability: %s, probability-player-multiplier: %s}",
+                entityTypes, entityTypeSets, spawnReasons, probability, probabilityPlayerMultiplier);
     }
 }

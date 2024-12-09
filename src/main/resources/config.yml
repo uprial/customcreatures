@@ -161,14 +161,24 @@ handlers:
 #                               ### By default, the probability is 100%.
 #                               ### (* see description of <float> below)
 #
+#   probability-player-multiplier:      ### Player-based probability modifier:
+#                                       ### probability *= min(<max>, (1 + <statistic> / <divider>))
+#
+#     sort: closest | biggest           ### "closest" - the player closest to a spawned entity
+#                                       ### "biggest" - the player with the biggest statistic value
+#
+#     statistic:                        ### Possible statistic, see
+#https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Statistic.html
+#
+#     divider: <float-value:0.0001..?>  ### Math constant
+#
+#     max: <float-value:0.0001..?>      ### Math constant
+#
 # #### Attributes ####
 # By default, all the following attributes won't be modified.
 #
 # <attributes>:
-#   max-health-multiplier: <float-value:0.0001..?>
-#                          ###
-#                          ### A multiplier for max. health of an entity.
-#                          ### (* see description of <float-value> below)
+#   max-health-multiplier: <float-value:0.0001..?> ### A multiplier for max. health of an entity.
 #
 #   base-armor: <float-value:0..?> ### Entity's base armor before all
 #                                  ### the other modifiers, see
@@ -186,9 +196,8 @@ handlers:
 #
 #   max-health: <float-value:0.0001..?> ### Max. health of an entity.
 #
-#   movement-speed-multiplier: <float-value:0.0001..?>
-#                              ### Multiplier of base movement speed
-#                              ### of an entity.
+#   movement-speed-multiplier: <float-value:0.0001..?> ### Multiplier of base movement speed
+#                                                      ### of an entity.
 #
 #   remove-when-far-away: <boolean-value> ### Sets whether the living entity
 #                                         ### despawns when away from players or not.
@@ -602,6 +611,13 @@ golden-zombie:
     type-sets:
       - ZOMBIES
     probability: 4
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stores in percentages
+      divider: 500_000
+      # 4 * 6 = 24
+      max: 6
   effects:
     - effects.jump_1
     - effects.fire_resistance
@@ -672,6 +688,13 @@ iron-zombie:
     type-sets:
       - ZOMBIES
     probability: 2
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stores in percentages
+      divider: 500_000
+      # 2 * 12 = 24
+      max: 12
   effects:
     - effects.jump_1
     - effects.fire_resistance
@@ -750,6 +773,13 @@ diamond-skeleton:
     type-sets:
       - SKELETONS
     probability: 1
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stores in percentages
+      divider: 500_000
+      # 1 * 24 = 24
+      max: 24
   effects:
     - effects.jump_3
     - effects.glowing
@@ -908,6 +938,13 @@ chainmail-zombie:
     type-sets:
       - ZOMBIES
     probability: 0.5
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stores in percentages
+      divider: 500_000
+      # 0.5 * 48 = 24
+      max: 48
   effects:
     - effects.jump_3
     - effects.glowing

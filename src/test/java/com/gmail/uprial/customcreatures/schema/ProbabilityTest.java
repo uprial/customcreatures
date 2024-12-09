@@ -103,6 +103,25 @@ public class ProbabilityTest extends TestConfigBase {
         }
     }
 
+    @Test
+    public void testProbabilityDistribution_WithMult() throws Exception {
+        final double MULT = 2.0;
+        for(int i = 0; i <= 100 / MULT; i++) {
+            final Probability probability = new Probability(i);
+            int passes = 0;
+            for (int j = 0; j < 1000; j++) {
+                if (probability.isPassedWithMult(MULT)) {
+                    passes += 1;
+                }
+            }
+
+            long lPasses = Math.round((double)passes / 1000 * MAX_PERCENT);
+
+            assertTrue(lPasses > i * MULT - 10);
+            assertTrue(lPasses < i * MULT + 10);
+        }
+    }
+
     private static long getPasses(int tries, Probability probability) {
         int passes = 0;
         for (int i = 0; i < tries; i++) {

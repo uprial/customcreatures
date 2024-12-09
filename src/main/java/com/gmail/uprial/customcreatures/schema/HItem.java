@@ -43,7 +43,7 @@ public final class HItem {
     }
 
     public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
-        if (filter.isPassed(entity.getType(), spawnReason, entity.getWorld().getName())) {
+        if (filter.isPassed(entity, spawnReason, entity.getWorld().getName())) {
             addPersistentMetadataFlag(plugin, entity, getHandlerMetadataKey());
 
             applyAttributes(plugin, customLogger, entity);

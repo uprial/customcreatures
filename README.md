@@ -24,6 +24,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 5% of Rabbits are the killer bunnies.
 * 100% of Withers have thorns.
 * 0.1% of creepers are a little more dangerous in most attributes.
+* Each 5,000 damage dealt by the closest player increases probability of hard monsters spawn to 100%.  
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 

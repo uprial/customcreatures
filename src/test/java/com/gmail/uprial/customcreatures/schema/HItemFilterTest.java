@@ -3,6 +3,7 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.helpers.TestConfigBase;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,6 +13,8 @@ import static com.gmail.uprial.customcreatures.schema.HItemFilter.getFromConfig;
 import static com.gmail.uprial.customcreatures.schema.Probability.MAX_PERCENT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class HItemFilterTest extends TestConfigBase {
     @Rule
@@ -29,9 +32,15 @@ public class HItemFilterTest extends TestConfigBase {
                 "    - NATURAL",
                 "  worlds:",
                 "    - world",
-                "  probability: 50"),
+                "  probability: 50",
+                "  probability-player-multiplier:",
+                "    sort: closest",
+                "    statistic: DAMAGE_DEALT",
+                "    divider: 5_000",
+                "    max: 5.0"),
                 getParanoiacCustomLogger(), "f", "filter");
-        assertEquals("{types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], probability: 50}", itemFilter.toString());
+        assertEquals("{types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], " +
+                "probability: 50, probability-player-multiplier: {sort: CLOSEST, statistic: DAMAGE_DEALT, divider: 5000.0, max: 5.0}}", itemFilter.toString());
     }
 
     @Test
@@ -122,6 +131,23 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyProbabilityPlayerMultiplier() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty probability player multiplier of filter. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "f:",
+                        "  types:",
+                        "    - ZOMBIE",
+                        "  type-sets:",
+                        "    - ANIMALS",
+                        "  reasons:",
+                        "    - NATURAL",
+                        "  worlds:",
+                        "    - world",
+                        "  probability: 100"),
+                getDebugFearingCustomLogger(), "f", "filter");
+    }
+    @Test
     public void testPassTypesAndReasons() throws Exception {
         HItemFilter filter = getFromConfig(getPreparedConfig(
                 "f:",
@@ -199,9 +225,12 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     private static int getPasses(int tries, HItemFilter filter, EntityType entityType, SpawnReason spawnReason, String world) {
+        final LivingEntity entity = mock(LivingEntity.class);
+        when(entity.getType()).thenReturn(entityType);
+
         int passes = 0;
         for (int i = 0; i < tries; i++) {
-            if (filter.isPassed(entityType, spawnReason, world)) {
+            if (filter.isPassed(entity, spawnReason, world)) {
                 passes += 1;
             }
         }

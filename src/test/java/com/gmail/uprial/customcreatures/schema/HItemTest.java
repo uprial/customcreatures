@@ -36,7 +36,12 @@ public class HItemTest extends TestConfigBase {
                 "     - NATURAL",
                 "   worlds:",
                 "     - world",
-                "   probability: 100"), getDebugFearingCustomLogger(), "h");
+                "   probability: 100",
+                "   probability-player-multiplier:",
+                "     sort: closest",
+                "     statistic: DAMAGE_DEALT",
+                "     divider: 5_000",
+                "     max: 5.0"), getDebugFearingCustomLogger(), "h");
     }
 
     @Test
@@ -56,6 +61,11 @@ public class HItemTest extends TestConfigBase {
                 "   worlds:",
                 "     - world",
                 "   probability: 100",
+                "   probability-player-multiplier:",
+                "     sort: closest",
+                "     statistic: DAMAGE_DEALT",
+                "     divider: 5_000",
+                "     max: 5.0",
                 " effects:",
                 "  - e",
                 " e:",
@@ -93,6 +103,11 @@ public class HItemTest extends TestConfigBase {
                 "   worlds:",
                 "     - world",
                 "   probability: 100",
+                "   probability-player-multiplier:",
+                "     sort: closest",
+                "     statistic: DAMAGE_DEALT",
+                "     divider: 5_000",
+                "     max: 5.0",
                 " effects:",
                 "  - e",
                 " e:",
