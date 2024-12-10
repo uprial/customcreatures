@@ -1487,7 +1487,7 @@ insane-mansions-and-raids-illusioners:
 # for experiments.
 test-handler:
   filter:
-    reason:
+    reasons:
       - DEFAULT
     types:
       - ZOMBIE
