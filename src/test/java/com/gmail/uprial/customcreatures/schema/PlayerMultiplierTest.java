@@ -91,6 +91,14 @@ public class PlayerMultiplierTest extends TestConfigBase {
 
     @Test
     public void testClosest() throws Exception {
+        PlayerMultiplier psp = getFromConfig(getPreparedConfig(
+                        "pm:",
+                        " sort: closest",
+                        " statistic: DAMAGE_DEALT",
+                        " divider: 5_000",
+                        " max: 5.0"),
+                getCustomLogger(), "pm", "player-multiplier");
+
         final Location location1 = mock(Location.class);
         when(location1.distance(any())).thenReturn(1.0D);
 
@@ -105,24 +113,11 @@ public class PlayerMultiplierTest extends TestConfigBase {
         when(player2.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(3_000);
         when(player2.getLocation()).thenReturn(location2);
 
-        PlayerMultiplier psp = getFromConfig(getPreparedConfig(
-                        "pm:",
-                        " sort: closest",
-                        " statistic: DAMAGE_DEALT",
-                        " divider: 5_000",
-                        " max: 5.0"),
-                getCustomLogger(), "pm", "player-multiplier");
         assertEquals(1.2D, psp.get(mockLivingEntity(player1, player2)), 0.01D);
     }
 
     @Test
     public void testBiggest() throws Exception {
-        final Player player1 = mock(Player.class);
-        when(player1.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(1_000);
-
-        final Player player2 = mock(Player.class);
-        when(player2.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(3_000);
-
         PlayerMultiplier psp = getFromConfig(getPreparedConfig(
                         "pm:",
                         " sort: biggest",
@@ -130,17 +125,18 @@ public class PlayerMultiplierTest extends TestConfigBase {
                         " divider: 5_000",
                         " max: 5.0"),
                 getCustomLogger(), "pm", "player-multiplier");
-        assertEquals(1.6D, psp.get(mockLivingEntity(player1, player2)), 0.01D);
-    }
 
-    @Test
-    public void testMax() throws Exception {
         final Player player1 = mock(Player.class);
         when(player1.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(1_000);
 
         final Player player2 = mock(Player.class);
         when(player2.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(3_000);
 
+        assertEquals(1.6D, psp.get(mockLivingEntity(player1, player2)), 0.01D);
+    }
+
+    @Test
+    public void testMax() throws Exception {
         PlayerMultiplier psp = getFromConfig(getPreparedConfig(
                         "pm:",
                         " sort: biggest",
@@ -149,8 +145,61 @@ public class PlayerMultiplierTest extends TestConfigBase {
                         " max: 1.4"),
                 getCustomLogger(), "pm", "player-multiplier");
 
+        final Player player1 = mock(Player.class);
+        when(player1.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(1_000);
+
+        final Player player2 = mock(Player.class);
+        when(player2.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(3_000);
+
         assertEquals(1.2D, psp.get(mockLivingEntity(player1, player1)), 0.01D);
         assertEquals(1.4D, psp.get(mockLivingEntity(player2, player2)), 0.01D);
+    }
+
+    @Test
+    public void testMax1stCacheCall() throws Exception {
+        PlayerMultiplier psp = getFromConfig(getPreparedConfig(
+                        "pm:",
+                        " sort: biggest",
+                        " statistic: DAMAGE_DEALT",
+                        " divider: 5_000",
+                        " max: 1.4"),
+                getCustomLogger(), "pm", "player-multiplier");
+
+        e.expect(NullPointerException.class);
+        e.expectMessage("Cannot invoke" +
+                " \"org.bukkit.World.getEntitiesByClass(java.lang.Class)\"" +
+                " because the return value of" +
+                " \"org.bukkit.entity.LivingEntity.getWorld()\" is null");
+
+        LivingEntity entity = mockLivingEntity(null, null);
+        // The same result is returned in testMax2ndCacheCall(), but on the 2nd call of psp.get()
+        when(entity.getWorld()).thenReturn(null);
+
+        psp.get(entity);
+    }
+
+    @Test
+    public void testMax2ndCacheCall() throws Exception {
+        PlayerMultiplier psp = getFromConfig(getPreparedConfig(
+                        "pm:",
+                        " sort: biggest",
+                        " statistic: DAMAGE_DEALT",
+                        " divider: 5_000",
+                        " max: 1.4"),
+                getCustomLogger(), "pm", "player-multiplier");
+
+        final Player player1 = mock(Player.class);
+        when(player1.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(1_000);
+
+        final Player player2 = mock(Player.class);
+        when(player2.getStatistic(Statistic.DAMAGE_DEALT)).thenReturn(3_000);
+
+        LivingEntity entity = mockLivingEntity(player1, player1);
+        assertEquals(1.2D, psp.get(entity), 0.01D);
+
+        // The same result is returned in testMax1stCacheCall(), but on the 1nd call of psp.get()
+        when(entity.getWorld()).thenReturn(null);
+        assertEquals(1.2D, psp.get(entity), 0.01D);
     }
 
     private LivingEntity mockLivingEntity(final Player player1, final Player player2) {
@@ -161,9 +210,11 @@ public class PlayerMultiplierTest extends TestConfigBase {
         final World world = mock(World.class);
         when(world.getEntitiesByClass(Player.class)).thenReturn(players);
 
+        final UUID uuid = UUID.randomUUID();
+
         final LivingEntity entity = mock(LivingEntity.class);
         when(entity.getWorld()).thenReturn(world);
-        when(entity.getUniqueId()).thenReturn(UUID.randomUUID());
+        when(entity.getUniqueId()).thenReturn(uuid);
 
         return  entity;
     }
