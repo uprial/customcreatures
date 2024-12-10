@@ -77,7 +77,7 @@ public final class HItemEquipmentCloth {
                 } else {
                     if (customLogger.isDebugMode()) {
                         customLogger.debug(String.format("Handle drop chance of %s:" +
-                                        " set drop chance of %s of %s to %.2f",
+                                        " set drop chance of %s of %s to %.4f",
                                 title, material, format(entity), dropChance));
                     }
                     try {
