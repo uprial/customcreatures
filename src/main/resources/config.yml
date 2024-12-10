@@ -1225,8 +1225,8 @@ secret-creeper:
     movement-speed-multiplier: 1.2
     max-health-multiplier: 1.2
     remove-when-far-away: false
-  # 10 levels from 0
-  drop-exp: 160
+  # 5 levels from 0
+  drop-exp: 55
   entity-specific-attributes:
     creeper:
       # Survival default is 30
