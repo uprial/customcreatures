@@ -1488,14 +1488,7 @@ angry-vindicator:
   filter:
     types:
       - VINDICATOR
-    probability: 8
-    probability-player-multiplier:
-      sort: closest
-      statistic: DAMAGE_DEALT
-      # stores in percentages
-      divider: 500_000
-      # 8 * 6 = 48
-      max: 6
+    probability: 25
   effects:
     - effects.jump_3
     - effects.fire_resistance
