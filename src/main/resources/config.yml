@@ -48,6 +48,7 @@ handlers:
   - vex-spawns-an-illusioner
   - insane-mansions-and-raids
   - insane-mansions-and-raids-illusioners
+  - angry-vindicator
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -1482,6 +1483,41 @@ insane-mansions-and-raids-illusioners:
         - enchantments.rand_bow_infinity
   drops:
     - drops.top_bow
+
+angry-vindicator:
+  filter:
+    types:
+      - VINDICATOR
+    probability: 8
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stores in percentages
+      divider: 500_000
+      # 8 * 6 = 48
+      max: 6
+  effects:
+    - effects.jump_3
+    - effects.fire_resistance
+  equipment:
+    # Damage in "hard": 9.5(♥)
+    main-hand:
+      probability: 100
+      material: DIAMOND_AXE
+      durability:
+        type: random
+        min: 25
+        max: 50
+      enchantments:
+        - enchantments.rand_unbreaking
+        - enchantments.rand_efficiency
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.5
+    movement-speed-multiplier: 1.5
+    max-health-multiplier: 1.5
+  # 5 levels from 0
+  drop-exp: 55
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
