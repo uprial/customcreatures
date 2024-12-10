@@ -5,4 +5,5 @@
 * Added 'apply' command
 * 8% of Vindicators spawn with a medium jump and movement bonus, fire resistance, a slightly-enchanted diamond axe. 
 # Bug fixes
-* Fixed handling of pre-generated entities in structures, like Evokers and Vindicators in woodland mansions. 
+* Fixed handling of pre-generated entities in structures, like Evokers and Vindicators in woodland mansions.
+* Added BOGGED to SKELETONS

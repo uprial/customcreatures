@@ -131,7 +131,7 @@ public class HItemTypeSetTest {
                 "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]\n" +
                 "ZOMBIES: [BOGGED, DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, " +
                 "ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]\n" +
-                "SKELETONS: [SKELETON, STRAY, WITHER_SKELETON]\n" +
+                "SKELETONS: [BOGGED, SKELETON, STRAY, WITHER_SKELETON]\n" +
                 "FLYING_MOBS: [ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, " +
                 "VEX, WITHER]\n", stringBuilder.toString());
     }

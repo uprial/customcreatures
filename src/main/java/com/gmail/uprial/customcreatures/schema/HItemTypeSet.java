@@ -54,7 +54,7 @@ public enum HItemTypeSet {
                     ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
     // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
     SKELETONS(null,
-            Sets.newHashSet(SKELETON, STRAY, WITHER_SKELETON)),
+            Sets.newHashSet(BOGGED, SKELETON, STRAY, WITHER_SKELETON)),
     FLYING_MOBS(null,
             Sets.newHashSet(ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM,
                     VEX, WITHER));
