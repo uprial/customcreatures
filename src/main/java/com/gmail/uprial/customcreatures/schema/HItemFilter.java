@@ -52,7 +52,8 @@ public final class HItemFilter {
             return false;
         }
 
-        if (spawnReasons != null) {
+        // spawnReason may be null if called from CreaturesConfig.apply()
+        if ((spawnReasons != null) && (spawnReason != null)){
             if (! spawnReasons.contains(spawnReason)) {
                 return false;
             }

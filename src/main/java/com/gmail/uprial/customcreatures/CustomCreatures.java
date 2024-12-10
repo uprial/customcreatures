@@ -48,6 +48,10 @@ public final class CustomCreatures extends JavaPlugin {
         creaturesConfig = loadConfig(getConfig(), userLogger, consoleLogger);
     }
 
+    public int apply(CustomLogger userLogger, String handleName) throws InvalidConfigException {
+        return creaturesConfig.apply(this, userLogger, handleName);
+    }
+
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);

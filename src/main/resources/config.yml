@@ -46,7 +46,8 @@ handlers:
   - rabbit-killer
   - better-wither
   - vex-spawns-an-illusioner
-  - insane-illusioner
+  - insane-mansions-and-raids
+  - insane-mansions-and-raids-illusioners
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -1168,8 +1169,8 @@ better-crossbows:
         #
         # Survival maximum level is 4, here it's 7.
         #
-        # According to https://minecraft.fandom.com/wiki/Piercing
-        # wth values beyond 127 the piercing effect will stop working
+        # According to https://minecraft.fandom.com/wiki/Piercing,
+        # with values beyond 127 the piercing effect will stop working
         #
         level:
           type: random
@@ -1222,6 +1223,7 @@ secret-creeper:
     follow-range: 64.0
     knockback-resistance: 0.2
     movement-speed-multiplier: 1.2
+    max-health-multiplier: 1.2
     remove-when-far-away: false
   # 10 levels from 0
   drop-exp: 160
@@ -1329,15 +1331,19 @@ vex-spawns-an-illusioner:
   filter:
     types:
       - VEX
-    probability: 25
+    probability: 10
   spawn:
     type: ILLUSIONER
 
-insane-illusioner:
+insane-mansions-and-raids:
   filter:
     types:
+      # According to https://minecraft.wiki/w/Evoker,
+      # evoker can be found in woodland mansions and as part of raids.
+      - EVOKER
+      # Evokers spawn vexes, vexes spawn illusioners.
       - ILLUSIONER
-    probability: 10
+    probability: 100
   effects:
     - effects.jump_3
     - effects.fire_resistance
@@ -1347,14 +1353,16 @@ insane-illusioner:
       probability: 100
       material-type: NETHERITE
       #
-      # According https://minecraft.fandom.com/wiki/Durability,
+      # According to https://minecraft.fandom.com/wiki/Durability,
       # the weakest cloth is a Helmet,
       # 10% of the Netherite Helmet has 408 * 2% = 8 durability,
       # it protects from 8 * 2(♥) = 16(♥) of damage,
       # and with the top protection enchantments it gives 16(♥) / 20% = 80(♥).
       #
-      # So, practically, the insane-illusioner has 80(♥) of quickly regenerated health,
-      # and then it quickly gives up.
+      # So, practically, entities have 80(♥) of quickly regenerated health,
+      # and then it quickly give up.
+      #
+      # Damage reduction example: 12.50 > 0.75.
       #
       # This model protects from any quick kill.
       #
@@ -1388,24 +1396,12 @@ insane-illusioner:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
-    main-hand:
-      probability: 100
-      material: BOW
-      durability:
-        type: random
-        min: 10
-        max: 25
-      enchantments:
-        - enchantments.rand_unbreaking
-        - enchantments.rand_maybe_top_bow_power
-        - enchantments.rand_maybe_top_bow_punch
-        - enchantments.rand_bow_flame
-        - enchantments.rand_bow_infinity
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
-    # 16(♥) > 20(♥)
+    # Illusioner: 16(♥) > 20(♥)
+    # Evoker: 12(♥) > 15(♥)
     max-health-multiplier: 1.25
   drops:
     - _enchanted_golden_apple
@@ -1414,7 +1410,6 @@ insane-illusioner:
     - _totem_of_undying
     - _diamond_pickaxe_silk_touch
     - _diamond_pickaxe_fortune
-    - drops.top_bow
     #
     # No netherite treasury clothes in drops
     # to challenge the player in finding of netherite.
@@ -1463,6 +1458,30 @@ insane-illusioner:
       level: 3
   # 10 levels from 0
   drop-exp: 160
+
+insane-mansions-and-raids-illusioners:
+  filter:
+    types:
+      # Evokers can't use bows
+      # - EVOKER
+      - ILLUSIONER
+    probability: 100
+  equipment:
+    main-hand:
+      probability: 100
+      material: BOW
+      durability:
+        type: random
+        min: 10
+        max: 25
+      enchantments:
+        - enchantments.rand_unbreaking
+        - enchantments.rand_maybe_top_bow_power
+        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_flame
+        - enchantments.rand_bow_infinity
+  drops:
+    - drops.top_bow
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.

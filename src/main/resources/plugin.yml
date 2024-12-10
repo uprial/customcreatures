@@ -12,3 +12,6 @@ permissions:
     customcreatures.reload:
         description: Gives access to CustomCreatures 'reload' command
         default: op
+    customcreatures.apply:
+      description: Gives access to CustomCreatures 'apply' command
+      default: op

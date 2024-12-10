@@ -25,8 +25,8 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 100% of Withers have thorns.
 * 0.1% of creepers are a little more healthy, fast, explosive, and don't despawn.
 * Each 5,000 damage dealt by the closest player increases probability of hard monsters spawn to 100%.
-* 25% of Vexes are replaced to illusioners.
-* 10% of Illusioners have a large jump and movement bonus, fire resistance and regeneration, in NETHERITE equipment(*1) with maybe top protection and thorns and random support enhancements, a top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and a diamond pickaxe. (*3)
+* 10% of Vexes are spawned together with illusioners.
+* 100% of Evokers and Illusioners have a large jump and movement bonus, fire resistance and regeneration, in NETHERITE equipment(*1) with maybe top protection and thorns and random support enhancements, a top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and a diamond pickaxe. (*3)
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
@@ -52,11 +52,15 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 ## Commands
 
 `customcreatures reload` - reload config from disk
+`customcreatures apply <handler>` - apply a handler to currently living entities
 
 ## Permissions
 
 * Access to 'reload' command:
 `customcreatures.reload` (default: op)
+
+* Access to 'apply' command:
+  `customcreatures.apply` (default: op)
 
 ## Configuration
 [Default configuration file](src/main/resources/config.yml)

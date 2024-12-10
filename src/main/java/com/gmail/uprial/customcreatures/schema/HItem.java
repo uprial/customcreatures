@@ -45,7 +45,7 @@ public final class HItem {
         this.spawn = spawn;
     }
 
-    public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
+    public boolean handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
         if (filter.isPassed(entity, spawnReason, entity.getWorld().getName())) {
             addPersistentMetadataFlag(plugin, entity, getHandlerMetadataKey());
 
@@ -54,6 +54,10 @@ public final class HItem {
             applyEquipment(customLogger, entity);
             applyEntitySpecificAttributes(customLogger, entity);
             applySpawn(customLogger, entity);
+
+            return true;
+        } else {
+            return false;
         }
     }
 

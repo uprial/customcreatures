@@ -4,6 +4,7 @@ import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.HItem;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
@@ -14,20 +15,38 @@ import java.util.*;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
-    private final List<HItem> handlers;
+    private final Map<String,HItem> handlers;
 
-    private CreaturesConfig(List<HItem> handlers) {
+    private CreaturesConfig(Map<String,HItem> handlers) {
         this.handlers = handlers;
     }
 
+    public int apply(CustomCreatures plugin, CustomLogger customLogger, String handlerName) throws InvalidConfigException {
+        HItem handler = handlers.get(lc(handlerName));
+        if(handler == null) {
+            throw new InvalidConfigException(String.format("Handler '%s' not found", handlerName));
+        }
+
+        int counter = 0;
+        for(World world : plugin.getServer().getWorlds()) {
+            for(LivingEntity entity : world.getEntitiesByClass(LivingEntity.class)) {
+                if(handler.handleSpawn(plugin, customLogger, entity, null)) {
+                    counter++;
+                }
+            }
+        }
+
+        return counter;
+    }
+
     public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
-        for (HItem handler : handlers) {
+        for (HItem handler : handlers.values()) {
             handler.handleSpawn(plugin, customLogger, entity, spawnReason);
         }
     }
 
     public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
-        for (HItem handler : handlers) {
+        for (HItem handler : handlers.values()) {
             handler.handleDeath(plugin, customLogger, event, lootBonusMobs);
         }
     }
@@ -42,13 +61,13 @@ public final class CreaturesConfig {
             throw new InvalidConfigException("Empty 'handlers' list");
         }
 
-        List<HItem> handlers = new ArrayList<>();
+        Map<String,HItem> handlers = new LinkedHashMap<>();
         Set<String> keys = new HashSet<>();
 
         int handlersConfigSize = handlersConfig.size();
         for(int i = 0; i < handlersConfigSize; i++) {
             String key = getKey(handlersConfig.get(i), "'handlers'", i);
-            String keyLC = key.toLowerCase(Locale.getDefault());
+            String keyLC = lc(key);
             if (keys.contains(keyLC)) {
                 throw new InvalidConfigException(String.format("Key '%s' in 'handlers' is not unique", key));
             }
@@ -58,7 +77,7 @@ public final class CreaturesConfig {
             keys.add(keyLC);
 
             try {
-                handlers.add(HItem.getFromConfig(config, customLogger, key));
+                handlers.put(keyLC, HItem.getFromConfig(config, customLogger, key));
             } catch (InvalidConfigException e) {
                 customLogger.error(e.getMessage());
             }
@@ -71,7 +90,11 @@ public final class CreaturesConfig {
         return new CreaturesConfig(handlers);
     }
 
+    private static String lc(String key) {
+        return key.toLowerCase(Locale.getDefault());
+    }
+
     public String toString() {
-        return String.format("handlers: %s", handlers.toString());
+        return String.format("handlers: %s", handlers.values());
     }
 }
