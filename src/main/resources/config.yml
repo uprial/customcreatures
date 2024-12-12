@@ -46,6 +46,7 @@ handlers:
   - rabbit-killer
   - better-wither
   - vex-spawns-an-illusioner
+  - angry-vex
   - insane-mansions-and-raids
   - insane-mansions-and-raids-illusioners
   - angry-vindicator
@@ -806,8 +807,9 @@ diamond-skeleton:
   equipment:
     helmet:
       probability: 100
-      # x0.5
-      drop-chance: 0.0425
+      # According to https://minecraft.fandom.com/wiki/Vex,
+      # the vex's iron sword does not drop, because its main hand's HandDropChances is 0.
+      drop-chance: 0
       material-type: DIAMOND
       durability:
         type: random
@@ -1221,7 +1223,7 @@ secret-creeper:
     probability: 0.1
   attributes:
     # Survival default is 16
-    follow-range: 64.0
+    follow-range: 50.0
     knockback-resistance: 0.2
     movement-speed-multiplier: 1.2
     max-health-multiplier: 1.2
@@ -1332,9 +1334,32 @@ vex-spawns-an-illusioner:
   filter:
     types:
       - VEX
-    probability: 10
+    probability: 1
   spawn:
     type: ILLUSIONER
+
+angry-vex:
+  filter:
+    types:
+      - VEX
+    probability: 100
+  attributes:
+    follow-range: 100.0
+  equipment:
+    # Damage in "hard": 6.75(♥) - 9.75(♥)
+    main-hand:
+      probability: 10
+      # x0.5
+      drop-chance: 0.0425
+      material: DIAMOND_SWORD
+      durability:
+        type: random
+        min: 10
+        max: 25
+      enchantments:
+        - enchantments.rand_maybe_top_sword_sharpness
+        - enchantments.rand_sword_knockback
+        - enchantments.rand_sword_fire_aspect
 
 insane-mansions-and-raids:
   filter:
@@ -1398,7 +1423,7 @@ insane-mansions-and-raids:
         - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
   attributes:
-    follow-range: 50.0
+    follow-range: 100.0
     knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
     # Illusioner: 16(♥) > 20(♥)
@@ -1505,7 +1530,7 @@ angry-vindicator:
         - enchantments.rand_unbreaking
         - enchantments.rand_efficiency
   attributes:
-    follow-range: 50.0
+    follow-range: 100.0
     knockback-resistance: 0.5
     movement-speed-multiplier: 1.5
     max-health-multiplier: 1.5
