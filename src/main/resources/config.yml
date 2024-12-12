@@ -801,7 +801,7 @@ diamond-skeleton:
     - effects.glowing
     - effects.fire_resistance
     # According to https://minecraft.fandom.com/wiki/Skeleton,
-    # Skeletons are unaffected by Regeneration.
+    # Skeletons are unaffected by Regeneration and Poison.
     # - effects.regeneration
   equipment:
     helmet:
@@ -966,7 +966,7 @@ chainmail-zombie:
     - effects.glowing
     - effects.fire_resistance
     # According to https://minecraft.fandom.com/wiki/Zombie,
-    # Zombies are unaffected by Regeneration.
+    # Zombies are unaffected by Regeneration and Poison.
     # - effects.regeneration
   equipment:
     helmet:

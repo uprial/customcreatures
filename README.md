@@ -16,8 +16,8 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * Once killed, a player respawns with an apple in hand and a small jump and movement bonus for a minute.
 * 4% (*4) of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in GOLDEN equipment(*1) with random protection and random thorns, a slightly-enchanted golden axe (*1). Drops a gold ignot. (*3)
 * 2% (*4) of zombie-like mobs spawn with a tiny jump and movement bonus, fire resistance, in IRON equipment(*1) with random protection and random durability, a well-enchanted sword (*1). Drops an iron block. (*3)
-* 1% (*4) of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in DIAMOND equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted bow (*2). Drops a diamond. (*3)
-* 0.5% (*4) of zombie-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance and regeneration, in CHAINMAIL equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted sword (*2). Drops lapiz lazuli and redstone. (*3)
+* 1% (*4) of skeleton-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance, in DIAMOND equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted bow (*2). Drops a diamond. (*3)
+* 0.5% (*4) of zombie-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance, in CHAINMAIL equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted sword (*2). Drops lapiz lazuli and redstone. (*3)
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
