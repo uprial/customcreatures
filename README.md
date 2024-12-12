@@ -21,7 +21,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
 * 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
-* 5% of Rabbits are the killer bunnies.
+* 5% of Rabbits are the killer bunnies scaled visually with a huge health and movement bonus.
 * 100% of Withers have thorns.
 * 0.1% of creepers are a little more healthy, fast, explosive, and don't despawn.
 * 10% of Vexes are spawned together with illusioners.
