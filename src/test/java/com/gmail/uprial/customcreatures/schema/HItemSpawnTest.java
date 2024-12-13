@@ -43,12 +43,24 @@ public class HItemSpawnTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyLightingOnSpawn() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'lighting on spawn' flag in spawn. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "s: ",
+                "  type: ILLUSIONER",
+                "  amount: 1"), getDebugFearingCustomLogger(), "s", "spawn");
+    }
+
+    @Test
     public void testWholeSpawn() throws Exception {
         HItemSpawn spawn = getFromConfig(getPreparedConfig(
                         "s: ",
                         "  type: ILLUSIONER",
-                        "  amount: 1"),
+                        "  amount: 1",
+                        "  lighting-on-spawn: true"),
                 getParanoiacCustomLogger(), "s", "spawn");
-        assertEquals("{type: ILLUSIONER, amount: 1}", spawn.toString());
+        assertEquals("{type: ILLUSIONER, amount: 1, lighting-on-spawn: true}", spawn.toString());
     }
 }

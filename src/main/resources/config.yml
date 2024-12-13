@@ -807,9 +807,8 @@ diamond-skeleton:
   equipment:
     helmet:
       probability: 100
-      # According to https://minecraft.fandom.com/wiki/Vex,
-      # the vex's iron sword does not drop, because its main hand's HandDropChances is 0.
-      drop-chance: 0
+      # x0.5
+      drop-chance: 0.0425
       material-type: DIAMOND
       durability:
         type: random
@@ -1337,6 +1336,7 @@ vex-spawns-an-illusioner:
     probability: 1
   spawn:
     type: ILLUSIONER
+    lighting-on-spawn: true
 
 angry-vex:
   filter:
@@ -1349,8 +1349,9 @@ angry-vex:
     # Damage in "hard": 6.75(♥) - 9.75(♥)
     main-hand:
       probability: 10
-      # x0.5
-      drop-chance: 0.0425
+      # According to https://minecraft.fandom.com/wiki/Vex,
+      # the vex's iron sword does not drop, because its main hand's HandDropChances is 0.
+      drop-chance: 0
       material: DIAMOND_SWORD
       durability:
         type: random
@@ -1369,6 +1370,8 @@ insane-mansions-and-raids:
       - EVOKER
       # Evokers spawn vexes, vexes spawn illusioners.
       - ILLUSIONER
+      # Specifically harden raids
+      - RAVAGER
     probability: 100
   effects:
     - effects.jump_3
@@ -1434,12 +1437,6 @@ insane-mansions-and-raids:
     - _netherite_scrap
     - _book_of_mending
     - _totem_of_undying
-    - _diamond_pickaxe_silk_touch
-    - _diamond_pickaxe_fortune
-    #
-    # No netherite treasury clothes in drops
-    # to challenge the player in finding of netherite.
-    #
   _enchanted_golden_apple:
     probability: 10
     probability-per-looting-level: 5
@@ -1458,30 +1455,6 @@ insane-mansions-and-raids:
     probability: 10
     probability-per-looting-level: 5
     material: TOTEM_OF_UNDYING
-  _diamond_pickaxe_silk_touch:
-    probability: 5
-    probability-per-looting-level: 2.5
-    material: DIAMOND_PICKAXE
-    enchantments:
-      - enchantments.best_unbreaking
-      - _best_silk_touch
-      - enchantments.top_efficiency
-      - enchantments.best_mending
-    _best_silk_touch:
-      type: SILK_TOUCH
-      level: 1
-  _diamond_pickaxe_fortune:
-    probability: 5
-    probability-per-looting-level: 2.5
-    material: DIAMOND_PICKAXE
-    enchantments:
-      - enchantments.best_unbreaking
-      - _best_fortune
-      - enchantments.top_efficiency
-      - enchantments.best_mending
-    _best_fortune:
-      type: FORTUNE
-      level: 3
   # 10 levels from 0
   drop-exp: 160
 
@@ -1508,6 +1481,36 @@ insane-mansions-and-raids-illusioners:
         - enchantments.rand_bow_infinity
   drops:
     - drops.top_bow
+    #
+    # No netherite treasury clothes in drops
+    # to challenge the player in finding of netherite.
+    #
+    - _diamond_pickaxe_silk_touch
+    - _diamond_pickaxe_fortune
+  _diamond_pickaxe_silk_touch:
+    probability: 5
+    probability-per-looting-level: 2.5
+    material: DIAMOND_PICKAXE
+    enchantments:
+      - enchantments.best_unbreaking
+      - _best_silk_touch
+      - enchantments.top_efficiency
+      - enchantments.best_mending
+    _best_silk_touch:
+      type: SILK_TOUCH
+      level: 1
+  _diamond_pickaxe_fortune:
+    probability: 5
+    probability-per-looting-level: 2.5
+    material: DIAMOND_PICKAXE
+    enchantments:
+      - enchantments.best_unbreaking
+      - _best_fortune
+      - enchantments.top_efficiency
+      - enchantments.best_mending
+    _best_fortune:
+      type: FORTUNE
+      level: 3
 
 angry-vindicator:
   filter:

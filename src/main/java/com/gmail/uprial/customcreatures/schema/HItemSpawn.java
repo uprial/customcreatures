@@ -16,17 +16,22 @@ public class HItemSpawn {
     private final String title;
     private final EntityType type;
     private final IValue<Integer> amount;
+    private final IValue<Boolean> lightingOnSpawn;
 
-    private HItemSpawn(String title, EntityType type, IValue<Integer> amount) {
+    private HItemSpawn(String title, EntityType type, IValue<Integer> amount, IValue<Boolean> lightingOnSpawn) {
         this.title = title;
         this.type = type;
         this.amount = amount;
+        this.lightingOnSpawn = lightingOnSpawn;
     }
 
     public void apply(CustomLogger customLogger, Entity entity) {
         final int n = amount.getValue();
         for(int i = 0; i < n; i++) {
             entity.getWorld().spawnEntity(entity.getLocation(), type);
+        }
+        if((lightingOnSpawn != null) && (lightingOnSpawn.getValue())) {
+            entity.getWorld().strikeLightningEffect(entity.getLocation());
         }
 
         if (customLogger.isDebugMode()) {
@@ -50,10 +55,13 @@ public class HItemSpawn {
             amount = new ValueConst<>(1);
         }
 
-        return new HItemSpawn(title, type, amount);
+        final IValue<Boolean> lightingOnSpawn = HValue.getBooleanFromConfig(config, customLogger, joinPaths(key, "lighting-on-spawn"),
+                String.format("'lighting on spawn' flag in %s", title));
+
+        return new HItemSpawn(title, type, amount, lightingOnSpawn);
     }
 
     public String toString() {
-        return String.format("{type: %s, amount: %s}", type, amount);
+        return String.format("{type: %s, amount: %s, lighting-on-spawn: %s}", type, amount, lightingOnSpawn);
     }
 }

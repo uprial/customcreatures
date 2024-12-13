@@ -57,10 +57,15 @@ public class CustomCreaturesSpawnEventListener extends AbstractCustomCreaturesEv
                  */
                 handleSpawnOncePerEntity((LivingEntity)entity, SpawnReason.NATURAL);
             }
-        };
+        }
     }
 
     private void handleSpawnOncePerEntity(LivingEntity entity, SpawnReason spawnReason) {
+        /*
+            Fixed handling of pre-generated entities in structures,
+            like Evokers and Vindicators in Woodland Mansions
+            - they seem to existing always, even before their chunk generation event.
+         */
         if(!containsPersistentMetadataFlag(plugin, entity, MK_HANDLED)) {
             handleSpawn(entity, spawnReason);
 
