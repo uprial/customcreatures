@@ -1431,6 +1431,7 @@ insane-mansions-and-raids:
     movement-speed-multiplier: 2.0
     # Illusioner: 16(♥) > 20(♥)
     # Evoker: 12(♥) > 15(♥)
+    # Ravager: 50(♥) > 62.5(♥)
     max-health-multiplier: 1.25
   drops:
     - _enchanted_golden_apple
@@ -1677,7 +1678,11 @@ enchantments:
   top_thorns:
     type: THORNS
     # Survival maximum level is 3, here it's 5
-    level: 10
+    #
+    # According to https://minecraft.fandom.com/wiki/Thorns,
+    # the total amount of damage that can be dealt this way is capped at 4 (♥♥).
+    #
+    level: 5
   rand_boots_feather_falling:
     type: FEATHER_FALLING
     level:
