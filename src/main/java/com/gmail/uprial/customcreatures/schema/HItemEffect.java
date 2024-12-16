@@ -16,7 +16,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
 public final class HItemEffect {
-    private final static int INFINITE_DURATION = 0;
+    private final static int CONFIG_INFINITE_DURATION = 0;
 
     private final String title;
     private final Set<PotionEffectTypesEnum> effectTypes;
@@ -36,7 +36,7 @@ public final class HItemEffect {
             final int amplifier = strength.getValue() - 1;
 
             int durationSeconds = duration.getValue();
-            if(durationSeconds == INFINITE_DURATION) {
+            if(durationSeconds == CONFIG_INFINITE_DURATION) {
                 durationSeconds = PotionEffect.INFINITE_DURATION;
             } else {
                 durationSeconds = seconds2ticks(durationSeconds);
@@ -74,7 +74,7 @@ public final class HItemEffect {
     public String toString() {
         return String.format("{types: %s, strength: %s, duration: %s}",
                 effectTypes, strength,
-                (duration.getValue() == INFINITE_DURATION ? "infinite" : duration));
+                (duration.getValue() == CONFIG_INFINITE_DURATION ? "infinite" : duration));
     }
 
     private void addEffect(CustomLogger customLogger, LivingEntity entity, PotionEffect effect) {

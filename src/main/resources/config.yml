@@ -329,7 +329,10 @@ handlers:
 #   strength: <int-value:1..?>   ### Strength of the effect.
 #                                ### (* see description of <int-value> below)
 #   duration: <int-value:1..?>   ### Duration of the effect, in seconds.
-#                                ### 0 - infinite
+#                                ### Magic number '0' means 'infinite'.
+#                                ###
+#                                ### Please be careful with random int numbers that allow dicing '0':
+#                                ### a randomly diced '0' also will be considered as 'infinite'.
 #
 # #### Equipment ####
 #
