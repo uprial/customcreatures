@@ -1438,9 +1438,17 @@ insane-mansions-and-raids:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns
+        - enchantments.best_vanishing_curse
   attributes:
     follow-range: 100.0
-    knockback-resistance: 0.75
+    #
+    # Ravagers already have congenital knockback resistance.
+    #
+    # Evokers and Illusioners are harder without knockback resistance
+    # Evokers and Illusioners without knockback are more challenging to kill
+    # because they change their position frequently.
+    #
+    # knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
     # Illusioner: 16(♥) > 20(♥)
     # Evoker: 12(♥) > 15(♥)

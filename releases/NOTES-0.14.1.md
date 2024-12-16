@@ -6,6 +6,7 @@
 * Specifically hardened raids via strong Ravagers
 * Once specifically Illusioners may drop a diamond pickaxe
 * Reduced drops chances for Evokers, Illusioners and Ravagers
+* Removed knockback resistance for Evokers, Illusioners
 # Bugfixes
 * Fixed max level of thorns for Withers due to the thorns max damage cap
 * Allowed infinite effect duration
