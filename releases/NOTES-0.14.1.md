@@ -9,3 +9,4 @@
 # Bugfixes
 * Fixed max level of thorns for Withers due to the thorns max damage cap
 * Allowed infinite effect duration
+* Fixed drop with zero drop-chance: added a vanishing curse

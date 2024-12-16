@@ -1292,6 +1292,7 @@ better-wither:
       enchantments:
         - enchantments.best_unbreaking
         - enchantments.top_thorns
+        - enchantments.best_vanishing_curse
     boots:
       probability: 100
       drop-chance: 0
@@ -1300,6 +1301,7 @@ better-wither:
       enchantments:
         - enchantments.best_unbreaking
         - enchantments.top_thorns
+        - enchantments.best_vanishing_curse
     chest:
       probability: 100
       drop-chance: 0
@@ -1308,6 +1310,7 @@ better-wither:
       enchantments:
         - enchantments.best_unbreaking
         - enchantments.top_thorns
+        - enchantments.best_vanishing_curse
     leggings:
       probability: 100
       drop-chance: 0
@@ -1316,6 +1319,7 @@ better-wither:
       enchantments:
         - enchantments.best_unbreaking
         - enchantments.top_thorns
+        - enchantments.best_vanishing_curse
   attributes:
     follow-range: 100.0
     knockback-resistance: 0.75
@@ -1362,6 +1366,7 @@ angry-vex:
         - enchantments.rand_maybe_top_sword_sharpness
         - enchantments.rand_sword_knockback
         - enchantments.rand_sword_fire_aspect
+        - enchantments.best_vanishing_curse
 
 insane-mansions-and-raids:
   filter:
@@ -1403,6 +1408,7 @@ insane-mansions-and-raids:
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
         - enchantments.rand_maybe_top_thorns
+        - enchantments.best_vanishing_curse
     boots:
       probability: 100
       drop-chance: 0
@@ -1413,6 +1419,7 @@ insane-mansions-and-raids:
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
         - enchantments.rand_maybe_top_thorns
+        - enchantments.best_vanishing_curse
     chest:
       probability: 100
       drop-chance: 0
@@ -1421,6 +1428,7 @@ insane-mansions-and-raids:
       enchantments:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_maybe_top_thorns
+        - enchantments.best_vanishing_curse
     leggings:
       probability: 100
       drop-chance: 0
@@ -1486,6 +1494,7 @@ insane-mansions-and-raids-illusioners:
         - enchantments.rand_maybe_top_bow_punch
         - enchantments.rand_bow_flame
         - enchantments.rand_bow_infinity
+        - enchantments.best_vanishing_curse
   drops:
     - drops.top_bow
     #
