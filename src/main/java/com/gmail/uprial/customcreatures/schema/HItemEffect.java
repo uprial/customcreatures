@@ -16,6 +16,7 @@ import static com.gmail.uprial.customcreatures.common.Utils.seconds2ticks;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getSet;
 
 public final class HItemEffect {
+    private final static int INFINITE_DURATION = 0;
 
     private final String title;
     private final Set<PotionEffectTypesEnum> effectTypes;
@@ -33,7 +34,14 @@ public final class HItemEffect {
         for (final PotionEffectTypesEnum effectType : effectTypes) {
             // The 1st level of effect mean 0 in these numbers.
             final int amplifier = strength.getValue() - 1;
-            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), seconds2ticks(duration.getValue()), amplifier));
+
+            int durationSeconds = duration.getValue();
+            if(durationSeconds == INFINITE_DURATION) {
+                durationSeconds = PotionEffect.INFINITE_DURATION;
+            } else {
+                durationSeconds = seconds2ticks(durationSeconds);
+            }
+            addEffect(customLogger, entity, new PotionEffect(effectType.getType(), durationSeconds, amplifier));
         }
     }
 
@@ -55,7 +63,7 @@ public final class HItemEffect {
             throw new InvalidConfigException(String.format("Empty strength of %s", title));
         } else //noinspection NestedAssignment
                 if ((duration = HValue.getIntFromConfig(config, customLogger, joinPaths(key, "duration"),
-                String.format("duration of %s", title), 1, Integer.MAX_VALUE)) == null) {
+                String.format("duration of %s", title), 0, Integer.MAX_VALUE)) == null) {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 
@@ -65,7 +73,8 @@ public final class HItemEffect {
 
     public String toString() {
         return String.format("{types: %s, strength: %s, duration: %s}",
-                effectTypes, strength, duration);
+                effectTypes, strength,
+                (duration.getValue() == INFINITE_DURATION ? "infinite" : duration));
     }
 
     private void addEffect(CustomLogger customLogger, LivingEntity entity, PotionEffect effect) {

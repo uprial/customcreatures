@@ -329,6 +329,7 @@ handlers:
 #   strength: <int-value:1..?>   ### Strength of the effect.
 #                                ### (* see description of <int-value> below)
 #   duration: <int-value:1..?>   ### Duration of the effect, in seconds.
+#                                ### 0 - infinite
 #
 # #### Equipment ####
 #
@@ -1564,12 +1565,14 @@ effects:
     types:
       - FIRE_RESISTANCE
     strength: 1
-    duration: 99999
+    # infinite
+    duration: 0
   regeneration:
     types:
       - REGENERATION
     strength: 1
-    duration: 99999
+    # infinite
+    duration: 0
   glowing:
     types:
       - GLOWING
@@ -1579,12 +1582,14 @@ effects:
     types:
       - JUMP_BOOST
     strength: 1
-    duration: 99999
+    # infinite
+    duration: 0
   jump_3:
     types:
       - JUMP_BOOST
     strength: 3
-    duration: 99999
+    # infinite
+    duration: 0
 
 # Global templates of drops
 drops:

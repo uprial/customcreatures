@@ -7,4 +7,5 @@
 * Once specifically Illusioners may drop a diamond pickaxe
 * Reduced drops chances for Evokers, Illusioners and Ravagers
 # Bugfixes
-Fixed max level of thorns for Withers due to the thorns max damage cap
+* Fixed max level of thorns for Withers due to the thorns max damage cap
+* Allowed infinite effect duration

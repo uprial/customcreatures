@@ -26,6 +26,18 @@ public class HItemEffectTest extends TestConfigBase {
     }
 
     @Test
+    public void testWholeInfiniteEffect() throws Exception {
+        HItemEffect itemEffect = getFromConfig(getPreparedConfig(
+                        "e:",
+                        "  types:",
+                        "    - SPEED",
+                        "  strength: 1",
+                        "  duration: 0"),
+                getParanoiacCustomLogger(), "e", "effect");
+        assertEquals("{types: [SPEED], strength: 1, duration: infinite}", itemEffect.toString());
+    }
+
+    @Test
     public void testEmptyEffect() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Empty effect");
