@@ -10,7 +10,6 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.UUID;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MAX_DOUBLE_VALUE;
@@ -120,7 +119,6 @@ public class PlayerMultiplier {
                 joinPaths(key, "max"),
                 String.format("max of %s", title), MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE);
 
-        //noinspection unchecked
         return new PlayerMultiplier(sort, statistic, divider, max);
     }
 

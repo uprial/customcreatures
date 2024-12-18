@@ -56,28 +56,28 @@ public class ProbabilityTest extends TestConfigBase {
     }
 
     @Test
-    public void testPassNormalProbability() throws Exception {
+    public void testPassNormalProbability() {
         assertTrue(getPasses(1000, new Probability(50)) > 40);
         assertTrue(getPasses(1000, new Probability(50)) < 60);
     }
 
     @Test
-    public void testPassZeroProbability() throws Exception {
+    public void testPassZeroProbability() {
         assertEquals(0, getPasses(1000, new Probability(0)));
     }
 
     @Test
-    public void testPassSmallProbability() throws Exception {
+    public void testPassSmallProbability() {
         assertEquals(0, getPasses(1000, new Probability(0.1)));
     }
 
     @Test
-    public void testPassBigProbability() throws Exception {
+    public void testPassBigProbability() {
         assertEquals(100, getPasses(1000, new Probability(100)));
     }
 
     @Test
-    public void testProbabilityDistribution() throws Exception {
+    public void testProbabilityDistribution() {
         for(int i = 0; i <= 100; i++) {
             assertTrue(getPasses(1000, new Probability(i)) > i - 10);
             assertTrue(getPasses(1000, new Probability(i)) < i + 10);
@@ -85,7 +85,7 @@ public class ProbabilityTest extends TestConfigBase {
     }
 
     @Test
-    public void testProbabilityDistribution_WithInc() throws Exception {
+    public void testProbabilityDistribution_WithInc() {
         final int INC = 11;
         for(int i = INC; i <= 100 - INC; i++) {
             final Probability probability = new Probability(i);
@@ -104,7 +104,7 @@ public class ProbabilityTest extends TestConfigBase {
     }
 
     @Test
-    public void testProbabilityDistribution_WithMult() throws Exception {
+    public void testProbabilityDistribution_WithMult() {
         final double MULT = 2.0;
         for(int i = 0; i <= 100 / MULT; i++) {
             final Probability probability = new Probability(i);

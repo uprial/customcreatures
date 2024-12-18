@@ -67,7 +67,6 @@ public final class HItemEffect {
             throw new InvalidConfigException(String.format("Empty duration of %s", title));
         }
 
-        //noinspection unchecked
         return new HItemEffect(title, effectTypes, strength, duration);
     }
 

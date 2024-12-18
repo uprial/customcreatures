@@ -36,7 +36,7 @@ public final class HItemDurability {
             int newItemDurability = (short) Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
 
             itemStackMeta.setDamage(newItemDurability);
-            itemStack.setItemMeta((ItemMeta) itemStackMeta);
+            itemStack.setItemMeta(itemStackMeta);
         }
     }
 

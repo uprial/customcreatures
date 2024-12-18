@@ -17,7 +17,7 @@ public class HItemTypeSetTest {
     final Set<HItemTypeSet> unsafeSets = Sets.newHashSet(ZOMBIES, SKELETONS, FLYING_MOBS);
 
     @Test
-    public void testSetContainsOtherSet() throws Exception {
+    public void testSetContainsOtherSet() {
         for (HItemTypeSet itemTypeSet1 : HItemTypeSet.values()) {
             for (HItemTypeSet itemTypeSet2 : HItemTypeSet.values()) {
                 if (!itemTypeSet1.equals(itemTypeSet2)
@@ -34,7 +34,7 @@ public class HItemTypeSetTest {
     }
 
     @Test
-    public void testSubSetContainsEntities() throws Exception {
+    public void testSubSetContainsEntities() {
         for(HItemTypeSet itemTypeSet : HItemTypeSet.values()) {
             for (HItemTypeSet subSet : itemTypeSet.subSets) {
                 for (EntityType entityType : itemTypeSet.entityTypes) {
@@ -47,7 +47,7 @@ public class HItemTypeSetTest {
     }
 
     @Test
-    public void testDuplicates() throws Exception {
+    public void testDuplicates() {
         for(HItemTypeSet itemTypeSet1 : HItemTypeSet.values()) {
             if (!unsafeSets.contains(itemTypeSet1)) {
                 for (HItemTypeSet itemTypeSet2 : HItemTypeSet.values()) {
@@ -64,7 +64,7 @@ public class HItemTypeSetTest {
     }
 
     @Test
-    public void testAllEntityTypes() throws Exception {
+    public void testAllEntityTypes() {
         List<EntityType> aloneEntityTypes = Lists.newArrayList(
                 PLAYER);
         List<EntityType> deadEntityTypes = Lists.newArrayList(
@@ -101,13 +101,13 @@ public class HItemTypeSetTest {
     }
 
     @Test
-    public void testContains() throws Exception {
+    public void testContains() {
         assertTrue(ANIMALS.isContains(CHICKEN));
         assertFalse(ANIMALS.isContains(CREEPER));
     }
 
     @Test
-    public void testView() throws Exception {
+    public void testView() {
         StringBuilder stringBuilder = new StringBuilder();
         for (HItemTypeSet itemTypeSet : HItemTypeSet.values()) {
             stringBuilder.append(itemTypeSet);

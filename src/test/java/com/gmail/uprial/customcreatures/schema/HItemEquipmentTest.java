@@ -148,7 +148,7 @@ public class HItemEquipmentTest extends TestConfigBase {
             }
         }
 
-        HItemEquipment itemEquipment = getFromConfig(getPreparedConfig(joinStrings("\n", config)),
+        getFromConfig(getPreparedConfig(joinStrings("\n", config)),
                 getCustomLogger(), "e", "equipment");
     }
 }

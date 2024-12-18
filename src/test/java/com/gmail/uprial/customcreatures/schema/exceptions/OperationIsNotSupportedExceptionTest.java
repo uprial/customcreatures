@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class OperationIsNotSupportedExceptionTest {
     @Test
-    public void testMessage() throws Exception {
+    public void testMessage() {
         assertEquals("Operation isn't supported",
                 new OperationIsNotSupportedException().getMessage());
     }

@@ -242,7 +242,7 @@ public final class HItemAttributes {
 
         IValue<Double> item;
         for (String key : KEY_2_GENERIC_ATTRIBUTE.keySet()) {
-            item = genericAttributes.containsKey(key) ? genericAttributes.get(key) : null;
+            item = genericAttributes.getOrDefault(key, null);
             items.add(String.format("%s: %s", key, item));
         }
 

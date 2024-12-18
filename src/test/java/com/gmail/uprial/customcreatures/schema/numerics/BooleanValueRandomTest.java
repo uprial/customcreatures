@@ -25,7 +25,7 @@ public class BooleanValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution() throws Exception {
+    public void testNormalDistribution() {
         final BooleanValueRandom valueRandom = new BooleanValueRandom(NORMAL);
 
         for(int i = 0; i < 1000; i++) {
@@ -38,7 +38,7 @@ public class BooleanValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpDownDistribution() throws Exception {
+    public void testExpDownDistribution() {
         final BooleanValueRandom valueRandom = new BooleanValueRandom(EXP_DOWN);
 
         for(int i = 0; i < 1000; i++) {
@@ -51,7 +51,7 @@ public class BooleanValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpUpDistribution() throws Exception {
+    public void testExpUpDistribution() {
         final BooleanValueRandom valueRandom = new BooleanValueRandom(EXP_UP);
 
         for(int i = 0; i < 1000; i++) {

@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class EnchantmentEnumTest extends TestServerBase {
     @Test
-    public void testConsistency() throws Exception {
+    public void testConsistency() {
         assertEquals(EnchantmentEnum.values().length, Enchantment.class.getFields().length);
     }
 }

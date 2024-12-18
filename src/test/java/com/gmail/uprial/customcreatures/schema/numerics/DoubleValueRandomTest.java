@@ -58,7 +58,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution() throws Exception {
+    public void testNormalDistribution() {
         final DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, 10.0, 20.0);
 
         for(int i = 0; i < 1000; i++) {
@@ -77,7 +77,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution_MaxLessThanMin() throws Exception {
+    public void testNormalDistribution_MaxLessThanMin() {
         final DoubleValueRandom valueRandom = new DoubleValueRandom(NORMAL, -10.0, -20.0);
 
         for(int i = 0; i < 1000; i++) {
@@ -96,7 +96,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpDownDistribution() throws Exception {
+    public void testExpDownDistribution() {
         final DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_DOWN, 10.0, 13.0);
 
         for(int i = 0; i < 1000; i++) {
@@ -115,7 +115,7 @@ public class DoubleValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpUpDistribution() throws Exception {
+    public void testExpUpDistribution() {
         final DoubleValueRandom valueRandom = new DoubleValueRandom(EXP_UP, 10.0, 13.0);
 
         for(int i = 0; i < 1000; i++) {

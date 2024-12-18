@@ -8,37 +8,37 @@ import static org.junit.Assert.assertEquals;
 
 public class UtilsTest {
     @Test
-    public void testSeconds2ticks() throws Exception {
+    public void testSeconds2ticks() {
         assertEquals(40, seconds2ticks(2));
     }
 
     @Test
-    public void testJoinEmptyStrings() throws Exception {
+    public void testJoinEmptyStrings() {
         assertEquals("", joinStrings(",", Lists.newArrayList(new String[]{})));
     }
 
     @Test
-    public void testJoinOneString() throws Exception {
+    public void testJoinOneString() {
         assertEquals("a", joinStrings(",", Lists.newArrayList("a")));
     }
 
     @Test
-    public void testJoinSeveralStrings() throws Exception {
+    public void testJoinSeveralStrings() {
         assertEquals("a,b", joinStrings(",", Lists.newArrayList("a", "b")));
     }
 
     @Test
-    public void testJoinPaths() throws Exception {
+    public void testJoinPaths() {
         assertEquals("a.b", joinPaths("a", "b"));
     }
 
     @Test
-    public void testJoinRootEmptyPaths() throws Exception {
+    public void testJoinRootEmptyPaths() {
         assertEquals("b", joinPaths("", "b"));
     }
 
     @Test
-    public void testJoinRightEmptyPaths() throws Exception {
+    public void testJoinRightEmptyPaths() {
         assertEquals("a.", joinPaths("a", ""));
     }
 }

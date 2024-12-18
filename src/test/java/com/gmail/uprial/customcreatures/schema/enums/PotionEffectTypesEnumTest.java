@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class PotionEffectTypesEnumTest extends TestServerBase {
     @Test
-    public void testDeprecatedSequence() throws Exception {
+    public void testDeprecatedSequence() {
         int i = 1;
         for(PotionEffectTypesEnum potionEffectType : PotionEffectTypesEnum.values()) {
             assertEquals(potionEffectType.getType(), PotionEffectType.getById(i));
@@ -17,7 +17,7 @@ public class PotionEffectTypesEnumTest extends TestServerBase {
     }
 
     @Test
-    public void testConsistency() throws Exception {
+    public void testConsistency() {
         assertEquals(PotionEffectTypesEnum.values().length, PotionEffectType.class.getFields().length);
     }
 }

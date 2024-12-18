@@ -11,7 +11,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.*;
 
 /*
@@ -20,7 +19,7 @@ import static org.mockito.Mockito.*;
  */
 public abstract class TestServerBase {
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         final Server mock = mock(Server.class);
         final Logger noOp = mock(Logger.class);
 

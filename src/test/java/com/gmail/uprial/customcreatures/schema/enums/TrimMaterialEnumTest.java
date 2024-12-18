@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TrimMaterialEnumTest extends TestServerBase {
     @Test
-    public void testConsistency() throws Exception {
+    public void testConsistency() {
         assertEquals(TrimMaterialEnum.values().length, TrimMaterial.class.getFields().length);
     }
 }

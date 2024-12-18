@@ -84,7 +84,6 @@ public final class HItemEquipmentCloth {
                         setItemDropChance(entity.getEquipment(), clothType, dropChance);
                     } catch (OperationIsNotSupportedException e) {
                         customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
-                        //noinspection UnnecessaryReturnStatement
                         return;
                     }
                 }

@@ -80,8 +80,8 @@ public enum HItemTypeSet {
     private Set<EntityType> allEntityTypesCache = null;
 
     HItemTypeSet(Set<HItemTypeSet> subSets, Set<EntityType> entityTypes) {
-        this.entityTypes = (entityTypes == null) ? new HashSet<EntityType>() : entityTypes;
-        this.subSets = (subSets == null) ? new HashSet<HItemTypeSet>() : subSets;
+        this.entityTypes = (entityTypes == null) ? new HashSet<>() : entityTypes;
+        this.subSets = (subSets == null) ? new HashSet<>() : subSets;
     }
 
     public boolean isContains(EntityType entityType) {
@@ -93,10 +93,7 @@ public enum HItemTypeSet {
     }
 
     Set<EntityType> getAllEntityTypes() {
-        Set<EntityType> allEntityTypes = new HashSet<>();
-        for (EntityType entityType : entityTypes) {
-            allEntityTypes.add(entityType);
-        }
+        Set<EntityType> allEntityTypes = new HashSet<>(entityTypes);
         for(HItemTypeSet subSet : subSets) {
             allEntityTypes.addAll(subSet.getAllEntityTypes());
         }

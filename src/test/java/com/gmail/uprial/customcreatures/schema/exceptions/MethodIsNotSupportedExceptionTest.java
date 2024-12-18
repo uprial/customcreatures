@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MethodIsNotSupportedExceptionTest {
     @Test
-    public void testMessage() throws Exception {
+    public void testMessage() {
         assertEquals("Method 'method' isn't supported by this version of Minecraft",
                 new MethodIsNotSupportedException("method").getMessage());
     }

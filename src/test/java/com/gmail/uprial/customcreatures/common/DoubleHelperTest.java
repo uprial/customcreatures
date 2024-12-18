@@ -10,18 +10,18 @@ public class DoubleHelperTest {
 
 
     @Test
-    public void testLog() throws Exception {
+    public void testLog() {
         assertEquals(2.0, log(2.0, 4.0), Double.MIN_VALUE);
         assertEquals(3.0, log(2.0, 8.0), Double.MIN_VALUE);
     }
 
     @Test
-    public void testMaxRightSize() throws Exception {
+    public void testMaxRightSize() {
         assertEquals(4, MAX_RIGHT_SIZE);
     }
 
     @Test
-    public void testMaxLeftSize() throws Exception {
+    public void testMaxLeftSize() {
         /*
             A float point variable have three parts: sign, mantissa and power.
             Max power value is Double.MAX_EXPONENT.
@@ -42,7 +42,7 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testLeftDigits() throws Exception {
+    public void testLeftDigits() {
         assertEquals(1, getLeftDigits(0.0));
         assertEquals(1, getLeftDigits(0.1));
         assertEquals(1, getLeftDigits(1.1));
@@ -54,7 +54,7 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testRound() throws Exception {
+    public void testRound() {
         assertEquals(1.0, round(1.46464, 0), Double.MIN_VALUE);
         assertEquals(1.5, round(1.46464, 1), Double.MIN_VALUE);
         assertEquals(1.46, round(1.46464, 2), Double.MIN_VALUE);
@@ -65,7 +65,7 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testRightDigits() throws Exception {
+    public void testRightDigits() {
         assertEquals(0,  getRightDigitsSlowly(1.0));
         assertEquals(1,  getRightDigitsSlowly(1.1));
         assertEquals(2,  getRightDigitsSlowly(1.12));
@@ -80,14 +80,14 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testLimitedRightDigits() throws Exception {
+    public void testLimitedRightDigits() {
         assertEquals(0,  getRightDigits(1.0, 5));
         assertEquals(5, getRightDigits(1.0000000000000003, 5));
         assertEquals(5, getRightDigits(INFINITE_DECIMAL, 5));
     }
 
     @Test
-    public void testFormat() throws Exception {
+    public void testFormat() {
         assertEquals("1", formatDoubleValue(1));
         assertEquals("1.2", formatDoubleValue(1.2));
         assertEquals("1.2345", formatDoubleValue(1.2345));
@@ -99,21 +99,21 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testLeftPartChecker() throws Exception {
+    public void testLeftPartChecker() {
         assertTrue(isLengthOfLeftPartOfDoubleGood(1.0));
         assertTrue(isLengthOfLeftPartOfDoubleGood(12345678901.0));
         assertFalse(isLengthOfLeftPartOfDoubleGood(123456789012.0));
     }
 
     @Test
-    public void testRightPartChecker() throws Exception {
+    public void testRightPartChecker() {
         assertTrue(isLengthOfRightPartOfDoubleGood(1.0));
         assertTrue(isLengthOfRightPartOfDoubleGood(1.0001));
         assertFalse(isLengthOfRightPartOfDoubleGood(1.00001));
     }
 
     @Test
-    public void testChecker() throws Exception {
+    public void testChecker() {
         assertTrue(isLengthOfDoubleGood(12345678901.0001));
         assertFalse(isLengthOfDoubleGood(12345678901.00001));
         assertFalse(isLengthOfDoubleGood(123456789012.0001));
@@ -121,21 +121,21 @@ public class DoubleHelperTest {
     }
 
     @Test
-    public void testMaxValue() throws Exception {
+    public void testMaxValue() {
         assertEquals(99999999999.9999, MAX_DOUBLE_VALUE, Double.MIN_VALUE);
         assertTrue(isLengthOfDoubleGood(MAX_DOUBLE_VALUE));
         assertFalse(isLengthOfDoubleGood(MAX_DOUBLE_VALUE + 1));
     }
 
     @Test
-    public void testMinValue() throws Exception {
+    public void testMinValue() {
         assertEquals(0.0001, MIN_DOUBLE_VALUE, Double.MIN_VALUE);
         assertTrue(isLengthOfDoubleGood(MIN_DOUBLE_VALUE));
         assertFalse(isLengthOfDoubleGood(MIN_DOUBLE_VALUE * 0.9));
     }
 
     @Test
-    public void testFloatPreciseness() throws Exception {
+    public void testFloatPreciseness() {
         assertTrue((float)(MIN_DOUBLE_VALUE * 1.0000001D) > MIN_DOUBLE_VALUE);
         assertFalse((float)(MIN_DOUBLE_VALUE * 1.00000001D) > MIN_DOUBLE_VALUE);
     }

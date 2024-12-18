@@ -39,7 +39,7 @@ public final class HItemEnchantment {
             for (final Enchantment existsEnchantment : existsEnchantments) {
                 if (enchantment.getType().conflictsWith(existsEnchantment)) {
                     customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
-                            title, format(entity), enchantment.getType().toString(),
+                            title, format(entity), enchantment.getType(),
                             existsEnchantment));
                 }
             }
@@ -87,7 +87,6 @@ public final class HItemEnchantment {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }
 
-        //noinspection unchecked
         return new HItemEnchantment(title, enchantment, level);
     }
 

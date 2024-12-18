@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 
 public class EntityEquipmentHelperTest {
     @Test
-    public void testIsDropChanceNotEmpty() throws Exception {
+    public void testIsDropChanceNotEmpty() {
         assertTrue(isDropChanceNotEmpty((float)MIN_DOUBLE_VALUE));
         assertTrue(isDropChanceNotEmpty((float)(MIN_DOUBLE_VALUE / 9.0D)));
         assertFalse(isDropChanceNotEmpty((float)(MIN_DOUBLE_VALUE / 11.0D)));

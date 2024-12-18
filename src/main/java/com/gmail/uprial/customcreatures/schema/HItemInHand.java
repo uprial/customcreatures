@@ -62,7 +62,7 @@ public final class HItemInHand {
 
             try {
                 setItem(entity.getEquipment(), handType, itemStack);
-            } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+            } catch (OperationIsNotSupportedException e) {
                 customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
                 return;
             }
@@ -80,9 +80,8 @@ public final class HItemInHand {
                     }
                     try {
                         setItemDropChance(entity.getEquipment(), handType, dropChance);
-                    } catch (OperationIsNotSupportedException | MethodIsNotSupportedException e) {
+                    } catch (OperationIsNotSupportedException e) {
                         customLogger.error(String.format("Can't handle drop chance of %s: %s", title, e.getMessage()));
-                        //noinspection UnnecessaryReturnStatement
                         return;
                     }
                 }

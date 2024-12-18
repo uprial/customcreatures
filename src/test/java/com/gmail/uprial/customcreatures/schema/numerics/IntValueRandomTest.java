@@ -58,7 +58,7 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution() throws Exception {
+    public void testNormalDistribution() {
         final IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
 
         for(int i = 0; i < 100; i++) {
@@ -73,7 +73,7 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution_MaxLessThanMin() throws Exception {
+    public void testNormalDistribution_MaxLessThanMin() {
         final IntValueRandom valueRandom = new IntValueRandom(NORMAL, -10, -20);
 
         for(int i = 0; i < 100; i++) {
@@ -87,7 +87,7 @@ public class IntValueRandomTest extends TestConfigBase {
         }
     }
     @Test
-    public void testExpDownDistribution() throws Exception {
+    public void testExpDownDistribution() {
         final IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 10, 13);
 
         for(int i = 0; i < 1000; i++) {
@@ -106,7 +106,7 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpUpDistribution() throws Exception {
+    public void testExpUpDistribution() {
         final IntValueRandom valueRandom = new IntValueRandom(EXP_UP, 10, 13);
 
         for(int i = 0; i < 1000; i++) {
@@ -125,7 +125,7 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testExpDownDistribution_TwoValues() throws Exception {
+    public void testExpDownDistribution_TwoValues() {
         final IntValueRandom valueRandom = new IntValueRandom(EXP_DOWN, 1, 2);
 
         for(int i = 0; i < 1000; i++) {
@@ -138,7 +138,7 @@ public class IntValueRandomTest extends TestConfigBase {
     }
 
     @Test
-    public void testNormalDistribution_WithIncrements() throws Exception {
+    public void testNormalDistribution_WithIncrements() {
         final IntValueRandom valueRandom = new IntValueRandom(NORMAL, 10, 20);
         final int INC = 1_000;
 

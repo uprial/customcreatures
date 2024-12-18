@@ -235,6 +235,6 @@ public class HItemFilterTest extends TestConfigBase {
             }
         }
 
-        return Math.round((passes * MAX_PERCENT) / tries);
+        return (int)Math.round(((double) passes * MAX_PERCENT) / tries);
     }
 }
