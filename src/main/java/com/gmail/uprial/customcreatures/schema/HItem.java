@@ -61,10 +61,14 @@ public final class HItem {
         }
     }
 
-    public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
+    public boolean handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
         if (containsPersistentMetadataFlag(plugin, event.getEntity(), getHandlerMetadataKey())) {
             applyDrops(customLogger, event, lootBonusMobs);
             applyDropExp(customLogger, event);
+
+            return true;
+        } else {
+            return false;
         }
     }
 

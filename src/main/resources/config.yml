@@ -50,6 +50,8 @@ handlers:
   - insane-mansions-and-raids
   - insane-mansions-and-raids-illusioners
   - angry-vindicator
+  - piglin-spawns-a-hoglin
+  - angry-hoglin
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -123,8 +125,8 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html
 #            ### By default, spawns with all reason will be processed.
 #            ###
-#            ### Hint: a spawn via "summon" command will be detected
-#            ### as "DEFAULT".
+#            ### A spawn via "summon" command will be detected as "COMMAND".
+#            ### A spawn via "spawn" section will be detected as "CUSTOM".
 #     - <spawn-reason1>
 #       ...
 #     - <spawn-reasonN>
@@ -599,6 +601,8 @@ rapid-monster:
 player:
   filter:
     reasons:
+      # According to https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/CreatureSpawnEvent.SpawnReason.html,
+      # DEFAULT - when an entity is missing a SpawnReason.
       - DEFAULT
     types:
       - PLAYER
@@ -635,10 +639,11 @@ golden-zombie:
     probability-player-multiplier:
       sort: closest
       statistic: DAMAGE_DEALT
-      # stores in percentages
+      # stored in percentages, actually means 5_000 full units
       divider: 500_000
-      # 4 * 6 = 24
-      max: 6
+      # 4% * 8 = 32%
+      # together with iron- and chainmail- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      max: 32
   effects:
     - effects.jump_1
     - effects.fire_resistance
@@ -712,10 +717,11 @@ iron-zombie:
     probability-player-multiplier:
       sort: closest
       statistic: DAMAGE_DEALT
-      # stores in percentages
+      # stored in percentages, actually means 5_000 full units
       divider: 500_000
-      # 2 * 12 = 24
-      max: 12
+      # 2% * 16 = 32%
+      # together with golden- and chainmail- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      max: 16
   effects:
     - effects.jump_1
     - effects.fire_resistance
@@ -797,10 +803,10 @@ diamond-skeleton:
     probability-player-multiplier:
       sort: closest
       statistic: DAMAGE_DEALT
-      # stores in percentages
+      # stored in percentages, actually means 5_000 full units
       divider: 500_000
-      # 1 * 24 = 24
-      max: 24
+      # 1% * 32 = 32%
+      max: 32
   effects:
     - effects.jump_3
     - effects.glowing
@@ -962,10 +968,11 @@ chainmail-zombie:
     probability-player-multiplier:
       sort: closest
       statistic: DAMAGE_DEALT
-      # stores in percentages
+      # stored in percentages, actually means 5_000 full units
       divider: 500_000
-      # 0.5 * 48 = 24
-      max: 48
+      # 0.5% * 64 = 32%
+      # together with golden- and iron- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      max: 64
   effects:
     - effects.jump_3
     - effects.glowing
@@ -1230,6 +1237,9 @@ secret-creeper:
     knockback-resistance: 0.2
     movement-speed-multiplier: 1.2
     max-health-multiplier: 1.2
+    # Harden the areas where players spend a lot of time:
+    # regular entities despawn
+    # but hardened entities don't.
     remove-when-far-away: false
   # 5 levels from 0
   drop-exp: 55
@@ -1342,6 +1352,13 @@ vex-spawns-an-illusioner:
     types:
       - VEX
     probability: 1
+    probability-player-multiplier:
+      sort: closest
+      statistic: DAMAGE_DEALT
+      # stored in percentages, actually means 5_000 full units
+      divider: 500_000
+      # 1% * 5 = 5%
+      max: 5
   spawn:
     type: ILLUSIONER
     lighting-on-spawn: true
@@ -1457,6 +1474,11 @@ insane-mansions-and-raids:
     # Evoker: 12(♥) > 15(♥)
     # Ravager: 50(♥) > 62.5(♥)
     max-health-multiplier: 1.25
+    # Align Illusioners to Evokers in mansions, who already have 'false'
+    # and harden raids where Evokers and Ravagers have 'true'.
+    #
+    # The purpose is to keep the entities considered semi-bosses.
+    remove-when-far-away: false
   drops:
     - _enchanted_golden_apple
     - _netherite_scrap
@@ -1566,6 +1588,37 @@ angry-vindicator:
     max-health-multiplier: 1.5
   # 5 levels from 0
   drop-exp: 55
+
+piglin-spawns-a-hoglin:
+  filter:
+    types:
+      - PIGLIN
+      - PIGLIN_BRUTE
+      - ZOMBIFIED_PIGLIN
+    probability: 5
+  spawn:
+    type: HOGLIN
+
+angry-hoglin:
+  filter:
+    reasons:
+      # Only spawned via "spawn" section
+      - CUSTOM
+    types:
+      - HOGLIN
+    probability: 100
+  effects:
+    - effects.jump_3
+    - effects.fire_resistance
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.99
+    movement-speed-multiplier: 1.5
+    # 20(♥) > 50(♥)
+    max-health-multiplier: 2.5
+    scale: 1.5
+    # The purpose is to keep the entities considered semi-bosses.
+    remove-when-far-away: false
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.

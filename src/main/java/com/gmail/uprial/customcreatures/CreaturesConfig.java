@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.*;
 
+import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
@@ -40,14 +41,28 @@ public final class CreaturesConfig {
     }
 
     public void handleSpawn(CustomCreatures plugin, CustomLogger customLogger, LivingEntity entity, SpawnReason spawnReason) {
+        int counter = 0;
         for (HItem handler : handlers.values()) {
-            handler.handleSpawn(plugin, customLogger, entity, spawnReason);
+            if(handler.handleSpawn(plugin, customLogger, entity, spawnReason)) {
+                counter++;
+            }
+        }
+        if (customLogger.isDebugMode()) {
+            customLogger.debug(String.format("Handled %s spawn of %s: %d handlers applied",
+                    spawnReason, format(entity), counter));
         }
     }
 
     public void handleDeath(CustomCreatures plugin, CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
+        int counter = 0;
         for (HItem handler : handlers.values()) {
-            handler.handleDeath(plugin, customLogger, event, lootBonusMobs);
+            if(handler.handleDeath(plugin, customLogger, event, lootBonusMobs)) {
+                counter++;
+            }
+        }
+        if (customLogger.isDebugMode()) {
+            customLogger.debug(String.format("Handled death of %s: %d handlers applied",
+                    format(event.getEntity()), counter));
         }
     }
 
