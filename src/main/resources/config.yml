@@ -271,6 +271,9 @@ handlers:
 # #### Spawn ####
 #
 # <spawn>:
+#   probability: <0..100> ### Probability in percents that this spawn will be triggered.
+#                         ### By default, the probability is 100%.
+#
 #   type:  ### Possible entity types, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 #          ### An entity should be a subinterface of LivingEntity, see
@@ -1351,6 +1354,8 @@ vex-spawns-an-illusioner:
   filter:
     types:
       - VEX
+    # Not in 'spawn.probability' section to use
+    # the player-multiplier features.
     probability: 1
     probability-player-multiplier:
       sort: closest

@@ -14,29 +14,34 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 
 public class HItemSpawn {
     private final String title;
+    private final Probability probability;
     private final EntityType type;
     private final IValue<Integer> amount;
     private final IValue<Boolean> lightingOnSpawn;
 
-    private HItemSpawn(String title, EntityType type, IValue<Integer> amount, IValue<Boolean> lightingOnSpawn) {
+    private HItemSpawn(String title, Probability probability, EntityType type,
+                       IValue<Integer> amount, IValue<Boolean> lightingOnSpawn) {
         this.title = title;
+        this.probability = probability;
         this.type = type;
         this.amount = amount;
         this.lightingOnSpawn = lightingOnSpawn;
     }
 
     public void apply(CustomLogger customLogger, Entity entity) {
-        final int n = amount.getValue();
-        for(int i = 0; i < n; i++) {
-            entity.getWorld().spawnEntity(entity.getLocation(), type);
-        }
-        if((lightingOnSpawn != null) && (lightingOnSpawn.getValue())) {
-            entity.getWorld().strikeLightningEffect(entity.getLocation());
-        }
+        if ((probability == null) || (probability.isPassed())) {
+            final int n = amount.getValue();
+            for (int i = 0; i < n; i++) {
+                entity.getWorld().spawnEntity(entity.getLocation(), type);
+            }
+            if ((lightingOnSpawn != null) && (lightingOnSpawn.getValue())) {
+                entity.getWorld().strikeLightningEffect(entity.getLocation());
+            }
 
-        if (customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s: %d of %s at %s",
-                    title, n, type, format(entity.getLocation().toVector())));
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s: %d of %s at %s",
+                        title, n, type, format(entity.getLocation().toVector())));
+            }
         }
     }
 
@@ -45,6 +50,9 @@ public class HItemSpawn {
             customLogger.debug(String.format("Empty %s. Use default value NULL", title));
             return null;
         }
+
+        final Probability probability = Probability.getFromConfig(config, customLogger, joinPaths(key, "probability"),
+                String.format("probability of %s", title));
 
         final EntityType type = getEnum(EntityType.class, config,
                 joinPaths(key, "type"), String.format("type of %s", title));
@@ -58,10 +66,11 @@ public class HItemSpawn {
         final IValue<Boolean> lightingOnSpawn = HValue.getBooleanFromConfig(config, customLogger, joinPaths(key, "lighting-on-spawn"),
                 String.format("'lighting on spawn' flag in %s", title));
 
-        return new HItemSpawn(title, type, amount, lightingOnSpawn);
+        return new HItemSpawn(title, probability, type, amount, lightingOnSpawn);
     }
 
     public String toString() {
-        return String.format("{type: %s, amount: %s, lighting-on-spawn: %s}", type, amount, lightingOnSpawn);
+        return String.format("{probability: %s, type: %s, amount: %s, lighting-on-spawn: %s}",
+                probability, type, amount, lightingOnSpawn);
     }
 }
