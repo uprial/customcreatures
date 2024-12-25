@@ -1,7 +1,6 @@
 package com.gmail.uprial.customcreatures;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -9,17 +8,20 @@ import java.util.concurrent.LinkedBlockingQueue;
 class CustomCreaturesCron extends BukkitRunnable {
     private static final int INTERVAL = 1;
 
-    private final CustomCreatures plugin;
-
     private static final Queue<Runnable> DEFERRED_TASKS = new LinkedBlockingQueue<>();
     private static final Queue<Runnable> ACTIVE_TASKS = new LinkedBlockingQueue<>();
 
     public CustomCreaturesCron(CustomCreatures plugin) {
-        this.plugin = plugin;
+        runTaskTimer(plugin, INTERVAL, INTERVAL);
     }
 
-    public BukkitTask runTaskTimer() {
-        return runTaskTimer(plugin, INTERVAL, INTERVAL);
+    @Override
+    public void cancel() {
+        super.cancel();
+
+        while(!DEFERRED_TASKS.isEmpty() || !ACTIVE_TASKS.isEmpty()) {
+            run();
+        }
     }
 
     public static void defer(Runnable task) {

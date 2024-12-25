@@ -8,7 +8,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.io.File;
 
@@ -21,13 +20,13 @@ public final class CustomCreatures extends JavaPlugin {
     private CustomLogger consoleLogger = null;
     private CreaturesConfig creaturesConfig = null;
 
-    private BukkitTask cronTask;
+    private CustomCreaturesCron cron;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
 
-        cronTask = new CustomCreaturesCron(this).runTaskTimer();
+        cron = new CustomCreaturesCron(this);
 
         consoleLogger = new CustomLogger(getLogger());
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
@@ -55,7 +54,7 @@ public final class CustomCreatures extends JavaPlugin {
     @Override
     public void onDisable() {
         HandlerList.unregisterAll(this);
-        cronTask.cancel();
+        cron.cancel();
         consoleLogger.info("Plugin disabled");
     }
 
