@@ -916,8 +916,8 @@ diamond-skeleton:
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
     trim:
-      material: EMERALD
-      pattern: SILENCE
+      material: AMETHYST
+      pattern: SPIRE
   _top_diamond_boots:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -933,8 +933,8 @@ diamond-skeleton:
       # according to https://minecraft.fandom.com/wiki/Soul_Speed
       # it reduces durability.
     trim:
-      material: EMERALD
-      pattern: SILENCE
+      material: AMETHYST
+      pattern: SPIRE
   _top_diamond_chest:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -945,8 +945,8 @@ diamond-skeleton:
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
     trim:
-      material: EMERALD
-      pattern: SILENCE
+      material: AMETHYST
+      pattern: SPIRE
   _top_diamond_leggings:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -958,8 +958,8 @@ diamond-skeleton:
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
     trim:
-      material: EMERALD
-      pattern: SILENCE
+      material: AMETHYST
+      pattern: SPIRE
   # 5 levels from 0
   drop-exp: 55
 
