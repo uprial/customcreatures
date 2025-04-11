@@ -43,6 +43,16 @@ public class HItemArmorTrimTest extends TestConfigBase {
     }
 
     @Test
+    public void testRandomMaterial() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Null pattern of trim");
+        getFromConfig(getPreparedConfig(
+                        "t:",
+                        "  material: RANDOM"),
+                getCustomLogger(), "t", "trim");
+    }
+
+    @Test
     public void testNullPattern() throws Exception {
         e.expect(InvalidConfigException.class);
         e.expectMessage("Null pattern of trim");
@@ -61,6 +71,16 @@ public class HItemArmorTrimTest extends TestConfigBase {
                         "  material: EMERALD",
                         "  pattern:"),
                 getCustomLogger(), "t", "trim");
+    }
+
+    @Test
+    public void testRandomPattern() throws Exception {
+        HItemArmorTrim itemArmorTrim = getFromConfig(getPreparedConfig(
+                        "t: ",
+                        "  material: RANDOM",
+                        "  pattern: RANDOM"),
+                getParanoiacCustomLogger(), "t", "trim");
+        assertEquals("Trim{material: null, pattern: null}", itemArmorTrim.toString());
     }
 
     @Test

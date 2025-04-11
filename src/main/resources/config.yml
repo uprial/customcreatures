@@ -504,9 +504,11 @@ handlers:
 # <trim>:
 #   material:  ### Possible materials, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/trim/TrimMaterial.html
+#              ### OR RANDOM
 #
 #   pattern:  ### Possible patterns, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/inventory/meta/trim/TrimPattern.html
+#              ### OR RANDOM
 #
 # Warning: armor trim works only on players.
 #
@@ -917,7 +919,7 @@ diamond-skeleton:
       - enchantments.best_vanishing_curse
     trim:
       material: AMETHYST
-      pattern: SPIRE
+      pattern: RANDOM
   _top_diamond_boots:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -934,7 +936,7 @@ diamond-skeleton:
       # it reduces durability.
     trim:
       material: AMETHYST
-      pattern: SPIRE
+      pattern: RANDOM
   _top_diamond_chest:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -946,7 +948,7 @@ diamond-skeleton:
       - enchantments.best_vanishing_curse
     trim:
       material: AMETHYST
-      pattern: SPIRE
+      pattern: RANDOM
   _top_diamond_leggings:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -959,7 +961,7 @@ diamond-skeleton:
       - enchantments.best_vanishing_curse
     trim:
       material: AMETHYST
-      pattern: SPIRE
+      pattern: RANDOM
   # 5 levels from 0
   drop-exp: 55
 
@@ -1090,7 +1092,7 @@ chainmail-zombie:
       - enchantments.best_helmet_aqua_affinity
       - enchantments.best_vanishing_curse
     trim:
-      material: REDSTONE
+      material: RANDOM
       pattern: VEX
   _top_chainmail_boots:
     probability: 1
@@ -1103,7 +1105,7 @@ chainmail-zombie:
       - enchantments.best_boots_depth_strider
       - enchantments.best_vanishing_curse
     trim:
-      material: REDSTONE
+      material: RANDOM
       pattern: VEX
   _top_chainmail_chest:
     probability: 1
@@ -1114,7 +1116,7 @@ chainmail-zombie:
       - enchantments.best_protection
       - enchantments.best_vanishing_curse
     trim:
-      material: REDSTONE
+      material: RANDOM
       pattern: VEX
   _top_chainmail_leggings:
     probability: 1
@@ -1126,7 +1128,7 @@ chainmail-zombie:
       - enchantments.best_leggings_swift_sneak
       - enchantments.best_vanishing_curse
     trim:
-      material: REDSTONE
+      material: RANDOM
       pattern: VEX
   _top_diamond_sword:
     probability: 0.5
