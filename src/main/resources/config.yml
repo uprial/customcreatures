@@ -1505,6 +1505,7 @@ insane-mansions-and-raids:
     material: ENCHANTED_BOOK
     enchantments:
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
   _totem_of_undying:
     probability: 2
     probability-per-looting-level: 2
@@ -1552,6 +1553,7 @@ insane-mansions-and-raids-illusioners:
       - _best_silk_touch
       - enchantments.top_efficiency
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
     _best_silk_touch:
       type: SILK_TOUCH
       level: 1
@@ -1564,6 +1566,7 @@ insane-mansions-and-raids-illusioners:
       - _best_fortune
       - enchantments.top_efficiency
       - enchantments.best_mending
+      - enchantments.best_vanishing_curse
     _best_fortune:
       type: FORTUNE
       level: 3
@@ -1683,6 +1686,7 @@ drops:
       - enchantments.top_bow_punch
       - enchantments.best_bow_flame
       - enchantments.best_bow_infinity
+      - enchantments.best_mending
       - enchantments.best_vanishing_curse
 
 # Global templates of enchantments
