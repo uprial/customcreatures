@@ -12,7 +12,8 @@ public enum TrimMaterialEnum implements ITypedEnum<TrimMaterial> {
     EMERALD(TrimMaterial.EMERALD),
     DIAMOND(TrimMaterial.DIAMOND),
     LAPIS(TrimMaterial.LAPIS),
-    AMETHYST(TrimMaterial.AMETHYST);
+    AMETHYST(TrimMaterial.AMETHYST),
+    RESIN(TrimMaterial.RESIN);
 
     private final TrimMaterial type;
 

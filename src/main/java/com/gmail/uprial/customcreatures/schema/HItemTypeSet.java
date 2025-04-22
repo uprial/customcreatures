@@ -10,12 +10,12 @@ import java.util.Set;
 import static org.bukkit.entity.EntityType.*;
 
 /*
-    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html (version 1.21.3)
+    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html (version 1.21.5)
 
-    AbstractHorse, AbstractSkeleton, AbstractVillager, Ageable, Allay, Ambient, Animals, Armadillo,
-    ArmorStand, Axolotl, Bat, Bee, Blaze, Bogged, Breedable, Breeze,
-    Camel, Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity, Cow,
-    Creaking, CreakingTransient, Creature, Creeper, Dolphin, Donkey, Drowned, ElderGuardian,
+    AbstractCow, AbstractHorse, AbstractSkeleton, AbstractVillager, Ageable, Allay, Ambient, Animals,
+    Armadillo, ArmorStand, Axolotl, Bat, Bee, Blaze, Bogged, Breedable,
+    Breeze, Camel, Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity,
+    Cow, Creaking, Creature, Creeper, Dolphin, Donkey, Drowned, ElderGuardian,
     EnderDragon, Enderman, Endermite, Enemy, Evoker, Fish, Flying, Fox,
     Frog, Ghast, Giant, GlowSquid, Goat, Golem, Guardian, Hoglin,
     Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem, Llama, MagmaCube,
@@ -37,12 +37,11 @@ public enum HItemTypeSet {
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM)),
     MONSTERS(null,
-            addExperimentalEntities(Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER, /*CREAKING, CREAKING_TRANSIENT, */CREEPER, DROWNED,
-                    ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER, EVOKER_FANGS, GHAST, GIANT,
-                    GUARDIAN, HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE,
-                    PILLAGER, RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SPIDER,
-                    STRAY, VEX, VINDICATOR, WARDEN, WITCH, WITHER, WITHER_SKELETON, ZOGLIN,
-                    ZOMBIE, ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN))),
+            Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER, CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER, EVOKER_FANGS, GHAST, GIANT,
+                    GUARDIAN, HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER,
+                    RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SPIDER, STRAY,
+                    VEX, VINDICATOR, WARDEN, WITCH, WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE,
+                    ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
 
     // An unused set that underlines we didn't forget of some creatures.
     CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
@@ -59,20 +58,22 @@ public enum HItemTypeSet {
             Sets.newHashSet(ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM,
                     VEX, WITHER));
 
+    /*
+    WARNING: Currently, not needed, but saved for the future
+
     private static Set<EntityType> addExperimentalEntities(final Set<EntityType> entityTypes) {
         try {
-            //noinspection UnstableApiUsage
+            // noinspection UnstableApiUsage
             entityTypes.add(CREAKING);
-            //noinspection UnstableApiUsage
-            entityTypes.add(CREAKING_TRANSIENT);
         } catch (NoSuchFieldError ignored) {
             Bukkit.getServer().getLogger().info(
-                    "Winter Drop experimental data pack introduced in 1.21.2 isn't enabled. " +
+                    "??? experimental data pack introduced in ?.?.? isn't enabled. " +
                         "For more details, check https://minecraft.wiki/w/Experiments");
         }
 
         return entityTypes;
     }
+     */
 
     final Set<EntityType> entityTypes;
     final Set<HItemTypeSet> subSets;
