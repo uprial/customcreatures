@@ -644,7 +644,8 @@ golden-zombie:
       # stored in percentages, actually means 5_000 full units
       divider: 500_000
       # 4% * 8 = 32%
-      # together with iron- and chainmail- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      # together with iron- and chainmail- multipliers for zombies up to 32%
+      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 32
   effects:
     - effects.jump_1
@@ -722,7 +723,8 @@ iron-zombie:
       # stored in percentages, actually means 5_000 full units
       divider: 500_000
       # 2% * 16 = 32%
-      # together with golden- and chainmail- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      # together with golden- and chainmail- multipliers for zombies up to 32%
+      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 16
   effects:
     - effects.jump_1
@@ -808,6 +810,7 @@ diamond-skeleton:
       # stored in percentages, actually means 5_000 full units
       divider: 500_000
       # 1% * 32 = 32%
+      # has no cumulative hardening potential because other multipliers are other entity types
       max: 32
   effects:
     - effects.jump_3
@@ -973,7 +976,8 @@ chainmail-zombie:
       # stored in percentages, actually means 5_000 full units
       divider: 500_000
       # 0.5% * 64 = 32%
-      # together with golden- and iron- has up to 1 - (1 - 32%) ^ 3 = 69% to harden
+      # together with golden- and iron- multipliers for zombies up to 32%
+      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 64
   effects:
     - effects.jump_3
@@ -1360,6 +1364,7 @@ vex-spawns-an-illusioner:
       sort: closest
       statistic: DAMAGE_DEALT
       # stored in percentages, actually means 5_000 full units
+      # has no cumulative hardening potential because other multipliers are other entity types
       divider: 500_000
       # 1% * 5 = 5%
       max: 5
@@ -1487,7 +1492,6 @@ insane-mansions-and-raids:
     - _enchanted_golden_apple
     - _netherite_scrap
     - _book_of_mending
-    - _totem_of_undying
   _enchanted_golden_apple:
     probability: 2
     probability-per-looting-level: 2
@@ -1503,10 +1507,6 @@ insane-mansions-and-raids:
     enchantments:
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
-  _totem_of_undying:
-    probability: 2
-    probability-per-looting-level: 2
-    material: TOTEM_OF_UNDYING
   # 10 levels from 0
   drop-exp: 160
 
