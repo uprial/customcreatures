@@ -888,7 +888,7 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_bow_power
-        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_punch
         - enchantments.rand_bow_flame
         - enchantments.rand_bow_infinity
   attributes:
@@ -1049,7 +1049,7 @@ chainmail-zombie:
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_sword_sharpness
-        - enchantments.rand_maybe_top_sword_looting
+        - enchantments.rand_sword_looting
         - enchantments.rand_sword_knockback
         - enchantments.rand_sword_fire_aspect
         - enchantments.rand_sword_sweeping_edge
@@ -1138,7 +1138,7 @@ chainmail-zombie:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.top_sword_sharpness
-      - enchantments.top_sword_looting
+      - enchantments.best_sword_looting
       - enchantments.best_sword_knockback
       - enchantments.best_sword_fire_aspect
       - enchantments.best_sword_sweeping_edge
@@ -1529,7 +1529,7 @@ insane-mansions-and-raids-illusioners:
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_bow_power
-        - enchantments.rand_maybe_top_bow_punch
+        - enchantments.rand_bow_punch
         - enchantments.rand_bow_flame
         - enchantments.rand_bow_infinity
         - enchantments.best_vanishing_curse
@@ -1680,7 +1680,7 @@ drops:
     enchantments:
       - enchantments.best_unbreaking
       - enchantments.top_bow_power
-      - enchantments.top_bow_punch
+      - enchantments.best_bow_punch
       - enchantments.best_bow_flame
       - enchantments.best_bow_infinity
       - enchantments.best_mending
@@ -1744,8 +1744,8 @@ enchantments:
     level: 4
   top_protection:
     type: PROTECTION
-    # Survival maximum level is 4, here it's 10.
-    level: 10
+    # Survival maximum level is 4, here it's 5.
+    level: 5
   rand_thorns:
     type: THORNS
     level:
@@ -1886,17 +1886,9 @@ enchantments:
       type: random
       min: 0
       max: 3
-  rand_maybe_top_sword_looting:
+  best_sword_looting:
     type: LOOTING
-    # Survival maximum level is 3, here it's 5
-    level:
-      type: random
-      min: 1
-      max: 5
-  top_sword_looting:
-    type: LOOTING
-    # Survival maximum level is 3, here it's 5
-    level: 5
+    level: 3
 
   # Bow
   rand_maybe_top_bow_power:
@@ -1910,17 +1902,15 @@ enchantments:
     type: POWER
     # Survival maximum level is 5, here it's 10
     level: 10
-  rand_maybe_top_bow_punch:
+  rand_bow_punch:
     type: PUNCH
-    # Survival maximum level is 2, here it's 3
     level:
       type: random
-      min: 1
-      max: 3
-  top_bow_punch:
+      min: 0
+      max: 2
+  best_bow_punch:
     type: PUNCH
-    # Survival maximum level is 2, here it's 3
-    level: 3
+    level: 2
   rand_bow_flame:
     type: FLAME
     level:
