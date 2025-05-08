@@ -1214,23 +1214,30 @@ better-tridents:
       enchantments:
         - enchantments.rand_unbreaking
         - _rand_trident_channeling
-        - _rand_maybe_top_trident_impaling
+        - _rand_trident_impaling
+        - _rand_maybe_top_loyalty
 
       # Trident enchantments
 
-      _rand_maybe_top_trident_impaling:
+      _rand_trident_impaling:
         type: IMPALING
-        # Survival maximum level is 5, here it's 10
         level:
           type: random
-          min: 1
-          max: 10
+          min: 0
+          max: 5
       _rand_trident_channeling:
         type: CHANNELING
         level:
           type: random
           min: 0
           max: 1
+      _rand_maybe_top_loyalty:
+        type: LOYALTY
+        # Survival maximum level is 3, here it's 5.
+        level:
+          type: random
+          min: 1
+          max: 5
 
 secret-creeper:
   filter:
