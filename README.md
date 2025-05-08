@@ -63,7 +63,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 `customcreatures.reload` (default: op)
 
 * Access to 'apply' command:
-  `customcreatures.apply` (default: op)
+`customcreatures.apply` (default: op)
 
 ## Configuration
 [Default configuration file](src/main/resources/config.yml)

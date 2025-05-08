@@ -1861,7 +1861,8 @@ enchantments:
       max: 2
   best_sword_knockback:
     type: KNOCKBACK
-    level: 2
+    # IMO, knockback prevents swords from dealing a lot of melee damage per second
+    level: 0
   rand_sword_fire_aspect:
     type: FIRE_ASPECT
     level:
