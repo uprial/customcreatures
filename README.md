@@ -10,7 +10,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 
 ## Features
 
-* Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) plugin
+* Synergies perfectly with [TakeAim](https://github.com/uprial/takeaim) and [MasochisticSurvival](https://legacy.curseforge.com/minecraft/bukkit-plugins/masochisticsurvival/) plugins
 * 5% of animals naturally spawn with up to 400% health increase.
 * 5% of hostile monsters spawn with an increased movement speed up to 100%.
 * Once killed, a player respawns with an apple in hand and a small jump and movement bonus for a minute.
@@ -81,4 +81,5 @@ I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 * CustomNukes: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customnukes/), [GitHub](https://github.com/uprial/customnukes), [Spigot](https://www.spigotmc.org/resources/customnukes.68710/)
 * CustomRecipes: [Bukkit Dev](https://dev.bukkit.org/projects/custom-recipes), [GitHub](https://github.com/uprial/customrecipes/), [Spigot](https://www.spigotmc.org/resources/customrecipes.89435/)
 * CustomVillage: [Bukkit Dev](http://dev.bukkit.org/bukkit-plugins/customvillage/), [GitHub](https://github.com/uprial/customvillage/), [Spigot](https://www.spigotmc.org/resources/customvillage.69170/)
+* MasochisticSurvival: [Bukkit Dev](https://legacy.curseforge.com/minecraft/bukkit-plugins/masochisticsurvival/), [GitHub](https://github.com/uprial/masochisticsurvival/), [Spigot](https://www.spigotmc.org/resources/masochisticsurvival.124943/)
 * TakeAim: [Bukkit Dev](https://dev.bukkit.org/projects/takeaim), [GitHub](https://github.com/uprial/takeaim), [Spigot](https://www.spigotmc.org/resources/takeaim.68713/)
