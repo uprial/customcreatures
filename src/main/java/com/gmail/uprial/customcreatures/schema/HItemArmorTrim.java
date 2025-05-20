@@ -2,6 +2,7 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.schema.enums.ITrimMaterial;
 import com.gmail.uprial.customcreatures.schema.enums.TrimMaterialEnum;
 import com.gmail.uprial.customcreatures.schema.enums.TrimPatternEnum;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -19,15 +20,15 @@ import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getEnum;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getString;
 
-public final class HItemArmorTrim {
+public final class HItemArmorTrim<T extends Enum & ITrimMaterial> {
 
     private final String title;
-    private final TrimMaterialEnum material;
+    private final T material;
     private final TrimPatternEnum pattern;
 
     private static final Random RANDOM = new Random();
 
-    private HItemArmorTrim(String title, TrimMaterialEnum material, TrimPatternEnum pattern) {
+    private HItemArmorTrim(String title, T material, TrimPatternEnum pattern) {
         this.title = title;
         this.material = material;
         this.pattern = pattern;
@@ -59,8 +60,8 @@ public final class HItemArmorTrim {
             return null;
         }
 
-        final TrimMaterialEnum material;
-        material = getEnumOrRandom(TrimMaterialEnum.class, config,
+        final Enum material;
+        material = getEnumOrRandom(TrimMaterialEnum.getClassName(), config,
                 joinPaths(key, "material"), String.format("material of %s", title));
         final TrimPatternEnum pattern;
         pattern = getEnumOrRandom(TrimPatternEnum.class, config,

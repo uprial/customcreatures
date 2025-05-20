@@ -2,27 +2,22 @@ package com.gmail.uprial.customcreatures.schema.enums;
 
 import org.bukkit.inventory.meta.trim.TrimMaterial;
 
-public enum TrimMaterialEnum implements ITypedEnum<TrimMaterial> {
-    QUARTZ(TrimMaterial.QUARTZ),
-    IRON(TrimMaterial.IRON),
-    NETHERITE(TrimMaterial.NETHERITE),
-    REDSTONE(TrimMaterial.REDSTONE),
-    COPPER(TrimMaterial.COPPER),
-    GOLD(TrimMaterial.GOLD),
-    EMERALD(TrimMaterial.EMERALD),
-    DIAMOND(TrimMaterial.DIAMOND),
-    LAPIS(TrimMaterial.LAPIS),
-    AMETHYST(TrimMaterial.AMETHYST),
-    RESIN(TrimMaterial.RESIN);
-
-    private final TrimMaterial type;
-
-    TrimMaterialEnum(TrimMaterial type) {
-        this.type = type;
+public final class TrimMaterialEnum {
+    public static Class<? extends Enum> getClassName() {
+        try {
+            TrimMaterial.class.getField("RESIN");
+            return TrimMaterialEnum_1_21_4.class;
+        } catch (NoSuchFieldException ignored) {
+            return TrimMaterialEnum_1_21_3.class;
+        }
     }
 
-    @Override
-    public TrimMaterial getType() {
-        return type;
+    public static ITrimMaterial[] values() {
+        try {
+            TrimMaterial.class.getField("RESIN");
+            return TrimMaterialEnum_1_21_4.values();
+        } catch (NoSuchFieldException ignored) {
+            return TrimMaterialEnum_1_21_3.values();
+        }
     }
 }
