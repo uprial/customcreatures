@@ -97,19 +97,19 @@ public final class HItemAttributes {
                         value *= baseValue;
                         attributeInstance.setBaseValue(value);
                     }
-                    if (customLogger.isDebugMode()) {
-                        customLogger.debug(String.format("Handle %s modification: apply %s, change movement speed of %s from %.2f to %.2f",
-                                title, genericAttribute.getTitle(), format(entity), baseValue, value));
-                    }
+                    break;
+                case "max-health":
+                    attributeInstance.setBaseValue(value);
+                    entity.setHealth(value - HEALTH_REDUCTION);
                     break;
                 default:
                     // Other values are absolute but not multipliers.
                     attributeInstance.setBaseValue(value);
-                    if (customLogger.isDebugMode()) {
-                        customLogger.debug(String.format("Handle %s modification: change %s of %s from %.2f to %.2f",
-                                title, genericAttribute.getTitle(), format(entity), baseValue, value));
-                    }
                     break;
+            }
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s modification: change %s of %s from %.2f to %.2f",
+                        title, genericAttribute.getTitle(), format(entity), baseValue, value));
             }
         }
     }

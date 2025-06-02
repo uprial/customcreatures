@@ -53,9 +53,21 @@ public class HItemEntitySpecificAttributesTest extends TestConfigBase {
                         "    color: WHITE",
                         "    style: WHITEFIELD",
                         "    max-domestication: 100",
-                        "    jump-strength: 0.7"),
+                        "    jump-strength: 0.7",
+                        "    tamed: false"),
                 getParanoiacCustomLogger(), getItemFilter(EntityType.HORSE),"esa", "e-s-a");
-        assertEquals("Horse{color: WHITE, style: WHITEFIELD, max-domestication: 100, jump-strength: 0.7}", esa.toString());
+        assertEquals("Horse{color: WHITE, style: WHITEFIELD, max-domestication: 100, jump-strength: 0.7, tamed: false}", esa.toString());
+    }
+
+    @Test
+    public void testWholeZombieHorse() throws Exception {
+        HItemEntitySpecificAttributes esa = getFromConfig(getPreparedConfig(
+                        "esa: ",
+                        "  zombie-horse: ",
+                        "    jump-strength: 0.7",
+                        "    tamed: false"),
+                getParanoiacCustomLogger(), getItemFilter(EntityType.ZOMBIE_HORSE),"esa", "e-s-a");
+        assertEquals("Horse{jump-strength: 0.7, tamed: false}", esa.toString());
     }
 
     @Test

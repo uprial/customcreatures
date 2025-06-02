@@ -20,7 +20,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 0.5% (*4) of zombie-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance, in CHAINMAIL equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted sword (*2). Drops lapiz lazuli and redstone. (*3)
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
-* 5% of Horses have the best maximum health, improved movement speed and knockback resistance.
+* 5% of Horses have a tamed zombie friend with improved knockback resistance, maximum health, movement speed, and jump strength.
 * 5% of Rabbits are the killer bunnies scaled visually with a large health and movement bonus.
 * 100% of Withers have thorns.
 * 0.1% of creepers are a little more healthy, fast, explosive, and don't despawn.

@@ -44,6 +44,9 @@ public final class HItemEntitySpecificAttributes {
         } else if(config.contains(joinPaths(key, "horse"))) {
             customEntityTitle = String.format("horse of %s", title);
             customEntity = HCustomHorse.getFromConfig(config, customLogger, joinPaths(key, "horse"), customEntityTitle);
+        } else if(config.contains(joinPaths(key, "zombie-horse"))) {
+            customEntityTitle = String.format("zombie-horse of %s", title);
+            customEntity = HCustomZombieHorse.getFromConfig(config, customLogger, joinPaths(key, "zombie-horse"), customEntityTitle);
         } else if(config.contains(joinPaths(key, "rabbit"))) {
             customEntityTitle = String.format("rabbit of %s", title);
             customEntity = HCustomRabbit.getFromConfig(config, customLogger, joinPaths(key, "rabbit"), customEntityTitle);

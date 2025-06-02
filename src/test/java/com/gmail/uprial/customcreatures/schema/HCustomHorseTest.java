@@ -75,6 +75,18 @@ public class HCustomHorseTest extends TestConfigBase {
                 "  max-domestication: 100"), getDebugFearingCustomLogger(), "h", "horse");
     }
 
+    @Test
+    public void testEmptyTamed() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'tamed' flag of horse. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "h: ",
+                "  color: WHITE",
+                "  style: WHITEFIELD",
+                "  max-domestication: 100",
+                "  jump-strength: 0.7"), getDebugFearingCustomLogger(), "h", "horse");
+    }
 
     @Test
     public void testWholeHorse() throws Exception {
@@ -83,8 +95,9 @@ public class HCustomHorseTest extends TestConfigBase {
                         "  color: WHITE",
                         "  style: WHITEFIELD",
                         "  max-domestication: 100",
-                        "  jump-strength: 0.7"),
+                        "  jump-strength: 0.7",
+                        "  tamed: false"),
                 getParanoiacCustomLogger(), "h", "horse");
-        assertEquals("Horse{color: WHITE, style: WHITEFIELD, max-domestication: 100, jump-strength: 0.7}", customHorse.toString());
+        assertEquals("Horse{color: WHITE, style: WHITEFIELD, max-domestication: 100, jump-strength: 0.7, tamed: false}", customHorse.toString());
     }
 }

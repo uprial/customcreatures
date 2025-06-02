@@ -52,6 +52,7 @@ handlers:
   - angry-vindicator
   - piglin-spawns-a-hoglin
   - angry-hoglin
+  - zombie-horse
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -263,6 +264,13 @@ handlers:
 #                                           ### while 1.0 is enough to clear 5 1⁄4 blocks.
 #                                           ###
 #                                           ### You cannot set a jump strength to a value below 0 or above 2.
+#
+#     tamed: <boolean-value>
+#
+#   zombie-horse:
+#     jump-strength: <float-value:0.0..2.0> ### See the details above
+#
+#     tamed: <boolean-value>
 #
 #   rabbit:
 #     type: ### Possible types, see
@@ -1270,24 +1278,14 @@ cool-horse:
     types:
       - HORSE
     probability: 5
-  attributes:
-    movement-speed-multiplier: 2.0
-    knockback-resistance: 0.5
-    # The "max-health-multiplier" would not work here,
-    # Because the Horse has random max health between 15 and 30:
-    # https://minecraft.fandom.com/wiki/Horse
-    max-health: 30.0
-    # The "movement-speed-multiplier" would not work here,
-    # Because horse's movement speed ranges from 0.1125–0.3375 in internal units
-    # with an average of 0.225
-    # https://minecraft.fandom.com/wiki/Horse
-    movement-speed: 0.5
   entity-specific-attributes:
     horse:
       color: WHITE
       style: WHITEFIELD
       max-domestication: 1000
       jump-strength: 2.0
+  spawn:
+    type: ZOMBIE_HORSE
 
 rabbit-killer:
   filter:
@@ -1633,6 +1631,29 @@ angry-hoglin:
     scale: 1.5
     # The purpose is to keep the entities considered semi-bosses.
     remove-when-far-away: false
+
+zombie-horse:
+  filter:
+    types:
+      - ZOMBIE_HORSE
+    probability: 100
+  attributes:
+    knockback-resistance: 0.5
+    # The "max-health-multiplier" would not work here,
+    # Because the Horse has random max health between 15 and 30:
+    # https://minecraft.fandom.com/wiki/Horse
+    #
+    # The client interface is capable of showing only 60.0 health.
+    max-health: 60.0
+    # The "movement-speed-multiplier" would not work here,
+    # Because horse's movement speed ranges from 0.1125–0.3375 in internal units
+    # with an average of 0.225
+    # https://minecraft.fandom.com/wiki/Horse
+    movement-speed: 0.5
+  entity-specific-attributes:
+    zombie-horse:
+      jump-strength: 2.0
+      tamed: true
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.

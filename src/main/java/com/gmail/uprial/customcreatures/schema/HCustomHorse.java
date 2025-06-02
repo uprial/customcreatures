@@ -23,14 +23,17 @@ public final class HCustomHorse implements ICustomEntity {
     private final Horse.Style style;
     private final IValue<Integer> maxDomestication;
     private final IValue<Double> jumpStrength;
+    private final IValue<Boolean> tamed;
 
     private HCustomHorse(String title, Horse.Color color, Horse.Style style,
-                         IValue<Integer> maxDomestication, IValue<Double> jumpStrength) {
+                         IValue<Integer> maxDomestication, IValue<Double> jumpStrength,
+                         IValue<Boolean> tamed) {
         this.title = title;
         this.color = color;
         this.style = style;
         this.maxDomestication = maxDomestication;
         this.jumpStrength = jumpStrength;
+        this.tamed = tamed;
     }
 
     @Override
@@ -40,6 +43,7 @@ public final class HCustomHorse implements ICustomEntity {
         applyStyle(customLogger, horse);
         applyMaxDomestication(customLogger, horse);
         applyJumpStrength(customLogger, horse);
+        applyTamed(customLogger, horse);
     }
 
     public void applyColor(CustomLogger customLogger, Horse horse) {
@@ -88,6 +92,18 @@ public final class HCustomHorse implements ICustomEntity {
         }
     }
 
+    public void applyTamed(CustomLogger customLogger, Horse horse) {
+        if (tamed != null) {
+            final Boolean oldValue = horse.isTamed();
+            final Boolean newValue = tamed.getValue();
+            horse.setTamed(newValue);
+            if(customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s modification: set 'tamed' flag of %s from %b to %b",
+                        title, format(horse), oldValue, newValue));
+            }
+        }
+    }
+
     @Override
     public Set<EntityType> getPossibleEntityTypes() {
         return POSSIBLE_ENTITY_TYPES;
@@ -116,18 +132,22 @@ public final class HCustomHorse implements ICustomEntity {
         IValue<Double> jumpStrength = HValue.getDoubleFromConfig(config, customLogger, joinPaths(key, "jump-strength"),
                 String.format("jump strength of %s", title), 0.0D, 2.0D);
 
+        IValue<Boolean> tamed = HValue.getBooleanFromConfig(config, customLogger, joinPaths(key, "tamed"),
+                String.format("'tamed' flag of %s", title));
+
         if ((color == null)
                 && (style == null)
                 && (maxDomestication == null)
-                && (jumpStrength == null)) {
+                && (jumpStrength == null)
+                && (tamed == null)) {
             throw new InvalidConfigException(String.format("No modifications found of %s", title));
         }
 
-        return new HCustomHorse(title, color, style, maxDomestication, jumpStrength);
+        return new HCustomHorse(title, color, style, maxDomestication, jumpStrength, tamed);
     }
 
     public String toString() {
-        return String.format("Horse{color: %s, style: %s, max-domestication: %s, jump-strength: %s}",
-                color, style, maxDomestication, jumpStrength);
+        return String.format("Horse{color: %s, style: %s, max-domestication: %s, jump-strength: %s, tamed: %s}",
+                color, style, maxDomestication, jumpStrength, tamed);
     }
 }
