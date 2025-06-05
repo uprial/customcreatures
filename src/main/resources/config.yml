@@ -1194,7 +1194,7 @@ better-crossbows:
       _rand_maybe_top_crossbow_piercing:
         type: PIERCING
         #
-        # Survival maximum level is 4, here it's 7.
+        # Survival maximum level is 4, here it's 6.
         #
         # According to https://minecraft.fandom.com/wiki/Piercing,
         # with values beyond 127 the piercing effect will stop working
@@ -1202,7 +1202,7 @@ better-crossbows:
         level:
           type: random
           min: 1
-          max: 7
+          max: 6
 
 better-tridents:
   filter:
@@ -1725,8 +1725,8 @@ enchantments:
       max: 5
   top_efficiency:
     type: EFFICIENCY
-    # Survival maximum level is 5, here it's 10.
-    level: 10
+    # Survival maximum level is 5, here it's 7.
+    level: 7
 
   # Cloths and weapon
   rand_unbreaking:
@@ -1755,18 +1755,18 @@ enchantments:
   rand_maybe_top_protection:
     type: PROTECTION
     #
-    # Survival maximum level is 4, here it's 10.
+    # Survival maximum level is 4, here it's 9.
     #
     # According to https://minecraft.fandom.com/wiki/Protection
     # the total protection level above 20 doesn't make sense.
     #
     # Mobs have 4 clothes, which on average gives
-    # (1-10) x 4 = (1+11) / 2 * 4 = 24.
+    # (1-9) x 4 = (1+9) / 2 * 4 = 24.
     #
     level:
       type: random
       min: 1
-      max: 10
+      max: 9
   best_protection:
     type: PROTECTION
     level: 4
@@ -1879,8 +1879,8 @@ enchantments:
       max: 7
   top_sword_sharpness:
     type: SHARPNESS
-    # Survival maximum level is 5, here it's 10
-    level: 10
+    # Survival maximum level is 5, here it's 7
+    level: 7
   rand_sword_knockback:
     type: KNOCKBACK
     level:
@@ -1922,15 +1922,15 @@ enchantments:
   # Bow
   rand_maybe_top_bow_power:
     type: POWER
-    # Survival maximum level is 5, here it's 10
+    # Survival maximum level is 5, here it's 7
     level:
       type: random
       min: 1
-      max: 10
+      max: 7
   top_bow_power:
     type: POWER
-    # Survival maximum level is 5, here it's 10
-    level: 10
+    # Survival maximum level is 5, here it's 7
+    level: 7
   rand_bow_punch:
     type: PUNCH
     level:
