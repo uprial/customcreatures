@@ -2,7 +2,7 @@
 
 ## Compatibility
 
-Tested on Spigot-1.21.3, 1.21.5.
+Tested on Spigot-1.21.3, 1.21.5, 1.21.6.
 
 ## Introduction
 
