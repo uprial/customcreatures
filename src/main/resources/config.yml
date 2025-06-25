@@ -41,7 +41,7 @@ handlers:
   - chainmail-zombie
   - better-crossbows
   - better-tridents
-  - secret-creeper
+  - baby-creeper
   - cool-horse
   - rabbit-killer
   - better-wither
@@ -1247,21 +1247,20 @@ better-tridents:
           min: 1
           max: 5
 
-secret-creeper:
+# Inspired by Baby Zombies
+baby-creeper:
   filter:
     types:
       - CREEPER
-    probability: 0.1
+    probability: 5
   attributes:
     # Survival default is 16
     follow-range: 50.0
     knockback-resistance: 0.2
-    movement-speed-multiplier: 1.2
+    movement-speed-multiplier: 1.5
     max-health-multiplier: 1.2
-    # Harden the areas where players spend a lot of time:
-    # regular entities despawn
-    # but hardened entities don't.
-    remove-when-far-away: false
+    # Fit through 1×1 block gaps
+    scale: 0.5
   # 5 levels from 0
   drop-exp: 55
   entity-specific-attributes:

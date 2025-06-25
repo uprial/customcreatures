@@ -23,7 +23,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 5% of Horses have a tamed zombie friend with improved knockback resistance, maximum health, movement speed, and jump strength.
 * 5% of Rabbits are the killer bunnies scaled visually with a large health and movement bonus.
 * 100% of Withers have thorns.
-* 0.1% of creepers are a little more healthy, fast, explosive, and don't despawn.
+* 5% of creepers are babies: smaller, much faster, more explosive.
 * 1% (*4) of Vexes are spawned together with illusioners, 10% have a diamond maybe top-enchanted sword (*2)
 * 100% of Evokers, Illusioners and Ravagers have a large jump and movement bonus, fire resistance and regeneration, in NETHERITE equipment(*1) with maybe top protection and thorns, random support enhancements, specifically Illusioners with a maybe top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and specifically Illusioners - a diamond pickaxe. (*3)
 * 25% of Vindicators spawn with a medium jump and movement bonus, fire resistance, a slightly-enchanted diamond axe (*1).
