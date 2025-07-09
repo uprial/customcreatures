@@ -68,6 +68,28 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 ## Configuration
 [Default configuration file](src/main/resources/config.yml)
 
+I assume the typical server admin config lifecycle for this plugin involves having their own custom configuration, which you keep in a dedicated part of the config file and migrate from version to version.
+
+The first section of 500 commented lines shows the config structure you can use for your handlers. Each potential handler config option is used in the real config below, so you may check it for examples.
+
+For example, you see "jump-strength" in the structure, where its type and mechanics are described:
+
+```
+#     jump-strength: <float-value:0.0..2.0> ### https://minecraft.fandom.com/wiki/Horse#Jump_strength
+#                                           ### Horse's jump strength ranges from 0.4–1.0, with an average of 0.7.
+(...)
+```
+
+Then you search its real usage
+
+```
+cool-horse:
+(...)
+  entity-specific-attributes:
+(...)
+      jump-strength: 2.0
+```
+
 ## Author
 I will be happy to add some features or fix bugs. My mail: uprial@gmail.com.
 
