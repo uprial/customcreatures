@@ -29,11 +29,11 @@ import static org.bukkit.entity.EntityType.*;
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            Sets.newHashSet(ALLAY, ARMADILLO, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN,
+            tryNewAnimals(Sets.newHashSet(ALLAY, ARMADILLO, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN,
                     COD, COW, DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT,
-                    HAPPY_GHAST, HORSE, LLAMA, MOOSHROOM, MULE, OCELOT, PANDA, PARROT,
+                    /*HAPPY_GHAST, */HORSE, LLAMA, MOOSHROOM, MULE, OCELOT, PANDA, PARROT,
                     PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SNIFFER, SQUID,
-                    STRIDER, TADPOLE, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE)),
+                    STRIDER, TADPOLE, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE))),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM)),
     MONSTERS(null,
@@ -58,22 +58,16 @@ public enum HItemTypeSet {
             Sets.newHashSet(ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM,
                     VEX, WITHER));
 
-    /*
-    WARNING: Currently, not needed, but saved for the future
-
-    private static Set<EntityType> addExperimentalEntities(final Set<EntityType> entityTypes) {
+    private static Set<EntityType> tryNewAnimals(final Set<EntityType> entityTypes) {
         try {
-            // noinspection UnstableApiUsage
-            entityTypes.add(CREAKING);
+            entityTypes.add(HAPPY_GHAST);
         } catch (NoSuchFieldError ignored) {
             Bukkit.getServer().getLogger().info(
-                    "??? experimental data pack introduced in ?.?.? isn't enabled. " +
-                        "For more details, check https://minecraft.wiki/w/Experiments");
+                    "HAPPY_GHAST introduced in 1.21.6 can't be added to ANIMALS");
         }
 
         return entityTypes;
     }
-     */
 
     final Set<EntityType> entityTypes;
     final Set<HItemTypeSet> subSets;
