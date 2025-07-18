@@ -620,6 +620,7 @@ player:
   effects:
     - _blindness
     - _darkness
+    - _resistance_3
     - _jump_and_speed_2
   _blindness:
     types:
@@ -631,6 +632,11 @@ player:
       - DARKNESS
     strength: 1
     duration: 15
+  _resistance_3:
+    types:
+      - RESISTANCE
+    strength: 3
+    duration: 30
   _jump_and_speed_2:
     types:
       - SPEED
