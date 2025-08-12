@@ -20,6 +20,18 @@
 debug: false
 
 #
+# Show a warning when updates are queued for more time than expected.
+#
+# When reporting to the plugin Author with details about
+# the config changes, other plugins, previous log records, etc.,
+# you may request an improvement of the plugin for your server.
+#
+# Possible values: 1 ... 3600_000.
+# Default value: 5.
+#
+timeout-in-ms: 5
+
+#
 # handlers:     ### List of handlers' paths.
 #               ### (* see description of <handler> below)
 # - <handler1>

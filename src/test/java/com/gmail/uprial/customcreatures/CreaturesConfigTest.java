@@ -27,8 +27,8 @@ public class CreaturesConfigTest extends TestConfigBase {
 
     @Test
     public void testEmpty() throws Exception {
-        e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty 'handlers' list");
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty 'timeout-in-ms' value. Use default value 5");
         loadConfig(getDebugFearingCustomLogger(), "");
     }
 
@@ -37,6 +37,14 @@ public class CreaturesConfigTest extends TestConfigBase {
         e.expect(InvalidConfigurationException.class);
         e.expectMessage("Top level is not a Map.");
         loadConfig("x");
+    }
+
+    @Test
+    public void testWrongTimeoutInS() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("A 'timeout-in-ms' value is not an integer");
+        loadConfig(
+                "timeout-in-ms: v");
     }
 
     @Test
@@ -102,7 +110,8 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testNormalConfig() throws Exception {
         assertEquals(
-                "handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99," +
+                "timeout-in-ms: 5, " +
+                        "handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99," +
                         " probability-player-multiplier: null}," +
                         " effects: null, attributes: {max-health-multiplier: 1.0," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +
@@ -110,7 +119,8 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " remove-when-far-away: null}," +
                         " equipment: null, drops: null, drop-exp: null, entity-specific-attributes: null," +
                         " spawn: null}]",
-                loadConfig("handlers:",
+                loadConfig("timeout-in-ms: 5",
+                        "handlers:",
                         " - x",
                         "x:",
                         " filter:",

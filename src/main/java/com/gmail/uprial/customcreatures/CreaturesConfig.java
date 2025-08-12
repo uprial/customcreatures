@@ -1,6 +1,7 @@
 package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
+import com.gmail.uprial.customcreatures.config.ConfigReaderNumbers;
 import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.HItem;
@@ -16,9 +17,12 @@ import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
+    private final int timeoutInMs;
     private final Map<String,HItem> handlers;
 
-    private CreaturesConfig(Map<String,HItem> handlers) {
+    private CreaturesConfig(final int timeoutInMs,
+                            final Map<String,HItem> handlers) {
+        this.timeoutInMs = timeoutInMs;
         this.handlers = handlers;
     }
 
@@ -70,7 +74,13 @@ public final class CreaturesConfig {
         return ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
     }
 
+    public int getTimeoutInMs() {
+        return timeoutInMs;
+    }
+
     public static CreaturesConfig getFromConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
+        int timeoutInMs = ConfigReaderNumbers.getInt(config, customLogger, "timeout-in-ms", "'timeout-in-ms' value", 1, 3600_000, 5);
+
         List<?> handlersConfig = config.getList("handlers");
         if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
             throw new InvalidConfigException("Empty 'handlers' list");
@@ -102,7 +112,7 @@ public final class CreaturesConfig {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
 
-        return new CreaturesConfig(handlers);
+        return new CreaturesConfig(timeoutInMs, handlers);
     }
 
     private static String lc(String key) {
@@ -110,6 +120,7 @@ public final class CreaturesConfig {
     }
 
     public String toString() {
-        return String.format("handlers: %s", handlers.values());
+        return String.format("timeout-in-ms: %d, handlers: %s",
+                timeoutInMs, handlers.values());
     }
 }

@@ -26,10 +26,11 @@ public final class CustomCreatures extends JavaPlugin {
     public void onEnable() {
         saveDefaultConfig();
 
-        cron = new CustomCreaturesCron(this);
-
         consoleLogger = new CustomLogger(getLogger());
+
         creaturesConfig = loadConfig(getConfig(), consoleLogger);
+
+        cron = new CustomCreaturesCron(this, consoleLogger, creaturesConfig.getTimeoutInMs());
 
         getServer().getPluginManager().registerEvents(new CustomCreaturesSpawnEventListener(this, consoleLogger), this);
         getServer().getPluginManager().registerEvents(new CustomCreaturesDeathEventListener(this, consoleLogger), this);
@@ -70,8 +71,8 @@ public final class CustomCreatures extends JavaPlugin {
         return YamlConfiguration.loadConfiguration(configFile);
     }
 
-    public static void defer(Runnable task) {
-        CustomCreaturesCron.defer(task);
+    public static void queue(Runnable task) {
+        CustomCreaturesCron.queue(task);
     }
 
     static CreaturesConfig loadConfig(FileConfiguration config, CustomLogger customLogger) {
