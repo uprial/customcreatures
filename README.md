@@ -31,7 +31,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
-(*2) "Maybe top" items have twice less default drop chance (4.25%), looting still adds 1% to the drop chance.
+(*2) "Maybe top" items have twice less default drop chance (4.25%), looting still adds 1% to the drop chance. Enchantment limit of drops: clothes - Protection-9, Thorns-5, swords - Sharpness-7, bows - Power-7, leggings - Swift Sneak-5, helmets - Respiration-5, tridents - Loyalty-5, crossbows - Piercing-6, pickaxes - Efficiency-7.
 
 (*3) Each level of looting adds 1 to the max possible drop amount.
 
