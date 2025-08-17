@@ -1638,7 +1638,8 @@ angry-hoglin:
     probability: 100
   effects:
     - effects.jump_3
-    - effects.fire_resistance
+    # Hoglins live in Nether, and fire resistance would let them survive in lava
+    # - effects.fire_resistance
   attributes:
     follow-range: 50.0
     knockback-resistance: 0.99
@@ -1646,8 +1647,8 @@ angry-hoglin:
     # 20(♥) > 50(♥)
     max-health-multiplier: 2.5
     scale: 1.5
-    # The purpose is to keep the entities considered semi-bosses.
-    remove-when-far-away: false
+    # Too many Hoglins would exist in Nether
+    # remove-when-far-away: false
 
 zombie-horse:
   filter:
