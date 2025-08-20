@@ -32,15 +32,24 @@ public class HItemDropTest extends TestConfigBase {
                 "  trim:",
                 "    material: EMERALD",
                 "    pattern: SILENCE",
+                "  schedules:",
+                "   - s1",
                 "e1:",
                 " type: PROTECTION",
-                " level: 2"),
+                " level: 2",
+                " schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
         assertEquals("{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 2}, amount-max-per-looting-level: 1," +
-                        " enchantments: [{type: PROTECTION, level: 2}]," +
-                        " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}",
+                        " enchantments: [{type: PROTECTION, level: 2, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
+                        " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}," +
+                        " schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}",
                 itemDrop.toString());
     }
 
@@ -61,13 +70,22 @@ public class HItemDropTest extends TestConfigBase {
                 "  e:",
                 "    type: THORNS",
                 "    level: 1",
-                "  durability: 40"),
+                "    schedules:",
+                "     - s1",
+                "  durability: 40",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "d", "item drop");
         assertNotNull(itemDrop);
         assertEquals("{probability: 50, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 10, max: 10}, amount-max-per-looting-level: 1," +
-                        " enchantments: [{type: THORNS, level: 1}]," +
-                        " durability: 40, trim: Trim{material: EMERALD, pattern: SILENCE}}",
+                        " enchantments: [{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
+                        " durability: 40, trim: Trim{material: EMERALD, pattern: SILENCE}," +
+                        " schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}",
                 itemDrop.toString());
     }
 
@@ -80,7 +98,7 @@ public class HItemDropTest extends TestConfigBase {
         assertNotNull(itemDrop);
         assertEquals("{probability: null, probability-per-looting-level: 0.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 0," +
-                        " enchantments: null, durability: null, trim: null}",
+                        " enchantments: null, durability: null, trim: null, schedules: []}",
                 itemDrop.toString());
     }
 
@@ -192,7 +210,13 @@ public class HItemDropTest extends TestConfigBase {
                         "  - e1",
                         "e1:",
                         " type: PROTECTION",
-                        " level: 2"),
+                        " level: 2",
+                        " schedules:",
+                        "  - s1",
+                        "s1:",
+                        "  timezone: Europe/London",
+                        "  days-of-the-week:",
+                        "  - MON"),
                 getDebugFearingCustomLogger(), "d", "item drop");
     }
 }

@@ -25,10 +25,12 @@ public final class HItemDrop {
     private final HItemDurability durability;
     private final IValue<Integer> amountMaxPerLootingLevel;
     private final HItemArmorTrim trim;
+    private final SchedulesList schedules;
 
     private HItemDrop(String title, Probability probability, IValue<Double> probabilityPerLootingLevel,
                       Material material, IntValueRandom amount, IValue<Integer> amountMaxPerLootingLevel,
-                      HItemEnchantmentsList enchantments, HItemDurability durability, HItemArmorTrim trim) {
+                      HItemEnchantmentsList enchantments, HItemDurability durability, HItemArmorTrim trim,
+                      SchedulesList schedules) {
         this.title = title;
         this.probability = probability;
         this.probabilityPerLootingLevel = probabilityPerLootingLevel;
@@ -38,10 +40,14 @@ public final class HItemDrop {
         this.enchantments = enchantments;
         this.durability = durability;
         this.trim = trim;
+        this.schedules = schedules;
     }
 
     public void apply(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
-        if ((probability == null) || (probability.isPassedWithInc(lootBonusMobs * probabilityPerLootingLevel.getValue()))) {
+        if ((schedules.isPassed())
+                && ((probability == null)
+                || (probability.isPassedWithInc(lootBonusMobs * probabilityPerLootingLevel.getValue())))) {
+
             final LivingEntity entity = event.getEntity();
             final int itemAmount = amount.getValueWithInc(0, lootBonusMobs * amountMaxPerLootingLevel.getValue());
 
@@ -108,13 +114,15 @@ public final class HItemDrop {
                 joinPaths(key, "enchantments"), String.format("enchantments of %s", title));
         final HItemArmorTrim trim = HItemArmorTrim.getFromConfig(config, customLogger,
                 joinPaths(key, "trim"), String.format("trim of %s", title));
+        final SchedulesList schedules = SchedulesList.getFromConfig(config, customLogger,
+                joinPaths(key, "schedules"), String.format("schedules of %s", title));
 
-        return new HItemDrop(title, probability, probabilityPerLootingLevel, material, amount, amountMaxPerLootingLevel, enchantments, durability, trim);
+        return new HItemDrop(title, probability, probabilityPerLootingLevel, material, amount, amountMaxPerLootingLevel, enchantments, durability, trim, schedules);
     }
 
     public String toString() {
-        return String.format("{probability: %s, probability-per-looting-level: %s, material: %s, amount: %s, amount-max-per-looting-level: %s, enchantments: %s, durability: %s, trim: %s}",
-                probability, probabilityPerLootingLevel, material, amount, amountMaxPerLootingLevel, enchantments, durability, trim);
+        return String.format("{probability: %s, probability-per-looting-level: %s, material: %s, amount: %s, amount-max-per-looting-level: %s, enchantments: %s, durability: %s, trim: %s, schedules: %s}",
+                probability, probabilityPerLootingLevel, material, amount, amountMaxPerLootingLevel, enchantments, durability, trim, schedules);
     }
 
 }

@@ -20,57 +20,62 @@ public final class HItemEnchantment {
     private final String title;
     private final EnchantmentEnum enchantment;
     private final IValue<Integer> level;
+    private final SchedulesList schedules;
 
-    private HItemEnchantment(String title, EnchantmentEnum enchantment, IValue<Integer> level) {
+    private HItemEnchantment(String title, EnchantmentEnum enchantment, IValue<Integer> level, SchedulesList schedules) {
         this.title = title;
         this.enchantment = enchantment;
         this.level = level;
+        this.schedules = schedules;
     }
 
     public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
-        if(customLogger.isDebugMode()) {
-            final Set<Enchantment> existsEnchantments;
-            if(itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
-                final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta)itemStack.getItemMeta();
-                existsEnchantments = itemMeta.getStoredEnchants().keySet();
-            } else {
-                existsEnchantments = itemStack.getEnchantments().keySet();
-            }
-            for (final Enchantment existsEnchantment : existsEnchantments) {
-                if (enchantment.getType().conflictsWith(existsEnchantment)) {
-                    customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
-                            title, format(entity), enchantment.getType(),
-                            existsEnchantment));
-                }
-            }
-        }
+        if(schedules.isPassed()) {
 
-        if(!(itemStack.getItemMeta() instanceof EnchantmentStorageMeta)) {
-            if(!enchantment.getType().canEnchantItem(itemStack)) {
-                customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
-                return;
-            }
-        }
-
-        final int enchantmentLevel = level.getValue();
-
-        if(customLogger.isDebugMode()) {
-            customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
-                    title, format(entity), enchantment.getType().toString(), enchantmentLevel));
-        }
-
-        if (enchantmentLevel > 0) {
-            try {
-                if(itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
-                    final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta)itemStack.getItemMeta();
-                    itemMeta.addStoredEnchant(enchantment.getType(), enchantmentLevel, true);
-                    itemStack.setItemMeta(itemMeta);
+            if (customLogger.isDebugMode()) {
+                final Set<Enchantment> existsEnchantments;
+                if (itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
+                    final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta) itemStack.getItemMeta();
+                    existsEnchantments = itemMeta.getStoredEnchants().keySet();
                 } else {
-                    itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
+                    existsEnchantments = itemStack.getEnchantments().keySet();
                 }
-            } catch (IllegalArgumentException e) {
-                customLogger.error(String.format("Can't handle %s of %s: %s",
-                        title, format(entity), e.getMessage()));
+                for (final Enchantment existsEnchantment : existsEnchantments) {
+                    if (enchantment.getType().conflictsWith(existsEnchantment)) {
+                        customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
+                                title, format(entity), enchantment.getType(),
+                                existsEnchantment));
+                    }
+                }
+            }
+
+            if (!(itemStack.getItemMeta() instanceof EnchantmentStorageMeta)) {
+                if (!enchantment.getType().canEnchantItem(itemStack)) {
+                    customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
+                    return;
+                }
+            }
+
+            final int enchantmentLevel = level.getValue();
+
+            if (customLogger.isDebugMode()) {
+                customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
+                        title, format(entity), enchantment.getType().toString(), enchantmentLevel));
+            }
+
+            if (enchantmentLevel > 0) {
+                try {
+                    if (itemStack.getItemMeta() instanceof EnchantmentStorageMeta) {
+                        final EnchantmentStorageMeta itemMeta = (EnchantmentStorageMeta) itemStack.getItemMeta();
+                        itemMeta.addStoredEnchant(enchantment.getType(), enchantmentLevel, true);
+                        itemStack.setItemMeta(itemMeta);
+                    } else {
+                        itemStack.addUnsafeEnchantment(enchantment.getType(), enchantmentLevel);
+                    }
+                } catch (IllegalArgumentException e) {
+                    customLogger.error(String.format("Can't handle %s of %s: %s",
+                            title, format(entity), e.getMessage()));
+                }
             }
         }
     }
@@ -87,10 +92,13 @@ public final class HItemEnchantment {
             throw new InvalidConfigException(String.format("Empty level of %s", title));
         }
 
-        return new HItemEnchantment(title, enchantment, level);
+        final SchedulesList schedules = SchedulesList.getFromConfig(config, customLogger,
+                joinPaths(key, "schedules"), String.format("schedules of %s", title));
+
+        return new HItemEnchantment(title, enchantment, level, schedules);
     }
 
     public String toString() {
-        return String.format("{type: %s, level: %s}", enchantment, level);
+        return String.format("{type: %s, level: %s, schedules: %s}", enchantment, level, schedules);
     }
 }

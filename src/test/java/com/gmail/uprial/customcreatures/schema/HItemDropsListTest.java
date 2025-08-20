@@ -29,15 +29,24 @@ public class HItemDropsListTest extends TestConfigBase {
                 "  trim:",
                 "    material: EMERALD",
                 "    pattern: SILENCE",
+                "  schedules:",
+                "   - s1",
                 "e1:",
                 " type: PROTECTION",
-                " level: 2"),
+                " level: 2",
+                " schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "dd", "drops list");
         assertNotNull(itemDropsList);
         assertEquals("[{probability: null, probability-per-looting-level: 1.0, material: DIAMOND_SWORD," +
                 " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 1," +
-                " enchantments: [{type: PROTECTION, level: 2}]," +
-                " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}]", itemDropsList.toString());
+                " enchantments: [{type: PROTECTION, level: 2, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
+                " durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}," +
+                " schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]", itemDropsList.toString());
     }
 
     @Test

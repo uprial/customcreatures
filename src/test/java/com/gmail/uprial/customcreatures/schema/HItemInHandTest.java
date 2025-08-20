@@ -32,11 +32,17 @@ public class HItemInHandTest extends TestConfigBase {
                 "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
-                " level: 2"),
+                " level: 2",
+                " schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
         assertEquals("{probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION, level: 2}]," +
+                " enchantments: [{type: PROTECTION, level: 2, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100," +
                 " trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemInHand.toString());
@@ -58,11 +64,17 @@ public class HItemInHandTest extends TestConfigBase {
                 "    pattern: SILENCE",
                 "e:",
                 "  type: THORNS",
-                "  level: 1"),
+                "  level: 1",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), MAIN_HAND, "i", "item in hand");
         assertNotNull(itemInHand);
         assertEquals("{probability: 50, material: DIAMOND_SWORD, amount: 10," +
-                        " enchantments: [{type: THORNS, level: 1}]," +
+                        " enchantments: [{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                         " drop-chance: 1, durability: 40," +
                         " trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemInHand.toString());
@@ -181,6 +193,12 @@ public class HItemInHandTest extends TestConfigBase {
                         "  - e1",
                         "e1:",
                         " type: PROTECTION",
-                        " level: 2"),
+                        " level: 2",
+                        " schedules:",
+                        "   - s1",
+                        "s1:",
+                        "  timezone: Europe/London",
+                        "  days-of-the-week:",
+                        "  - MON"),
                 getDebugFearingCustomLogger(), MAIN_HAND,"i", "item in hand");
     }}

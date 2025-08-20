@@ -32,10 +32,17 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    pattern: SILENCE",
                 "e:",
                 "  type: THORNS",
-                "  level: 1"),
+                "  level: 1",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
-        assertEquals("{probability: null, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
+        assertEquals("{probability: null, material-type: IRON," +
+                        " enchantments: [{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemEquipmentCloth.toString());
     }
@@ -55,10 +62,17 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "    pattern: SILENCE",
                 "e:",
                 "  type: THORNS",
-                "  level: 1"),
+                "  level: 1",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
-        assertEquals("{probability: 77, material-type: IRON, enchantments: [{type: THORNS, level: 1}]," +
+        assertEquals("{probability: 77, material-type: IRON," +
+                " enchantments: [{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 50, trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemEquipmentCloth.toString());
     }
@@ -161,7 +175,13 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                         "  - e",
                         "e:",
                         " type: THORNS",
-                        " level: 1"),
+                        " level: 1",
+                        " schedules:",
+                        "   - s1",
+                        "s1:",
+                        "  timezone: Europe/London",
+                        "  days-of-the-week:",
+                        "  - MON"),
                 getDebugFearingCustomLogger(), HELMET, "eq", "equipment cloth");
     }
 

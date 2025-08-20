@@ -23,12 +23,21 @@ public class HItemEnchantmentsListTest extends TestConfigBase {
                 "e1:",
                 "  type: THORNS",
                 "  level: 1",
+                "  schedules:",
+                "   - s1",
                 "e2:",
                 "  type: LUCK_OF_THE_SEA",
-                "  level: 1"),
+                "  level: 1",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "ee", "enchantments list");
         assertNotNull(itemEnchantmentsList);
-        assertEquals("[{type: THORNS, level: 1}, {type: LUCK_OF_THE_SEA, level: 1}]", itemEnchantmentsList.toString());
+        assertEquals("[{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}," +
+                " {type: LUCK_OF_THE_SEA, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]", itemEnchantmentsList.toString());
     }
 
     @Test

@@ -18,9 +18,16 @@ public class HItemEnchantmentTest extends TestConfigBase {
         HItemEnchantment itemEnchantment = getFromConfig(getPreparedConfig(
                 "e:",
                 "  type: THORNS",
-                "  level: 1"),
+                "  level: 1",
+                "  schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "e", "enchantment");
-        assertEquals("{type: THORNS, level: 1}", itemEnchantment.toString());
+        assertEquals("{type: THORNS, level: 1," +
+                " schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}", itemEnchantment.toString());
     }
 
     @Test

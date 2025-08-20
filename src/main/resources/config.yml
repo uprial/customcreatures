@@ -402,7 +402,7 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this cloth.
 #                                   ### By default, the durability is 100%.
 #
-#   enchantments <enchantments>:  ### List of enchantments will be applied
+#   enchantments: <enchantments>  ### List of enchantments will be applied
 #                                 ### to this cloth.
 #                                 ### By default, no enchantments will
 #                                 ### be applied.
@@ -434,7 +434,7 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default, the durability is 100%.
 #
-#   enchantments <enchantments>:  ### List of enchantments will be applied
+#   enchantments: <enchantments>  ### List of enchantments will be applied
 #                                 ### to this item.
 #                                 ### By default, no enchantments will
 #                                 ### be applied.
@@ -473,7 +473,7 @@ handlers:
 #   durability: <int-value:0..100>  ### Durability in percents of this item.
 #                                   ### By default, the durability is 100%.
 #
-#   enchantments <enchantments>:  ### List of enchantments will be applied
+#   enchantments: <enchantments>  ### List of enchantments will be applied
 #                                 ### to this item.
 #                                 ### By default, no enchantments will
 #                                 ### be applied.
@@ -481,6 +481,10 @@ handlers:
 #                                 ### <enchantments> below)
 #
 #   trim: <trim> ### Armor trim, empty by default, shown only on players.
+#
+#   schedules: <schedules>  ### List of schedules when this item may drop.
+#                           ### By default, schedule is "always".
+#                           ### (* see description of <schedules> below)
 #
 # #### Enchantments ####
 #
@@ -516,6 +520,43 @@ handlers:
 #                              ###
 #                              ### If 0 is provided, the enchantment will be skipped:
 #                              ### use this to randomly skip the enchantment.
+#
+#   schedules: <schedules>  ### List of schedules when the enchantment is applied.
+#                           ### By default, schedule is "always".
+#                           ### (* see description of <schedules> below)
+#
+# #### Schedules ####
+#
+# <relative-path>:
+#   <schedules>:  ### List of schedules' paths.
+#                 ### Path of each schedules can be absolute from
+#                 ### the root of the config or relative
+#                 ### to the current <relative-path> definition.
+#
+#     - <schedule-path-rel>  ### Relative path.
+#     - <schedule-path-abs>  ### Absolute path.
+#       ...
+#     - <schedule-pathN>
+#
+#   schedule-path-rel: <schedule> ### Schedule described in <relative-path> namespace.
+#                                 ### (* see description of <schedule> below)
+#
+# schedule-path-abs: <schedule>   ### Schedule described anywhere else.
+#
+# #### Schedule ####
+#
+# <schedule>:
+#   timezone: ### Possible timezones, see
+#https://docs.oracle.com/javase/8/docs/api/java/util/TimeZone.html
+#
+#   days-of-the-week:
+#   - MON
+#   - TUE
+#   - WED
+#   - THU
+#   - FRI
+#   - SAT
+#   - SUN
 #
 # #### ArmorTrim ####
 # <trim>:
@@ -946,6 +987,8 @@ diamond-skeleton:
     trim:
       material: AMETHYST
       pattern: RANDOM
+    schedules:
+      - schedules.except_friday
   _top_diamond_boots:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -963,6 +1006,8 @@ diamond-skeleton:
     trim:
       material: AMETHYST
       pattern: RANDOM
+    schedules:
+      - schedules.except_friday
   _top_diamond_chest:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -975,6 +1020,8 @@ diamond-skeleton:
     trim:
       material: AMETHYST
       pattern: RANDOM
+    schedules:
+      - schedules.except_friday
   _top_diamond_leggings:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -988,6 +1035,8 @@ diamond-skeleton:
     trim:
       material: AMETHYST
       pattern: RANDOM
+    schedules:
+      - schedules.except_friday
   # 5 levels from 0
   drop-exp: 55
 
@@ -1121,6 +1170,8 @@ chainmail-zombie:
     trim:
       material: RANDOM
       pattern: VEX
+    schedules:
+      - schedules.except_friday
   _top_chainmail_boots:
     probability: 1
     probability-per-looting-level: 1
@@ -1134,6 +1185,8 @@ chainmail-zombie:
     trim:
       material: RANDOM
       pattern: VEX
+    schedules:
+      - schedules.except_friday
   _top_chainmail_chest:
     probability: 1
     probability-per-looting-level: 1
@@ -1145,6 +1198,8 @@ chainmail-zombie:
     trim:
       material: RANDOM
       pattern: VEX
+    schedules:
+      - schedules.except_friday
   _top_chainmail_leggings:
     probability: 1
     probability-per-looting-level: 1
@@ -1157,6 +1212,8 @@ chainmail-zombie:
     trim:
       material: RANDOM
       pattern: VEX
+    schedules:
+      - schedules.except_friday
   _top_diamond_sword:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -1170,6 +1227,8 @@ chainmail-zombie:
       - enchantments.best_sword_sweeping_edge
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
+    schedules:
+      - schedules.except_friday
   # 5 levels from 0
   drop-exp: 55
 
@@ -1511,24 +1570,30 @@ insane-mansions-and-raids:
     # The purpose is to keep the entities considered semi-bosses.
     remove-when-far-away: false
   drops:
-    - _enchanted_golden_apple
     - _netherite_scrap
+    - _enchanted_golden_apple
     - _book_of_mending
-  _enchanted_golden_apple:
-    probability: 2
-    probability-per-looting-level: 2
-    material: ENCHANTED_GOLDEN_APPLE
   _netherite_scrap:
     probability: 2
     probability-per-looting-level: 2
     material: NETHERITE_SCRAP
+    schedules:
+      - schedules.except_friday
+  _enchanted_golden_apple:
+    probability: 1
+    probability-per-looting-level: 1
+    material: ENCHANTED_GOLDEN_APPLE
+    schedules:
+      - schedules.except_friday
   _book_of_mending:
-    probability: 2
-    probability-per-looting-level: 2
+    probability: 0.5
+    probability-per-looting-level: 0.5
     material: ENCHANTED_BOOK
     enchantments:
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
+    schedules:
+      - schedules.except_friday
   # 10 levels from 0
   drop-exp: 160
 
@@ -1576,6 +1641,8 @@ insane-mansions-and-raids-illusioners:
     _best_silk_touch:
       type: SILK_TOUCH
       level: 1
+    schedules:
+      - schedules.except_friday
   _diamond_pickaxe_fortune:
     probability: 2
     probability-per-looting-level: 2
@@ -1589,6 +1656,8 @@ insane-mansions-and-raids-illusioners:
     _best_fortune:
       type: FORTUNE
       level: 3
+    schedules:
+      - schedules.except_friday
 
 angry-vindicator:
   filter:
@@ -1731,6 +1800,8 @@ drops:
       - enchantments.best_bow_infinity
       - enchantments.best_mending
       - enchantments.best_vanishing_curse
+    schedules:
+      - schedules.except_friday
 
 # Global templates of enchantments
 enchantments:
@@ -1812,6 +1883,13 @@ enchantments:
       type: random
       min: 1
       max: 5
+    # Used in:
+    #  - diamond-skeleton
+    #  - chainmail-zombie
+    #  - insane-mansions-and-raids
+    #  - insane-mansions-and-raids-illusioners
+    schedules:
+      - schedules.except_friday
   top_thorns:
     type: THORNS
     # Survival maximum level is 3, here it's 5
@@ -1976,3 +2054,15 @@ enchantments:
   best_bow_infinity:
     type: INFINITY
     level: 1
+
+# Global templates of days-of-the-weeks
+schedules:
+  except_friday:
+    timezone: Europe/London
+    days-of-the-week:
+    - MON
+    - TUE
+    - WED
+    - THU
+    - SAT
+    - SUN

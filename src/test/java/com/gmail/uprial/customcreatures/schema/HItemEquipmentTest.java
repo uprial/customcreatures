@@ -87,26 +87,32 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "    pattern: SILENCE",
                 "e1:",
                 " type: PROTECTION",
-                " level: 1"),
+                " level: 1",
+                " schedules:",
+                "   - s1",
+                "s1:",
+                "  timezone: Europe/London",
+                "  days-of-the-week:",
+                "  - MON"),
                 getParanoiacCustomLogger(), "e", "equipment");
         assertNotNull(itemEquipment);
         assertEquals("{helmet: {probability: null, material-type: IRON," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " boots: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " chest: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " leggings: {probability: null, material-type: GOLDEN," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " main-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " off-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
-                " enchantments: [{type: PROTECTION, level: 1}]," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}}",
                 itemEquipment.toString());
     }
