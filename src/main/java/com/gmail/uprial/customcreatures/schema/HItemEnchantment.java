@@ -30,7 +30,7 @@ public final class HItemEnchantment {
     }
 
     public void apply(CustomLogger customLogger, Entity entity, ItemStack itemStack) {
-        if(schedules.isPassed()) {
+        if((schedules == null) || (schedules.isPassed())) {
 
             if (customLogger.isDebugMode()) {
                 final Set<Enchantment> existsEnchantments;

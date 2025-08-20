@@ -98,7 +98,7 @@ public class HItemDropTest extends TestConfigBase {
         assertNotNull(itemDrop);
         assertEquals("{probability: null, probability-per-looting-level: 0.0, material: DIAMOND_SWORD," +
                         " amount: IntValueRandom{distribution: NORMAL, min: 1, max: 1}, amount-max-per-looting-level: 0," +
-                        " enchantments: null, durability: null, trim: null, schedules: []}",
+                        " enchantments: null, durability: null, trim: null, schedules: null}",
                 itemDrop.toString());
     }
 

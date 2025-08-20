@@ -21,22 +21,24 @@ public final class SchedulesList {
 
     public boolean isPassed() {
         for(final Schedule schedule : schedules) {
-            if(!schedule.isPassed()) {
-                return false;
+            if(schedule.isPassed()) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     public static SchedulesList getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
+        Set<String> subKeys = getItemsList(config, customLogger, key, title);
+        if (subKeys == null) {
+            return null;
+        }
+
         List<Schedule> schedules = new ArrayList<>();
 
-        Set<String> subKeys = getItemsList(config, customLogger, key, title);
-        if(subKeys != null) {
-            for (String subKey : subKeys) {
-                schedules.add(Schedule.getFromConfig(config, customLogger, subKey, String.format("schedule '%s' in %s", subKey, title)));
-            }
+        for (String subKey : subKeys) {
+            schedules.add(Schedule.getFromConfig(config, customLogger, subKey, String.format("schedule '%s' in %s", subKey, title)));
         }
 
         return new SchedulesList(schedules);

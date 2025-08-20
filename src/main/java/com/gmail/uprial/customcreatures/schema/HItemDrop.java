@@ -44,7 +44,7 @@ public final class HItemDrop {
     }
 
     public void apply(CustomLogger customLogger, EntityDeathEvent event, int lootBonusMobs) {
-        if ((schedules.isPassed())
+        if (((schedules == null) || (schedules.isPassed()))
                 && ((probability == null)
                 || (probability.isPassedWithInc(lootBonusMobs * probabilityPerLootingLevel.getValue())))) {
 

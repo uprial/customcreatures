@@ -532,6 +532,8 @@ handlers:
 #                 ### Path of each schedules can be absolute from
 #                 ### the root of the config or relative
 #                 ### to the current <relative-path> definition.
+#                 ###
+#                 ### All schedules join additively.
 #
 #     - <schedule-path-rel>  ### Relative path.
 #     - <schedule-path-abs>  ### Absolute path.

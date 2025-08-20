@@ -37,7 +37,6 @@ public class SchedulesListTest extends TestConfigBase {
         SchedulesList schedulesList = getFromConfig(getPreparedConfig(
                 "sl:"),
                 getCustomLogger(), "sl", "schedules list");
-        assertNotNull(schedulesList);
-        assertEquals("[]", schedulesList.toString());
+        assertNull(schedulesList);
     }
 }
