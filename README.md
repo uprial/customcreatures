@@ -46,6 +46,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * Random distributions for the majority of numeric values
 * Entities' following range
 * Drop items and drop exp
+* Schedule for enchantments and drops
 
 #### You can solve the following problems:
 * Increase the velocity of specific entities, thus make some enemies more dangerous naturally
