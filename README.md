@@ -52,6 +52,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * Increase the velocity of specific entities, thus make some enemies more dangerous naturally
 * Equip entities to protect them from environmental influence
 * Make items droppable to award a killer
+* Make "Fridays with neither thorns nor good item drops"
 
 ## Commands
 
