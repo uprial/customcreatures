@@ -43,7 +43,7 @@ public final class HItemEnchantment {
                 for (final Enchantment existsEnchantment : existsEnchantments) {
                     if (enchantment.getType().conflictsWith(existsEnchantment)) {
                         customLogger.debug(String.format("Handle %s of %s: %s conflicts with %s",
-                                title, format(entity), enchantment.getType(),
+                                title, format(entity), enchantment.getType().getName(),
                                 existsEnchantment));
                     }
                 }
@@ -60,7 +60,7 @@ public final class HItemEnchantment {
 
             if (customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s of %s: add %s with level %d",
-                        title, format(entity), enchantment.getType().toString(), enchantmentLevel));
+                        title, format(entity), enchantment.getType().getName(), enchantmentLevel));
             }
 
             if (enchantmentLevel > 0) {
