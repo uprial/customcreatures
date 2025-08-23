@@ -718,6 +718,7 @@ golden-zombie:
       max: 32
   effects:
     - effects.jump_1
+    # Protect undead zombies from Sunlight
     - effects.fire_resistance
   equipment:
     helmet:
@@ -797,6 +798,7 @@ iron-zombie:
       max: 16
   effects:
     - effects.jump_1
+    # Protect undead zombies from Sunlight
     - effects.fire_resistance
   equipment:
     helmet:
@@ -884,6 +886,7 @@ diamond-skeleton:
   effects:
     - effects.jump_3
     - effects.glowing
+    # Protect undead skeletons from Sunlight
     - effects.fire_resistance
     # According to https://minecraft.fandom.com/wiki/Skeleton,
     # Skeletons are unaffected by Regeneration and Poison.
@@ -1059,6 +1062,7 @@ chainmail-zombie:
   effects:
     - effects.jump_3
     - effects.glowing
+    # Protect undead zombies from Sunlight
     - effects.fire_resistance
     # According to https://minecraft.fandom.com/wiki/Zombie,
     # Zombies are unaffected by Regeneration and Poison.
@@ -1493,7 +1497,8 @@ insane-mansions-and-raids:
     probability: 100
   effects:
     - effects.jump_3
-    - effects.fire_resistance
+    # Not undead to be protected from Sunlight
+    # - effects.fire_resistance
     - effects.regeneration
   equipment:
     helmet:
@@ -1668,7 +1673,8 @@ angry-vindicator:
     probability: 25
   effects:
     - effects.jump_3
-    - effects.fire_resistance
+    # Not undead to be protected from Sunlight
+    # - effects.fire_resistance
   equipment:
     # Damage in "hard": 9.5(♥)
     main-hand:
