@@ -33,9 +33,9 @@ public final class HItemDurability {
                 customLogger.debug(String.format("Handle %s: set durability of %s of %s to %d",
                         title, material, format(entity), itemDurability));
             }
-            int newItemDurability = (short) Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
+            int newItemDamage = (short) Math.round((1.0 * material.getMaxDurability() * (MAX_PERCENT - itemDurability)) / MAX_PERCENT);
 
-            itemStackMeta.setDamage(newItemDurability);
+            itemStackMeta.setDamage(newItemDamage);
             itemStack.setItemMeta(itemStackMeta);
         }
     }
