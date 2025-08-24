@@ -906,7 +906,7 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     boots:
       probability: 100
       # x0.5
@@ -921,7 +921,7 @@ diamond-skeleton:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     chest:
       probability: 100
       # x0.5
@@ -934,7 +934,7 @@ diamond-skeleton:
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     leggings:
       probability: 100
       # x0.5
@@ -948,7 +948,7 @@ diamond-skeleton:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     # Damage in "hard": 3.00(♥) - 5.25(♥)
     main-hand:
       probability: 100
@@ -1080,7 +1080,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     boots:
       probability: 100
       material-type: CHAINMAIL
@@ -1093,7 +1093,7 @@ chainmail-zombie:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     chest:
       probability: 100
       material-type: CHAINMAIL
@@ -1104,7 +1104,7 @@ chainmail-zombie:
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     leggings:
       probability: 100
       material-type: CHAINMAIL
@@ -1116,7 +1116,7 @@ chainmail-zombie:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
     # Damage in "hard": 6.75(♥) - 9.75(♥)
     main-hand:
       probability: 100
@@ -1531,7 +1531,7 @@ insane-mansions-and-raids:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
     boots:
       probability: 100
@@ -1543,7 +1543,7 @@ insane-mansions-and-raids:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
     chest:
       probability: 100
@@ -1553,7 +1553,7 @@ insane-mansions-and-raids:
       durability: 2
       enchantments:
         - enchantments.rand_maybe_top_protection
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
     leggings:
       probability: 100
@@ -1564,7 +1564,7 @@ insane-mansions-and-raids:
       enchantments:
         - enchantments.rand_maybe_top_protection
         - enchantments.rand_leggings_swift_sneak
-        - enchantments.rand_maybe_top_thorns
+        - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
   attributes:
     follow-range: 100.0
@@ -1888,7 +1888,7 @@ enchantments:
       type: random
       min: 0
       max: 3
-  rand_maybe_top_thorns:
+  rand_maybe_top_thorns_except_friday:
     type: THORNS
     #
     # Survival maximum level is 3, here it's 5
