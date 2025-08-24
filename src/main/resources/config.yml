@@ -1392,6 +1392,7 @@ better-wither:
   equipment:
     helmet:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
       durability: 100
@@ -1401,6 +1402,7 @@ better-wither:
         - enchantments.best_vanishing_curse
     boots:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
       durability: 100
@@ -1410,6 +1412,7 @@ better-wither:
         - enchantments.best_vanishing_curse
     chest:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
       durability: 100
@@ -1419,6 +1422,7 @@ better-wither:
         - enchantments.best_vanishing_curse
     leggings:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
       durability: 100
@@ -1472,6 +1476,8 @@ angry-vex:
       probability: 10
       # According to https://minecraft.fandom.com/wiki/Vex,
       # the vex's iron sword does not drop, because its main hand's HandDropChances is 0.
+      #
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material: DIAMOND_SWORD
       durability:
@@ -1503,6 +1509,7 @@ insane-mansions-and-raids:
   equipment:
     helmet:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: NETHERITE
       #
@@ -1528,6 +1535,7 @@ insane-mansions-and-raids:
         - enchantments.best_vanishing_curse
     boots:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: NETHERITE
       durability: 2
@@ -1539,6 +1547,7 @@ insane-mansions-and-raids:
         - enchantments.best_vanishing_curse
     chest:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: NETHERITE
       durability: 2
@@ -1548,6 +1557,7 @@ insane-mansions-and-raids:
         - enchantments.best_vanishing_curse
     leggings:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: NETHERITE
       durability: 2
@@ -1614,6 +1624,7 @@ insane-mansions-and-raids-illusioners:
   equipment:
     main-hand:
       probability: 100
+      # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material: BOW
       durability:

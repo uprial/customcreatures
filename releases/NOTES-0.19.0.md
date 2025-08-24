@@ -4,4 +4,5 @@
 * Reduced book-of-mending drop probability from mansions and raids
 # Bug fixes
 * Removed fire resistance of not undead mobs because they don't need to be protected from Sunlight
+* Added hint that drop-chance=0 doesn't prevent drop due to looting bonus
 * Removed Bogged from Zombies
