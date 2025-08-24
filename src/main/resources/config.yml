@@ -893,6 +893,8 @@ diamond-skeleton:
     # Skeletons are unaffected by Regeneration and Poison.
     # - effects.regeneration
   equipment:
+    # When killed by DIAMOND_SWORD+SHARPNESS(5), this entity usually keeps equipment
+    # and isn't affected by durability decay caused by rand_maybe_top_thorns_except_friday
     helmet:
       probability: 100
       # x0.5
@@ -1073,6 +1075,8 @@ chainmail-zombie:
     # Zombies are unaffected by Regeneration and Poison.
     # - effects.regeneration
   equipment:
+    # When killed by DIAMOND_SWORD+SHARPNESS(5), this entity usually keeps equipment
+    # and isn't affected by durability decay caused by rand_maybe_top_thorns_except_friday
     helmet:
       probability: 100
       material-type: CHAINMAIL
@@ -1409,6 +1413,7 @@ better-wither:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
+      # Never drops
       durability: 100
       enchantments:
         - enchantments.best_unbreaking
@@ -1419,6 +1424,7 @@ better-wither:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
+      # Never drops
       durability: 100
       enchantments:
         - enchantments.best_unbreaking
@@ -1429,6 +1435,7 @@ better-wither:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
+      # Never drops
       durability: 100
       enchantments:
         - enchantments.best_unbreaking
@@ -1439,6 +1446,7 @@ better-wither:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material-type: IRON
+      # Never drops
       durability: 100
       enchantments:
         - enchantments.best_unbreaking
@@ -1494,10 +1502,8 @@ angry-vex:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material: DIAMOND_SWORD
-      durability:
-        type: random
-        min: 10
-        max: 25
+      # Never drops
+      durability: 100
       enchantments:
         - enchantments.rand_maybe_top_sword_sharpness
         - enchantments.rand_sword_knockback
@@ -1521,31 +1527,17 @@ insane-mansions-and-raids:
     # - effects.fire_resistance
     - effects.regeneration
   equipment:
+    # When killed by DIAMOND_SWORD+SHARPNESS(5), this entity usually keeps equipment
+    # and isn't affected by durability decay caused by rand_maybe_top_thorns_except_friday
     helmet:
       probability: 100
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
-      material-type: NETHERITE
-      #
-      # Damage reduction example: 12.50 > 0.75.
-      #
-      # According to https://minecraft.wiki/w/Durability,
-      # the weakest cloth is a Helmet,
-      # and 2% of the Netherite Helmet has 407 * 2% = 8 durability.
-      #
-      # According https://minecraft.wiki/w/Thorns,
-      # with the Thorns enchantment, the wearer has a Level × 15% chance of inflicting damage
-      # and reduce durability by 2 points.
-      #
-      # enchantments.rand_maybe_top_thorns_except_friday
-      # on average has (1+5) / 2 * 15% = 45% of inflicting damage,
-      # which approximately gives 8 % 45% * 2 = 8 attacks.
-      #
-      # So, practically, this model protects from any quick kill.
-      #
-      durability: 2
+      material-type: IRON
+      # Never drops
+      durability: 100
       enchantments:
-        - enchantments.rand_maybe_top_protection
+        - enchantments.best_protection
         - enchantments.rand_helmet_respiration
         - enchantments.rand_helmet_aqua_affinity
         - enchantments.rand_maybe_top_thorns_except_friday
@@ -1554,10 +1546,11 @@ insane-mansions-and-raids:
       probability: 100
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
-      material-type: NETHERITE
-      durability: 2
+      material-type: IRON
+      # Never drops
+      durability: 100
       enchantments:
-        - enchantments.rand_maybe_top_protection
+        - enchantments.best_protection
         - enchantments.rand_boots_feather_falling
         - enchantments.rand_boots_depth_strider
         - enchantments.rand_maybe_top_thorns_except_friday
@@ -1566,20 +1559,22 @@ insane-mansions-and-raids:
       probability: 100
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
-      material-type: NETHERITE
-      durability: 2
+      material-type: IRON
+      # Never drops
+      durability: 100
       enchantments:
-        - enchantments.rand_maybe_top_protection
+        - enchantments.best_protection
         - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
     leggings:
       probability: 100
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
-      material-type: NETHERITE
-      durability: 2
+      material-type: IRON
+      # Never drops
+      durability: 100
       enchantments:
-        - enchantments.rand_maybe_top_protection
+        - enchantments.best_protection
         - enchantments.rand_leggings_swift_sneak
         - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
@@ -1594,6 +1589,8 @@ insane-mansions-and-raids:
     #
     # knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
+    # DIAMOND_SWORD+SHARPNESS(5) brings 1.08(♥) damage to these mobs.
+    #
     # Illusioner: 16(♥) > 20(♥)
     # Evoker: 12(♥) > 15(♥)
     # Ravager: 50(♥) > 62.5(♥)
@@ -1644,10 +1641,8 @@ insane-mansions-and-raids-illusioners:
       # This doesn't prevent drop due to looting bonus, but best_vanishing_curse does
       drop-chance: 0
       material: BOW
-      durability:
-        type: random
-        min: 10
-        max: 25
+      # Never drops
+      durability: 100
       enchantments:
         - enchantments.rand_unbreaking
         - enchantments.rand_maybe_top_bow_power
@@ -1886,8 +1881,8 @@ enchantments:
     # According to https://minecraft.fandom.com/wiki/Protection
     # the total protection level above 20 doesn't make sense.
     #
-    # Mobs have 4 clothes, which on average gives
-    # (1-9) x 4 = (1+9) / 2 * 4 = 24.
+    # Mobs have 4 clothes, which on average gives exactly this:
+    # (1-9) x 4 = (1+9) / 2 * 4 = 20.
     #
     level:
       type: random
@@ -1931,7 +1926,9 @@ enchantments:
     # each piece of armor they are wearing loses 1 durability for every 4HP of incoming damage.
     #
     # The key point is that players lose armor durability under attacks, but mobs don't:
-    # mobs with good armor without thorns are even tougher than those with thorns.
+    # mobs with good armor without thorns may be even tougher than those with thorns.
+    #
+    # Warning: Don't assume that an armor with this enchantment breaks.
     #
     schedules:
       - schedules.except_friday
