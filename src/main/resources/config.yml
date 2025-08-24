@@ -1527,18 +1527,21 @@ insane-mansions-and-raids:
       drop-chance: 0
       material-type: NETHERITE
       #
-      # According to https://minecraft.fandom.com/wiki/Durability,
-      # the weakest cloth is a Helmet,
-      # 10% of the Netherite Helmet has 408 * 2% = 8 durability,
-      # it protects from 8 * 2(♥) = 16(♥) of damage,
-      # and with the top protection enchantments it gives 16(♥) / 20% = 80(♥).
-      #
-      # So, practically, entities have 80(♥) of quickly regenerated health,
-      # and then it quickly give up.
-      #
       # Damage reduction example: 12.50 > 0.75.
       #
-      # This model protects from any quick kill.
+      # According to https://minecraft.wiki/w/Durability,
+      # the weakest cloth is a Helmet,
+      # and 2% of the Netherite Helmet has 407 * 2% = 8 durability.
+      #
+      # According https://minecraft.wiki/w/Thorns,
+      # with the Thorns enchantment, the wearer has a Level × 15% chance of inflicting damage
+      # and reduce durability by 2 points.
+      #
+      # enchantments.rand_maybe_top_thorns_except_friday
+      # on average has (1+5) / 2 * 15% = 45% of inflicting damage,
+      # which approximately gives 8 % 45% * 2 = 8 attacks.
+      #
+      # So, practically, this model protects from any quick kill.
       #
       durability: 2
       enchantments:
@@ -1908,10 +1911,10 @@ enchantments:
     #
     # Survival maximum level is 3, here it's 5
     #
-    # According to https://minecraft.fandom.com/wiki/Thorns
-    # probability of max. damage of 4 (♥♥) with 4 items with Thorns III is 61.18%.
+    # According to https://minecraft.wiki/w/Thorns
+    # average damage dealt with 4 items with Thorns III is 1.545(♥)
     #
-    # (1-5) on average gives (1+5) / 2, which equals the above 3.
+    # (1-5) on average gives (1+5) / 2 = 3, which equals the above 3.
     #
     level:
       type: random
@@ -1922,6 +1925,14 @@ enchantments:
     #  - chainmail-zombie
     #  - insane-mansions-and-raids
     #  - insane-mansions-and-raids-illusioners
+    #
+    # According to https://minecraft.wiki/w/Durability,
+    # Any time the player takes damage that can be reduced by armor,
+    # each piece of armor they are wearing loses 1 durability for every 4HP of incoming damage.
+    #
+    # The key point is that players lose armor durability under attacks, but mobs don't:
+    # mobs with good armor without thorns are even tougher than those with thorns.
+    #
     schedules:
       - schedules.except_friday
   top_thorns:
