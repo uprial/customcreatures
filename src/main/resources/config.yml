@@ -981,6 +981,8 @@ diamond-skeleton:
   _diamond:
     material: DIAMOND
     amount-max-per-looting-level: 1
+    schedules:
+      - schedules.except_friday
   _top_diamond_helmet:
     probability: 0.5
     probability-per-looting-level: 0.5
@@ -1162,6 +1164,8 @@ chainmail-zombie:
       min: 4
       max: 9
     amount-max-per-looting-level: 6
+    schedules:
+      - schedules.except_friday
   _redstone:
     material: REDSTONE
     # (4 + 5) / 2 = 4.5 on average
@@ -1170,6 +1174,8 @@ chainmail-zombie:
       min: 4
       max: 5
     amount-max-per-looting-level: 4
+    schedules:
+      - schedules.except_friday
   _top_chainmail_helmet:
     probability: 1
     probability-per-looting-level: 1
