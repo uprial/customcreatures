@@ -49,8 +49,8 @@ public enum HItemTypeSet {
 
     // https://minecraft.gamepedia.com/Zombie_(disambiguation)
     ZOMBIES(null,
-            Sets.newHashSet(BOGGED, DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE,
-                    ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
+            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER,
+                    ZOMBIFIED_PIGLIN)),
     // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
     SKELETONS(null,
             Sets.newHashSet(BOGGED, SKELETON, STRAY, WITHER_SKELETON)),
