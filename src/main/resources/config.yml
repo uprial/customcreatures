@@ -715,7 +715,7 @@ golden-zombie:
       divider: 500_000
       # 4% * 8 = 32%
       # together with iron- and chainmail- multipliers for zombies up to 32%
-      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
+      # has (1-4%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 32
   effects:
     - effects.jump_1
@@ -795,7 +795,7 @@ iron-zombie:
       divider: 500_000
       # 2% * 16 = 32%
       # together with golden- and chainmail- multipliers for zombies up to 32%
-      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
+      # has (1-4%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 16
   effects:
     - effects.jump_1
@@ -1064,7 +1064,7 @@ chainmail-zombie:
       divider: 500_000
       # 0.5% * 64 = 32%
       # together with golden- and iron- multipliers for zombies up to 32%
-      # has (1-04%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
+      # has (1-4%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
       max: 64
   effects:
     - effects.jump_3
