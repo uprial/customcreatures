@@ -1661,8 +1661,8 @@ insane-mansions-and-raids-illusioners:
     - _diamond_pickaxe_silk_touch
     - _diamond_pickaxe_fortune
   _diamond_pickaxe_silk_touch:
-    probability: 2
-    probability-per-looting-level: 2
+    probability: 0.5
+    probability-per-looting-level: 0.5
     material: DIAMOND_PICKAXE
     enchantments:
       - enchantments.best_unbreaking
@@ -1676,8 +1676,8 @@ insane-mansions-and-raids-illusioners:
     schedules:
       - schedules.except_friday
   _diamond_pickaxe_fortune:
-    probability: 2
-    probability-per-looting-level: 2
+    probability: 0.5
+    probability-per-looting-level: 0.5
     material: DIAMOND_PICKAXE
     enchantments:
       - enchantments.best_unbreaking
