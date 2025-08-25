@@ -5,7 +5,8 @@
 # Bug fixes
 * Removed fire resistance of not undead mobs because they don't need to be protected from Sunlight
 * Removed Bogged from Zombies
-* Fixed golden zombie limits that allowed them to take over all zombies for good players 
+* Fixed golden zombie limits that allowed them to take over all zombies for good players
+* Added CUSTOM to NATURAL spawn reason for plugins compatibility
 # Balance
 * Disabled Evokers, Illusioners and Ravagers regeneration based on the feedback from a server with 14 active players
 * Reduced the probability of vexes spawning illusioners

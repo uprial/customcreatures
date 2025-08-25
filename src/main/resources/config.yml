@@ -631,6 +631,8 @@ fat-animal:
   filter:
     reasons:
       - NATURAL
+      - CUSTOM
+      - COMMAND
     type-sets:
       - ANIMALS
     probability: 5
