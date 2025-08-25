@@ -716,7 +716,7 @@ golden-zombie:
       # 4% * 8 = 32%
       # together with iron- and chainmail- multipliers for zombies up to 32%
       # has (1-4%)*(1-2%)*(1-0.5%) - (1-32%)^3 = 62% of cumulative hardening potential for zombies
-      max: 32
+      max: 8
   effects:
     - effects.jump_1
     # Protect undead zombies from Sunlight
