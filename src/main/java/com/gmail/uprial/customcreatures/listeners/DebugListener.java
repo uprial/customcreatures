@@ -10,6 +10,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.potion.PotionEffect;
@@ -37,8 +38,13 @@ public class DebugListener implements Listener {
             final StringBuilder sb = new StringBuilder(format(entity));
 
             sb.append(String.format(", Health: %.2f/%.2f", entity.getHealth(), entity.getAttribute(Attribute.MAX_HEALTH).getBaseValue()));
-            sb.append(String.format(", Armor: %.2f", entity.getAttribute(Attribute.ARMOR).getBaseValue()));
+            sb.append(String.format(", Armor: %.2f/%.2f", entity.getAttribute(Attribute.ARMOR).getBaseValue(), entity.getAttribute(Attribute.ARMOR).getValue()));
             sb.append(String.format(", Damage: %.2f/%.2f", event.getDamage(), event.getFinalDamage()));
+
+            sb.append(String.format(", Speed: %.2f", entity.getAttribute(Attribute.MOVEMENT_SPEED).getBaseValue()));
+            sb.append(String.format(", Follow range: %.2f", entity.getAttribute(Attribute.FOLLOW_RANGE).getBaseValue()));
+            sb.append(String.format(", Knockback resistance: %.2f", entity.getAttribute(Attribute.KNOCKBACK_RESISTANCE).getBaseValue()));
+            sb.append(String.format(", Scale: %.2f", entity.getAttribute(Attribute.SCALE).getBaseValue()));
 
             final EntityEquipment e = entity.getEquipment();
 
@@ -48,6 +54,8 @@ public class DebugListener implements Listener {
             sb.append(", Boots: " + f(e.getBoots()));
             sb.append(", MainHand: " + f(e.getItemInMainHand()));
             sb.append(", OffHand: " + f(e.getItemInOffHand()));
+            sb.append(", Body: " + f(e.getItem(EquipmentSlot.BODY)));
+            sb.append(", Saddle: " + f(e.getItem(EquipmentSlot.SADDLE)));
 
             for (final PotionEffect potionEffect : entity.getActivePotionEffects()) {
                 sb.append(", " + potionEffect.getType().getName() + "-" + potionEffect.getAmplifier());
@@ -60,6 +68,8 @@ public class DebugListener implements Listener {
     private static String f(final ItemStack itemStack) {
         if(itemStack == null) {
             return "null";
+        } else if (itemStack.getType().isAir()) {
+            return "empty";
         }
 
         final StringBuilder sb = new StringBuilder(itemStack.getType().toString());
