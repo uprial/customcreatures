@@ -15,6 +15,8 @@ import java.util.Map.Entry;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 import static com.gmail.uprial.customcreatures.schema.ClothType.*;
+import static com.gmail.uprial.customcreatures.schema.EquipmentType.BODY;
+import static com.gmail.uprial.customcreatures.schema.EquipmentType.SADDLE;
 import static com.gmail.uprial.customcreatures.schema.HandType.MAIN_HAND;
 import static com.gmail.uprial.customcreatures.schema.HandType.OFF_HAND;
 
@@ -29,13 +31,21 @@ public final class HItemEquipment {
             .put("main-hand", MAIN_HAND)
             .put("off-hand", OFF_HAND)
             .build();
+    private static final Map<String, EquipmentType> KEY_2_EQUIPMENT_TYPE = ImmutableMap.<String, EquipmentType>builder()
+            .put("body", BODY)
+            .put("saddle", SADDLE)
+            .build();
 
     private final Map<String,HItemEquipmentCloth> cloths;
     private final Map<String,HItemInHand> tools;
+    private final Map<String,HItemEquipmentSpecial> specials;
 
-    private HItemEquipment(Map<String,HItemEquipmentCloth> cloths, Map<String,HItemInHand> tools) {
+    private HItemEquipment(Map<String,HItemEquipmentCloth> cloths,
+                           Map<String,HItemInHand> tools,
+                           Map<String,HItemEquipmentSpecial> specials) {
         this.cloths = cloths;
         this.tools = tools;
+        this.specials = specials;
     }
 
     public void apply(CustomLogger customLogger, LivingEntity entity) {
@@ -44,6 +54,9 @@ public final class HItemEquipment {
         }
         for (HItemInHand tool : tools.values()) {
             tool.apply(customLogger, entity);
+        }
+        for (HItemEquipmentSpecial special : specials.values()) {
+            special.apply(customLogger, entity);
         }
     }
 
@@ -69,11 +82,19 @@ public final class HItemEquipment {
                 tools.put(entry.getKey(), tool);
             }
         }
-        if ((cloths.size() < 1) && (tools.size() < 1)) {
-            throw new InvalidConfigException(String.format("No cloths or tools found in %s", title));
+        Map<String,HItemEquipmentSpecial> specials = new HashMap<>();
+        for (Entry<String,EquipmentType> entry : KEY_2_EQUIPMENT_TYPE.entrySet()) {
+            HItemEquipmentSpecial special = HItemEquipmentSpecial.getFromConfig(config, customLogger, entry.getValue(),
+                    joinPaths(key, entry.getKey()), String.format("%s of %s", entry.getKey(), title));
+            if (special != null) {
+                specials.put(entry.getKey(), special);
+            }
+        }
+        if ((cloths.size() < 1) && (tools.size() < 1) && (specials.size() < 1)) {
+            throw new InvalidConfigException(String.format("No cloths or tools or specials found in %s", title));
         }
 
-        return new HItemEquipment(cloths, tools);
+        return new HItemEquipment(cloths, tools, specials);
     }
 
     public String toString() {
@@ -83,6 +104,9 @@ public final class HItemEquipment {
         }
         for (String key : KEY_2_HAND_TYPE.keySet()) {
             items.add(String.format("%s: %s", key, tools.get(key)));
+        }
+        for (String key : KEY_2_EQUIPMENT_TYPE.keySet()) {
+            items.add(String.format("%s: %s", key, specials.get(key)));
         }
         // Though a list is being joined, it's a set of attributes
         return String.format("{%s}", joinStrings(", ", items));

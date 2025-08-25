@@ -2,6 +2,7 @@ package com.gmail.uprial.customcreatures;
 
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
+import com.gmail.uprial.customcreatures.listeners.CustomCreaturesBreedEventListener;
 import com.gmail.uprial.customcreatures.listeners.CustomCreaturesDeathEventListener;
 import com.gmail.uprial.customcreatures.listeners.CustomCreaturesSpawnEventListener;
 import com.gmail.uprial.customcreatures.listeners.DebugListener;
@@ -35,6 +36,7 @@ public final class CustomCreatures extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new CustomCreaturesSpawnEventListener(this, consoleLogger), this);
         getServer().getPluginManager().registerEvents(new CustomCreaturesDeathEventListener(this, consoleLogger), this);
+        getServer().getPluginManager().registerEvents(new CustomCreaturesBreedEventListener(this, consoleLogger), this);
         //getServer().getPluginManager().registerEvents(new DebugListener(consoleLogger), this);
 
         getCommand(COMMAND_NS).setExecutor(new CustomCreaturesCommandExecutor(this));

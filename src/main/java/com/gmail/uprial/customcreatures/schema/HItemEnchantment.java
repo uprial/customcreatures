@@ -49,12 +49,17 @@ public final class HItemEnchantment {
                 }
             }
 
+            /*
+            Disabled the enforced enchantability check
+            to allow enchanting wolf armor.
+
             if (!(itemStack.getItemMeta() instanceof EnchantmentStorageMeta)) {
                 if (!enchantment.getType().canEnchantItem(itemStack)) {
                     customLogger.error(String.format("Can't handle %s of %s", title, format(entity)));
                     return;
                 }
             }
+             */
 
             final int enchantmentLevel = level.getValue();
 

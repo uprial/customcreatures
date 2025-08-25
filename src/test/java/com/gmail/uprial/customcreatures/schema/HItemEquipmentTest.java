@@ -85,6 +85,18 @@ public class HItemEquipmentTest extends TestConfigBase {
                 "  trim:",
                 "    material: EMERALD",
                 "    pattern: SILENCE",
+                " body:",
+                "  probability: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material: DIAMOND_HORSE_ARMOR",
+                " saddle:",
+                "  probability: 100",
+                "  durability: 100",
+                "  enchantments:",
+                "   - e1",
+                "  material: SADDLE",
                 "e1:",
                 " type: PROTECTION",
                 " level: 1",
@@ -113,7 +125,13 @@ public class HItemEquipmentTest extends TestConfigBase {
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
                 " off-hand: {probability: null, material: DIAMOND_SWORD, amount: 1," +
                 " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
-                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}}",
+                " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}," +
+                " body: {probability: null, material: DIAMOND_HORSE_ARMOR," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
+                " durability: 100}," +
+                " saddle: {probability: null, material: SADDLE," +
+                " enchantments: [{type: PROTECTION, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
+                " durability: 100}}",
                 itemEquipment.toString());
     }
 
@@ -136,7 +154,7 @@ public class HItemEquipmentTest extends TestConfigBase {
     @Test
     public void testNoModifications() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("No cloths or tools found in equipment");
+        e.expectMessage("No cloths or tools or specials found in equipment");
         getFromConfig(getPreparedConfig(
                 "e:",
                 " k: v"),

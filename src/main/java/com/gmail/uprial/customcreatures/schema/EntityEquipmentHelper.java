@@ -3,6 +3,7 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.schema.exceptions.MethodIsNotSupportedException;
 import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
 import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.MIN_DOUBLE_VALUE;
@@ -50,6 +51,18 @@ final public class EntityEquipmentHelper {
                 entityEquipment.setItemInMainHand(itemStack);
             } else if (handType == OFF_HAND) {
                 entityEquipment.setItemInOffHand(itemStack);
+            }
+        } catch (UnsupportedOperationException ignored) {
+            throw new OperationIsNotSupportedException();
+        }
+    }
+
+    public static void setItem(EntityEquipment entityEquipment, EquipmentType equipmentType, ItemStack itemStack) throws OperationIsNotSupportedException {
+        try {
+            if (equipmentType == EquipmentType.BODY) {
+                entityEquipment.setItem(EquipmentSlot.BODY, itemStack);
+            } else if (equipmentType == EquipmentType.SADDLE) {
+                entityEquipment.setItem(EquipmentSlot.SADDLE, itemStack);
             }
         } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();

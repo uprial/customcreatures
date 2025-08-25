@@ -20,7 +20,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 0.5% (*4) of zombie-like mobs spawn with 5 minutes glowing aura, a medium jump and movement bonus, fire resistance, in CHAINMAIL equipment(*1) with maybe top protection and thorns, random durability and random support enhancements, a maybe top-enchanted sword (*2). Drops lapiz lazuli and redstone. (*3)
 * 5% of Pillagers and Piglings have crossbows (*2) with maybe top piercing, random durability, random quick charge, multishot.
 * 5% of Drowned have tridents (*2) with maybe top impaling, random durability, channeling.
-* 5% of Horses have a tamed zombie friend with improved knockback resistance, maximum health, movement speed, and jump strength.
+* 5% of Horses have a tamed zombie friend with improved knockback resistance, maximum health, movement speed, jump strength, and saddle.
 * 5% of Rabbits are the killer bunnies scaled visually with a large health and movement bonus.
 * 100% of Withers have thorns.
 * 5% of creepers are babies: smaller, much faster, more explosive.
@@ -28,6 +28,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 100% of Evokers, Illusioners and Ravagers have a large jump and movement bonus, in NETHERITE equipment(*1) with maybe top protection and thorns, random support enhancements, specifically Illusioners with a maybe top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and specifically Illusioners - a diamond pickaxe. (*3)
 * 25% of Vindicators spawn with a medium jump and movement bonus, a slightly-enchanted diamond axe (*1).
 * 5% of Piglins spawn an angry Hoglin with increased movement speed and health.
+* 5% of Wolves have increased knockback resistance, movement speed, base armor, model scale, and unbreaking on armor, 1% - largely increased, 0.2% - insanely
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 

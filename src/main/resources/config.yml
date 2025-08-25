@@ -65,6 +65,9 @@ handlers:
   - piglin-spawns-a-hoglin
   - angry-hoglin
   - zombie-horse
+  - strong-wolves-1
+  - strong-wolves-2
+  - strong-wolves-3
 # Uncomment this line to play with test handler.
 #  - test-handler
 
@@ -371,10 +374,9 @@ handlers:
 #                               ### <item-in-hand> below)
 #   off-hand: <item-in-hand>    ### Description of entity's
 #                               ### off hand equipment.
-#                               ###
-#                               ### Warning: off hand configuration works
-#                               ### only with Minecraft version greater
-#                               ### or equal 1.9.0.
+#   body: <equipment-special>   ### Description of entity's body equipment.
+#                               ### (* see description of <equipment-special> below)
+#   saddle: <equipment-special> ### Description of entity's saddle equipment.
 #
 # #### Equipment cloth ####
 #
@@ -442,6 +444,26 @@ handlers:
 #                                 ### <enchantments> below)
 #
 #   trim: <trim> ### Armor trim, empty by default, shown only on players.
+#
+# #### Equipment special ####
+#
+# <equipment-special>:
+#   probability: <double:0..100>   ### Probability in percents that this item will
+#                                  ### be in special slow of the entity.
+#                                  ### By default, the probability is 100%.
+#
+#   material: <material>    ### Material of the item, see:
+#https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+#
+#   durability: <int-value:0..100>  ### Durability in percents of this item.
+#                                   ### By default, the durability is 100%.
+#
+#   enchantments: <enchantments>  ### List of enchantments will be applied
+#                                 ### to this item.
+#                                 ### By default, no enchantments will
+#                                 ### be applied.
+#                                 ### (* see description of
+#                                 ### <enchantments> below)
 #
 # #### Item drop ####
 #
@@ -1760,6 +1782,10 @@ zombie-horse:
     types:
       - ZOMBIE_HORSE
     probability: 100
+  equipment:
+    saddle:
+      probability: 100
+      material: SADDLE
   attributes:
     knockback-resistance: 0.5
     # The "max-health-multiplier" would not work here,
@@ -1777,6 +1803,96 @@ zombie-horse:
     zombie-horse:
       jump-strength: 2.0
       tamed: true
+
+strong-wolves-1:
+  filter:
+    reasons:
+      - NATURAL
+      - CUSTOM
+      - COMMAND
+    types:
+      - WOLF
+    probability: 5
+  attributes:
+    follow-range: 50.0
+    knockback-resistance: 0.2
+    movement-speed-multiplier: 1.2
+    scale: 1.5
+    # According to https://minecraft.wiki/w/Armor,
+    # the armor attribute is capped at 30.
+    #
+    # According to https://minecraft.wiki/w/Wolf_Armor,
+    # Wolf armor provide immunity against most damage types until the armor breaks
+    # and gives +11 armor.
+    #
+    # Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    base-armor: 4.0
+    # The "max-health-multiplier" and "max-health" would not work here,
+    # Because the Wolf changes health after taming:
+    # https://minecraft.wiki/w/Wolf
+  equipment:
+    body:
+      probability: 100
+      material: WOLF_ARMOR
+      # According to https://minecraft.wiki/w/Wolf_Armor,
+      # Protection and Unbreaking apply their effects to the wolf as expected.
+      enchantments:
+        - _unbreaking_1
+      _unbreaking_1:
+        type: UNBREAKING
+        level: 1
+
+strong-wolves-2:
+  filter:
+    reasons:
+      - NATURAL
+      - CUSTOM
+      - COMMAND
+    types:
+      - WOLF
+    probability: 1
+  attributes:
+    follow-range: 75.0
+    knockback-resistance: 0.5
+    movement-speed-multiplier: 1.5
+    scale: 2.0
+    # Provides 60% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    base-armor: 9.0
+  equipment:
+    body:
+      probability: 100
+      material: WOLF_ARMOR
+      enchantments:
+        - _unbreaking_2
+      _unbreaking_2:
+        type: UNBREAKING
+        level: 2
+
+strong-wolves-3:
+  filter:
+    reasons:
+      - NATURAL
+      - CUSTOM
+      - COMMAND
+    types:
+      - WOLF
+    probability: 0.2
+  attributes:
+    follow-range: 100.0
+    knockback-resistance: 0.75
+    movement-speed-multiplier: 2.0
+    scale: 2.5
+    # Provides 80% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    base-armor: 14.0
+  equipment:
+    body:
+      probability: 100
+      material: WOLF_ARMOR
+      enchantments:
+        - _unbreaking_3
+      _unbreaking_3:
+        type: UNBREAKING
+        level: 3
 
 # This handler isn’t listed in handlers’ list and can be used
 # for experiments.
