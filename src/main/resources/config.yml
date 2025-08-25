@@ -1472,15 +1472,15 @@ vex-spawns-an-illusioner:
       - VEX
     # Not in 'spawn.probability' section to use
     # the player-multiplier features.
-    probability: 1
+    probability: 0.33
     probability-player-multiplier:
       sort: closest
       statistic: DAMAGE_DEALT
       # stored in percentages, actually means 5_000 full units
       # has no cumulative hardening potential because other multipliers are other entity types
       divider: 500_000
-      # 1% * 5 = 5%
-      max: 5
+      # 0.33% * 16 = 5.28%
+      max: 16
   spawn:
     type: ILLUSIONER
     lighting-on-spawn: true
