@@ -1525,7 +1525,8 @@ insane-mansions-and-raids:
     - effects.jump_3
     # Not undead to be protected from Sunlight
     # - effects.fire_resistance
-    - effects.regeneration
+    # Disabled based on the feedback from a server with 14 active players
+    # - effects.regeneration
   equipment:
     # When killed by DIAMOND_SWORD+SHARPNESS(5), this entity usually keeps equipment
     # and isn't affected by durability decay caused by rand_maybe_top_thorns_except_friday
@@ -1590,6 +1591,7 @@ insane-mansions-and-raids:
     # knockback-resistance: 0.75
     movement-speed-multiplier: 2.0
     # DIAMOND_SWORD+SHARPNESS(5) brings 1.08(♥) damage to these mobs.
+    # BOW-POWER(5): 3.78(♥)-7.92(♥)
     #
     # Illusioner: 16(♥) > 20(♥)
     # Evoker: 12(♥) > 15(♥)
@@ -1791,12 +1793,6 @@ effects:
   fire_resistance:
     types:
       - FIRE_RESISTANCE
-    strength: 1
-    # infinite
-    duration: 0
-  regeneration:
-    types:
-      - REGENERATION
     strength: 1
     # infinite
     duration: 0

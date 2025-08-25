@@ -25,7 +25,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 100% of Withers have thorns.
 * 5% of creepers are babies: smaller, much faster, more explosive.
 * 1% (*4) of Vexes are spawned together with illusioners, 10% have a diamond maybe top-enchanted sword (*2)
-* 100% of Evokers, Illusioners and Ravagers have a large jump and movement bonus, regeneration, in NETHERITE equipment(*1) with maybe top protection and thorns, random support enhancements, specifically Illusioners with a maybe top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and specifically Illusioners - a diamond pickaxe. (*3)
+* 100% of Evokers, Illusioners and Ravagers have a large jump and movement bonus, in NETHERITE equipment(*1) with maybe top protection and thorns, random support enhancements, specifically Illusioners with a maybe top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and specifically Illusioners - a diamond pickaxe. (*3)
 * 25% of Vindicators spawn with a medium jump and movement bonus, a slightly-enchanted diamond axe (*1).
 * 5% of Piglins spawn an angry Hoglin with increased movement speed and health.
 
