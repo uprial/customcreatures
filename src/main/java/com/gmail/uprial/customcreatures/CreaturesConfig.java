@@ -5,8 +5,7 @@ import com.gmail.uprial.customcreatures.config.ConfigReaderNumbers;
 import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.HItem;
-import com.gmail.uprial.customcreatures.schema.HValue;
-import com.gmail.uprial.customcreatures.schema.numerics.IValue;
+import com.gmail.uprial.customcreatures.schema.WolfSelection;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -20,14 +19,14 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
     private final int timeoutInMs;
-    private final IValue<Double> wolfSelectionRandomizer;
+    private final WolfSelection wolfSelection;
     private final Map<String,HItem> handlers;
 
     private CreaturesConfig(final int timeoutInMs,
-                            final IValue<Double> wolfSelectionRandomizer,
+                            final WolfSelection wolfSelection,
                             final Map<String,HItem> handlers) {
         this.timeoutInMs = timeoutInMs;
-        this.wolfSelectionRandomizer = wolfSelectionRandomizer;
+        this.wolfSelection = wolfSelection;
         this.handlers = handlers;
     }
 
@@ -83,16 +82,16 @@ public final class CreaturesConfig {
         return timeoutInMs;
     }
 
-    public IValue<Double> getWolfSelectionRandomizer() {
-        return wolfSelectionRandomizer;
+    public WolfSelection getWolfSelection() {
+        return wolfSelection;
     }
 
     public static CreaturesConfig getFromConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         int timeoutInMs = ConfigReaderNumbers.getInt(config, customLogger,
                 "timeout-in-ms", "'timeout-in-ms' value", 1, 3600_000, 5);
-        IValue<Double> wolfSelectionRandomizer = HValue.getDoubleFromConfig(config, customLogger,
-                "wolf-selection-randomizer",
-                "'wolf-selection-randomizer' value", 0.0D, 2.0D);
+        WolfSelection wolfSelection = WolfSelection.getFromConfig(config, customLogger,
+                "wolf-selection",
+                "wolf selection");
 
         List<?> handlersConfig = config.getList("handlers");
         if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
@@ -125,7 +124,7 @@ public final class CreaturesConfig {
             throw new InvalidConfigException("There are no valid handlers definitions");
         }
 
-        return new CreaturesConfig(timeoutInMs, wolfSelectionRandomizer, handlers);
+        return new CreaturesConfig(timeoutInMs, wolfSelection, handlers);
     }
 
     private static String lc(String key) {
@@ -133,7 +132,7 @@ public final class CreaturesConfig {
     }
 
     public String toString() {
-        return String.format("timeout-in-ms: %d, wolf-selection-randomizer: %s, handlers: %s",
-                timeoutInMs, wolfSelectionRandomizer, handlers.values());
+        return String.format("timeout-in-ms: %d, wolf-selection: %s, handlers: %s",
+                timeoutInMs, wolfSelection, handlers.values());
     }
 }

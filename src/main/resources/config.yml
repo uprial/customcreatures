@@ -32,18 +32,62 @@ debug: false
 timeout-in-ms: 5
 
 #
-# When a new wolf is bred,
-# its parameters are calculated as the average
-# across those of its parents with some random component
-# - which is the key for future selection.
+# When a new wolf is bred, and at least one of its parent is not fully basic,
+# the new wolf parameters are calculated as the average across its parents
+# with some random component.
 #
-# wolf-selection-randomizer: <float-value:0.0..2.0> ### (* see description of <float-value> below)
+# Check for related details:
+# - strong-wolves-1
+# - strong-wolves-2
+# - strong-wolves-3
 #
-wolf-selection-randomizer:
-  type: random
-  min: 0.9
-  max: 1.1
-  distribution: normal
+wolf-selection:
+  # randomizer: <float-value:0.0..2.0> ### The random component is the key for selection.
+  #                                    ### (* see description of <float-value> below)
+  randomizer:
+    type: random
+    min: 0.8
+    max: 1.2
+    distribution: normal
+  base-armor:
+    # According to https://minecraft.wiki/w/Armor,
+    # the armor attribute is capped at 30.
+    #
+    # According to https://minecraft.wiki/w/Wolf_Armor,
+    # Wolf armor provide immunity against most damage types until the armor breaks
+    # and gives +11 armor.
+    #
+    # 4.0 (+11.0) Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    # 9.0  - 60%
+    # 14.0 - 80%
+    #
+    # monotonic: 0.0  - 3.5  - 7.0  - 10.5 - 14.0
+    # <float:0..30>
+    base: 0.0
+    max: 14.0
+    # monotonic: 16   - 32   - 48   - 64   - 80
+    # <float:0..512>
+  follow-range:
+    base: 16.0
+    max: 80.0
+    # monotonic: 0.0  - 0.2  - 0.4  - 0.6  - 0.8
+    # <float:0..1>
+  knockback-resistance:
+    base: 0.0
+    max: 0.8
+    # monotonic: 0.30 - 0.36 - 0.42 - 0.48 - 0.54
+    # <float:0.0001..32>
+  movement-speed:
+    base: 0.3
+    max: 0.54
+    # monotonic: 1.0  - 1.5  - 2.0  - 2.5  - 3.0
+    # <float:0.0625..16>
+  scale:
+    base: 1.0
+    max: 3.0
+  # The "max-health-multiplier" and "max-health" would not work here,
+  # Because the Wolf changes health after taming:
+  # https://minecraft.wiki/w/Wolf
 
 #
 # handlers:     ### List of handlers' paths.
@@ -1828,31 +1872,12 @@ strong-wolves-1:
       - WOLF
     probability: 5
   attributes:
-    # monotonic: 16   - 32   - 48   - 64   - 80
     follow-range: 32.0
-    # monotonic: 0.0  - 0.2  - 0.4  - 0.6  - 0.8
     knockback-resistance: 0.2
-    # monotonic: 1.0  - 1.2  - 1.4  - 1.6  - 1.8
-    # monotonic: 0.30 - 0.36 - 0.42 - 0.48 - 0.54
-    movement-speed-multiplier: 1.2
-    # monotonic: 1.0  - 1.5  - 2.0  - 2.5  - 3.0
+    movement-speed: 0.36
     scale: 1.5
-    # According to https://minecraft.wiki/w/Armor,
-    # the armor attribute is capped at 30.
-    #
-    # According to https://minecraft.wiki/w/Wolf_Armor,
-    # Wolf armor provide immunity against most damage types until the armor breaks
-    # and gives +11 armor.
-    #
-    # 4.0 (+11.0) Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
-    # 9.0  - 60%
-    # 14.0 - 80%
-    #
-    # monotonic: 0.0  - 3.5  - 7.0  - 10.5 - 14.0
     base-armor: 3.5
-    # The "max-health-multiplier" and "max-health" would not work here,
-    # Because the Wolf changes health after taming:
-    # https://minecraft.wiki/w/Wolf
+  # Check <wolf-selection> for related details
   equipment:
     body:
       probability: 100
@@ -1874,16 +1899,19 @@ strong-wolves-2:
     types:
       - WOLF
     probability: 1
+  # Check <wolf-selection> for related details
   attributes:
     follow-range: 48.0
     knockback-resistance: 0.4
-    movement-speed-multiplier: 1.4
+    movement-speed: 0.42
     scale: 2.0
     base-armor: 7.0
   equipment:
     body:
       probability: 100
       material: WOLF_ARMOR
+      # According to https://minecraft.wiki/w/Wolf_Armor,
+      # Protection and Unbreaking apply their effects to the wolf as expected.
       enchantments:
         - _unbreaking_2
       _unbreaking_2:
@@ -1899,16 +1927,19 @@ strong-wolves-3:
     types:
       - WOLF
     probability: 0.2
+  # Check <wolf-selection> for related details
   attributes:
     follow-range: 64.0
     knockback-resistance: 0.6
-    movement-speed-multiplier: 1.6
+    movement-speed: 0.48
     scale: 2.5
     base-armor: 10.5
   equipment:
     body:
       probability: 100
       material: WOLF_ARMOR
+      # According to https://minecraft.wiki/w/Wolf_Armor,
+      # Protection and Unbreaking apply their effects to the wolf as expected.
       enchantments:
         - _unbreaking_3
       _unbreaking_3:

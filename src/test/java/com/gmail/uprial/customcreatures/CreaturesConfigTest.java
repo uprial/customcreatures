@@ -111,8 +111,13 @@ public class CreaturesConfigTest extends TestConfigBase {
     public void testNormalConfig() throws Exception {
         assertEquals(
                 "timeout-in-ms: 5, " +
-                        "wolf-selection-randomizer: 1.01, " +
-                        "handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99," +
+                        "wolf-selection: {randomizer: 1.01," +
+                        " base-armor: {base: 1, max: 14}," +
+                        " follow-range: {base: 16, max: 80}," +
+                        " knockback-resistance: {base: 0, max: 0.8}," +
+                        " movement-speed: {base: 0.3, max: 0.54}," +
+                        " scale: {base: 1, max: 3}}," +
+                        " handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99," +
                         " probability-player-multiplier: null}," +
                         " effects: null, attributes: {max-health-multiplier: 1.0," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +
@@ -121,7 +126,23 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " equipment: null, drops: null, drop-exp: null, entity-specific-attributes: null," +
                         " spawn: null}]",
                 loadConfig("timeout-in-ms: 5",
-                        "wolf-selection-randomizer: 1.01",
+                        "wolf-selection:",
+                        " randomizer: 1.01",
+                        " base-armor:",
+                        "  base: 1.0",
+                        "  max: 14.0",
+                        " follow-range:",
+                        "  base: 16.0",
+                        "  max: 80.0",
+                        " knockback-resistance:",
+                        "  base: 0.0",
+                        "  max: 0.8",
+                        " movement-speed:",
+                        "  base: 0.3",
+                        "  max: 0.54",
+                        " scale:",
+                        "  base: 1.0",
+                        "  max: 3.0",
                         "handlers:",
                         " - x",
                         "x:",
