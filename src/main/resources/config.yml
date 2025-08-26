@@ -1814,9 +1814,14 @@ strong-wolves-1:
       - WOLF
     probability: 5
   attributes:
-    follow-range: 50.0
+    # monotonic: 16   - 32   - 48   - 64   - 80
+    follow-range: 32.0
+    # monotonic: 0.0  - 0.2  - 0.4  - 0.6  - 0.8
     knockback-resistance: 0.2
+    # monotonic: 1.0  - 1.2  - 1.4  - 1.6  - 1.8
+    # monotonic: 0.30 - 0.36 - 0.42 - 0.48 - 0.54
     movement-speed-multiplier: 1.2
+    # monotonic: 1.0  - 1.5  - 2.0  - 2.5  - 3.0
     scale: 1.5
     # According to https://minecraft.wiki/w/Armor,
     # the armor attribute is capped at 30.
@@ -1825,8 +1830,12 @@ strong-wolves-1:
     # Wolf armor provide immunity against most damage types until the armor breaks
     # and gives +11 armor.
     #
-    # Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
-    base-armor: 4.0
+    # 4.0 (+11.0) Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    # 9.0  - 60%
+    # 14.0 - 80%
+    #
+    # monotonic: 0.0  - 3.5  - 7.0  - 10.5 - 14.0
+    base-armor: 3.5
     # The "max-health-multiplier" and "max-health" would not work here,
     # Because the Wolf changes health after taming:
     # https://minecraft.wiki/w/Wolf
@@ -1852,12 +1861,11 @@ strong-wolves-2:
       - WOLF
     probability: 1
   attributes:
-    follow-range: 75.0
-    knockback-resistance: 0.5
-    movement-speed-multiplier: 1.5
+    follow-range: 48.0
+    knockback-resistance: 0.4
+    movement-speed-multiplier: 1.4
     scale: 2.0
-    # Provides 60% of resistance to DIAMOND_SWORD+SHARPNESS(5)
-    base-armor: 9.0
+    base-armor: 7.0
   equipment:
     body:
       probability: 100
@@ -1878,12 +1886,11 @@ strong-wolves-3:
       - WOLF
     probability: 0.2
   attributes:
-    follow-range: 100.0
-    knockback-resistance: 0.75
-    movement-speed-multiplier: 2.0
+    follow-range: 64.0
+    knockback-resistance: 0.6
+    movement-speed-multiplier: 1.6
     scale: 2.5
-    # Provides 80% of resistance to DIAMOND_SWORD+SHARPNESS(5)
-    base-armor: 14.0
+    base-armor: 10.5
   equipment:
     body:
       probability: 100
