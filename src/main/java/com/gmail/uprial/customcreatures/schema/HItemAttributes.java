@@ -27,25 +27,53 @@ import static org.bukkit.attribute.Attribute.*;
 
 public final class HItemAttributes {
     /*
+        According to https://minecraft.wiki/w/Armor,
+        the armor attribute is capped at 30.
+     */
+    private static final double MAX_ARMOR = 30.0D;
+    /*
+        According to ,https://minecraft.wiki/w/Server.properties,
+        max view-distance is 32 chunks, which is 512 blocks.
+     */
+    private static final double MAX_FOLLOW_RANGE = 512.0D;
+    /*
+        According to https://minecraft.wiki/w/Knockback_(mechanic)#Knockback_resistance,
+        max Knockback resistance is 1.0.
+     */
+    private static final double MAX_KNOCKBACK_RESISTANCE = 1.0D;
+    /*
+        According to https://minecraft.wiki/w/Transportation,
+        with the best condition Trident with Riptide III (perfect timing)
+        momvement speed is 632.0 m/s, or 31.6 m/tick.
+     */
+    private static final double MAX_MOVEMENT_SPEED = 32.0D;
+    /*
+        According to https://minecraft.wiki/w/Attribute,
+        min scale is 0.0625, max scale is 16.
+     */
+    private static final double MIN_SCALE = 0.0625D;
+    private static final double MAX_SCALE = 16.0D;
+
+    /*
      Because of rounding of float point variables we need to make sure that
      health of entity is lower than its max. health.
      So, we reduce an entity's health by this value.
       */
     private static final double HEALTH_REDUCTION = 0.000001;
 
-    private static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
+    public static final Map<String, HItemGenericAttribute> KEY_2_GENERIC_ATTRIBUTE
             = ImmutableMap.<String, HItemGenericAttribute>builder()
-            .put("base-armor", new HItemGenericAttribute(ARMOR, "base armor", 0.0D, MAX_DOUBLE_VALUE))
-            .put("follow-range", new HItemGenericAttribute(FOLLOW_RANGE, "follow range", 1.0D, 100.0D))
-            .put("knockback-resistance", new HItemGenericAttribute(KNOCKBACK_RESISTANCE, "knockback resistance", 0.0D, 1.0D))
+            .put("base-armor", new HItemGenericAttribute(ARMOR, "base armor", 0.0D, MAX_ARMOR))
+            .put("follow-range", new HItemGenericAttribute(FOLLOW_RANGE, "follow range", 1.0D, MAX_FOLLOW_RANGE))
+            .put("knockback-resistance", new HItemGenericAttribute(KNOCKBACK_RESISTANCE, "knockback resistance", 0.0D, MAX_KNOCKBACK_RESISTANCE))
             .put("max-health", new HItemGenericAttribute(MAX_HEALTH, "max. health", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
             /*
                 Even Ghast doesn't have the GENERIC_FLYING_SPEED property,
                 so only the GENERIC_MOVEMENT_SPEED property is managed.
              */
             .put("movement-speed-multiplier", new HItemGenericAttribute(MOVEMENT_SPEED, "movement speed multiplier", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
-            .put("movement-speed", new HItemGenericAttribute(MOVEMENT_SPEED, "movement speed", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
-            .put("scale", new HItemGenericAttribute(SCALE, "scale", MIN_DOUBLE_VALUE, MAX_DOUBLE_VALUE))
+            .put("movement-speed", new HItemGenericAttribute(MOVEMENT_SPEED, "movement speed", MIN_DOUBLE_VALUE, MAX_MOVEMENT_SPEED))
+            .put("scale", new HItemGenericAttribute(SCALE, "scale", MIN_SCALE, MAX_SCALE))
             .build();
 
     private static final String MK_MAX_HEALTH_MULTIPLIER_PREFIX = "max-health-multiplier-";

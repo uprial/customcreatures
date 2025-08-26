@@ -219,11 +219,11 @@ handlers:
 # <attributes>:
 #   max-health-multiplier: <float-value:0.0001..?> ### A multiplier for max. health of an entity.
 #
-#   base-armor: <float-value:0..?> ### Entity's base armor before all
-#                                  ### the other modifiers, see
-#                                  ### http://minecraft.gamepedia.com/Armor
+#   base-armor: <float-value:0..30> ### Entity's base armor before all
+#                                   ### the other modifiers, see
+#                                   ### http://minecraft.gamepedia.com/Armor
 #
-#   follow-range: <float-value:1..100> ### Range at which an entity
+#   follow-range: <float-value:1..512> ### Range at which an entity
 #                                      ### will follow others.
 #                                      ### This parameter changes
 #                                      ### significantly the
@@ -244,9 +244,9 @@ handlers:
 #                                         ### Please check https://minecraft.fandom.com/wiki/Spawn#Despawning
 #                                         ### to ensure living entity can despawn
 #
-#   movement-speed: <float-value:0.0001..?> ### Base movement speed of an entity.
+#   movement-speed: <float-value:0.0001..32> ### Base movement speed of an entity.
 #
-#   scale: <float-value:0.0001..?> ### Entity scale
+#   scale: <float-value:0.0625..16> ### Entity scale
 #
 # #### Entity-specific attributes ####
 # By default, all the following attributes won't be modified.
