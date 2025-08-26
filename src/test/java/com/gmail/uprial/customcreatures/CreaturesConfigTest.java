@@ -111,6 +111,7 @@ public class CreaturesConfigTest extends TestConfigBase {
     public void testNormalConfig() throws Exception {
         assertEquals(
                 "timeout-in-ms: 5, " +
+                        "wolf-selection-randomizer: 1.01, " +
                         "handlers: [{name: x, filter: {types: null, type-sets: null, reasons: null, probability: 99," +
                         " probability-player-multiplier: null}," +
                         " effects: null, attributes: {max-health-multiplier: 1.0," +
@@ -120,6 +121,7 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " equipment: null, drops: null, drop-exp: null, entity-specific-attributes: null," +
                         " spawn: null}]",
                 loadConfig("timeout-in-ms: 5",
+                        "wolf-selection-randomizer: 1.01",
                         "handlers:",
                         " - x",
                         "x:",

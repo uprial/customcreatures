@@ -32,6 +32,20 @@ debug: false
 timeout-in-ms: 5
 
 #
+# When a new wolf is bred,
+# its parameters are calculated as the average
+# across those of its parents with some random component
+# - which is the key for future selection.
+#
+# wolf-selection-randomizer: <float-value:0.0..2.0> ### (* see description of <float-value> below)
+#
+wolf-selection-randomizer:
+  type: random
+  min: 0.9
+  max: 1.1
+  distribution: normal
+
+#
 # handlers:     ### List of handlers' paths.
 #               ### (* see description of <handler> below)
 # - <handler1>

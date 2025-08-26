@@ -5,7 +5,7 @@ import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.numerics.*;
 import org.bukkit.configuration.file.FileConfiguration;
 
-final class HValue {
+public final class HValue {
 
     public static IValue<Double> getDoubleFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title,
                                                      double hardMin, double hardMax) throws InvalidConfigException {

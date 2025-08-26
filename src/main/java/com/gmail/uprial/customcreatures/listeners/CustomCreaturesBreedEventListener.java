@@ -1,5 +1,6 @@
 package com.gmail.uprial.customcreatures.listeners;
 
+import com.gmail.uprial.customcreatures.CreaturesConfig;
 import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.google.common.collect.ImmutableMap;
@@ -10,12 +11,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityBreedEvent;
 
 import java.util.Map;
-import java.util.Random;
 
 public class CustomCreaturesBreedEventListener extends AbstractCustomCreaturesEventListener {
-    private final Random random = new Random();
-
-    public CustomCreaturesBreedEventListener(CustomCreatures plugin, CustomLogger customLogger) {
+    public CustomCreaturesBreedEventListener(final CustomCreatures plugin,
+                                             final CustomLogger customLogger) {
         super(plugin, customLogger);
     }
 
@@ -50,27 +49,31 @@ public class CustomCreaturesBreedEventListener extends AbstractCustomCreaturesEv
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityBreed(EntityBreedEvent event) {
         if(!event.isCancelled() && (event.getEntity() instanceof Wolf)) {
+            final CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
+            // Don't try to handle an entity if there was error in loading of config.
+            if (creaturesConfig == null) {
 
-            final Wolf child = (Wolf)event.getEntity();
-            final Wolf p1 = (Wolf)event.getMother();
-            final Wolf p2 = (Wolf)event.getFather();
+                final Wolf child = (Wolf) event.getEntity();
+                final Wolf p1 = (Wolf) event.getMother();
+                final Wolf p2 = (Wolf) event.getFather();
 
-            final double scale = 0.9D + 0.2D * random.nextDouble();
+                final double scale = creaturesConfig.getWolfSelectionRandomizer().getValue();
 
-            for(final Map.Entry<Attribute, BreedConfig> entry : SCALABLE_ATTRIBUTES.entrySet()) {
-                final Attribute attribute = entry.getKey();
-                child.getAttribute(attribute).setBaseValue(getAvg(
-                        p1.getAttribute(attribute).getBaseValue(),
-                        p2.getAttribute(attribute).getBaseValue(),
-                        entry.getValue(), scale
-                ));
+                for (final Map.Entry<Attribute, BreedConfig> entry : SCALABLE_ATTRIBUTES.entrySet()) {
+                    final Attribute attribute = entry.getKey();
+                    child.getAttribute(attribute).setBaseValue(getAvg(
+                            p1.getAttribute(attribute).getBaseValue(),
+                            p2.getAttribute(attribute).getBaseValue(),
+                            entry.getValue(), scale
+                    ));
+                }
+
+                customLogger.info(String.format("Bred %s from %s, %s, and scale %.2f",
+                        DebugListener.getDeeperFormat(child),
+                        DebugListener.getDeeperFormat(p1),
+                        DebugListener.getDeeperFormat(p2),
+                        scale));
             }
-
-            customLogger.info(String.format("Bred %s from %s, %s, and scale %.2f",
-                    DebugListener.getDeeperFormat(child),
-                    DebugListener.getDeeperFormat(p1),
-                    DebugListener.getDeeperFormat(p2),
-                    scale));
         }
     }
 
