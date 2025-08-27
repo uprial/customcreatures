@@ -39,8 +39,8 @@ public class HItemSpawn {
             }
 
             if (customLogger.isDebugMode()) {
-                customLogger.debug(String.format("Handle %s: %d of %s at %s",
-                        title, n, type, format(entity.getLocation().toVector())));
+                customLogger.debug(String.format("Handle %s: %d of %s",
+                        title, n, format(entity)));
             }
         }
     }

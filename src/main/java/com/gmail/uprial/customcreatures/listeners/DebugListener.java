@@ -33,61 +33,9 @@ public class DebugListener implements Listener {
                 && (event.getEntity() instanceof LivingEntity)
                 && (event.getDamageSource().getCausingEntity() instanceof Player)) {
 
-            customLogger.info(String.format("%s, Damage: %.2f/%.2f",
-                    getDeeperFormat((LivingEntity) event.getEntity()),
+            customLogger.info(String.format("%s damaged: %.2f/%.2f",
+                    format(event.getEntity()),
                     event.getDamage(), event.getFinalDamage()));
         }
-    }
-
-    public static String getDeeperFormat(final LivingEntity entity) {
-        final StringBuilder sb = new StringBuilder(format(entity));
-
-        sb.append(String.format(", Health: %.2f/%.2f", entity.getHealth(), entity.getAttribute(Attribute.MAX_HEALTH).getBaseValue()));
-        sb.append(String.format(", Armor: %.2f/%.2f", entity.getAttribute(Attribute.ARMOR).getBaseValue(), entity.getAttribute(Attribute.ARMOR).getValue()));
-
-        sb.append(String.format(", Speed: %.2f", entity.getAttribute(Attribute.MOVEMENT_SPEED).getBaseValue()));
-        sb.append(String.format(", Follow range: %.2f", entity.getAttribute(Attribute.FOLLOW_RANGE).getBaseValue()));
-        sb.append(String.format(", Knockback resistance: %.2f", entity.getAttribute(Attribute.KNOCKBACK_RESISTANCE).getBaseValue()));
-        sb.append(String.format(", Scale: %.2f", entity.getAttribute(Attribute.SCALE).getBaseValue()));
-
-        final EntityEquipment e = entity.getEquipment();
-
-        sb.append(", Helmet: " + f(e.getHelmet()));
-        sb.append(", Chestplate: " + f(e.getChestplate()));
-        sb.append(", Leggings: " + f(e.getLeggings()));
-        sb.append(", Boots: " + f(e.getBoots()));
-        sb.append(", MainHand: " + f(e.getItemInMainHand()));
-        sb.append(", OffHand: " + f(e.getItemInOffHand()));
-        sb.append(", Body: " + f(e.getItem(EquipmentSlot.BODY)));
-        sb.append(", Saddle: " + f(e.getItem(EquipmentSlot.SADDLE)));
-
-        for (final PotionEffect potionEffect : entity.getActivePotionEffects()) {
-            sb.append(", " + potionEffect.getType().getName() + "-" + potionEffect.getAmplifier());
-        }
-
-        return sb.toString();
-    }
-
-    private static String f(final ItemStack itemStack) {
-        if(itemStack == null) {
-            return "null";
-        } else if (itemStack.getType().isAir()) {
-            return "empty";
-        }
-
-        final StringBuilder sb = new StringBuilder(itemStack.getType().toString());
-        if(itemStack.getMaxStackSize() > 1) {
-            sb.append(String.format("x%d",
-                    itemStack.getAmount()));
-        }
-        if(itemStack.getType().getMaxDurability() > 0) {
-            sb.append(String.format(":%d/%d",
-                    ((Damageable)itemStack.getItemMeta()).getDamage(),
-                    itemStack.getType().getMaxDurability()));
-        }
-        for(final Map.Entry<Enchantment,Integer> entry : itemStack.getEnchantments().entrySet()) {
-            sb.append(String.format("+%s-%d", entry.getKey().getName(), entry.getValue()));
-        }
-        return sb.toString();
     }
 }

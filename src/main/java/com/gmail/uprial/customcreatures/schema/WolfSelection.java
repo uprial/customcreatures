@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.gmail.uprial.customcreatures.common.DoubleHelper.formatDoubleValue;
+import static com.gmail.uprial.customcreatures.common.Formatter.format;
 import static com.gmail.uprial.customcreatures.common.Utils.joinPaths;
 import static com.gmail.uprial.customcreatures.common.Utils.joinStrings;
 import static com.gmail.uprial.customcreatures.config.ConfigReaderNumbers.getDouble;
@@ -82,11 +83,10 @@ public final class WolfSelection {
             ));
         }
 
-        customLogger.info(String.format("Bred %s from %s, %s, and scale %.2f",
-                DebugListener.getDeeperFormat(child),
-                DebugListener.getDeeperFormat(p1),
-                DebugListener.getDeeperFormat(p2),
-                scale));
+        if(customLogger.isDebugMode()) {
+            customLogger.debug(String.format("Handle %s: bred %s from %s, %s, and scale %.2f",
+                    title, format(child), format(p1), format(p2), scale));
+        }
     }
 
     private double getAvg(final double v1, final double v2,
