@@ -26,8 +26,12 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
+                "  excluding-types:",
+                "    - SKELETON",
                 "  type-sets:",
                 "    - ANIMALS",
+                "  excluding-type-sets:",
+                "    - ZOMBIES",
                 "  reasons:",
                 "    - NATURAL",
                 "  worlds:",
@@ -39,8 +43,10 @@ public class HItemFilterTest extends TestConfigBase {
                 "    divider: 5_000",
                 "    max: 5.0"),
                 getParanoiacCustomLogger(), "f", "filter");
-        assertEquals("{types: [ZOMBIE], type-sets: [ANIMALS], reasons: [NATURAL], " +
-                "probability: 50, probability-player-multiplier: {sort: CLOSEST, statistic: DAMAGE_DEALT, divider: 5000.0, max: 5.0}}", itemFilter.toString());
+        assertEquals("{types: [ZOMBIE], excluding-types: [SKELETON]," +
+                " type-sets: [ANIMALS], excluding-type-sets: [ZOMBIES], " +
+                "reasons: [NATURAL], probability: 50, " +
+                "probability-player-multiplier: {sort: CLOSEST, statistic: DAMAGE_DEALT, divider: 5000.0, max: 5.0}}", itemFilter.toString());
     }
 
     @Test
@@ -73,14 +79,44 @@ public class HItemFilterTest extends TestConfigBase {
     }
 
     @Test
-    public void testEmptyTypeSetsFilter() throws Exception {
+    public void testEmptyExcludingTypesFilter() throws Exception {
         e.expect(RuntimeException.class);
-        e.expectMessage("Empty type sets of filter. Use default value NULL");
+        e.expectMessage("Empty excluding types of filter. Use default value NULL");
         getFromConfig(getPreparedConfig(
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
                 "  probability: 50"),
+                getDebugFearingCustomLogger(), "f", "filter");
+    }
+
+    @Test
+    public void testEmptyTypeSetsFilter() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty type sets of filter. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "f:",
+                        "  types:",
+                        "    - ZOMBIE",
+                        "  excluding-types:",
+                        "    - SKELETON",
+                        "  probability: 50"),
+                getDebugFearingCustomLogger(), "f", "filter");
+    }
+
+    @Test
+    public void testEmptyExcludingTypeSetsFilter() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty excluding type sets of filter. Use default value NULL");
+        getFromConfig(getPreparedConfig(
+                        "f:",
+                        "  types:",
+                        "    - ZOMBIE",
+                        "  excluding-types:",
+                        "    - SKELETON",
+                        "  type-sets:",
+                        "    - ANIMALS",
+                        "  probability: 50"),
                 getDebugFearingCustomLogger(), "f", "filter");
     }
 
@@ -92,8 +128,12 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
+                "  excluding-types:",
+                "    - SKELETON",
                 "  type-sets:",
                 "    - ANIMALS",
+                "  excluding-type-sets:",
+                "    - ZOMBIES",
                 "  probability: 50"),
                 getDebugFearingCustomLogger(), "f", "filter");
     }
@@ -106,8 +146,12 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
+                "  excluding-types:",
+                "    - SKELETON",
                 "  type-sets:",
                 "    - ANIMALS",
+                "  excluding-type-sets:",
+                "    - ZOMBIES",
                 "  reasons:",
                 "    - NATURAL"),
                 getDebugFearingCustomLogger(), "f", "filter");
@@ -121,8 +165,12 @@ public class HItemFilterTest extends TestConfigBase {
                 "f:",
                 "  types:",
                 "    - ZOMBIE",
+                "  excluding-types:",
+                "    - SKELETON",
                 "  type-sets:",
                 "    - ANIMALS",
+                "  excluding-type-sets:",
+                "    - ZOMBIES",
                 "  reasons:",
                 "    - NATURAL",
                 "  worlds:",
@@ -138,8 +186,12 @@ public class HItemFilterTest extends TestConfigBase {
                         "f:",
                         "  types:",
                         "    - ZOMBIE",
+                        "  excluding-types:",
+                        "    - SKELETON",
                         "  type-sets:",
                         "    - ANIMALS",
+                        "  excluding-type-sets:",
+                        "    - ZOMBIES",
                         "  reasons:",
                         "    - NATURAL",
                         "  worlds:",
@@ -147,6 +199,7 @@ public class HItemFilterTest extends TestConfigBase {
                         "  probability: 100"),
                 getDebugFearingCustomLogger(), "f", "filter");
     }
+
     @Test
     public void testPassTypesAndReasons() throws Exception {
         HItemFilter filter = getFromConfig(getPreparedConfig(
@@ -159,6 +212,35 @@ public class HItemFilterTest extends TestConfigBase {
         assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.INFECTION, ""));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.NATURAL, ""));
         assertEquals(0, getPasses(10, filter, EntityType.PIG, SpawnReason.INFECTION, ""));
+    }
+
+    @Test
+    public void testPassTypeSetsAndExcludingTypes() throws Exception {
+        HItemFilter filter = getFromConfig(getPreparedConfig(
+                "f:",
+                "  type-sets:",
+                "    - ANIMALS",
+                "  excluding-types:",
+                "    - WOLF"), getCustomLogger(), "f", "filter");
+        assertEquals(100, getPasses(10, filter, EntityType.COW, SpawnReason.NATURAL, ""));
+        assertEquals(100, getPasses(10, filter, EntityType.SHEEP, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.WOLF, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, ""));
+    }
+
+    @Test
+    public void testPassExcludingTypeSetsAndTypes() throws Exception {
+        HItemFilter filter = getFromConfig(getPreparedConfig(
+                "f:",
+                "  excluding-type-sets:",
+                "    - ANIMALS",
+                "  types:",
+                "    - WOLF",
+                "    - ZOMBIE"), getCustomLogger(), "f", "filter");
+        assertEquals(0, getPasses(10, filter, EntityType.COW, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.SHEEP, SpawnReason.NATURAL, ""));
+        assertEquals(0, getPasses(10, filter, EntityType.WOLF, SpawnReason.NATURAL, ""));
+        assertEquals(100, getPasses(10, filter, EntityType.ZOMBIE, SpawnReason.NATURAL, ""));
     }
 
     @Test

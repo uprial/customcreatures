@@ -16,7 +16,9 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderEnums.getStrin
 
 public final class HItemFilter {
     private final Set<EntityType> entityTypes;
+    private final Set<EntityType> excludeEntityTypes;
     private final Set<HItemTypeSet> entityTypeSets;
+    private final Set<HItemTypeSet> excludeEntityTypeSets;
     private final Set<SpawnReason> spawnReasons;
     private final Set<String> worlds;
     private final Probability probability;
@@ -24,9 +26,18 @@ public final class HItemFilter {
 
     private Set<EntityType> possibleEntityTypesCache = null;
 
-    private HItemFilter(Set<EntityType> entityTypes, Set<HItemTypeSet> entityTypeSets, Set<SpawnReason> spawnReasons, Set<String> worlds, Probability probability, PlayerMultiplier probabilityPlayerMultiplier) {
+    private HItemFilter(final Set<EntityType> entityTypes,
+                        final Set<EntityType> excludeEntityTypes,
+                        final Set<HItemTypeSet> entityTypeSets,
+                        final Set<HItemTypeSet> excludeEntityTypeSets,
+                        final Set<SpawnReason> spawnReasons,
+                        final Set<String> worlds,
+                        final Probability probability,
+                        final PlayerMultiplier probabilityPlayerMultiplier) {
         this.entityTypes = entityTypes;
+        this.excludeEntityTypes = excludeEntityTypes;
         this.entityTypeSets = entityTypeSets;
+        this.excludeEntityTypeSets = excludeEntityTypeSets;
         this.spawnReasons = spawnReasons;
         this.worlds = worlds;
         this.probability = probability;
@@ -44,6 +55,23 @@ public final class HItemFilter {
             for(HItemTypeSet typeSet : entityTypeSets) {
                 if(typeSet.isContains(entity.getType())) {
                     typeNotFound = false;
+                    break;
+                }
+            }
+        }
+        if(typeNotFound) {
+            return false;
+        }
+
+        if (excludeEntityTypes != null) {
+            if (excludeEntityTypes.contains(entity.getType())) {
+                typeNotFound = true;
+            }
+        }
+        if (excludeEntityTypeSets != null) {
+            for(HItemTypeSet typeSet : excludeEntityTypeSets) {
+                if(typeSet.isContains(entity.getType())) {
+                    typeNotFound = true;
                     break;
                 }
             }
@@ -96,8 +124,12 @@ public final class HItemFilter {
 
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
                 joinPaths(key, "types"), String.format("types of %s", title));
+        Set<EntityType> excludeEntityTypes = getSet(EntityType.class, config, customLogger,
+                joinPaths(key, "excluding-types"), String.format("excluding types of %s", title));
         Set<HItemTypeSet> entityTypeSets = getSet(HItemTypeSet.class, config, customLogger,
                 joinPaths(key, "type-sets"), String.format("type sets of %s", title));
+        Set<HItemTypeSet> excludeEntityTypeSets = getSet(HItemTypeSet.class, config, customLogger,
+                joinPaths(key, "excluding-type-sets"), String.format("excluding type sets of %s", title));
         Set<SpawnReason> spawnReasons = getSet(SpawnReason.class, config, customLogger,
                 joinPaths(key, "reasons"), String.format("reasons of %s", title));
         Set<String> worlds = getStringSet(config, customLogger,
@@ -112,11 +144,17 @@ public final class HItemFilter {
         PlayerMultiplier probabilityPlayerMultiplier = PlayerMultiplier.getFromConfig(config, customLogger,
                 joinPaths(key, "probability-player-multiplier"), String.format("probability player multiplier of %s", title));
 
-        return new HItemFilter(entityTypes, entityTypeSets, spawnReasons, worlds, probability, probabilityPlayerMultiplier);
+        return new HItemFilter(entityTypes, excludeEntityTypes,
+                entityTypeSets, excludeEntityTypeSets,
+                spawnReasons, worlds, probability, probabilityPlayerMultiplier);
     }
 
     public String toString() {
-        return String.format("{types: %s, type-sets: %s, reasons: %s, probability: %s, probability-player-multiplier: %s}",
-                entityTypes, entityTypeSets, spawnReasons, probability, probabilityPlayerMultiplier);
+        return String.format("{types: %s, excluding-types: %s," +
+                        " type-sets: %s, excluding-type-sets: %s," +
+                        " reasons: %s, probability: %s, probability-player-multiplier: %s}",
+                entityTypes, excludeEntityTypes,
+                entityTypeSets, excludeEntityTypeSets,
+                spawnReasons, probability, probabilityPlayerMultiplier);
     }
 }

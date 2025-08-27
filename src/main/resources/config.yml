@@ -102,7 +102,8 @@ wolf-selection:
 #
 
 handlers:
-  - fat-animal
+  - fat-animal-1
+  - fat-animal-2
   - rapid-monster
   - player
   - golden-zombie
@@ -220,6 +221,8 @@ handlers:
 #       ...
 #     - <entity-typeN>
 #
+#   excluding-types:   ### Not possible entity types
+#
 #   type-sets:  ### Pre-defined sets of possible entity types.
 #               ### By default, entities of all types will be processed.
 #               ###
@@ -231,6 +234,8 @@ handlers:
 #     - <type-set1>   ### (* see description of <type-set> below)
 #       ...
 #     - <type-setN>
+#
+#   excluding-type-sets:  ### Pre-defined sets of not possible entity types.
 #
 #   worlds:  ### A list of worlds.
 #            ### By default, entities of all worlds will be processed.
@@ -707,7 +712,7 @@ handlers:
 # By default, a NORMAL distribution will be chosen.
 #
 
-fat-animal:
+fat-animal-1:
   filter:
     reasons:
       - NATURAL
@@ -715,24 +720,27 @@ fat-animal:
       - COMMAND
     type-sets:
       - ANIMALS
+    excluding-types:
+      - WOLF
     probability: 5
   attributes:
-    scale:
-      type: random
-      min: 1.05
-      max: 1.25
-      distribution: exp_down
-    # Too many mob types to list all health changes
-    max-health-multiplier:
-      type: random
-      min: 1.0
-      max: 5.0
-      distribution: exp_down
-    base-armor:
-      type: random
-      min: 0.0
-      max: 10.0
-      distribution: exp_down
+    scale: 1.25
+    base-armor: 5.0
+
+fat-animal-2:
+  filter:
+    reasons:
+      - NATURAL
+      - CUSTOM
+      - COMMAND
+    type-sets:
+      - ANIMALS
+    excluding-types:
+      - WOLF
+    probability: 1
+  attributes:
+    scale: 1.5
+    base-armor: 10.0
 
 rapid-monster:
   filter:
