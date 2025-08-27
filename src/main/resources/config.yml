@@ -46,8 +46,8 @@ wolf-selection:
   #                                    ### (* see description of <float-value> below)
   randomizer:
     type: random
-    min: 0.8
-    max: 1.2
+    min: 0.85
+    max: 1.25
     distribution: normal
   base-armor:
     # According to https://minecraft.wiki/w/Armor,
