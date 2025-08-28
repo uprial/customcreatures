@@ -29,33 +29,49 @@ import static org.bukkit.entity.EntityType.*;
 */
 public enum HItemTypeSet {
     ANIMALS(null,
-            tryNewAnimals(Sets.newHashSet(ALLAY, ARMADILLO, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN,
-                    COD, COW, DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT,
-                    /*HAPPY_GHAST, */HORSE, LLAMA, MOOSHROOM, MULE, OCELOT, PANDA, PARROT,
-                    PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SNIFFER, SQUID,
-                    STRIDER, TADPOLE, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE))),
+            // According to https://minecraft.wiki/w/Animal
+            tryNewAnimals(Sets.newHashSet(ARMADILLO, AXOLOTL, BEE, CAMEL,
+                    CAT, CHICKEN, COD, COW,
+                    DOLPHIN, DONKEY, FOX, FROG,
+                    GLOW_SQUID, GOAT, /*HAPPY_GHAST, */HOGLIN,
+                    HORSE, LLAMA, MOOSHROOM, MULE,
+                    OCELOT, PANDA, PARROT, PIG,
+                    POLAR_BEAR, PUFFERFISH, RABBIT, SALMON,
+                    SHEEP, SKELETON_HORSE, SNIFFER, SQUID,
+                    STRIDER, TADPOLE, TRADER_LLAMA, TROPICAL_FISH,
+                    TURTLE, WOLF, ZOMBIE_HORSE))),
     GOLEMS(null,
             Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM)),
     MONSTERS(null,
-            Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER, CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN, ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER, EVOKER_FANGS, GHAST, GIANT,
-                    GUARDIAN, HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER,
-                    RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SPIDER, STRAY,
-                    VEX, VINDICATOR, WARDEN, WITCH, WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE,
-                    ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN)),
+            // According to https://minecraft.wiki/w/Monster
+            Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER,
+                    CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN,
+                    ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER,
+                    EVOKER_FANGS, GHAST, GIANT, GUARDIAN,
+                    HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE,
+                    PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER,
+                    RAVAGER, SHULKER, SILVERFISH, SKELETON,
+                    SLIME, SPIDER, STRAY, VEX,
+                    VINDICATOR, WARDEN, WITCH, WITHER,
+                    WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER,
+                    ZOMBIFIED_PIGLIN)),
+    PLAYERS(null, Sets.newHashSet(PLAYER)),
 
     // An unused set that underlines we didn't forget of some creatures.
-    CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS),
-            Sets.newHashSet(PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER)),
+    CREATURES(Sets.newHashSet(ANIMALS, GOLEMS, MONSTERS, PLAYERS),
+            Sets.newHashSet(VILLAGER, WANDERING_TRADER)),
 
     // https://minecraft.gamepedia.com/Zombie_(disambiguation)
     ZOMBIES(null,
-            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER,
+            Sets.newHashSet(DROWNED, GIANT, HUSK, PIGLIN,
+                    PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER,
                     ZOMBIFIED_PIGLIN)),
     // https://minecraft.gamepedia.com/Skeleton_(disambiguation)
     SKELETONS(null,
             Sets.newHashSet(BOGGED, SKELETON, STRAY, WITHER_SKELETON)),
     FLYING_MOBS(null,
-            Sets.newHashSet(ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM,
+            Sets.newHashSet(ALLAY, BAT, BEE, BREEZE,
+                    ENDER_DRAGON, GHAST, PARROT, PHANTOM,
                     VEX, WITHER));
 
     private static Set<EntityType> tryNewAnimals(final Set<EntityType> entityTypes) {
@@ -79,7 +95,7 @@ public enum HItemTypeSet {
         this.subSets = (subSets == null) ? new HashSet<>() : subSets;
     }
 
-    public boolean isContains(EntityType entityType) {
+    public boolean contains(EntityType entityType) {
         if (allEntityTypesCache == null) {
             allEntityTypesCache = getAllEntityTypes();
         }

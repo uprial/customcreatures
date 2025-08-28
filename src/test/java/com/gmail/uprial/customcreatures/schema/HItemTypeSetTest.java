@@ -1,13 +1,12 @@
 package com.gmail.uprial.customcreatures.schema;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.bukkit.entity.EntityType;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static com.gmail.uprial.customcreatures.schema.HItemTypeSet.*;
 import static org.bukkit.entity.EntityType.*;
@@ -48,11 +47,20 @@ public class HItemTypeSetTest {
 
     @Test
     public void testDuplicates() {
+        final Map<EntityType, Set<HItemTypeSet>> conflicts = ImmutableMap.<EntityType, Set<HItemTypeSet>>builder()
+                .put(HOGLIN, Sets.newHashSet(ANIMALS, MONSTERS))
+                .build();
+
         for(HItemTypeSet itemTypeSet1 : HItemTypeSet.values()) {
             if (!unsafeSets.contains(itemTypeSet1)) {
                 for (HItemTypeSet itemTypeSet2 : HItemTypeSet.values()) {
                     if (!unsafeSets.contains(itemTypeSet2) && !itemTypeSet1.equals(itemTypeSet2)) {
                         for (EntityType entityType : itemTypeSet1.entityTypes) {
+                            if((conflicts.containsKey(entityType))
+                                    && (conflicts.get(entityType).contains(itemTypeSet1))
+                                    && (conflicts.get(entityType).contains(itemTypeSet2))) {
+                                continue;
+                            }
                             assertFalse(String.format("A set '%s' contains entity type '%s' of set '%s'",
                                     itemTypeSet2, entityType, itemTypeSet1),
                                     itemTypeSet2.entityTypes.contains(entityType));
@@ -102,8 +110,8 @@ public class HItemTypeSetTest {
 
     @Test
     public void testContains() {
-        assertTrue(ANIMALS.isContains(CHICKEN));
-        assertFalse(ANIMALS.isContains(CREEPER));
+        assertTrue(ANIMALS.contains(CHICKEN));
+        assertFalse(ANIMALS.contains(CREEPER));
     }
 
     @Test
@@ -116,24 +124,39 @@ public class HItemTypeSetTest {
             }
             stringBuilder.append(String.format(": %s\n", getSortedList(itemTypeSet.entityTypes)));
         }
-        assertEquals("ANIMALS: [ALLAY, ARMADILLO, AXOLOTL, BAT, BEE, CAMEL, CAT, CHICKEN, " +
-                "COD, COW, DOLPHIN, DONKEY, FOX, FROG, GLOW_SQUID, GOAT, " +
-                "HAPPY_GHAST, HORSE, LLAMA, MOOSHROOM, MULE, OCELOT, PANDA, PARROT, " +
-                "PIG, POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, SHEEP, SNIFFER, SQUID, " +
-                "STRIDER, TADPOLE, TROPICAL_FISH, TURTLE, WOLF, ZOMBIE_HORSE]\n" +
+        assertEquals("ANIMALS: [ARMADILLO, AXOLOTL, BEE, CAMEL, " +
+                "CAT, CHICKEN, COD, COW, " +
+                "DOLPHIN, DONKEY, FOX, FROG, " +
+                "GLOW_SQUID, GOAT, HAPPY_GHAST, HOGLIN, " +
+                "HORSE, LLAMA, MOOSHROOM, MULE, " +
+                "OCELOT, PANDA, PARROT, PIG, " +
+                "POLAR_BEAR, PUFFERFISH, RABBIT, SALMON, " +
+                "SHEEP, SKELETON_HORSE, SNIFFER, SQUID, " +
+                "STRIDER, TADPOLE, TRADER_LLAMA, TROPICAL_FISH, " +
+                "TURTLE, WOLF, ZOMBIE_HORSE]\n" +
                 "GOLEMS: [IRON_GOLEM, SNOW_GOLEM]\n" +
-                "MONSTERS: [BLAZE, BOGGED, BREEZE, CAVE_SPIDER, CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN, " +
-                "ENDERMAN, ENDERMITE, ENDER_DRAGON, EVOKER, EVOKER_FANGS, GHAST, GIANT, GUARDIAN, " +
-                "HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER, " +
-                "RAVAGER, SHULKER, SILVERFISH, SKELETON, SKELETON_HORSE, SLIME, SPIDER, STRAY, " +
-                "VEX, VINDICATOR, WARDEN, WITCH, WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE, " +
-                "ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]\n" +
-                "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS]): [PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]\n" +
-                "ZOMBIES: [DROWNED, GIANT, HUSK, PIGLIN, PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER, " +
+                "MONSTERS: [BLAZE, BOGGED, BREEZE, CAVE_SPIDER, " +
+                "CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN, " +
+                "ENDERMAN, ENDERMITE, ENDER_DRAGON, EVOKER, " +
+                "EVOKER_FANGS, GHAST, GIANT, GUARDIAN, " +
+                "HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE, " +
+                "PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER, " +
+                "RAVAGER, SHULKER, SILVERFISH, SKELETON, " +
+                "SLIME, SPIDER, STRAY, VEX, " +
+                "VINDICATOR, WARDEN, WITCH, WITHER, " +
+                "WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER, " +
+                "ZOMBIFIED_PIGLIN]\n" +
+                "PLAYERS: [PLAYER]\n" +
+                "CREATURES (includes [ANIMALS, GOLEMS, MONSTERS, PLAYERS]): " +
+                "[VILLAGER, WANDERING_TRADER]\n" +
+                "ZOMBIES: [DROWNED, GIANT, HUSK, PIGLIN, " +
+                "PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER, " +
                 "ZOMBIFIED_PIGLIN]\n" +
                 "SKELETONS: [BOGGED, SKELETON, STRAY, WITHER_SKELETON]\n" +
-                "FLYING_MOBS: [ALLAY, BAT, BEE, BREEZE, ENDER_DRAGON, GHAST, PARROT, PHANTOM, " +
-                "VEX, WITHER]\n", stringBuilder.toString());
+                "FLYING_MOBS: [ALLAY, BAT, BEE, BREEZE, " +
+                "ENDER_DRAGON, GHAST, PARROT, PHANTOM, " +
+                "VEX, WITHER]\n",
+                stringBuilder.toString());
     }
 
     private static <T> List<String> getSortedList(Set<T> list) {

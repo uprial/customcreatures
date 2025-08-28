@@ -117,8 +117,8 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " knockback-resistance: {base: 0, max: 0.8}," +
                         " movement-speed: {base: 0.3, max: 0.54}," +
                         " scale: {base: 1, max: 3}}," +
-                        " handlers: [{name: x, filter: {types: null, excluding-types: null," +
-                        " type-sets: null, excluding-type-sets: null, reasons: null, probability: 99," +
+                        " handlers: [{name: x, filter: {types: null, exclude-types: null," +
+                        " type-sets: null, exclude-type-sets: null, reasons: null, probability: 99," +
                         " probability-player-multiplier: null}," +
                         " effects: null, attributes: {max-health-multiplier: 1.0," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +

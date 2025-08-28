@@ -221,7 +221,8 @@ handlers:
 #       ...
 #     - <entity-typeN>
 #
-#   excluding-types:   ### Not possible entity types
+#   exclude-types:   ### Excluded entity types.
+#                    ### Exclusion has higher priority than inclusion.
 #
 #   type-sets:  ### Pre-defined sets of possible entity types.
 #               ### By default, entities of all types will be processed.
@@ -235,7 +236,8 @@ handlers:
 #       ...
 #     - <type-setN>
 #
-#   excluding-type-sets:  ### Pre-defined sets of not possible entity types.
+#   exclude-type-sets:  ### Pre-defined sets of excluded entity types.
+#                       ### Exclusion has higher priority than inclusion.
 #
 #   worlds:  ### A list of worlds.
 #            ### By default, entities of all worlds will be processed.
@@ -372,19 +374,23 @@ handlers:
 # A set of entity types. Some living entities do not belong to any groups:
 # [PLAYER, TRADER_LLAMA, VILLAGER, WANDERING_TRADER]
 #
-# <type-set>: ANIMALS | GOLEMS | MONSTERS | ZOMBIES | SKELETONS | FLYING_MOBS
+# <type-set>: ANIMALS | GOLEMS | MONSTERS | ZOMBIES | SKELETONS | FLYING_MOBS | PLAYERS
 #
-# ANIMALS: [ALLAY, ARMADILLO, AXOLOTL, BAT,
-#           BEE, CAMEL, CAT, CHICKEN,
-#           COD, COW, DOLPHIN, DONKEY, FOX,
-#           FROG, GLOW_SQUID, GOAT,
-#           HAPPY_GHAST, HORSE, LLAMA, MOOSHROOM,
-#           MULE,, OCELOT, PANDA, PARROT,
-#           PIG, POLAR_BEAR, PUFFERFISH, RABBIT,
-#           SALMON, SHEEP, SNIFFER, SQUID,
-#           STRIDER, TADPOLE, TROPICAL_FISH, TURTLE,
-#           WOLF, ZOMBIE_HORSE]
+# According to https://minecraft.wiki/w/Animal
+# ANIMALS: [ARMADILLO, AXOLOTL, BEE, CAMEL,
+#           CAT, CHICKEN, COD, COW,
+#           DOLPHIN, DONKEY, FOX, FROG,
+#           GLOW_SQUID, GOAT, HAPPY_GHAST, HOGLIN,
+#           HORSE, LLAMA, MOOSHROOM, MULE,
+#           OCELOT, PANDA, PARROT, PIG,
+#           POLAR_BEAR, PUFFERFISH, RABBIT, SALMON,
+#           SHEEP, SKELETON_HORSE, SNIFFER, SQUID,
+#           STRIDER, TADPOLE, TRADER_LLAMA, TROPICAL_FISH,
+#           TURTLE, WOLF, ZOMBIE_HORSE]
+#
 # GOLEMS: [IRON_GOLEM, SNOW_GOLEM]
+#
+# According to https://minecraft.wiki/w/Monster
 # MONSTERS: [BLAZE, BOGGED, BREEZE, CAVE_SPIDER,
 #            CREAKING, CREEPER, DROWNED, ELDER_GUARDIAN,
 #            ENDER_DRAGON, ENDERMAN, ENDERMITE, EVOKER,
@@ -392,17 +398,22 @@ handlers:
 #            HOGLIN, HUSK, ILLUSIONER, MAGMA_CUBE,
 #            PHANTOM, PIGLIN, PIGLIN_BRUTE, PILLAGER,
 #            RAVAGER, SHULKER, SILVERFISH, SKELETON,
-#            SKELETON_HORSE, SLIME, SPIDER, STRAY,
-#            VEX, VINDICATOR, WARDEN, WITCH,
-#            WITHER, WITHER_SKELETON, ZOGLIN, ZOMBIE,
-#            ZOMBIE_VILLAGER, ZOMBIFIED_PIGLIN]
+#            SLIME, SPIDER, STRAY, VEX, VINDICATOR,
+#            WARDEN, WITCH, WITHER,
+#            WITHER_SKELETON, ZOGLIN, ZOMBIE, ZOMBIE_VILLAGER,
+#            ZOMBIFIED_PIGLIN]
+#
 # ZOMBIES: [DROWNED, GIANT, HUSK, PIGLIN
 #           PIGLIN_BRUTE, WITHER_SKELETON, ZOMBIE, ZOMBIE_VILLAGER,
 #           ZOMBIFIED_PIGLIN]
+#
 # SKELETONS: [BOGGED, SKELETON, STRAY, WITHER_SKELETON]
+#
 # FLYING_MOBS: [ALLAY, BAT, BEE, BREEZE,
 #               ENDER_DRAGON, GHAST, PARROT, PHANTOM,
 #               VEX, WITHER]
+#
+# PLAYERS: [PLAYER]
 #
 # #### Effect ####
 #
@@ -720,7 +731,7 @@ fat-animal-1:
       - COMMAND
     type-sets:
       - ANIMALS
-    excluding-types:
+    exclude-types:
       - WOLF
     probability: 5
   attributes:
@@ -735,7 +746,7 @@ fat-animal-2:
       - COMMAND
     type-sets:
       - ANIMALS
-    excluding-types:
+    exclude-types:
       - WOLF
     probability: 1
   attributes:

@@ -6,3 +6,4 @@
 # Bug fixes
 * Disabled the enforced enchantability check to allow enchanting wolf armor
 * Fixed max values for base-armor, follow-range, movement-speed, and scale
+* Aligned ANIMALS and MONSTERS definition with minecraft docs

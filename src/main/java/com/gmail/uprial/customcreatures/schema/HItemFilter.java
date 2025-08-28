@@ -53,7 +53,7 @@ public final class HItemFilter {
         }
         if (entityTypeSets != null) {
             for(HItemTypeSet typeSet : entityTypeSets) {
-                if(typeSet.isContains(entity.getType())) {
+                if(typeSet.contains(entity.getType())) {
                     typeNotFound = false;
                     break;
                 }
@@ -70,7 +70,7 @@ public final class HItemFilter {
         }
         if (excludeEntityTypeSets != null) {
             for(HItemTypeSet typeSet : excludeEntityTypeSets) {
-                if(typeSet.isContains(entity.getType())) {
+                if(typeSet.contains(entity.getType())) {
                     typeNotFound = true;
                     break;
                 }
@@ -104,17 +104,27 @@ public final class HItemFilter {
         if (possibleEntityTypesCache == null) {
 
             possibleEntityTypesCache = new HashSet<>();
-            if (entityTypes != null) {
-                possibleEntityTypesCache.addAll(entityTypes);
-            }
-            if (entityTypeSets != null) {
-                for(HItemTypeSet typeSet : entityTypeSets) {
-                    possibleEntityTypesCache.addAll(typeSet.getAllEntityTypes());
-                }
-            }
+            possibleEntityTypesCache.addAll(getEntityTypes(entityTypes, entityTypeSets));
+            possibleEntityTypesCache.removeAll(getEntityTypes(excludeEntityTypes, excludeEntityTypeSets));
         }
 
         return possibleEntityTypesCache;
+    }
+
+    private static Set<EntityType> getEntityTypes(final Set<EntityType> entityTypes,
+                                                  final Set<HItemTypeSet> entityTypeSets) {
+
+        final Set<EntityType> result = new HashSet<>();
+        if (entityTypes != null) {
+            result.addAll(entityTypes);
+        }
+        if (entityTypeSets != null) {
+            for (HItemTypeSet typeSet : entityTypeSets) {
+                result.addAll(typeSet.getAllEntityTypes());
+            }
+        }
+
+        return result;
     }
 
     public static HItemFilter getFromConfig(FileConfiguration config, CustomLogger customLogger, String key, String title) throws InvalidConfigException {
@@ -125,11 +135,28 @@ public final class HItemFilter {
         Set<EntityType> entityTypes = getSet(EntityType.class, config, customLogger,
                 joinPaths(key, "types"), String.format("types of %s", title));
         Set<EntityType> excludeEntityTypes = getSet(EntityType.class, config, customLogger,
-                joinPaths(key, "excluding-types"), String.format("excluding types of %s", title));
+                joinPaths(key, "exclude-types"), String.format("exclude types of %s", title));
         Set<HItemTypeSet> entityTypeSets = getSet(HItemTypeSet.class, config, customLogger,
                 joinPaths(key, "type-sets"), String.format("type sets of %s", title));
         Set<HItemTypeSet> excludeEntityTypeSets = getSet(HItemTypeSet.class, config, customLogger,
-                joinPaths(key, "excluding-type-sets"), String.format("excluding type sets of %s", title));
+                joinPaths(key, "exclude-type-sets"), String.format("exclude type sets of %s", title));
+
+        final Set<EntityType> included = getEntityTypes(entityTypes, entityTypeSets);
+        final Set<EntityType> excluded = getEntityTypes(excludeEntityTypes, excludeEntityTypeSets);
+        for (final EntityType entityType : excluded) {
+            if(!included.contains(entityType)) {
+                throw new InvalidConfigException(String.format("Can't exclude %s from %s in %s",
+                        entityType, included, title));
+            }
+        }
+        if((entityTypes != null) || (excludeEntityTypes != null)
+                || (entityTypeSets != null) || (excludeEntityTypeSets != null)) {
+            included.removeAll(excluded);
+            if(included.isEmpty()) {
+                throw new InvalidConfigException(String.format("Excluded all entity types in %s", title));
+            }
+        }
+
         Set<SpawnReason> spawnReasons = getSet(SpawnReason.class, config, customLogger,
                 joinPaths(key, "reasons"), String.format("reasons of %s", title));
         Set<String> worlds = getStringSet(config, customLogger,
@@ -137,7 +164,9 @@ public final class HItemFilter {
         Probability probability = Probability.getFromConfig(config, customLogger,
                 joinPaths(key, "probability"), String.format("probability of %s", title));
 
-        if ((entityTypes == null) && (entityTypeSets == null) && (spawnReasons == null) && (worlds == null) && (probability == null)) {
+        if ((entityTypes == null) && (excludeEntityTypes == null)
+                && (entityTypeSets == null) && (excludeEntityTypeSets == null)
+                && (spawnReasons == null) && (worlds == null) && (probability == null)) {
             throw new InvalidConfigException(String.format("No restrictions found in %s", title));
         }
 
@@ -150,8 +179,8 @@ public final class HItemFilter {
     }
 
     public String toString() {
-        return String.format("{types: %s, excluding-types: %s," +
-                        " type-sets: %s, excluding-type-sets: %s," +
+        return String.format("{types: %s, exclude-types: %s," +
+                        " type-sets: %s, exclude-type-sets: %s," +
                         " reasons: %s, probability: %s, probability-player-multiplier: %s}",
                 entityTypes, excludeEntityTypes,
                 entityTypeSets, excludeEntityTypeSets,
