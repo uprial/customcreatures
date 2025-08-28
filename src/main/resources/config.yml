@@ -1888,7 +1888,7 @@ strong-wolves-1:
   # Check <wolf-selection> for related details
   equipment:
     body:
-      probability: 100
+      probability: 50
       material: WOLF_ARMOR
       # According to https://minecraft.wiki/w/Wolf_Armor,
       # Protection and Unbreaking apply their effects to the wolf as expected.
@@ -1916,7 +1916,7 @@ strong-wolves-2:
     base-armor: 7.0
   equipment:
     body:
-      probability: 100
+      probability: 50
       material: WOLF_ARMOR
       # According to https://minecraft.wiki/w/Wolf_Armor,
       # Protection and Unbreaking apply their effects to the wolf as expected.
@@ -1944,7 +1944,7 @@ strong-wolves-3:
     base-armor: 10.5
   equipment:
     body:
-      probability: 100
+      probability: 50
       material: WOLF_ARMOR
       # According to https://minecraft.wiki/w/Wolf_Armor,
       # Protection and Unbreaking apply their effects to the wolf as expected.

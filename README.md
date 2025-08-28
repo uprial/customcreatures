@@ -28,7 +28,7 @@ A Minecraft (Bukkit) plugin that allows to fully customize cloths and tools, enh
 * 100% of Evokers, Illusioners and Ravagers have a large jump and movement bonus, in NETHERITE equipment(*1) with maybe top protection and thorns, random support enhancements, specifically Illusioners with a maybe top-enchanted bow (*2). May drop an enchanted golden apple, a netherite scrap, a book of mending, a totem of undying, and specifically Illusioners - a diamond pickaxe. (*3)
 * 25% of Vindicators spawn with a medium jump and movement bonus, a slightly-enchanted diamond axe (*1).
 * 5% of Piglins spawn an angry Hoglin with increased movement speed and health.
-* 5% of Wolves have increased knockback resistance, movement speed, base armor, model scale, and unbreaking on armor, 1% - largely increased, 0.2% - insanely
+* 5% of Wolves have increased knockback resistance, movement speed, base armor, model scale, chance of unbreaking-enchanted armor 1% - largely increased, 0.2% - insanely
 
 (*1) The default drop chance is 8.5%, and each level of looting adds 1% to the drop chance.
 
