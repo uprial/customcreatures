@@ -3,7 +3,6 @@ package com.gmail.uprial.customcreatures.schema;
 import com.gmail.uprial.customcreatures.CustomCreatures;
 import com.gmail.uprial.customcreatures.common.CustomLogger;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
-import com.gmail.uprial.customcreatures.listeners.DebugListener;
 import com.gmail.uprial.customcreatures.schema.numerics.IValue;
 import com.google.common.collect.ImmutableList;
 import org.bukkit.attribute.Attribute;
@@ -83,10 +82,12 @@ public final class WolfSelection {
             ));
         }
 
-        if(customLogger.isDebugMode()) {
+        customLogger.info(String.format("Handle %s: bred %s from %s, %s, and scale %.2f",
+                title, format(child), format(p1), format(p2), scale));
+        /*if(customLogger.isDebugMode()) {
             customLogger.debug(String.format("Handle %s: bred %s from %s, %s, and scale %.2f",
                     title, format(child), format(p1), format(p2), scale));
-        }
+        }*/
     }
 
     private double getAvg(final double v1, final double v2,
