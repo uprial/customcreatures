@@ -5,11 +5,12 @@ import com.gmail.uprial.customcreatures.config.ConfigReaderNumbers;
 import com.gmail.uprial.customcreatures.config.ConfigReaderSimple;
 import com.gmail.uprial.customcreatures.config.InvalidConfigException;
 import com.gmail.uprial.customcreatures.schema.HItem;
-import com.gmail.uprial.customcreatures.schema.WolfSelection;
+import com.gmail.uprial.customcreatures.schema.Breeder;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
+import org.bukkit.event.entity.EntityBreedEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 import java.util.*;
@@ -19,14 +20,14 @@ import static com.gmail.uprial.customcreatures.config.ConfigReaderSimple.getKey;
 
 public final class CreaturesConfig {
     private final int timeoutInMs;
-    private final WolfSelection wolfSelection;
+    private final Map<String,Breeder> breeders;
     private final Map<String,HItem> handlers;
 
     private CreaturesConfig(final int timeoutInMs,
-                            final WolfSelection wolfSelection,
+                            final Map<String,Breeder> breeders,
                             final Map<String,HItem> handlers) {
         this.timeoutInMs = timeoutInMs;
-        this.wolfSelection = wolfSelection;
+        this.breeders = breeders;
         this.handlers = handlers;
     }
 
@@ -74,6 +75,19 @@ public final class CreaturesConfig {
         }
     }
 
+    public void handleBreed(CustomLogger customLogger, EntityBreedEvent event) {
+        int counter = 0;
+        for (Breeder breeder : breeders.values()) {
+            if(breeder.handleBreed(customLogger, event)) {
+                counter++;
+            }
+        }
+        if (customLogger.isDebugMode()) {
+            customLogger.debug(String.format("Handled breed of %s: %d handlers applied",
+                    format(event.getEntity()), counter));
+        }
+    }
+
     public static boolean isDebugMode(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         return ConfigReaderSimple.getBoolean(config, customLogger, "debug", "'debug' flag", false);
     }
@@ -82,49 +96,58 @@ public final class CreaturesConfig {
         return timeoutInMs;
     }
 
-    public WolfSelection getWolfSelection() {
-        return wolfSelection;
-    }
-
     public static CreaturesConfig getFromConfig(FileConfiguration config, CustomLogger customLogger) throws InvalidConfigException {
         int timeoutInMs = ConfigReaderNumbers.getInt(config, customLogger,
                 "timeout-in-ms", "'timeout-in-ms' value", 1, 3600_000, 5);
-        WolfSelection wolfSelection = WolfSelection.getFromConfig(config, customLogger,
-                "wolf-selection",
-                "wolf selection");
 
-        List<?> handlersConfig = config.getList("handlers");
-        if((handlersConfig == null) || (handlersConfig.size() <= 0)) {
-            throw new InvalidConfigException("Empty 'handlers' list");
+        final Map<String,Breeder> breeders = getList(config, customLogger, "breeders", "'breeders'",
+                (String key) -> Breeder.getFromConfig(config, customLogger, key, String.format("breeder '%s'", key)));
+
+        final Map<String,HItem> handlers = getList(config, customLogger, "handlers", "'handlers'",
+                (String key) -> HItem.getFromConfig(config, customLogger, key));
+
+        return new CreaturesConfig(timeoutInMs, breeders, handlers);
+    }
+
+    private interface ListGetter<T> {
+        T get(final String key) throws InvalidConfigException;
+    }
+    private static <T> Map<String, T> getList(FileConfiguration config, CustomLogger customLogger,
+                                              String key, String title,
+                                              ListGetter<T> func) throws InvalidConfigException {
+
+        List<?> itemsConfig = config.getList(key);
+        if((itemsConfig == null) || (itemsConfig.size() <= 0)) {
+            throw new InvalidConfigException(String.format("Empty %s list", title));
         }
 
-        Map<String,HItem> handlers = new LinkedHashMap<>();
+        Map<String,T> items = new LinkedHashMap<>();
         Set<String> keys = new HashSet<>();
 
-        int handlersConfigSize = handlersConfig.size();
-        for(int i = 0; i < handlersConfigSize; i++) {
-            String key = getKey(handlersConfig.get(i), "'handlers'", i);
-            String keyLC = lc(key);
-            if (keys.contains(keyLC)) {
-                throw new InvalidConfigException(String.format("Key '%s' in 'handlers' is not unique", key));
+        int itemsConfigConfigSize = itemsConfig.size();
+        for(int i = 0; i < itemsConfigConfigSize; i++) {
+            String subKey = getKey(itemsConfig.get(i), title, i);
+            String subKeyLC = lc(subKey);
+            if (keys.contains(subKeyLC)) {
+                throw new InvalidConfigException(String.format("Key '%s' in %s is not unique", subKey, title));
             }
-            if (config.get(key) == null) {
-                throw new InvalidConfigException(String.format("Null definition of handler '%s' at pos %d", key, i));
+            if (config.get(subKey) == null) {
+                throw new InvalidConfigException(String.format("Null definition of '%s' for %s at pos %d", subKey, title, i));
             }
-            keys.add(keyLC);
+            keys.add(subKeyLC);
 
             try {
-                handlers.put(keyLC, HItem.getFromConfig(config, customLogger, key));
+                items.put(subKeyLC, func.get(subKey));
             } catch (InvalidConfigException e) {
                 customLogger.error(e.getMessage());
             }
         }
 
-        if(handlers.size() < 1) {
-            throw new InvalidConfigException("There are no valid handlers definitions");
+        if(items.size() < 1) {
+            throw new InvalidConfigException(String.format("There are no valid %s definitions", title));
         }
 
-        return new CreaturesConfig(timeoutInMs, wolfSelection, handlers);
+        return items;
     }
 
     private static String lc(String key) {
@@ -132,7 +155,7 @@ public final class CreaturesConfig {
     }
 
     public String toString() {
-        return String.format("timeout-in-ms: %d, wolf-selection: %s, handlers: %s",
-                timeoutInMs, wolfSelection, handlers.values());
+        return String.format("timeout-in-ms: %d, breeders: %s, handlers: %s",
+                timeoutInMs, breeders.values(), handlers.values());
     }
 }

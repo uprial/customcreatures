@@ -37,7 +37,9 @@ public class HItemTest extends TestConfigBase {
                 "   exclude-type-sets:",
                 "     - SKELETONS",
                 "   reasons:",
-                "     - NATURAL",
+                "     - CUSTOM",
+                "   exclude-reasons:",
+                "     - BREEDING",
                 "   worlds:",
                 "     - world",
                 "   probability: 100",
@@ -65,7 +67,9 @@ public class HItemTest extends TestConfigBase {
                 "   exclude-type-sets:",
                 "     - SKELETONS",
                 "   reasons:",
-                "     - NATURAL",
+                "     - CUSTOM",
+                "   exclude-reasons:",
+                "     - BREEDING",
                 "   worlds:",
                 "     - world",
                 "   probability: 100",
@@ -91,7 +95,8 @@ public class HItemTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "h:",
                 " filter:",
-                "   probability: 99"), getCustomLogger(), "h");
+                "  types:",
+                "   - ZOMBIE"), getCustomLogger(), "h");
     }
 
     @Test
@@ -111,7 +116,9 @@ public class HItemTest extends TestConfigBase {
                 "   exclude-type-sets:",
                 "     - SKELETONS",
                 "   reasons:",
-                "     - NATURAL",
+                "     - CUSTOM",
+                "   exclude-reasons:",
+                "     - BREEDING",
                 "   worlds:",
                 "     - world",
                 "   probability: 100",
@@ -147,7 +154,8 @@ public class HItemTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "h:",
                 " filter:",
-                "  probability: 99",
+                "  types:",
+                "   - ZOMBIE",
                 " effects:",
                 "  - acceleration",
                 " acceleration:",
@@ -170,7 +178,8 @@ public class HItemTest extends TestConfigBase {
         getFromConfig(getPreparedConfig(
                 "h:",
                 " filter:",
-                "  probability: 99",
+                "  types:",
+                "   - ZOMBIE",
                 " equipment:",
                 "  helmet:",
                 "   material-type: IRON",

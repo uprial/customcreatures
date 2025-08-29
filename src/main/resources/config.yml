@@ -32,18 +32,66 @@ debug: false
 timeout-in-ms: 5
 
 #
-# When a new wolf is bred, and at least one of its parent is not fully basic,
-# the new wolf parameters are calculated as the average across its parents
+# breeders:     ### List of breeders' paths.
+#               ### (* see description of <breeder> below)
+#
+# When a new entity is bred, and at least one of its parent is not fully basic,
+# the new entity parameters are calculated as the average across its parents
 # with some random component.
 #
-# Check for related details:
-# - strong-wolves-1
-# - strong-wolves-2
-# - strong-wolves-3
+# - <breeder1>
+#   ...
+# - <breederN>
 #
-wolf-selection:
-  # randomizer: <float-value:0.0..2.0> ### The random component is the key for selection.
-  #                                    ### (* see description of <float-value> below)
+# All handlers will handle a 'EntityBreedEvent' event in sequence in which
+# they are described in this option.
+#
+breeders:
+  - wolf-breeder
+  - animal-breeder
+
+#
+# ==== Breeder ====
+#
+# <breeder>:
+#   filter: <filter>   ### Filter that will be applied before modifications.
+#                      ### By default, no filters will be applied.
+#                      ###
+#                      ### (* see description of <filter> below,
+#                      ### considering reasons, worlds, probability
+#                      ### and probability-player-multiplier are excluded)
+#
+#   randomizer: <float-value:0.0..2.0> ### The random component is the key for breeder.
+#                                      ### (* see description of <float-value> below)
+#
+# #### Attributes (* see description of <attributes> below) ####
+#
+#   base-armor:
+#    base: <float:0..30>
+#    max: <float:0..30>
+#   follow-range:
+#     base: <float:0..512>
+#     max: <float:0..512>
+#   knockback-resistance:
+#     base: <float:0..1>
+#     max: <float:0..1>
+#   movement-speed:
+#     base: <float:0.0001..32>
+#     max: <float:0.0001..32>
+#   scale:
+#     base: <float:0.0625..16>
+#     max: <float:0.0625..16>
+
+wolf-breeder:
+  #
+  # Check for related details:
+  # - strong-wolves-1
+  # - strong-wolves-2
+  # - strong-wolves-3
+  #
+  filter:
+    types:
+      - WOLF
   randomizer:
     type: random
     min: 0.85
@@ -62,32 +110,56 @@ wolf-selection:
     # 14.0 - 80%
     #
     # monotonic: 0.0  - 3.5  - 7.0  - 10.5 - 14.0
-    # <float:0..30>
     base: 0.0
     max: 14.0
-    # monotonic: 16   - 32   - 48   - 64   - 80
-    # <float:0..512>
   follow-range:
+    # monotonic: 16   - 32   - 48   - 64   - 80
     base: 16.0
     max: 80.0
-    # monotonic: 0.0  - 0.2  - 0.4  - 0.6  - 0.8
-    # <float:0..1>
   knockback-resistance:
+    # monotonic: 0.0  - 0.2  - 0.4  - 0.6  - 0.8
     base: 0.0
     max: 0.8
-    # monotonic: 0.30 - 0.36 - 0.42 - 0.48 - 0.54
-    # <float:0.0001..32>
   movement-speed:
+    # monotonic: 0.30 - 0.36 - 0.42 - 0.48 - 0.54
     base: 0.3
     max: 0.54
-    # monotonic: 1.0  - 1.5  - 2.0  - 2.5  - 3.0
-    # <float:0.0625..16>
   scale:
+    # monotonic: 1.0  - 1.5  - 2.0  - 2.5  - 3.0
     base: 1.0
     max: 3.0
   # The "max-health-multiplier" and "max-health" would not work here,
   # Because the Wolf changes health after taming:
   # https://minecraft.wiki/w/Wolf
+
+animal-breeder:
+  #
+  # Check for related details:
+  # - fat-animal-1
+  # - fat-animal-2
+  #
+  filter:
+    type-sets:
+      # According to https://minecraft.wiki/w/Armor,
+      # non-animals may have different armors.
+      - ANIMALS
+    exclude-types:
+      - WOLF
+  randomizer:
+    type: random
+    min: 0.85
+    max: 1.25
+    distribution: normal
+  base-armor:
+    # monotonic: 0.0  - 5.0  - 10.0 - 15.0
+    base: 0.0
+    max: 15.0
+  scale:
+    # monotonic: 1.0  - 1.25 - 1.5  - 1.75
+    base: 1.0
+    max: 1.75
+  # The "movement-speed" and "knockback-resistance" would not work here,
+  # because animals have too many different movement speeds.
 
 #
 # handlers:     ### List of handlers' paths.
@@ -205,6 +277,9 @@ handlers:
 #     - <spawn-reason1>
 #       ...
 #     - <spawn-reasonN>
+#
+#   exclude-reasons: ### Excluded spawn reasons.
+#                    ### Exclusion has higher priority than inclusion.
 #
 #   types:   ### Possible entity types, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
@@ -725,30 +800,28 @@ handlers:
 
 fat-animal-1:
   filter:
-    reasons:
-      - NATURAL
-      - CUSTOM
-      - COMMAND
+    exclude-reasons:
+      - BREEDING
     type-sets:
       - ANIMALS
     exclude-types:
       - WOLF
     probability: 5
+  # Check <animal-breeder> for related details
   attributes:
     scale: 1.25
     base-armor: 5.0
 
 fat-animal-2:
   filter:
-    reasons:
-      - NATURAL
-      - CUSTOM
-      - COMMAND
+    exclude-reasons:
+      - BREEDING
     type-sets:
       - ANIMALS
     exclude-types:
       - WOLF
     probability: 1
+  # Check <animal-breeder> for related details
   attributes:
     scale: 1.5
     base-armor: 10.0
@@ -1850,7 +1923,8 @@ angry-hoglin:
     movement-speed-multiplier: 1.5
     # Hoglin: 20(♥) > 50(♥)
     max-health-multiplier: 2.5
-    scale: 1.5
+    # May conflict with fat-animal-1 and fat-animal-2
+    # scale: 1.5
     # Too many Hoglins would exist in Nether
     # remove-when-far-away: false
 
@@ -1883,10 +1957,8 @@ zombie-horse:
 
 strong-wolves-1:
   filter:
-    reasons:
-      - NATURAL
-      - CUSTOM
-      - COMMAND
+    exclude-reasons:
+      - BREEDING
     types:
       - WOLF
     probability: 5
@@ -1896,7 +1968,7 @@ strong-wolves-1:
     movement-speed: 0.36
     scale: 1.5
     base-armor: 3.5
-  # Check <wolf-selection> for related details
+  # Check <wolf-breeder> for related details
   equipment:
     body:
       probability: 50
@@ -1911,14 +1983,12 @@ strong-wolves-1:
 
 strong-wolves-2:
   filter:
-    reasons:
-      - NATURAL
-      - CUSTOM
-      - COMMAND
+    exclude-reasons:
+      - BREEDING
     types:
       - WOLF
     probability: 1
-  # Check <wolf-selection> for related details
+  # Check <wolf-breeder> for related details
   attributes:
     follow-range: 48.0
     knockback-resistance: 0.4
@@ -1939,14 +2009,12 @@ strong-wolves-2:
 
 strong-wolves-3:
   filter:
-    reasons:
-      - NATURAL
-      - CUSTOM
-      - COMMAND
+    exclude-reasons:
+      - BREEDING
     types:
       - WOLF
     probability: 0.2
-  # Check <wolf-selection> for related details
+  # Check <wolf-breeder> for related details
   attributes:
     follow-range: 64.0
     knockback-resistance: 0.6

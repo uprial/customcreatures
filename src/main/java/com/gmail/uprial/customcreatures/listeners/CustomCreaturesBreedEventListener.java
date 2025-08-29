@@ -16,11 +16,11 @@ public class CustomCreaturesBreedEventListener extends AbstractCustomCreaturesEv
     @SuppressWarnings("unused")
     @EventHandler(priority = EventPriority.NORMAL)
     public void onEntityBreed(EntityBreedEvent event) {
-        if(!event.isCancelled() && (event.getEntity() instanceof Wolf)) {
+        if(!event.isCancelled()) {
             final CreaturesConfig creaturesConfig = plugin.getCreaturesConfig();
             // Don't try to handle an entity if there was error in loading of config.
             if (creaturesConfig != null) {
-                creaturesConfig.getWolfSelection().handle(plugin, customLogger, event);
+                creaturesConfig.handleBreed(customLogger, event);
             }
         }
     }

@@ -50,75 +50,80 @@ public class CreaturesConfigTest extends TestConfigBase {
     @Test
     public void testNoHandlers() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty 'handlers' list");
+        e.expectMessage("Empty 'breeders' list");
         loadConfig("x:");
     }
 
     @Test
     public void testEmptyHandlersList() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Empty 'handlers' list");
-        loadConfig("handlers:");
+        e.expectMessage("Empty 'breeders' list");
+        loadConfig("breeders:");
     }
 
     @Test
     public void testNoDefinitionOfHandlers() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Null definition of handler 'x' at pos 0");
-        loadConfig("handlers:",
+        e.expectMessage("Null definition of 'x' for 'breeders' at pos 0");
+        loadConfig("breeders:",
                 " - x");
     }
 
     @Test
     public void testDuplicateKeyInHandlers() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Key 'x' in 'handlers' is not unique");
-        loadConfig("handlers:",
+        e.expectMessage("Key 'x' in 'breeders' is not unique");
+        loadConfig("breeders:",
                 " - x",
                 " - x",
                 "x:",
                 " filter:",
-                "   probability: 99",
-                " attributes:",
-                "   max-health-multiplier: 1.0");
+                "  types:",
+                "   - ZOMBIE",
+                " randomizer: 1.0");
     }
 
     @Test
-    public void testDuplicateKeyInHandlersWithDifferentCase() throws Exception {
+    public void testDuplicateKeyInBreederssWithDifferentCase() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("Key 'X' in 'handlers' is not unique");
-        loadConfig("handlers:",
+        e.expectMessage("Key 'X' in 'breeders' is not unique");
+        loadConfig("breeders:",
                 " - x",
                 " - X",
                 "x:",
                 " filter:",
-                "  probability: 99",
-                " attributes:",
-                "   max-health-multiplier: 1.0");
+                "  types:",
+                "   - ZOMBIE",
+                " randomizer: 1.0");
     }
 
     @Test
     public void testNoValidHandlersDefinitions() throws Exception {
         e.expect(InvalidConfigException.class);
-        e.expectMessage("There are no valid handlers definitions");
-        loadConfig(getIndifferentCustomLogger(), "handlers:",
+        e.expectMessage("There are no valid 'breeders' definitions");
+        loadConfig(getIndifferentCustomLogger(), "breeders:",
                 " - x",
                 "x:",
-                " filter: dd");
+                " filter:",
+                "  types:",
+                "   - ZOMBIE");
     }
 
     @Test
     public void testNormalConfig() throws Exception {
         assertEquals(
                 "timeout-in-ms: 5," +
-                        " wolf-selection: {randomizer: 1.01," +
+                        " breeders: [{filter: {types: [WOLF], exclude-types: null," +
+                        " type-sets: null, exclude-type-sets: null}," +
+                        " randomizer: 1.01," +
                         " base-armor: {base: 1, max: 14}," +
                         " follow-range: {base: 16, max: 80}," +
                         " knockback-resistance: {base: 0, max: 0.8}," +
                         " movement-speed: {base: 0.3, max: 0.54}," +
-                        " scale: {base: 1, max: 3}}," +
-                        " handlers: [{name: x, filter: {types: null, exclude-types: null," +
-                        " type-sets: null, exclude-type-sets: null, reasons: null, probability: 99," +
+                        " scale: {base: 1, max: 3}}]," +
+                        " handlers: [{name: x, filter: {types: [ZOMBIE], exclude-types: null," +
+                        " type-sets: null, exclude-type-sets: null," +
+                        " reasons: null, exclude-reasons: null, probability: null," +
                         " probability-player-multiplier: null}," +
                         " effects: null, attributes: {max-health-multiplier: 1.0," +
                         " base-armor: null, follow-range: null, knockback-resistance: null," +
@@ -127,7 +132,12 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " equipment: null, drops: null, drop-exp: null, entity-specific-attributes: null," +
                         " spawn: null}]",
                 loadConfig("timeout-in-ms: 5",
-                        "wolf-selection:",
+                        "breeders:",
+                        " - wolf-breeder",
+                        "wolf-breeder:",
+                        " filter:",
+                        "  types:",
+                        "   - WOLF",
                         " randomizer: 1.01",
                         " base-armor:",
                         "  base: 1.0",
@@ -148,7 +158,8 @@ public class CreaturesConfigTest extends TestConfigBase {
                         " - x",
                         "x:",
                         " filter:",
-                        "   probability: 99",
+                        "  types:",
+                        "   - ZOMBIE",
                         " attributes:",
                         "   max-health-multiplier: 1.0").toString());
     }
