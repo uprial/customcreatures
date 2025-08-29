@@ -95,7 +95,7 @@ wolf-breeder:
   randomizer:
     type: random
     min: 0.85
-    max: 1.25
+    max: 1.15
     distribution: normal
   base-armor:
     # According to https://minecraft.wiki/w/Armor,
@@ -148,7 +148,7 @@ animal-breeder:
   randomizer:
     type: random
     min: 0.85
-    max: 1.25
+    max: 1.15
     distribution: normal
   base-armor:
     # monotonic: 0.0  - 5.0  - 10.0 - 15.0
