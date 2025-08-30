@@ -105,7 +105,7 @@ wolf-breeder:
     # Wolf armor provide immunity against most damage types until the armor breaks
     # and gives +11 armor.
     #
-    # 4.0 (+11.0) Provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    # 4.0 (+11.0) provides 40% of resistance to DIAMOND_SWORD+SHARPNESS(5)
     # 9.0  - 60%
     # 14.0 - 80%
     #
@@ -151,13 +151,16 @@ animal-breeder:
     max: 1.15
     distribution: normal
   base-armor:
-    # monotonic: 0.0  - 5.0  - 10.0 - 15.0
+    # 5.0 provides 4% of resistance to DIAMOND_SWORD+SHARPNESS(5)
+    # 10.0 - 24%
+    # 15.0 - 44%
+    # monotonic: 0.0 - 5.0 - 10.0 - 15.0
     base: 0.0
     max: 15.0
   scale:
-    # monotonic: 1.0  - 1.25 - 1.5  - 1.75
+    # monotonic: 1.0 - 1.2 - 1.4  - 1.6
     base: 1.0
-    max: 1.75
+    max: 1.6
   # The "movement-speed" and "knockback-resistance" would not work here,
   # because animals have too many different movement speeds.
 
@@ -809,7 +812,7 @@ fat-animal-1:
     probability: 5
   # Check <animal-breeder> for related details
   attributes:
-    scale: 1.25
+    scale: 1.2
     base-armor: 5.0
 
 fat-animal-2:
@@ -823,7 +826,7 @@ fat-animal-2:
     probability: 1
   # Check <animal-breeder> for related details
   attributes:
-    scale: 1.5
+    scale: 1.4
     base-armor: 10.0
 
 rapid-monster:
