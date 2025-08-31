@@ -1,6 +1,7 @@
 # New features
+* Allowed to control mob breeding with parameter averaging and randomization
+* Added strong wolves: 5% of Wolves have increased knockback resistance, movement speed, base armor, model scale, chance of unbreaking-enchanted armor 1% - largely increased, 0.2% - insanely
 * Allowed to configure body and saddle for entities such as horses, wolves and pigs
-* Added strong wolves
 * Added a saddle to zombie friends
 * Allowed exclude-types, exclude-type-sets, and exclude-reasons filters
 # Bug fixes
