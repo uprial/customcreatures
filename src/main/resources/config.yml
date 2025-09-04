@@ -1574,6 +1574,8 @@ rabbit-killer:
     movement-speed-multiplier: 2.0
     # Rabbit: 1.5(♥) > 6(♥)
     max-health-multiplier: 4.0
+    # Conflicts with animal-breeder,
+    # with scale.max: 1.6
     scale: 2.0
   entity-specific-attributes:
     rabbit:
