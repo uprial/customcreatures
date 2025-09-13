@@ -437,8 +437,8 @@ handlers:
 # #### Spawn ####
 #
 # <spawn>:
-#   probability: <0..100> ### Probability in percents that this spawn will be triggered.
-#                         ### By default, the probability is 100%.
+#   probability: <float:0..100> ### Probability in percents that this spawn will be triggered.
+#                               ### By default, the probability is 100%.
 #
 #   type:  ### Possible entity types, see
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
@@ -446,6 +446,11 @@ handlers:
 #https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
 #
 #   amount: <int-value:1..?>
+#
+#   limit:                 ### Spawn only when entities of type are inside the limit
+#                          ### within amount and range.
+#     amount: <int:1..?>
+#     range: <float:0..?>
 #
 # #### Type set ####
 #
@@ -533,9 +538,9 @@ handlers:
 # #### Equipment cloth ####
 #
 # <equipment-cloth>:
-#   probability: <0..100>   ### Probability in percents that this cloth will
-#                           ### be dressed on the entity.
-#                           ### By default, the probability is 100%.
+#   probability: <float:0..100>   ### Probability in percents that this cloth will
+#                                 ### be dressed on the entity.
+#                                 ### By default, the probability is 100%.
 #
 #   material-type: <material-type> ### Material of the cloth. Values:
 #                                  ###  - LEATHER
@@ -1666,6 +1671,10 @@ vex-spawns-an-illusioner:
   spawn:
     type: ILLUSIONER
     lighting-on-spawn: true
+    limit:
+      amount: 1
+      # In sync with insane-mansions-and-raids.attributes.follow-range
+      range: 100.0
 
 angry-vex:
   filter:
@@ -1762,6 +1771,7 @@ insane-mansions-and-raids:
         - enchantments.rand_maybe_top_thorns_except_friday
         - enchantments.best_vanishing_curse
   attributes:
+    # In sync with vex-spawns-an-illusioner.spawn.limit.range
     follow-range: 100.0
     #
     # Ravagers already have congenital knockback resistance.

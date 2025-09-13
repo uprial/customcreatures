@@ -66,14 +66,62 @@ public class HItemSpawnTest extends TestConfigBase {
     }
 
     @Test
+    public void testEmptyLimit() throws Exception {
+        e.expect(RuntimeException.class);
+        e.expectMessage("Empty limit of spawn. Use default value NULL");
+
+        getFromConfig(getPreparedConfig(
+                "s: ",
+                "  probability: 100",
+                "  type: ILLUSIONER",
+                "  amount: 1",
+                "  lighting-on-spawn: true"), getDebugFearingCustomLogger(), "s", "spawn");
+    }
+
+    @Test
+    public void testEmptyLimitAmount() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty amount of limit of spawn");
+
+        getFromConfig(getPreparedConfig(
+                "s: ",
+                "  probability: 100",
+                "  type: ILLUSIONER",
+                "  amount: 1",
+                "  lighting-on-spawn: true",
+                "  limit:",
+                "   x: y"), getDebugFearingCustomLogger(), "s", "spawn");
+    }
+
+    @Test
+    public void testEmptyLimitRange() throws Exception {
+        e.expect(InvalidConfigException.class);
+        e.expectMessage("Empty range of limit of spawn");
+
+        getFromConfig(getPreparedConfig(
+                "s: ",
+                "  probability: 100",
+                "  type: ILLUSIONER",
+                "  amount: 1",
+                "  lighting-on-spawn: true",
+                "  limit:",
+                "   amount: 1"), getDebugFearingCustomLogger(), "s", "spawn");
+    }
+
+    @Test
     public void testWholeSpawn() throws Exception {
         HItemSpawn spawn = getFromConfig(getPreparedConfig(
                         "s: ",
                         "  probability: 100",
                         "  type: ILLUSIONER",
                         "  amount: 1",
-                        "  lighting-on-spawn: true"),
+                        "  lighting-on-spawn: true",
+                        "  limit:",
+                        "    amount: 1",
+                        "    range: 100.0"),
                 getParanoiacCustomLogger(), "s", "spawn");
-        assertEquals("{probability: null, type: ILLUSIONER, amount: 1, lighting-on-spawn: true}", spawn.toString());
+        assertEquals("{probability: null, type: ILLUSIONER, amount: 1," +
+                " lighting-on-spawn: true," +
+                " limit: {amount: 1, range: 100}}", spawn.toString());
     }
 }
