@@ -48,7 +48,7 @@ public final class HItemEquipmentSpecial {
             }
 
             try {
-                setItem(entity.getEquipment(), equipmentType, itemStack);
+                setItem(entity, equipmentType, itemStack);
             } catch (OperationIsNotSupportedException e) {
                 customLogger.error(String.format("Can't handle %s: %s", title, e.getMessage()));
             }

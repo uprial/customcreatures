@@ -2,6 +2,8 @@ package com.gmail.uprial.customcreatures.schema;
 
 import com.gmail.uprial.customcreatures.schema.exceptions.MethodIsNotSupportedException;
 import com.gmail.uprial.customcreatures.schema.exceptions.OperationIsNotSupportedException;
+import org.bukkit.entity.AbstractHorse;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -57,12 +59,19 @@ final public class EntityEquipmentHelper {
         }
     }
 
-    public static void setItem(EntityEquipment entityEquipment, EquipmentType equipmentType, ItemStack itemStack) throws OperationIsNotSupportedException {
+    public static void setItem(LivingEntity entity, EquipmentType equipmentType, ItemStack itemStack) throws OperationIsNotSupportedException {
         try {
             if (equipmentType == EquipmentType.BODY) {
-                entityEquipment.setItem(EquipmentSlot.BODY, itemStack);
+                entity.getEquipment().setItem(EquipmentSlot.BODY, itemStack);
             } else if (equipmentType == EquipmentType.SADDLE) {
-                entityEquipment.setItem(EquipmentSlot.SADDLE, itemStack);
+                try {
+                    entity.getEquipment().setItem(EquipmentSlot.SADDLE, itemStack);
+                } catch (NoSuchFieldError ignored) {
+                    // BC for versions 1.21.3...1.21.5
+                    if(entity instanceof AbstractHorse) {
+                        ((AbstractHorse)entity).getInventory().setSaddle(itemStack);
+                    }
+                }
             }
         } catch (UnsupportedOperationException ignored) {
             throw new OperationIsNotSupportedException();

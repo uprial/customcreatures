@@ -78,6 +78,7 @@ public enum HItemTypeSet {
         try {
             entityTypes.add(HAPPY_GHAST);
         } catch (NoSuchFieldError ignored) {
+            // BC for versions 1.21.3...1.21.5
             Bukkit.getServer().getLogger().info(
                     "HAPPY_GHAST introduced in 1.21.6 can't be added to ANIMALS");
         }

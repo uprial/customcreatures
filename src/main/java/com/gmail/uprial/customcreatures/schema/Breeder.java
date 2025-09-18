@@ -85,14 +85,10 @@ public final class Breeder {
                 ));
             }
 
-            customLogger.info(String.format("Handle %s: bred %s from %s, %s, and scale %.2f",
-                    title, format(child), format(p1), format(p2), scale));
-            /*
             if(customLogger.isDebugMode()) {
                 customLogger.debug(String.format("Handle %s: bred %s from %s, %s, and scale %.2f",
                         title, format(child), format(p1), format(p2), scale));
             }
-             */
 
             return true;
         } else {

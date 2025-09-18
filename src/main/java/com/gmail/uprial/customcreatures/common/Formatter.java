@@ -3,6 +3,7 @@ package com.gmail.uprial.customcreatures.common;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.AbstractHorse;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.EntityEquipment;
@@ -20,13 +21,13 @@ public final class Formatter {
         HItemAttributes, HItemEnchantment, and HItemEntitySpecificAttributes,
         this function is used in debug mode only.
      */
-    public static String format(Entity entity) {
+    public static String format(final Entity entity) {
         if(entity == null) {
             return "null";
         }
         final Location location = entity.getLocation();
         final StringBuilder sb = new StringBuilder(String.format(
-                "%s[w: %s, x: %.0f, y: %.0f, z: %.0f, id: %s]",
+                "%s[%s:%.0f:%.0f:%.0f]#%s",
                 entity.getType(),
                 location.getWorld().getName(),
                 location.getX(), location.getY(), location.getZ(),
@@ -41,8 +42,12 @@ public final class Formatter {
                     le.getAttribute(Attribute.ARMOR).getBaseValue(), le.getAttribute(Attribute.ARMOR).getValue()));
             sb.append(String.format(", Speed: %.2f",
                     le.getAttribute(Attribute.MOVEMENT_SPEED).getBaseValue()));
-            sb.append(String.format(", Follow range: %.2f",
-                    le.getAttribute(Attribute.FOLLOW_RANGE).getBaseValue()));
+
+            // Doesn't exist for ARMOR_STAND
+            if(le.getAttribute(Attribute.FOLLOW_RANGE) != null) {
+                sb.append(String.format(", Follow range: %.2f",
+                        le.getAttribute(Attribute.FOLLOW_RANGE).getBaseValue()));
+            }
             sb.append(String.format(", Knockback resistance: %.2f",
                     le.getAttribute(Attribute.KNOCKBACK_RESISTANCE).getBaseValue()));
             sb.append(String.format(", Scale: %.2f",
@@ -58,7 +63,14 @@ public final class Formatter {
             slots.put("MainHand", e.getItemInMainHand());
             slots.put("OffHand", e.getItemInOffHand());
             slots.put("Body", e.getItem(EquipmentSlot.BODY));
-            slots.put("Saddle", e.getItem(EquipmentSlot.SADDLE));
+            try {
+                slots.put("Saddle", e.getItem(EquipmentSlot.SADDLE));
+            } catch (NoSuchFieldError ignored) {
+                // BC for versions 1.21.3...1.21.5
+                if(le instanceof AbstractHorse) {
+                    slots.put("Saddle", ((AbstractHorse)le).getInventory().getSaddle());
+                }
+            }
             for(final Map.Entry<String, ItemStack> entry : slots.entrySet()) {
                 if((entry.getValue() != null) && (!entry.getValue().getType().isAir())) {
                     sb.append(String.format(", %s: %s", entry.getKey(), format(entry.getValue())));
@@ -100,7 +112,7 @@ public final class Formatter {
         return sb.toString();
     }
 
-    public static String format(PotionEffect effect) {
+    public static String format(final PotionEffect effect) {
         if(effect == null) {
             return "null";
         }
