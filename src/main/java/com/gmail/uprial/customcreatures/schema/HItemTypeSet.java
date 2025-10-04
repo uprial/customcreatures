@@ -15,17 +15,18 @@ import static org.bukkit.entity.EntityType.*;
     AbstractCow, AbstractHorse, AbstractSkeleton, AbstractVillager, Ageable, Allay, Ambient, Animals,
     Armadillo, ArmorStand, Axolotl, Bat, Bee, Blaze, Bogged, Breedable,
     Breeze, Camel, Cat, CaveSpider, ChestedHorse, Chicken, Cod, ComplexLivingEntity,
-    Cow, Creaking, Creature, Creeper, Dolphin, Donkey, Drowned, ElderGuardian,
-    EnderDragon, Enderman, Endermite, Enemy, Evoker, Fish, Flying, Fox,
-    Frog, Ghast, Giant, GlowSquid, Goat, Golem, Guardian, Hoglin,
-    Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem, Llama, MagmaCube,
-    Mob, Monster, Mule, MushroomCow, NPC, Ocelot, Panda, Parrot,
-    Phantom, Pig, Piglin, PiglinAbstract, PiglinBrute, PigZombie, Pillager, Player,
-    PolarBear, PufferFish, Rabbit, Raider, Ravager, Salmon, Sheep, Shulker,
-    Silverfish, Skeleton, SkeletonHorse, Slime, Sniffer, Snowman, Spellcaster, Spider,
-    Squid, Steerable, Stray, Strider, Tadpole, Tameable, TraderLlama, TropicalFish,
-    Turtle, Vex, Villager, Vindicator, WanderingTrader, Warden, WaterMob, Witch,
-    Wither, WitherSkeleton, Wolf, Zoglin, Zombie, ZombieHorse, ZombieVillager
+    CopperGolem, Cow, Creaking, Creature, Creeper, Dolphin, Donkey, Drowned,
+    ElderGuardian, EnderDragon, Enderman, Endermite, Enemy, Evoker, Fish, Flying,
+    Fox, Frog, Ghast, Giant, GlowSquid, Goat, Golem, Guardian,
+    HappyGhast, Hoglin, Horse, HumanEntity, Husk, Illager, Illusioner, IronGolem,
+    Llama, MagmaCube, Mannequin, Mob, Monster, Mule, MushroomCow, NPC,
+    Ocelot, Panda, Parrot, Phantom, Pig, Piglin, PiglinAbstract, PiglinBrute,
+    PigZombie, Pillager, Player, PolarBear, PufferFish, Rabbit, Raider, Ravager,
+    Salmon, Sheep, Shulker, Silverfish, Skeleton, SkeletonHorse, Slime, Sniffer,
+    Snowman, Spellcaster, Spider, Squid, Steerable, Stray, Strider, Tadpole,
+    Tameable, TraderLlama, TropicalFish, Turtle, Vex, Villager, Vindicator, WanderingTrader,
+    Warden, WaterMob, Witch, Wither, WitherSkeleton, Wolf, Zoglin, Zombie,
+    ZombieHorse, ZombieVillager
 */
 public enum HItemTypeSet {
     ANIMALS(null,
@@ -41,7 +42,7 @@ public enum HItemTypeSet {
                     STRIDER, TADPOLE, TRADER_LLAMA, TROPICAL_FISH,
                     TURTLE, WOLF, ZOMBIE_HORSE))),
     GOLEMS(null,
-            Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM)),
+            tryNewGolems(Sets.newHashSet(IRON_GOLEM, SNOW_GOLEM))),
     MONSTERS(null,
             // According to https://minecraft.wiki/w/Monster
             Sets.newHashSet(BLAZE, BOGGED, BREEZE, CAVE_SPIDER,
@@ -81,6 +82,18 @@ public enum HItemTypeSet {
             // BC for versions 1.21.3...1.21.5
             Bukkit.getServer().getLogger().info(
                     "HAPPY_GHAST introduced in 1.21.6 can't be added to ANIMALS");
+        }
+
+        return entityTypes;
+    }
+
+    private static Set<EntityType> tryNewGolems(final Set<EntityType> entityTypes) {
+        try {
+            entityTypes.add(COPPER_GOLEM);
+        } catch (NoSuchFieldError ignored) {
+            // BC for versions 1.21.3...1.21.8
+            Bukkit.getServer().getLogger().info(
+                    "COPPER_GOLEM introduced in 1.21.9 can't be added to GOLEMS");
         }
 
         return entityTypes;

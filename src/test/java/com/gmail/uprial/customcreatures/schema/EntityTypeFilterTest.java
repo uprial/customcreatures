@@ -160,8 +160,10 @@ public class EntityTypeFilterTest extends TestConfigBase {
                 "    - GOLEMS",
                 "  types:",
                 "    - WOLF",
+                "    - COPPER_GOLEM",
                 "    - IRON_GOLEM",
                 "    - SNOW_GOLEM"), getCustomLogger(), "f", "filter");
+        assertEquals(0, getPasses(10, filter, EntityType.COPPER_GOLEM));
         assertEquals(0, getPasses(10, filter, EntityType.IRON_GOLEM));
         assertEquals(0, getPasses(10, filter, EntityType.SNOW_GOLEM));
         assertEquals(100, getPasses(10, filter, EntityType.WOLF));
