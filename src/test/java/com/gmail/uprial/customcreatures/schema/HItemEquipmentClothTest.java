@@ -23,7 +23,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "eq:",
                 "  probability: 100",
                 "  drop-chance: 1",
-                "  material-type: IRON",
+                "  material-type: COPPER",
                 "  durability: 100",
                 "  enchantments:",
                 "   - e",
@@ -41,7 +41,7 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "  - MON"),
                 getParanoiacCustomLogger(), HELMET, "eq", "equipment cloth");
         assertNotNull(itemEquipmentCloth);
-        assertEquals("{probability: null, material-type: IRON," +
+        assertEquals("{probability: null, material-type: COPPER," +
                         " enchantments: [{type: THORNS, level: 1, schedules: [{timezone: Europe/London, days-of-the-week: [MON]}]}]," +
                 " drop-chance: 1, durability: 100, trim: Trim{material: EMERALD, pattern: SILENCE}}",
                 itemEquipmentCloth.toString());

@@ -7,5 +7,6 @@ public enum MaterialType {
     IRON,
     DIAMOND,
     GOLDEN,
-    NETHERITE
+    NETHERITE,
+    COPPER
 }
