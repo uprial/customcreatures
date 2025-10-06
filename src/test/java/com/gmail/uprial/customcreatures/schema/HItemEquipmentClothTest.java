@@ -9,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static com.gmail.uprial.customcreatures.schema.ClothType.BARDING;
 import static com.gmail.uprial.customcreatures.schema.ClothType.HELMET;
 import static com.gmail.uprial.customcreatures.schema.HItemEquipmentCloth.getFromConfig;
+import static com.gmail.uprial.customcreatures.schema.HItemEquipmentCloth.getMaterial;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -193,5 +194,16 @@ public class HItemEquipmentClothTest extends TestConfigBase {
                 "eq:",
                 " material-type: LEATHER"),
                 getCustomLogger(), BARDING, "eq", "equipment cloth");
+    }
+
+    @Test
+    public void testGetMaterial() throws Exception {
+        for(final MaterialType materialType : MaterialType.values()) {
+            for(final ClothType clothType : ClothType.values()) {
+                if(clothType != BARDING) {
+                    getMaterial(materialType, clothType, "m");
+                }
+            }
+        };
     }
 }

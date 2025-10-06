@@ -124,7 +124,7 @@ public final class HItemEquipmentCloth {
         return getEnum(MaterialType.class, config, key, title);
     }
 
-    private static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
+    static Material getMaterial(MaterialType materialType, ClothType clothType, String title) throws InvalidConfigException {
         final String itemName = String.format("%s_%s", materialType, clothType);
         try {
             return Material.valueOf(itemName);
